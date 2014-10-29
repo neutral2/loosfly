@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko" >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>{_meta_title}</title>
+<script type="text/javascript" src="../common.js"></script>
+<script type="text/javascript">
+<!--
+function goIDCheckIpin(){
+	<!--{ ? ipinyn == 'y' }-->
+		var popupWindow = window.open( "../member/ipin/IPINCheckRequest.php?callType=adultcheck&amp;returnUrl={=urlencode(_returnUrl)}", "popupCertKey", "top=100, left=200, status=0, width=417, height=490" );
+	<!--{ : niceipinyn == 'y' }-->
+		var popupWindow = window.open( "", "popupCertKey", "width=450, height=550, top=100, left=100, fullscreen=no, menubar=no, status=no, toolbar=no, titlebar=yes, location=no, scrollbar=no" );
+		ifrmRnCheck.location.href="../member/ipin/IPINMain.php?callType=adultcheck&amp;returnUrl={=urlencode(_returnUrl)}";
+	<!--{ / }-->
+	return;
+}
+
+function gohpauthDream(){ //휴대폰본인인증
+	var protocol = location.protocol;
+	var callbackUrl = "{=ProtocolPortDomain()}{_cfg.rootDir}/member/hpauthDream/hpauthDream_Result.php";
+	ifrmHpauth.location.href=protocol+"//hpauthdream.godo.co.kr/module/NEW_hpauthDream_Main.php?callType=adultcheck&shopUrl="+callbackUrl+"&cpid={=hpauthDreamcpid}&amp;returnUrl={=urlencode(_returnUrl)}";
+	return;
+}
+
+window.onload = function() {
+	// 인증 수단, 로그인 폼 사이즈 조정
+	var els = [];
+	var tmp = document.getElementsByTagName("*"), classes;
+	var i,j,m,n;
+	for (i=0, m=tmp.length; i<m; i++) {
+		classes = tmp[i].className.split(/\s+/);
+		for (j=0,n=classes.length;j<n ;j++) {
+			if (classes[j] == 'form') {
+				els.push(tmp[i]);
+			}
+		}
+	}
+
+	for (i=0, m=els.length; i<m; i++) {
+		els[i].style.width = Math.floor(100 / m)+'%';
+	}
+}
+//-->
+</script>
+
+<link type="text/css" rel="styleSheet" href="../style.css" />
+<style type="text/css">
+div.head {height:200px;background:url('../img/auth/img_log_top.gif') no-repeat center center;text-align:center;}
+div.head * {display:none;}
+
+div.body {width:665px;margin:0 auto 20px;overflow:hidden;border:none;}
+div.body h3 {font:bold 12px dotum;color:#f7443f;background:url('../img/auth/bullet_log_tit.gif') no-repeat top left;padding:0 10px;margin:15px 0;}
+div.body div.forms-wrap {width:100%;background:#F3F3F3;padding:10px 5px;margin:0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+div.body div.forms-wrap div.forms {}
+div.body div.forms-wrap div.forms div.form {width:50%;padding: 0 5px;float:left;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+div.body div.forms-wrap div.forms div.form h4 {font:bold 11px dotum;color:#434343;background:url('../img/auth/bullet_log_stit.gif') no-repeat top left;padding:0 10px;margin:5px 0;}
+div.body div.forms-wrap div.forms div.form form {display:table;width:100%;background:#fff;height:107px;border:1px solid #dfdfdf;}
+div.body div.forms-wrap div.forms div.form form div {display:table-cell;vertical-align:middle;text-align:center;}
+div.body div.forms-wrap div.forms div.form form div table {margin:0 auto;}
+div.body div.forms-wrap div.forms div.form form div table th {font-weight:bold;color:#5D5D5D;font-size:11px;letter-spacing:-1px;text-align:right;}
+div.body div.forms-wrap div.forms div.form form div table td {text-align:left;}
+
+div.body div.forms-wrap div.forms div.form form input.fld {border:1px solid #DEDEDE;height:18px;width:145px;}
+
+div.body div.forms-wrap p {margin:10px 5px 0px 5px;font:11px dotum;letter-spacing:-1px;color:#7e7e7e;}
+
+div.body p.info {line-height:150%;padding:30px 0; width:580px; margin:0 auto; font-size:11px; letter-spacing:-1px; color:#5d5d5d;text-align:left;}
+
+div.foot {border-top:1px solid #e6e6e6;margin:0 auto;width:665px;}
+div.foot ul.company {list-style:none; margin-bottom:5px;}
+div.foot ul.company li {padding:3px;}
+div.foot ul.company li span.divi {color:#cecece;}
+
+div.foot p.copyright {text-align:center;}
+</style>
+</head>
+
+<body>
+
+<div class="head">
+	<h2>19세 미만의 미성년자는 출입을 금합니다.</h2>
+	<p>
+	이 정보내용은 청소년 유해매체물로서 정보통신망 이용촐진 및 정보보호등에 관한 법률 및 청소년 보호법에 규정에 의하여 19세 미만의 청소년이 이용할 수 없습니다.
+	</p>
+</div>
+
+<div class="body">
+
+	<h3>성인 인증하기</h3>
+
+	<div class="forms-wrap">
+		<div class="forms" id="form-wrapper">
+			<!-- 인증폼 -->
+			<!--{ ? realnameyn == 'y' ||  ipinyn == 'y' || niceipinyn == 'y' || hpauthDreamyn == 'y' }-->
+			<div class="form">
+				<h4>인증수단선택</h4>
+				<form action="">
+					<!-- 아이핀, 휴대폰 인증 -->
+					<div>
+						<!--{ ? ipinyn == 'y' || niceipinyn == 'y' }-->
+						<a href="javascript:void(0);" onclick="goIDCheckIpin();"><img src="../img/auth/btn_ipin.gif" alt="아이핀 인증받기" /></a>
+
+						<!--{ / }-->
+						<!--{ ? hpauthDreamyn == 'y' }-->
+						<a href="javascript:void(0);" onclick="gohpauthDream();"><img src="../img/auth/btn_hp.gif" alt="휴대폰 인증받기" /></a>
+						<!--{ / }-->
+					</div>
+				</form>
+			</div>
+			<!--{ / }-->
+			<!-- eof 인증폼 -->
+
+			<!-- 로그인 폼 -->
+			<!--{ ? !_sess}-->
+			<div class="form">
+				<h4>회원인증</h4>
+				<form method="post" action="{loginActionUrl}">
+				<input type="hidden" name="returnUrl" value="{=_returnUrl}" />
+					<div>
+					<table>
+					<tr>
+						<th>아이디</th>
+						<td><input type="text" class="fld" name="m_id" size="20" tabindex="5" /></td>
+						<td rowspan="2"><input type="image" src="../img/auth/btn_login.gif" tabindex="7" /></td>
+					</tr>
+					<tr>
+						<th>비밀번호</th>
+						<td><input type="password" class="fld" name="password" size="20" tabindex="6" /></td>
+					</tr>
+					<tr>
+						<th></th>
+						<td colspan="2" style="text-align:justify;">
+							<a href="../member/join.php" onfocus="blur()">회원가입</a> | <a href="../member/find_id.php" onfocus="blur()">아이디찾기</a> | <a href="../member/find_pwd.php" onfocus="blur()">비밀번호찾기</a>
+						</td>
+					</tr>
+					</table>
+					</div>
+				</form>
+			</div>
+			<!--{ / }-->
+			<!-- eof 로그인폼 -->
+
+			<div style="clear:both;"></div>
+		</div>
+
+		<!--{ ? !_sesss}-->
+		<p>
+		성인 여부가 저장되어있지 않은 회원은 <strong>(본 인증서비스를 통해 가입된 회원이 아닐 경우)</strong> 로그인 후에도 성인인증 절차가 필요합니다.
+		</p>
+		<!--{ / }-->
+	</div>
+
+</div>
+
+<div class="foot">
+
+	<div class="logo"><a href="../main/main.php"><?php echo $logoImage;?></a></div>
+
+	<ul class="company">
+		<li>
+			<!--{ ? _cfg['compName'] }-->상호명 : {_cfg['compName']}<!--{ / }-->
+			<!--{ ? _cfg['compSerial'] }--> <span class="divi"> | </span> 사업자등록번호 : {_cfg['compSerial']}<!--{ / }-->
+			<!--{ ? _cfg['orderSerial'] }--> <span class="divi"> | </span> 통신판매업신고번호 : {_cfg['orderSerial']}<!--{ / }-->
+		</li>
+		<li>
+			<!--{ ? _cfg['ceoName'] }-->대표 : {_cfg['ceoName']} <!--{ / }-->
+			<!--{ ? _cfg['adminName'] }--> <span class="divi"> | </span> 개인정보관리책임자 : {_cfg['adminName']}
+				<!--{ ? _cfg['adminEmail'] }-->(<a href="javascript:popup('../proc/popup_email.php?to={_cfg['adminEmail']}&amp;hidden=1',650,600)">{_cfg['adminEmail']}</a>)
+				<!--{ / }-->
+			<!--{ / }-->
+		</li>
+		<li>
+			<!--{ ? _cfg['address'] }-->주소 : {_cfg['address']} <!--{ / }-->
+			<!--{ ? _cfg['compPhone'] }--> <span class="divi"> | </span> 대표번호 : {_cfg['compPhone']}<!--{ / }-->
+			<!--{ ? _cfg['compFax'] }--> <span class="divi"> | </span> 팩스번호 : {_cfg['compFax']} <!--{ / }-->
+		</li>
+	</ul>
+
+	<p class="copyright">
+	Copyright ⓒ <strong>{_cfg['shopUrl']}</strong> All right reserved
+	</p>
+
+</div>
+
+<iframe id="ifrmRnCheck" name="ifrmRnCheck" style="width:500px;height:500px;display:none;"></iframe>
+<iframe id="ifrmHpauth" name="ifrmHpauth" style="width:300px;height:200px;display:none;"></iframe>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+INFO	[2013-06-20 18:31:49:177] <14233> START INIPHP chkfake (V5031-111123)(OS:Linux2.6.18-348.6.1.el5,PHP:5.2.17)
+DEBUG	[2013-06-20 18:31:49:178] <14233> inipayhome:/www/loosfly_godo_co_kr/shop/order/card/inipay
+DEBUG	[2013-06-20 18:31:49:178] <14233> type:chkfake
+DEBUG	[2013-06-20 18:31:49:178] <14233> debug:true
+DEBUG	[2013-06-20 18:31:49:178] <14233> enctype:asym
+DEBUG	[2013-06-20 18:31:49:178] <14233> admin:1111
+DEBUG	[2013-06-20 18:31:49:178] <14233> checkopt:false
+DEBUG	[2013-06-20 18:31:49:178] <14233> mid:GODOloosfl
+DEBUG	[2013-06-20 18:31:49:178] <14233> price:89000
+DEBUG	[2013-06-20 18:31:49:178] <14233> nointerest:no
+DEBUG	[2013-06-20 18:31:49:178] <14233> quotabase:선택:일시불:2개월:3개월:4개월:5개월:6개월:7개월:8개월:9개월:10개월:11개월:12개월
+INFO	[2013-06-20 18:31:49:178] <14233> Check Field OK
+INFO	[2013-06-20 18:31:49:178] <14233> MERCHANT PRIV KEY LOAD OK
+INFO	[2013-06-20 18:31:49:179] <14233> MERCHANT PUB KEY LOAD OK []
+INFO	[2013-06-20 18:31:49:181] <14233> CHKFAKE KEY MAKE OK:MjAxMzA2MjAxODMxNDkxNzk5MDk3NQ==
+
+INFO	[2013-06-20 18:31:49:181] <14233> END chkfake  Laptime:[0sec]
+INFO	[2013-06-20 18:31:49:181] <14233> ===============================================================
+INFO	[2013-06-20 18:32:58:837] <7303> START INIPHP chkfake (V5031-111123)(OS:Linux2.6.18-348.6.1.el5,PHP:5.2.17)
+DEBUG	[2013-06-20 18:32:58:837] <7303> inipayhome:/www/loosfly_godo_co_kr/shop/order/card/inipay
+DEBUG	[2013-06-20 18:32:58:837] <7303> type:chkfake
+DEBUG	[2013-06-20 18:32:58:837] <7303> debug:true
+DEBUG	[2013-06-20 18:32:58:837] <7303> enctype:asym
+DEBUG	[2013-06-20 18:32:58:837] <7303> admin:1111
+DEBUG	[2013-06-20 18:32:58:837] <7303> checkopt:false
+DEBUG	[2013-06-20 18:32:58:837] <7303> mid:GODOloosfl
+DEBUG	[2013-06-20 18:32:58:837] <7303> price:89000
+DEBUG	[2013-06-20 18:32:58:837] <7303> nointerest:no
+DEBUG	[2013-06-20 18:32:58:837] <7303> quotabase:선택:일시불:2개월:3개월:4개월:5개월:6개월:7개월:8개월:9개월:10개월:11개월:12개월
+INFO	[2013-06-20 18:32:58:838] <7303> Check Field OK
+INFO	[2013-06-20 18:32:58:838] <7303> MERCHANT PRIV KEY LOAD OK
+INFO	[2013-06-20 18:32:58:838] <7303> MERCHANT PUB KEY LOAD OK []
+INFO	[2013-06-20 18:32:58:840] <7303> CHKFAKE KEY MAKE OK:MjAxMzA2MjAxODMyNTg4MzgzMzIwOA==
+
+INFO	[2013-06-20 18:32:58:840] <7303> END chkfake  Laptime:[0sec]
+INFO	[2013-06-20 18:32:58:840] <7303> ===============================================================

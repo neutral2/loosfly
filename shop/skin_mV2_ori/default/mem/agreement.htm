@@ -1,0 +1,94 @@
+{#header}
+<?php {page_title} = "회원가입 (약관동의)";?>
+{#sub_header}
+<script type="text/javascript">
+	function chgAgreement(no) {
+		$(".agreement1").removeClass('now_agreement');
+		$(".agreement2").removeClass('now_agreement');
+		$(".agreement" + no).addClass('now_agreement');
+
+		$(".agreement_content1").css("height", "180px");
+		$(".agreement_content1 .content-text").css("height", "97%");
+		$(".agreement_content2").css("height", "180px");
+		$(".agreement_content2 .content-text").css("height", "97%");
+
+		$(".agreement_content1").addClass('hidden');
+		$(".agreement_content2").addClass('hidden');
+		$(".agreement_content" + no).removeClass('hidden');
+
+		$(".content_view").removeClass('hidden');
+	}
+
+	function contentView() {
+		
+		if($(".agreement_content1").is(':hidden') == false) {
+			$(".agreement_content1").css("height", "7500px");
+			$(".agreement_content1 .content-text").css("height", "99%");
+		}
+		else {
+			$(".agreement_content2").css("height", "1750px");
+			$(".agreement_content2 .content-text").css("height", "98%");
+		}
+
+		$(".content_view").addClass('hidden');
+	}
+
+	function nextStep() {
+		if($("[name=chk_agree]").is(":checked") == false) {
+			alert("이용약관에 동의하셔야 회원가입이 가능합니다");
+			return;
+		}
+
+		if($("[name=chk_private]").is(":checked") == false) {
+			alert("개인정보 취급방침에 동의하셔야 회원가입이 가능합니다");
+			return;
+		}
+
+		$("#form").submit();
+		
+	}
+</script>
+<section class="content" id="memberjoin">
+<form id=form name=frmAgree method=post action="indb.php" target="ifrmHidden">
+	<input type="hidden" name="mode" value="chkRealName" />
+	<input type="hidden" name="rncheck" value="none" />
+	<input type="hidden" name="type" />
+	<div class="join_step">
+		<div class="join_step1 now_step">약관동의</div>
+		<div class="join_arrow"></div>
+		<div class="join_step2">계정생성</div>
+		<div class="join_arrow"></div>
+		<div class="join_step4">가입완료</div>
+	</div>
+	<div class="content_border"></div>
+	<div class="agreement">
+		<div class="agreement_title">
+			<div class="agreement1 now_agreement" onclick="javascript:chgAgreement('1');">이용약관</div>
+			<div class="agreement_bar"></div>
+			<div class="agreement2" onclick="javascript:chgAgreement('2');">개인정보 취급방침</div>
+		</div>
+		<div class="agreement_content1" id="agreement-content1">
+			<textarea class="content-text" readonly><!--{ = include_file( "proc/_agreement.txt" ) }--></textarea>
+		</div>
+		<div class="agreement_content2 hidden" id="agreement-content2">
+			<textarea class="content-text" readonly><!--{ = include_file( "service/_private1.txt" ) }--></textarea>
+		</div>
+		<div class="content_view"><div class="view_btn"  onclick="javascript:contentView();">▼ 펼쳐보기</div></div>
+	</div>
+	<div class="content_border"></div>
+	<div class="agreement_chk">
+		<div class="agreement_chk1">
+			<label><input type="checkbox" name="chk_agree" value="y" /> 위의 "이용약관"에 동의 합니다.</label>
+		</div>
+		<div class="agreement_chk2">
+			<label><input type="checkbox" name="chk_private" value="y" /> 위의 "개인정보취급방침"에 동의 합니다.</label>
+		</div>
+	</div>
+	<div class="step_btn">
+		<div class="next_btn"><button id="next-btn" tabindex="5" onclick="javascript:nextStep();return false;">다음단계</button></div>
+		<div class="cancel_btn"><button id="cancel-btn" tabindex="5" onclick="javascript:location.href='/'+mobile_root+'/index.php';return false;">가입취소</button></div>
+	</div>
+</form>
+</section>
+
+{ # footer }

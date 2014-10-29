@@ -1,0 +1,26 @@
+{#header}
+
+<?php {page_title} = "쿠폰내역";?>
+{#sub_header}
+
+<section id="couponlist" class="content">
+	<table>
+	<tr>
+		<th width="46%">쿠폰명</th>
+		<th width="27%">할인/적립</th>
+		<th style="border-right:none;width:27%">사용여부</th>
+	</tr>
+	<!--{ @ loop }-->
+	<tr>
+		<td class="left">
+			{.coupon}
+		</td>
+		<td class="right">{=number_format(.price)}{ ? substr(.price,-1)!='%' }원{:}%{/}({_r_couponAbility[.ability]})</td>
+		<td class="right">{.cnt}</td>
+	</tr>
+	<!--{ / }-->
+	</table>
+
+</section>
+
+{#footer}

@@ -1,0 +1,2480 @@
+
+<!DOCTYPE HTML>
+<html lang="ko">
+<title>Search DART, - MayBeMayBe... - </title>
+
+<head>
+   <link rel="shortcut icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/d3a1b755edc7500954132edc6ba01ccc?s=16" sizes="16x16" />
+   <link rel="icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/d3a1b755edc7500954132edc6ba01ccc?s=16" sizes="16x16" />
+   <link rel="apple-touch-icon-precomposed" href="https://secure.gravatar.com/blavatar/f4672045e5274413c0ff024b18cb3914?s=114" />
+   <meta charset="euc-kr">
+   <style>
+      a:visited{color : black; text-decoration: none;}
+      a:link{color : black; text-decoration: none; text-decoration: none;}
+      a:hover{color : #BA0E9D; background-color : #ddecfe; text-decoration: none;}
+      .hideextra { white-space: nowrap; overflow: hidden; text-overflow:ellipsis; }
+      #formTicker { position: absolute; left : 0px; top: 0px;}
+      #formStartDate { position: absolute; left : 120px; top: 0px;}
+      #formEndDate { position: absolute; left : 260px; top: 0px;}
+      #formTextSearch { position: absolute; left : 0px; top: 25px;}
+      #formFinalReport { position: absolute; left : 210px; top: 50px;}
+      #formOperationReport { position: absolute; left : 260px; top: 50px;}
+      #formSearchCompany { position: absolute; left : 0px; top: 50px;}
+      #formSubmit { position: absolute; left : 330px; top:50px;}
+
+      <!-- a:focus{color : blue; background-color : white;} -->
+      <!-- a:active{color : red;} -->
+   </style>
+   <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+</head>
+
+<body>
+<script>
+
+/*************************************************************************/
+/*************************************************************************/
+/**User Defined part                                                    **/
+/*************************************************************************/
+/*************************************************************************/
+
+// auth key... critical.....
+// Use your authentication key code.
+// http://dart.fss.or.kr/dsap001/intro.do
+var auth = "0b574637da0ea994f71ae4f6b0b759acd7dead43";
+
+
+var start_dt = "20100101";                   // Start date YYYYMMDD format
+var end_dt="";
+var page_set = 100;                          // One page count
+var series = "desc";                         // Ascending, Descending
+var sortMethod = "date";                     // Sorting method
+var crp_cd = "084670";
+var reqPage = 1;
+var fin_rpt = "N";
+
+var gTotalPage = 1;
+
+// http://dart.fss.or.kr/html/search/SearchCompanyIR3_M.html?textCrpNM=005490
+//var dartDetailedOption = "&bsn_tp=A001&bsn_tp=A002&bsn_tp=A003";
+var dartDetailedOption = "";
+
+
+// http://www.krx.co.kr/m6/m6_1/m6_1_1/JHPKOR06001_01.jsp
+
+
+/*************************************************************************/
+/*************************************************************************/
+/*************************************************************************/
+/*************************************************************************/
+
+//
+// reference document.
+// http://www.w3schools.com
+// http://msdn.microsoft.com/ko-kr/library/ie/d1et7k7c(v=vs.94).aspx
+//
+
+
+// global variable for maintain information. Not good...
+var gloopCount = 0;
+
+var TimerVar = "";
+
+
+
+
+
+//
+// Entry Point... Start here....
+$(document).ready(function() 
+{
+   initCompanyLists();
+   
+   initSearchForm();
+   
+   // Build Company List table
+   //writeCompanyList();
+
+   gloopCount = 0;
+});
+
+// Timer event.
+function callbackTimer()
+{
+   if(gloopCount >= (gTotalPage -1))
+   {
+      clearInterval(TimerVar);
+      TimerVar = "";
+   }
+   else
+   {
+      // for JSONP calling.
+      gloopCount++;
+      reqPage = reqPage+1;
+      queryCompany(gloopCount,
+                     crp_cd,
+                     start_dt,
+                     reqPage,
+                     page_set,
+                     fin_rpt,
+                     gbOperationReport);
+      
+   }
+}
+
+function initSearchForm()
+{
+   var today = new Date();
+   var Year = today.getFullYear();
+   var Month = ('0'+(today.getMonth()+1)).slice(-2);
+   var Day = ('0'+(today.getDate())).slice(-2);
+   var strToday = Year.toString() + Month.toString() + Day.toString();
+
+   var strForm = "";
+   strForm += "<form id='SearchForm' method=post action='javascript:void(0);'>";
+
+   strForm += "<div id='formTicker'>";
+   strForm += "<label>Ticker : </label><input id= frmTickerId type='text' style='width:4em' name='Ticker'>";
+   strForm += "</div>";
+
+   strForm += "<div id='formStartDate'>";
+   strForm += "<label>Start : </label><input id=frmStartDateId type='text' style='width:6em' name='StartDate' value='20010101'>";
+   strForm += "</div>";
+
+   strForm += "<div id='formEndDate'>";
+   strForm += "<label>End : </label><input id=frmEndDateId type=text' style='width:6em' name='EndDate' value=" + strToday + ">";
+   strForm += "</div>";
+
+   strForm += "<br>";
+
+   strForm += "<div id='formTextSearch'>";
+   strForm += "<label>Search : </label><input id=frmSearchTextId type='text' style='width:24em' name='SearchText'>";
+   strForm += "</div>";
+
+   strForm += "<div id='formFinalReport'>";
+   strForm += "F : <input id=frmFinalReportId type='checkbox' name = 'Final' value='N'>";
+   strForm += "</div>";
+
+   strForm += "<div id='formOperationReport'>";
+   strForm += "영업 : <input id=frmOperationReportId type='checkbox' name = 'Final' value='N'>";
+   strForm += "</div>";
+
+   strForm += "<br>";
+
+   strForm += "<div id='formSearchCompany'>";
+   strForm += "<label>Company : </label><input id=frmSearchCompanyId style='width:9em'"
+                              + " type = 'text'"
+                              + " name = 'SearchCompanyTicker'"
+                              + " onkeyup = 'funcSearchCompanyTicker()'>";
+
+   strForm += "</div>";
+
+   strForm += "<br>";
+
+   strForm += "<div id='formSubmit'>";
+   strForm += "<input type='submit' value='Submit' onClick='submitQueryArgument()'>";
+   strForm += "</div>";
+
+   strForm += "</form>";
+
+   
+   // for each company.
+   document.getElementById('CompanySearchForm').innerHTML = strForm;
+
+}
+
+
+
+function funcSearchCompanyTicker()
+{
+   var SearchForm = document.getElementById("SearchForm");
+   var frmSearchCompany = SearchForm.frmSearchCompanyId;
+
+   var strSearch = frmSearchCompany.value;
+   
+   var strResult = "";
+
+
+
+   var vecSearchResult = [];
+
+   function clsResult(strSearchNameId, strSearchTickerId, strTicker, strName)
+   {
+      this.strSearchNameId = strSearchNameId;
+      this.strSearchTickerId = strSearchTickerId;
+      this.strName = strName;
+      this.strTicker = strTicker;
+   }
+
+   strResult += "<br>";
+   strResult += "<table border = 0>";
+
+   $.each(vecCompany, function(i, item)
+   {
+      var strName = vecCompany[i].strName;
+
+      if((strName.toLowerCase().search(strSearch.toLowerCase())) != (-1))
+      {
+         var strTicker = vecCompany[i].strTicker;
+
+         // Sometimes, the name have invalid character, such as '&'.. So I changed name Id using ticker Code.
+         var strSearchNameId = "searchName" + strTicker + strTicker;
+         var strSearchTickerId = "searchTicker" + strTicker;
+         
+         vecSearchResult.push(new clsResult(strSearchNameId, strSearchTickerId, strTicker, strName));
+
+         strResult += "<tr>";
+         strResult += "<td>" + "<a id = " + strSearchNameId + " >" + strName + "</a></td>";
+         strResult += "<td>" + "<a id = " + strSearchTickerId + " >" + strTicker + "</a></td>";
+         strResult += "</tr>";
+         
+      }
+   });      // for each
+   strResult += "</table>";
+
+   document.getElementById('CandidateDiv').innerHTML = strResult;
+   
+   strSearch = "";
+   
+   $.each(vecSearchResult, function(i, item)
+   {
+      var nameLink = document.getElementById(item.strSearchNameId);
+      var tickerLink = document.getElementById(item.strSearchTickerId);
+      nameLink.onclick = function(){ determineTickerId(item.strName, item.strTicker);}
+      tickerLink.onclick = function(){ determineTickerId(item.strName, item.strTicker);}
+   });
+}
+
+function determineTickerId(strName, strTicker)
+{
+   var SearchForm = document.getElementById("SearchForm");
+   SearchForm.frmTickerId.value = strTicker;
+   
+   document.getElementById('CandidateDiv').innerHTML = "";
+
+   return false;
+}
+
+
+function submitQueryArgument()
+{
+   buildQueryArgument();
+}
+
+// After Submit button pressed.
+function buildQueryArgument()
+{
+   var SearchForm = document.getElementById("SearchForm");
+
+   var strTicker = SearchForm.frmTickerId.value;
+   var strStartDate = SearchForm.frmStartDateId.value;
+   var strEndDate = SearchForm.frmEndDateId.value;
+   var strSearchText = SearchForm.frmSearchTextId.value;
+   var bFinalReport = SearchForm.frmFinalReportId.checked;
+   
+   gbOperationReport = SearchForm.frmOperationReportId.checked;
+   
+   crp_cd = strTicker;
+   start_dt = strStartDate;
+   end_dt = strEndDate;
+   if(bFinalReport == false)
+   {
+      fin_rpt = "N";
+   }
+   else
+   {
+      fin_rpt = "Y";
+   }
+
+
+   reqPage = 1;
+   page_set = 100;
+   
+   gTotalPage = 0;
+   gloopCount = 0;
+
+   SummaryTable = [];
+   ListTable = [];
+
+
+   gSearchText = strSearchText;
+   crp_cd = strTicker;
+   start_dt = strStartDate;
+
+   var loop = 0;
+   
+   queryCompany(loop,
+                  crp_cd,
+                  start_dt,
+                  reqPage,
+                  page_set,
+                  fin_rpt,
+                  gbOperationReport);
+}
+
+
+var SummaryTable = [];
+var ListTable = [];
+var gSearchText = "";
+
+
+function detectTextLine(strSearch, strOrig)
+{
+   var bIncludeLine = false;
+   
+   var vecORSearch = [];
+   var vecANDSearch = [];
+   var vecXORSearch = [];
+   
+   var strSearchText = strSearch.toLowerCase();
+   var strOrigText = strOrig.toLowerCase();
+   
+   vecORSearch = strSearchText.split("+");
+   
+   $.each(vecORSearch, function(i, item)
+   {
+      var strTemp = $.trim(vecORSearch[i]);           // remove white space.
+
+      if((strOrig.toLowerCase().search(strTemp.toLowerCase())) != (-1))
+      {
+         bIncludeLine = true;
+         return bIncludeLine;
+      }
+   });
+
+   return bIncludeLine;
+}
+
+
+
+function writeCompanyContents(loop, data)
+{
+   var SearchForm = document.getElementById("SearchForm");
+   var strTicker = SearchForm.frmTickerId.value;
+   var strStartDate = SearchForm.frmStartDateId.value;
+   var strEndDate = SearchForm.frmEndDateId.value;
+   var strSearchTextId = SearchForm.frmSearchTextId.value;
+   var strFinalReportId = SearchForm.frmFinalReportId.checked;
+
+
+   // external url address for opening new window.
+   var crp_cdUrl = "http://dart.fss.or.kr/html/search/SearchCompanyIR3_M.html?textCrpNM=";
+   var rcp_noUrl = "http://dart.fss.or.kr/dsaf001/main.do?rcpNo=";
+
+   var strContents = "";
+   var strSortTemp = "<td class=sortDate align=center>";
+   var strTickerTd = "<td align=center>";
+
+   //var strWhoColumn = "<div class = 'hideextra' style='width:100px'>";
+   var strWhoColumn = "<div class = 'hideextra' style='width:120px'>";
+   var strContentsColumn = "<div class = 'hideextra' style='width:500px'>";
+   var strQueryList = "";
+   var strSummary = "";
+
+   var strTableHead = "";
+   var strTableTail = "";
+
+   strTableHead += "<table id= border='0' borderColorDark='white' borderColorLight='#666666' cellpadding='3' cellspacing='0' style = 'margin:0px 0px 20px 0px; width:900px;font-size:10pt;border:1px solid #7f7f7f;'>";
+   strTableHead += "<tr bgcolor = #EDC790>";
+
+   // No
+   strTableHead += "<td align=center bgcolor = #EDC790>";
+   strTableHead += "No";
+   strTableHead += "</td>";
+
+   // Company Name
+   strTableHead += "<td align=center>";
+   strTableHead += "Company";
+   strTableHead += "</td>";
+
+   // Date
+   strTableHead += "<td align=center>";
+   strTableHead += "Date";
+   strTableHead += "</td>";
+
+   // Ticker
+   strTableHead += "<td align=center>";
+   strTableHead += "Ticker";
+   strTableHead += "</td>";
+
+   // Contents
+   strTableHead += "<td align=center>";
+   strTableHead += strContentsColumn;
+   strTableHead += "Contents";
+   strTableHead += "</div>";
+   strTableHead += "</td>";
+
+/*
+   // Detail Contents URL
+   strTableHead += "<td align=center>";
+   strTableHead += "URL";
+   strTableHead += "</td>";
+*/
+
+   // Publisher
+   strTableHead += "<td align=center>";
+   strTableHead += strWhoColumn;
+   strTableHead += "Who";
+   strTableHead += "</div>"
+   strTableHead += "</td>";
+
+   strTableHead += "</tr>";
+   
+   strContents += strTableHead;
+   
+   var ListTableSize = ListTable.length;
+   if(ListTableSize == 0)
+   {
+      ListTable.push(strTableHead);
+   }
+   else
+   if(ListTableSize > 1)
+   {
+      var strCheck = ListTable.pop();
+   }
+
+   strQueryList = "";
+
+   var currentPage = data.page_no;
+   var totalPage = data.total_page;
+   var totalReport = data.total_count;
+   var page_set = data.page_set;
+
+   // loop
+   // fill the each table
+   $.each(data.list, function(i, item)
+   {
+      var year = item.rcp_dt.substring(0, 4);
+      var month = item.rcp_dt.substring(4, 6);
+      var day = item.rcp_dt.substring(6, 8);
+
+      // Month starts from 0.. not 1
+      var reportDate = new Date(year, month - 1, day);
+      var today = new Date();
+      var diffDay = today.getTime() - reportDate.getTime();
+      diffDay = Math.floor(diffDay/(60*60*24*1000));
+      
+      var bInsertListTable = false;
+
+      // Search matching string.
+      var strContentsFromQuery = item.rpt_nm + item.flr_nm;
+      bInsertListTable = detectTextLine(gSearchText, strContentsFromQuery);
+      
+      strQueryList = "";
+      
+      strQueryList += "<tr>";
+
+      // No
+      strQueryList += "<td bgcolor = #EDC790 align=center>";
+      //strQueryList += ((parseInt(i) + (parseInt(page_set)*parseInt(currentPage)));
+      strQueryList += i + page_set * (currentPage - 1);
+      strQueryList += "</td>";
+
+      // Comnpany Name
+      strQueryList += "<td align=center>";
+      strQueryList += "<a href=\'" + crp_cdUrl + item.crp_cd + "\' target=\'_blank\'>";
+      strQueryList += item.crp_nm;
+      strQueryList += "</a>";
+      strQueryList += "</td>";
+
+      // YYYY/MM/DD format
+      // for sorting,
+      strQueryList += strSortTemp;                      //"<td class=sortDate align=center>";
+      strQueryList += year + "/" + month + "/" + day;
+      strQueryList += "</td>";
+
+      // Ticker Code
+      strQueryList += strTickerTd;                      //"<td align=center>";
+      strQueryList += item.crp_cd;
+      strQueryList += "</td>";
+
+      // Contents
+      strQueryList += "<td>";
+      strQueryList += strContentsColumn;
+      strQueryList += "<a href=\'" + rcp_noUrl + item.rcp_no + "\' target=\'_blank\'>";
+      strQueryList += "&nbsp;" + item.rpt_nm;
+      strQueryList += "</a>";
+      strQueryList += "</div>";
+      strQueryList += "</td>";
+
+/*
+      // URL
+      strQueryList += "<td align=center>";
+      strQueryList += "<a href=\'" + rcp_noUrl + item.rcp_no + "\' target=\'_blank\'>";
+      strQueryList += item.rcp_no;
+      strQueryList += "</a>";
+      strQueryList += "</td>";
+*/
+
+
+      // Who
+      strQueryList += "<td>";
+      strQueryList += strWhoColumn;
+      strQueryList += item.flr_nm;
+      strQueryList += "</div>";
+      strQueryList += "</td>";
+
+      strQueryList += "</tr>";
+
+      strContents += strQueryList;
+      
+      if(bInsertListTable == true)
+      {
+         ListTable.push(strQueryList);
+      }
+   });      // for each
+
+   strQueryList = "";
+   strTableTail += "</table>";
+   strContents += strTableTail;
+   
+   ListTable.push(strTableTail);
+
+   strContents += "<br>";
+   strContents += "<br>";
+   strContents += "<br>";
+
+
+   // first, remove <table> and </table> header from the array....
+   var strQueryListHead = ListTable.shift();
+   var strQueryListTail = ListTable.pop();
+
+   // sorting, using DATE YYYY/MM/DD field.
+   ListTable.sort(function(a, b)
+   {
+      var aPosSub = a.indexOf(strSortTemp) + strSortTemp.length;
+      var bPosSub = b.indexOf(strSortTemp) + strSortTemp.length;
+      
+      if((aPosSub != -1) && (bPosSub != -1))
+      {
+         // 20 ==> YYYY/MM/DD + </td> + Ticker Code length.
+         var strFirst = a.substring(aPosSub, aPosSub + 10);
+         var strSecond = b.substring(bPosSub, bPosSub + 10);
+         
+         // Descending order.
+         var result = 0;
+         if(strFirst > strSecond)
+         {
+            result = -1;
+         }
+         else
+         if( strFirst == strSecond)
+         {
+            result = 0;
+         }
+         else
+         {
+            result = 1;
+         }
+         return result;
+      }
+   });
+
+   // restore the <table> and </table> for building the table.
+   ListTable.unshift(strQueryListHead);
+   ListTable.push(strQueryListTail);
+
+
+   strQueryList = "";
+   for(var i in ListTable)
+   {
+      strQueryList += ListTable[i];
+   }
+   
+   // Summary table
+   document.getElementById("CompanySummaryTable").innerHTML = "<br><br>";
+   
+   // for each company.
+   document.getElementById('CompanyDetail').innerHTML = strQueryList;
+
+}
+
+
+
+function queryCompany(loop, crp_cd, start_dt, reqPage, page_set, fin_rpt, bOperationReport)
+{
+
+   if(gbOperationReport == true)
+   {
+      dartDetailedOption = "&bsn_tp=A001&bsn_tp=A002&bsn_tp=A003"
+                              + "&bsn_tp=F001"
+                              + "&bsn_tp=F002"
+                              + "&bsn_tp=F003";
+   }
+   else
+   {
+      dartDetailedOption = "";
+   }
+
+   var dartUrlAddr = "http://dart.fss.or.kr/api/search.json?callback=?&auth=" + auth
+                      + "&series=" + series                       // sorting method : adcending or descending
+                      + "&sort=" + sortMethod                     // sorting methord : date, crp, rpt or date
+                      + "&crp_cd=" + crp_cd                       // ticker id
+                      + "&start_dt=" + start_dt                   // start date
+                      + "&end_dt=" + end_dt
+                      + "&page_no=" + reqPage                     // request Page
+                      + "&page_set=" + page_set                   // report count per 1 page
+                      + "&fin_rpt=" + fin_rpt                     // final report
+                      + dartDetailedOption;                       // Detailed Option
+
+   $.getJSON( dartUrlAddr, function(data)
+   {
+      //console.log( "Query callback...??" );
+   })
+   .done(function( data )
+   {
+      gTotalPage = data.total_page;
+
+      writeCompanyContents(loop, data);
+      
+         // Timer setting part.
+      // for periodicaly calling multiple JSONP query
+      if(TimerVar == "")
+      {
+         TimerVar = setInterval(function() {callbackTimer()}, 50);
+      }
+   })
+   .fail(function()
+   {
+      //console.log( "Query failed" );
+   })
+   .always(function()
+   {
+      //console.log( "Always" );
+   });
+}
+
+</script>
+
+<!-- for each company lists. -->
+<div id="CompanySearchForm">
+</div>
+
+
+<div id="CandidateDiv">
+</div>
+
+<!-- for displaying recent report. -->
+<div id="CompanySummaryTable">
+</div>
+
+<!-- for each company report. -->
+<div id="CompanyDetail">
+</div>
+
+<script>
+// for managing vector array
+var vecCompany = [];
+
+
+// simple constructor.
+function clsCompany(strName, strTicker)
+{
+   this.strName = strName;            // ticker code
+   this.strTicker = strTicker;            // ticker name
+}
+
+function initCompanyLists()
+{
+   vecCompany.push(new clsCompany("3S", "060310"));
+   vecCompany.push(new clsCompany("AJS", "013340"));
+   vecCompany.push(new clsCompany("AJ렌터카", "068400"));
+   vecCompany.push(new clsCompany("AK홀딩스", "006840"));
+   vecCompany.push(new clsCompany("AP시스템", "054620"));
+   vecCompany.push(new clsCompany("AST젯텍", "090470"));
+   vecCompany.push(new clsCompany("BS금융지주", "138930"));
+   vecCompany.push(new clsCompany("BYC", "001460"));
+   vecCompany.push(new clsCompany("C&S자산관리", "032040"));
+   vecCompany.push(new clsCompany("CJ", "001040"));
+   vecCompany.push(new clsCompany("CJ CGV", "079160"));
+   vecCompany.push(new clsCompany("CJ E&M", "130960"));
+   vecCompany.push(new clsCompany("CJ대한통운", "000120"));
+   vecCompany.push(new clsCompany("CJ씨푸드", "011150"));
+   vecCompany.push(new clsCompany("CJ오쇼핑", "035760"));
+   vecCompany.push(new clsCompany("CJ제일제당", "097950"));
+   vecCompany.push(new clsCompany("CJ프레시웨이", "051500"));
+   vecCompany.push(new clsCompany("CJ헬로비전", "037560"));
+   vecCompany.push(new clsCompany("CMG제약", "058820"));
+   vecCompany.push(new clsCompany("CNH", "023460"));
+   vecCompany.push(new clsCompany("CS", "065770"));
+   vecCompany.push(new clsCompany("CS엘쏠라", "159910"));
+   vecCompany.push(new clsCompany("CS홀딩스", "000590"));
+   vecCompany.push(new clsCompany("CU전자", "056340"));
+   vecCompany.push(new clsCompany("DGB금융지주", "139130"));
+   vecCompany.push(new clsCompany("DMS", "068790"));
+   vecCompany.push(new clsCompany("DRB동일", "004840"));
+   vecCompany.push(new clsCompany("DSR", "155660"));
+   vecCompany.push(new clsCompany("DSR제강", "069730"));
+   vecCompany.push(new clsCompany("DS제강", "009730"));
+   vecCompany.push(new clsCompany("E1", "017940"));
+   vecCompany.push(new clsCompany("EG", "037370"));
+   vecCompany.push(new clsCompany("EMW", "079190"));
+   vecCompany.push(new clsCompany("F&F", "007700"));
+   vecCompany.push(new clsCompany("GKL", "114090"));
+   vecCompany.push(new clsCompany("GS", "078930"));
+   vecCompany.push(new clsCompany("GST", "083450"));
+   vecCompany.push(new clsCompany("GS건설", "006360"));
+   vecCompany.push(new clsCompany("GS글로벌", "001250"));
+   vecCompany.push(new clsCompany("GS리테일", "007070"));
+   vecCompany.push(new clsCompany("GS홈쇼핑", "028150"));
+   vecCompany.push(new clsCompany("GT&T", "053870"));
+   vecCompany.push(new clsCompany("GemTech", "041590"));
+   vecCompany.push(new clsCompany("GⅡR", "035000"));
+   vecCompany.push(new clsCompany("G러닝", "032800"));
+   vecCompany.push(new clsCompany("HB테크놀러지", "078150"));
+   vecCompany.push(new clsCompany("HMC투자증권", "001500"));
+   vecCompany.push(new clsCompany("HRS", "036640"));
+   vecCompany.push(new clsCompany("IB월드와이드", "011420"));
+   vecCompany.push(new clsCompany("ISC", "095340"));
+   vecCompany.push(new clsCompany("ITX시큐리티", "099520"));
+   vecCompany.push(new clsCompany("JB금융지주", "175330"));
+   vecCompany.push(new clsCompany("JS전선", "005560"));
+   vecCompany.push(new clsCompany("JW중외신약", "067290"));
+   vecCompany.push(new clsCompany("JW중외제약", "001060"));
+   vecCompany.push(new clsCompany("JW홀딩스", "096760"));
+   vecCompany.push(new clsCompany("JYP Ent.", "035900"));
+   vecCompany.push(new clsCompany("KB금융", "105560"));
+   vecCompany.push(new clsCompany("KB오토시스", "024120"));
+   vecCompany.push(new clsCompany("KCC건설", "021320"));
+   vecCompany.push(new clsCompany("KCI", "036670"));
+   vecCompany.push(new clsCompany("KCW", "068060"));
+   vecCompany.push(new clsCompany("KC그린홀딩스", "009440"));
+   vecCompany.push(new clsCompany("KC코트렐", "119650"));
+   vecCompany.push(new clsCompany("KEC", "092220"));
+   vecCompany.push(new clsCompany("KG ETS", "151860"));
+   vecCompany.push(new clsCompany("KGP", "109070"));
+   vecCompany.push(new clsCompany("KG모빌리언스", "046440"));
+   vecCompany.push(new clsCompany("KG이니시스", "035600"));
+   vecCompany.push(new clsCompany("KG케미칼", "001390"));
+   vecCompany.push(new clsCompany("KH바텍", "060720"));
+   vecCompany.push(new clsCompany("KISCO홀딩스", "001940"));
+   vecCompany.push(new clsCompany("KJ프리텍", "083470"));
+   vecCompany.push(new clsCompany("KMH", "122450"));
+   vecCompany.push(new clsCompany("KNN", "058400"));
+   vecCompany.push(new clsCompany("KPX그린케미칼", "083420"));
+   vecCompany.push(new clsCompany("KPX생명과학", "114450"));
+   vecCompany.push(new clsCompany("KPX케미칼", "025000"));
+   vecCompany.push(new clsCompany("KPX홀딩스", "092230"));
+   vecCompany.push(new clsCompany("KPX화인케미칼", "025850"));
+   vecCompany.push(new clsCompany("KSS해운", "044450"));
+   vecCompany.push(new clsCompany("KTB투자증권", "030210"));
+   vecCompany.push(new clsCompany("KTH", "036030"));
+   vecCompany.push(new clsCompany("KTcs", "058850"));
+   vecCompany.push(new clsCompany("KT뮤직", "043610"));
+   vecCompany.push(new clsCompany("KT서브마린", "060370"));
+   vecCompany.push(new clsCompany("LG", "003550"));
+   vecCompany.push(new clsCompany("LG디스플레이", "034220"));
+   vecCompany.push(new clsCompany("LG상사", "001120"));
+   vecCompany.push(new clsCompany("LG생명과학", "068870"));
+   vecCompany.push(new clsCompany("LG생활건강", "051900"));
+   vecCompany.push(new clsCompany("LG유플러스", "032640"));
+   vecCompany.push(new clsCompany("LG이노텍", "011070"));
+   vecCompany.push(new clsCompany("LG전자", "066570"));
+   vecCompany.push(new clsCompany("LG패션", "093050"));
+   vecCompany.push(new clsCompany("LG하우시스", "108670"));
+   vecCompany.push(new clsCompany("LG화학", "051910"));
+   vecCompany.push(new clsCompany("LIG손해보험", "002550"));
+   vecCompany.push(new clsCompany("LIG에이디피", "079950"));
+   vecCompany.push(new clsCompany("LS", "006260"));
+   vecCompany.push(new clsCompany("LS네트웍스", "000680"));
+   vecCompany.push(new clsCompany("LS산전", "010120"));
+   vecCompany.push(new clsCompany("MDS테크", "086960"));
+   vecCompany.push(new clsCompany("MH에탄올", "023150"));
+   vecCompany.push(new clsCompany("MPK", "065150"));
+   vecCompany.push(new clsCompany("NHN", "035420"));
+   vecCompany.push(new clsCompany("NH농협증권", "016420"));
+   vecCompany.push(new clsCompany("NICE", "034310"));
+   vecCompany.push(new clsCompany("NICE평가정보", "030190"));
+   vecCompany.push(new clsCompany("NI스틸", "008260"));
+   vecCompany.push(new clsCompany("OCI", "010060"));
+   vecCompany.push(new clsCompany("OCI머티리얼즈", "036490"));
+   vecCompany.push(new clsCompany("PN풍년", "024940"));
+   vecCompany.push(new clsCompany("S&K폴리텍", "091340"));
+   vecCompany.push(new clsCompany("S&TC", "100840"));
+   vecCompany.push(new clsCompany("S&T모터스", "000040"));
+   vecCompany.push(new clsCompany("S&T모티브", "064960"));
+   vecCompany.push(new clsCompany("S&T중공업", "003570"));
+   vecCompany.push(new clsCompany("S&T홀딩스", "036530"));
+   vecCompany.push(new clsCompany("S-Oil", "010950"));
+   vecCompany.push(new clsCompany("SBI글로벌", "019660"));
+   vecCompany.push(new clsCompany("SBI모기지", "950100"));
+   vecCompany.push(new clsCompany("SBI액시즈", "950110"));
+   vecCompany.push(new clsCompany("SBI인베스트먼트", "019550"));
+   vecCompany.push(new clsCompany("SBS", "034120"));
+   vecCompany.push(new clsCompany("SBS미디어홀딩스", "101060"));
+   vecCompany.push(new clsCompany("SBS콘텐츠허브", "046140"));
+   vecCompany.push(new clsCompany("SDN", "099220"));
+   vecCompany.push(new clsCompany("SG&G", "040610"));
+   vecCompany.push(new clsCompany("SGA", "049470"));
+   vecCompany.push(new clsCompany("SG세계물산", "004060"));
+   vecCompany.push(new clsCompany("SG충남방적", "001380"));
+   vecCompany.push(new clsCompany("SH에너지화학", "002360"));
+   vecCompany.push(new clsCompany("SIMPAC", "009160"));
+   vecCompany.push(new clsCompany("SIMPAC METALLOY", "090730"));
+   vecCompany.push(new clsCompany("SK", "003600"));
+   vecCompany.push(new clsCompany("SK C&C", "034730"));
+   vecCompany.push(new clsCompany("SKC", "011790"));
+   vecCompany.push(new clsCompany("SKC 솔믹스", "057500"));
+   vecCompany.push(new clsCompany("SK가스", "018670"));
+   vecCompany.push(new clsCompany("SK네트웍스", "001740"));
+   vecCompany.push(new clsCompany("SK브로드밴드", "033630"));
+   vecCompany.push(new clsCompany("SK이노베이션", "096770"));
+   vecCompany.push(new clsCompany("SK증권", "001510"));
+   vecCompany.push(new clsCompany("SK컴즈", "066270"));
+   vecCompany.push(new clsCompany("SK케미칼", "006120"));
+   vecCompany.push(new clsCompany("SK텔레콤", "017670"));
+   vecCompany.push(new clsCompany("SK하이닉스", "000660"));
+   vecCompany.push(new clsCompany("SM C&C", "048550"));
+   vecCompany.push(new clsCompany("SMEC", "099440"));
+   vecCompany.push(new clsCompany("SNH", "051980"));
+   vecCompany.push(new clsCompany("STS반도체", "036540"));
+   vecCompany.push(new clsCompany("STX", "011810"));
+   vecCompany.push(new clsCompany("STX엔진", "077970"));
+   vecCompany.push(new clsCompany("STX조선해양", "067250"));
+   vecCompany.push(new clsCompany("STX중공업", "071970"));
+   vecCompany.push(new clsCompany("STX팬오션", "028670"));
+   vecCompany.push(new clsCompany("TCC동양", "002710"));
+   vecCompany.push(new clsCompany("TJ미디어", "032540"));
+   vecCompany.push(new clsCompany("TPC", "048770"));
+   vecCompany.push(new clsCompany("WISCOM", "024070"));
+   vecCompany.push(new clsCompany("YBM시사닷컴", "057030"));
+   vecCompany.push(new clsCompany("YTN", "040300"));
+   vecCompany.push(new clsCompany("iMBC", "052220"));
+   vecCompany.push(new clsCompany("가비아", "079940"));
+   vecCompany.push(new clsCompany("가온미디어", "078890"));
+   vecCompany.push(new clsCompany("가온전선", "000500"));
+   vecCompany.push(new clsCompany("가희", "030270"));
+   vecCompany.push(new clsCompany("갑을메탈", "024840"));
+   vecCompany.push(new clsCompany("강원랜드", "035250"));
+   vecCompany.push(new clsCompany("갤럭시아컴즈", "094480"));
+   vecCompany.push(new clsCompany("건설화학공업", "000860"));
+   vecCompany.push(new clsCompany("게임빌", "063080"));
+   vecCompany.push(new clsCompany("게임하이", "041140"));
+   vecCompany.push(new clsCompany("경남기업", "000800"));
+   vecCompany.push(new clsCompany("경남스틸", "039240"));
+   vecCompany.push(new clsCompany("경남에너지", "008020"));
+   vecCompany.push(new clsCompany("경남제약", "053950"));
+   vecCompany.push(new clsCompany("경농", "002100"));
+   vecCompany.push(new clsCompany("경동나비엔", "009450"));
+   vecCompany.push(new clsCompany("경동도시가스", "012320"));
+   vecCompany.push(new clsCompany("경동제약", "011040"));
+   vecCompany.push(new clsCompany("경방", "000050"));
+   vecCompany.push(new clsCompany("경봉", "139050"));
+   vecCompany.push(new clsCompany("경원산업", "043220"));
+   vecCompany.push(new clsCompany("경인양행", "012610"));
+   vecCompany.push(new clsCompany("경인전자", "009140"));
+   vecCompany.push(new clsCompany("경창산업", "024910"));
+   vecCompany.push(new clsCompany("계룡건설산업", "013580"));
+   vecCompany.push(new clsCompany("계양전기", "012200"));
+   vecCompany.push(new clsCompany("고려개발", "004200"));
+   vecCompany.push(new clsCompany("고려반도체", "089890"));
+   vecCompany.push(new clsCompany("고려산업", "002140"));
+   vecCompany.push(new clsCompany("고려신용정보", "049720"));
+   vecCompany.push(new clsCompany("고려아연", "010130"));
+   vecCompany.push(new clsCompany("고려제강", "002240"));
+   vecCompany.push(new clsCompany("고려제약", "014570"));
+   vecCompany.push(new clsCompany("고려포리머", "009810"));
+   vecCompany.push(new clsCompany("고영", "098460"));
+   vecCompany.push(new clsCompany("골든나래리츠", "119250"));
+   vecCompany.push(new clsCompany("골든브릿지증권", "001290"));
+   vecCompany.push(new clsCompany("골프존", "121440"));
+   vecCompany.push(new clsCompany("광동제약", "009290"));
+   vecCompany.push(new clsCompany("광림", "014200"));
+   vecCompany.push(new clsCompany("광명전기", "017040"));
+   vecCompany.push(new clsCompany("광전자", "017900"));
+   vecCompany.push(new clsCompany("광주신세계", "037710"));
+   vecCompany.push(new clsCompany("광진실업", "026910"));
+   vecCompany.push(new clsCompany("광진윈텍", "090150"));
+   vecCompany.push(new clsCompany("광희리츠", "140910"));
+   vecCompany.push(new clsCompany("교보증권", "030610"));
+   vecCompany.push(new clsCompany("구영테크", "053270"));
+   vecCompany.push(new clsCompany("국도화학", "007690"));
+   vecCompany.push(new clsCompany("국동", "005320"));
+   vecCompany.push(new clsCompany("국보", "001140"));
+   vecCompany.push(new clsCompany("국보디자인", "066620"));
+   vecCompany.push(new clsCompany("국순당", "043650"));
+   vecCompany.push(new clsCompany("국영지앤엠", "006050"));
+   vecCompany.push(new clsCompany("국일제지", "078130"));
+   vecCompany.push(new clsCompany("국제디와이", "044180"));
+   vecCompany.push(new clsCompany("국제약품공업", "002720"));
+   vecCompany.push(new clsCompany("국제엘렉트릭", "053740"));
+   vecCompany.push(new clsCompany("그랜드백화점", "019010"));
+   vecCompany.push(new clsCompany("극동유화", "014530"));
+   vecCompany.push(new clsCompany("근화제약", "002250"));
+   vecCompany.push(new clsCompany("글로벌에스엠", "900070"));
+   vecCompany.push(new clsCompany("금강공업", "014280"));
+   vecCompany.push(new clsCompany("금강철강", "053260"));
+   vecCompany.push(new clsCompany("금비", "008870"));
+   vecCompany.push(new clsCompany("금성테크", "058370"));
+   vecCompany.push(new clsCompany("금양", "001570"));
+   vecCompany.push(new clsCompany("금호산업", "002990"));
+   vecCompany.push(new clsCompany("금호석유화학", "011780"));
+   vecCompany.push(new clsCompany("금호엔티", "130500"));
+   vecCompany.push(new clsCompany("금호전기", "001210"));
+   vecCompany.push(new clsCompany("금호종금", "010050"));
+   vecCompany.push(new clsCompany("금호타이어", "073240"));
+   vecCompany.push(new clsCompany("금화피에스시", "036190"));
+   vecCompany.push(new clsCompany("기륭E&E", "004790"));
+   vecCompany.push(new clsCompany("기산텔레콤", "035460"));
+   vecCompany.push(new clsCompany("기신정기", "092440"));
+   vecCompany.push(new clsCompany("기아자동차", "000270"));
+   vecCompany.push(new clsCompany("기업은행", "024110"));
+   vecCompany.push(new clsCompany("깨끗한나라", "004540"));
+   vecCompany.push(new clsCompany("나노스", "151910"));
+   vecCompany.push(new clsCompany("나노신소재", "121600"));
+   vecCompany.push(new clsCompany("나노엔텍", "039860"));
+   vecCompany.push(new clsCompany("나노캠텍", "091970"));
+   vecCompany.push(new clsCompany("나노트로닉스", "010670"));
+   vecCompany.push(new clsCompany("나라엠앤디", "051490"));
+   vecCompany.push(new clsCompany("나라케이아이씨", "007460"));
+   vecCompany.push(new clsCompany("나스미디어", "089600"));
+   vecCompany.push(new clsCompany("나이벡", "138610"));
+   vecCompany.push(new clsCompany("나이스디앤비", "130580"));
+   vecCompany.push(new clsCompany("나이스정보통신", "036800"));
+   vecCompany.push(new clsCompany("남광토건", "001260"));
+   vecCompany.push(new clsCompany("남선알미늄", "008350"));
+   vecCompany.push(new clsCompany("남성", "004270"));
+   vecCompany.push(new clsCompany("남양유업", "003920"));
+   vecCompany.push(new clsCompany("남영비비안", "002070"));
+   vecCompany.push(new clsCompany("남해화학", "025860"));
+   vecCompany.push(new clsCompany("남화토건", "091590"));
+   vecCompany.push(new clsCompany("네오위즈게임즈", "095660"));
+   vecCompany.push(new clsCompany("네오위즈인터넷", "104200"));
+   vecCompany.push(new clsCompany("네오위즈홀딩스", "042420"));
+   vecCompany.push(new clsCompany("네오티스", "085910"));
+   vecCompany.push(new clsCompany("네오팜", "092730"));
+   vecCompany.push(new clsCompany("네오피델리티", "101400"));
+   vecCompany.push(new clsCompany("네이블커뮤니케이션즈", "153460"));
+   vecCompany.push(new clsCompany("네이처셀", "007390"));
+   vecCompany.push(new clsCompany("네패스", "033640"));
+   vecCompany.push(new clsCompany("네패스신소재", "087730"));
+   vecCompany.push(new clsCompany("넥센", "005720"));
+   vecCompany.push(new clsCompany("넥센타이어", "002350"));
+   vecCompany.push(new clsCompany("넥센테크", "073070"));
+   vecCompany.push(new clsCompany("넥솔론", "110570"));
+   vecCompany.push(new clsCompany("넥스지", "081970"));
+   vecCompany.push(new clsCompany("넥스턴", "089140"));
+   vecCompany.push(new clsCompany("넥스트리밍", "139670"));
+   vecCompany.push(new clsCompany("넥스트아이", "137940"));
+   vecCompany.push(new clsCompany("넥스트칩", "092600"));
+   vecCompany.push(new clsCompany("노루페인트", "090350"));
+   vecCompany.push(new clsCompany("노루홀딩스", "000320"));
+   vecCompany.push(new clsCompany("녹십자", "006280"));
+   vecCompany.push(new clsCompany("녹십자셀", "031390"));
+   vecCompany.push(new clsCompany("녹십자홀딩스", "005250"));
+   vecCompany.push(new clsCompany("농심", "004370"));
+   vecCompany.push(new clsCompany("농심홀딩스", "072710"));
+   vecCompany.push(new clsCompany("농우바이오", "054050"));
+   vecCompany.push(new clsCompany("누리텔레콤", "040160"));
+   vecCompany.push(new clsCompany("누리플랜", "069140"));
+   vecCompany.push(new clsCompany("뉴로스", "126870"));
+   vecCompany.push(new clsCompany("뉴보텍", "060260"));
+   vecCompany.push(new clsCompany("뉴인텍", "012340"));
+   vecCompany.push(new clsCompany("뉴프라이드", "900100"));
+   vecCompany.push(new clsCompany("뉴프렉스", "085670"));
+   vecCompany.push(new clsCompany("능률교육", "053290"));
+   vecCompany.push(new clsCompany("다나와", "119860"));
+   vecCompany.push(new clsCompany("다날", "064260"));
+   vecCompany.push(new clsCompany("다믈멀티미디어", "093640"));
+   vecCompany.push(new clsCompany("다산네트웍스", "039560"));
+   vecCompany.push(new clsCompany("다스텍", "043710"));
+   vecCompany.push(new clsCompany("다우기술", "023590"));
+   vecCompany.push(new clsCompany("다우데이타", "032190"));
+   vecCompany.push(new clsCompany("다우인큐브", "020120"));
+   vecCompany.push(new clsCompany("다원시스", "068240"));
+   vecCompany.push(new clsCompany("다윈텍", "077280"));
+   vecCompany.push(new clsCompany("다음", "035720"));
+   vecCompany.push(new clsCompany("대경기계기술", "015590"));
+   vecCompany.push(new clsCompany("대교", "019680"));
+   vecCompany.push(new clsCompany("대구방송", "033830"));
+   vecCompany.push(new clsCompany("대구백화점", "006370"));
+   vecCompany.push(new clsCompany("대덕GDS", "004130"));
+   vecCompany.push(new clsCompany("대덕전자", "008060"));
+   vecCompany.push(new clsCompany("대동", "012860"));
+   vecCompany.push(new clsCompany("대동공업", "000490"));
+   vecCompany.push(new clsCompany("대동금속", "020400"));
+   vecCompany.push(new clsCompany("대동기어", "008830"));
+   vecCompany.push(new clsCompany("대동스틸", "048470"));
+   vecCompany.push(new clsCompany("대동전자", "008110"));
+   vecCompany.push(new clsCompany("대륙제관", "004780"));
+   vecCompany.push(new clsCompany("대림비앤코", "005750"));
+   vecCompany.push(new clsCompany("대림산업", "000210"));
+   vecCompany.push(new clsCompany("대림제지", "017650"));
+   vecCompany.push(new clsCompany("대림통상", "006570"));
+   vecCompany.push(new clsCompany("대명엔터프라이즈", "007720"));
+   vecCompany.push(new clsCompany("대봉엘에스", "078140"));
+   vecCompany.push(new clsCompany("대상", "001680"));
+   vecCompany.push(new clsCompany("대상홀딩스", "084690"));
+   vecCompany.push(new clsCompany("대성미생물", "036480"));
+   vecCompany.push(new clsCompany("대성산업", "128820"));
+   vecCompany.push(new clsCompany("대성에너지", "117580"));
+   vecCompany.push(new clsCompany("대성엘텍", "025440"));
+   vecCompany.push(new clsCompany("대성창투", "027830"));
+   vecCompany.push(new clsCompany("대성파인텍", "104040"));
+   vecCompany.push(new clsCompany("대성합동지주", "005620"));
+   vecCompany.push(new clsCompany("대성홀딩스", "016710"));
+   vecCompany.push(new clsCompany("대신정보통신", "020180"));
+   vecCompany.push(new clsCompany("대신증권", "003540"));
+   vecCompany.push(new clsCompany("대아티아이", "045390"));
+   vecCompany.push(new clsCompany("대양금속", "009190"));
+   vecCompany.push(new clsCompany("대양전기공업", "108380"));
+   vecCompany.push(new clsCompany("대양제지", "006580"));
+   vecCompany.push(new clsCompany("대영포장", "014160"));
+   vecCompany.push(new clsCompany("대우건설", "047040"));
+   vecCompany.push(new clsCompany("대우부품", "009320"));
+   vecCompany.push(new clsCompany("대우인터내셔널", "047050"));
+   vecCompany.push(new clsCompany("대우조선해양", "042660"));
+   vecCompany.push(new clsCompany("대우증권", "006800"));
+   vecCompany.push(new clsCompany("대웅", "003090"));
+   vecCompany.push(new clsCompany("대웅제약", "069620"));
+   vecCompany.push(new clsCompany("대원강업", "000430"));
+   vecCompany.push(new clsCompany("대원미디어", "048910"));
+   vecCompany.push(new clsCompany("대원산업", "005710"));
+   vecCompany.push(new clsCompany("대원전선", "006340"));
+   vecCompany.push(new clsCompany("대원제약", "003220"));
+   vecCompany.push(new clsCompany("대원화성", "024890"));
+   vecCompany.push(new clsCompany("대유신소재", "000300"));
+   vecCompany.push(new clsCompany("대유에이텍", "002880"));
+   vecCompany.push(new clsCompany("대정화금", "120240"));
+   vecCompany.push(new clsCompany("대주산업", "003310"));
+   vecCompany.push(new clsCompany("대주이엔티", "114920"));
+   vecCompany.push(new clsCompany("대주전자재료", "078600"));
+   vecCompany.push(new clsCompany("대진디엠피", "065690"));
+   vecCompany.push(new clsCompany("대창", "012800"));
+   vecCompany.push(new clsCompany("대창단조", "015230"));
+   vecCompany.push(new clsCompany("대창솔루션", "096350"));
+   vecCompany.push(new clsCompany("대한과학", "131220"));
+   vecCompany.push(new clsCompany("대한광통신", "010170"));
+   vecCompany.push(new clsCompany("대한뉴팜", "054670"));
+   vecCompany.push(new clsCompany("대한방직", "001070"));
+   vecCompany.push(new clsCompany("대한약품", "023910"));
+   vecCompany.push(new clsCompany("대한유화", "006650"));
+   vecCompany.push(new clsCompany("대한전선", "001440"));
+   vecCompany.push(new clsCompany("대한제강", "084010"));
+   vecCompany.push(new clsCompany("대한제당", "001790"));
+   vecCompany.push(new clsCompany("대한제분", "001130"));
+   vecCompany.push(new clsCompany("대한항공", "003490"));
+   vecCompany.push(new clsCompany("대한해운", "005880"));
+   vecCompany.push(new clsCompany("대한화섬", "003830"));
+   vecCompany.push(new clsCompany("대현", "016090"));
+   vecCompany.push(new clsCompany("대호에이엘", "069460"));
+   vecCompany.push(new clsCompany("대호피앤씨", "021040"));
+   vecCompany.push(new clsCompany("대화제약", "067080"));
+   vecCompany.push(new clsCompany("더베이직하우스", "084870"));
+   vecCompany.push(new clsCompany("더존비즈온", "012510"));
+   vecCompany.push(new clsCompany("덕산하이메탈", "077360"));
+   vecCompany.push(new clsCompany("덕성", "004830"));
+   vecCompany.push(new clsCompany("덕양산업", "024900"));
+   vecCompany.push(new clsCompany("데코네티션", "017680"));
+   vecCompany.push(new clsCompany("도이치모터스", "067990"));
+   vecCompany.push(new clsCompany("도화엔지니어링", "002150"));
+   vecCompany.push(new clsCompany("동국S&C", "100130"));
+   vecCompany.push(new clsCompany("동국산업", "005160"));
+   vecCompany.push(new clsCompany("동국실업", "001620"));
+   vecCompany.push(new clsCompany("동국알앤에스", "075970"));
+   vecCompany.push(new clsCompany("동국제강", "001230"));
+   vecCompany.push(new clsCompany("동국제약", "086450"));
+   vecCompany.push(new clsCompany("동남합성", "023450"));
+   vecCompany.push(new clsCompany("동방", "004140"));
+   vecCompany.push(new clsCompany("동방선기", "099410"));
+   vecCompany.push(new clsCompany("동방아그로", "007590"));
+   vecCompany.push(new clsCompany("동부건설", "005960"));
+   vecCompany.push(new clsCompany("동부라이텍", "045890"));
+   vecCompany.push(new clsCompany("동부로봇", "090710"));
+   vecCompany.push(new clsCompany("동부씨엔아이", "012030"));
+   vecCompany.push(new clsCompany("동부제철", "016380"));
+   vecCompany.push(new clsCompany("동부증권", "016610"));
+   vecCompany.push(new clsCompany("동부하이텍", "000990"));
+   vecCompany.push(new clsCompany("동부화재해상보험", "005830"));
+   vecCompany.push(new clsCompany("동북아10호선박투자", "083350"));
+   vecCompany.push(new clsCompany("동북아11호선박투자", "083360"));
+   vecCompany.push(new clsCompany("동북아12호선박투자", "083370"));
+   vecCompany.push(new clsCompany("동북아13호선박투자", "083380"));
+   vecCompany.push(new clsCompany("동북아14호선박투자", "083390"));
+   vecCompany.push(new clsCompany("동북아2호", "080030"));
+   vecCompany.push(new clsCompany("동북아3호", "080960"));
+   vecCompany.push(new clsCompany("동북아4호", "080970"));
+   vecCompany.push(new clsCompany("동북아5호", "080980"));
+   vecCompany.push(new clsCompany("동서", "026960"));
+   vecCompany.push(new clsCompany("동성제약", "002210"));
+   vecCompany.push(new clsCompany("동성하이켐", "013450"));
+   vecCompany.push(new clsCompany("동성홀딩스", "102260"));
+   vecCompany.push(new clsCompany("동성화인텍", "033500"));
+   vecCompany.push(new clsCompany("동성화학", "005190"));
+   vecCompany.push(new clsCompany("동신건설", "025950"));
+   vecCompany.push(new clsCompany("동아쏘시오홀딩스", "000640"));
+   vecCompany.push(new clsCompany("동아에스텍", "058730"));
+   vecCompany.push(new clsCompany("동아에스티", "170900"));
+   vecCompany.push(new clsCompany("동아엘텍", "088130"));
+   vecCompany.push(new clsCompany("동아원", "008040"));
+   vecCompany.push(new clsCompany("동아지질", "028100"));
+   vecCompany.push(new clsCompany("동아타이어공업", "007340"));
+   vecCompany.push(new clsCompany("동아화성", "041930"));
+   vecCompany.push(new clsCompany("동양", "001520"));
+   vecCompany.push(new clsCompany("동양강철", "001780"));
+   vecCompany.push(new clsCompany("동양건설", "005900"));
+   vecCompany.push(new clsCompany("동양고속", "084670"));
+   vecCompany.push(new clsCompany("동양기전", "013570"));
+   vecCompany.push(new clsCompany("동양네트웍스", "030790"));
+   vecCompany.push(new clsCompany("동양물산기업", "002900"));
+   vecCompany.push(new clsCompany("동양생명", "082640"));
+   vecCompany.push(new clsCompany("동양시멘트", "038500"));
+   vecCompany.push(new clsCompany("동양에스텍", "060380"));
+   vecCompany.push(new clsCompany("동양이엔피", "079960"));
+   vecCompany.push(new clsCompany("동양증권", "003470"));
+   vecCompany.push(new clsCompany("동양철관", "008970"));
+   vecCompany.push(new clsCompany("동양피엔에프", "104460"));
+   vecCompany.push(new clsCompany("동우", "088910"));
+   vecCompany.push(new clsCompany("동원", "003580"));
+   vecCompany.push(new clsCompany("동원F&B", "049770"));
+   vecCompany.push(new clsCompany("동원개발", "013120"));
+   vecCompany.push(new clsCompany("동원금속", "018500"));
+   vecCompany.push(new clsCompany("동원산업", "006040"));
+   vecCompany.push(new clsCompany("동원수산", "030720"));
+   vecCompany.push(new clsCompany("동원시스템즈", "014820"));
+   vecCompany.push(new clsCompany("동일고무벨트", "163560"));
+   vecCompany.push(new clsCompany("동일금속", "109860"));
+   vecCompany.push(new clsCompany("동일기연", "032960"));
+   vecCompany.push(new clsCompany("동일방직", "001530"));
+   vecCompany.push(new clsCompany("동일산업", "004890"));
+   vecCompany.push(new clsCompany("동일제지", "019300"));
+   vecCompany.push(new clsCompany("동일철강", "023790"));
+   vecCompany.push(new clsCompany("동진쎄미켐", "005290"));
+   vecCompany.push(new clsCompany("동화약품", "000020"));
+   vecCompany.push(new clsCompany("동화홀딩스", "025900"));
+   vecCompany.push(new clsCompany("두산", "000150"));
+   vecCompany.push(new clsCompany("두산건설", "011160"));
+   vecCompany.push(new clsCompany("두산엔진", "082740"));
+   vecCompany.push(new clsCompany("두산인프라코어", "042670"));
+   vecCompany.push(new clsCompany("두산중공업", "034020"));
+   vecCompany.push(new clsCompany("두올산업", "078590"));
+   vecCompany.push(new clsCompany("듀오백코리아", "073190"));
+   vecCompany.push(new clsCompany("드래곤플라이", "030350"));
+   vecCompany.push(new clsCompany("디브이에스", "046400"));
+   vecCompany.push(new clsCompany("디스플레이텍", "066670"));
+   vecCompany.push(new clsCompany("디씨엠", "024090"));
+   vecCompany.push(new clsCompany("디아이", "003160"));
+   vecCompany.push(new clsCompany("디아이디", "074130"));
+   vecCompany.push(new clsCompany("디아이씨", "092200"));
+   vecCompany.push(new clsCompany("디에스케이", "109740"));
+   vecCompany.push(new clsCompany("디에이피", "066900"));
+   vecCompany.push(new clsCompany("디엔에이링크", "127120"));
+   vecCompany.push(new clsCompany("디엔에프", "092070"));
+   vecCompany.push(new clsCompany("디엠씨", "101000"));
+   vecCompany.push(new clsCompany("디오", "039840"));
+   vecCompany.push(new clsCompany("디오텍", "108860"));
+   vecCompany.push(new clsCompany("디올메디바이오", "007120"));
+   vecCompany.push(new clsCompany("디이엔티", "079810"));
+   vecCompany.push(new clsCompany("디젠스", "113810"));
+   vecCompany.push(new clsCompany("디지아이", "043360"));
+   vecCompany.push(new clsCompany("디지탈아리아", "115450"));
+   vecCompany.push(new clsCompany("디지탈옵틱", "106520"));
+   vecCompany.push(new clsCompany("디지털대성", "068930"));
+   vecCompany.push(new clsCompany("디지텍시스템", "091690"));
+   vecCompany.push(new clsCompany("디지틀조선", "033130"));
+   vecCompany.push(new clsCompany("디케이디앤아이", "033310"));
+   vecCompany.push(new clsCompany("디케이락", "105740"));
+   vecCompany.push(new clsCompany("디피씨", "026890"));
+   vecCompany.push(new clsCompany("딜리", "131180"));
+   vecCompany.push(new clsCompany("라온시큐어", "042510"));
+   vecCompany.push(new clsCompany("라이브플렉스", "050120"));
+   vecCompany.push(new clsCompany("락앤락", "115390"));
+   vecCompany.push(new clsCompany("랩지노믹스", "084650"));
+   vecCompany.push(new clsCompany("레고켐바이오", "141080"));
+   vecCompany.push(new clsCompany("레드로버", "060300"));
+   vecCompany.push(new clsCompany("레드캡투어", "038390"));
+   vecCompany.push(new clsCompany("레이젠", "047440"));
+   vecCompany.push(new clsCompany("로만손", "026040"));
+   vecCompany.push(new clsCompany("로보스타", "090360"));
+   vecCompany.push(new clsCompany("로엔", "016170"));
+   vecCompany.push(new clsCompany("로엔케이", "006490"));
+   vecCompany.push(new clsCompany("로체시스템즈", "071280"));
+   vecCompany.push(new clsCompany("로케트전기", "000420"));
+   vecCompany.push(new clsCompany("롯데관광개발", "032350"));
+   vecCompany.push(new clsCompany("롯데손해보험", "000400"));
+   vecCompany.push(new clsCompany("롯데쇼핑", "023530"));
+   vecCompany.push(new clsCompany("롯데제과", "004990"));
+   vecCompany.push(new clsCompany("롯데칠성음료", "005300"));
+   vecCompany.push(new clsCompany("롯데케미칼", "011170"));
+   vecCompany.push(new clsCompany("롯데푸드", "002270"));
+   vecCompany.push(new clsCompany("롯데하이마트", "071840"));
+   vecCompany.push(new clsCompany("루멘스", "038060"));
+   vecCompany.push(new clsCompany("루미마이크로", "082800"));
+   vecCompany.push(new clsCompany("루보", "051170"));
+   vecCompany.push(new clsCompany("루트로닉", "085370"));
+   vecCompany.push(new clsCompany("르네코", "042940"));
+   vecCompany.push(new clsCompany("리노공업", "058470"));
+   vecCompany.push(new clsCompany("리노스", "039980"));
+   vecCompany.push(new clsCompany("리드코프", "012700"));
+   vecCompany.push(new clsCompany("리바트", "079430"));
+   vecCompany.push(new clsCompany("리켐", "131100"));
+   vecCompany.push(new clsCompany("리홈쿠첸", "014470"));
+   vecCompany.push(new clsCompany("링네트", "042500"));
+   vecCompany.push(new clsCompany("마니커", "027740"));
+   vecCompany.push(new clsCompany("마이크로컨텍솔", "098120"));
+   vecCompany.push(new clsCompany("마크로젠", "038290"));
+   vecCompany.push(new clsCompany("만도", "060980"));
+   vecCompany.push(new clsCompany("만호제강", "001080"));
+   vecCompany.push(new clsCompany("매일유업", "005990"));
+   vecCompany.push(new clsCompany("매커스", "093520"));
+   vecCompany.push(new clsCompany("맥스로텍", "141070"));
+   vecCompany.push(new clsCompany("맥쿼리인프라", "088980"));
+   vecCompany.push(new clsCompany("맵스리얼티1", "094800"));
+   vecCompany.push(new clsCompany("메가스터디", "072870"));
+   vecCompany.push(new clsCompany("메디아나", "041920"));
+   vecCompany.push(new clsCompany("메디톡스", "086900"));
+   vecCompany.push(new clsCompany("메디포스트", "078160"));
+   vecCompany.push(new clsCompany("메디프론", "065650"));
+   vecCompany.push(new clsCompany("메리츠금융지주", "138040"));
+   vecCompany.push(new clsCompany("메리츠종금증권", "008560"));
+   vecCompany.push(new clsCompany("메리츠화재", "000060"));
+   vecCompany.push(new clsCompany("메지온", "140410"));
+   vecCompany.push(new clsCompany("메타바이오메드", "059210"));
+   vecCompany.push(new clsCompany("멜파스", "096640"));
+   vecCompany.push(new clsCompany("명문제약", "017180"));
+   vecCompany.push(new clsCompany("모나리자", "012690"));
+   vecCompany.push(new clsCompany("모나미", "005360"));
+   vecCompany.push(new clsCompany("모다정보통신", "149940"));
+   vecCompany.push(new clsCompany("모두투어", "080160"));
+   vecCompany.push(new clsCompany("모린스", "110310"));
+   vecCompany.push(new clsCompany("모바일리더", "100030"));
+   vecCompany.push(new clsCompany("모베이스", "101330"));
+   vecCompany.push(new clsCompany("모아텍", "033200"));
+   vecCompany.push(new clsCompany("모토닉", "009680"));
+   vecCompany.push(new clsCompany("모헨즈", "006920"));
+   vecCompany.push(new clsCompany("무림P&P", "009580"));
+   vecCompany.push(new clsCompany("무림SP", "001810"));
+   vecCompany.push(new clsCompany("무림페이퍼", "009200"));
+   vecCompany.push(new clsCompany("무학", "033920"));
+   vecCompany.push(new clsCompany("문배철강", "008420"));
+   vecCompany.push(new clsCompany("미디어플렉스", "086980"));
+   vecCompany.push(new clsCompany("미래나노텍", "095500"));
+   vecCompany.push(new clsCompany("미래산업", "025560"));
+   vecCompany.push(new clsCompany("미래에셋증권", "037620"));
+   vecCompany.push(new clsCompany("미래컴퍼니", "049950"));
+   vecCompany.push(new clsCompany("미원상사", "002840"));
+   vecCompany.push(new clsCompany("미원에스씨", "107590"));
+   vecCompany.push(new clsCompany("미원화학", "134380"));
+   vecCompany.push(new clsCompany("미창석유공업", "003650"));
+   vecCompany.push(new clsCompany("미코", "059090"));
+   vecCompany.push(new clsCompany("바다로19호", "155900"));
+   vecCompany.push(new clsCompany("바다로3호", "092630"));
+   vecCompany.push(new clsCompany("바른손", "018700"));
+   vecCompany.push(new clsCompany("바른손게임즈", "035620"));
+   vecCompany.push(new clsCompany("바른전자", "064520"));
+   vecCompany.push(new clsCompany("바이넥스", "053030"));
+   vecCompany.push(new clsCompany("바이로메드", "084990"));
+   vecCompany.push(new clsCompany("바이오니아", "064550"));
+   vecCompany.push(new clsCompany("바이오랜드", "052260"));
+   vecCompany.push(new clsCompany("바이오스마트", "038460"));
+   vecCompany.push(new clsCompany("바이오스페이스", "041830"));
+   vecCompany.push(new clsCompany("바이오톡스텍", "086040"));
+   vecCompany.push(new clsCompany("바텍", "043150"));
+   vecCompany.push(new clsCompany("방림", "003610"));
+   vecCompany.push(new clsCompany("백광산업", "001340"));
+   vecCompany.push(new clsCompany("백광소재", "014580"));
+   vecCompany.push(new clsCompany("백금T&A", "046310"));
+   vecCompany.push(new clsCompany("백산", "035150"));
+   vecCompany.push(new clsCompany("백산OPC", "066110"));
+   vecCompany.push(new clsCompany("버추얼텍", "036620"));
+   vecCompany.push(new clsCompany("범양건영", "002410"));
+   vecCompany.push(new clsCompany("베셀", "177350"));
+   vecCompany.push(new clsCompany("베트남개발1", "096300"));
+   vecCompany.push(new clsCompany("벽산", "007210"));
+   vecCompany.push(new clsCompany("벽산건설", "002530"));
+   vecCompany.push(new clsCompany("보락", "002760"));
+   vecCompany.push(new clsCompany("보령메디앙스", "014100"));
+   vecCompany.push(new clsCompany("보령제약", "003850"));
+   vecCompany.push(new clsCompany("보루네오가구", "004740"));
+   vecCompany.push(new clsCompany("보성파워텍", "006910"));
+   vecCompany.push(new clsCompany("보해양조", "000890"));
+   vecCompany.push(new clsCompany("부광약품", "003000"));
+   vecCompany.push(new clsCompany("부국증권", "001270"));
+   vecCompany.push(new clsCompany("부국철강", "026940"));
+   vecCompany.push(new clsCompany("부산도시가스", "015350"));
+   vecCompany.push(new clsCompany("부산방직", "025270"));
+   vecCompany.push(new clsCompany("부산산업", "011390"));
+   vecCompany.push(new clsCompany("부산주공", "005030"));
+   vecCompany.push(new clsCompany("부스타", "008470"));
+   vecCompany.push(new clsCompany("뷰웍스", "100120"));
+   vecCompany.push(new clsCompany("브리지텍", "064480"));
+   vecCompany.push(new clsCompany("브이지엑스인터내셔널", "011000"));
+   vecCompany.push(new clsCompany("블루콤", "033560"));
+   vecCompany.push(new clsCompany("비나텍", "126340"));
+   vecCompany.push(new clsCompany("비상교육", "100220"));
+   vecCompany.push(new clsCompany("비아이이엠티", "052900"));
+   vecCompany.push(new clsCompany("비아트론", "141000"));
+   vecCompany.push(new clsCompany("비앤에스미디어", "156170"));
+   vecCompany.push(new clsCompany("비에스이", "045970"));
+   vecCompany.push(new clsCompany("비에이치", "090460"));
+   vecCompany.push(new clsCompany("비에이치아이", "083650"));
+   vecCompany.push(new clsCompany("비엠티", "086670"));
+   vecCompany.push(new clsCompany("비츠로셀", "082920"));
+   vecCompany.push(new clsCompany("비츠로시스", "054220"));
+   vecCompany.push(new clsCompany("비츠로테크", "042370"));
+   vecCompany.push(new clsCompany("비트컴퓨터", "032850"));
+   vecCompany.push(new clsCompany("비티씨정보", "032680"));
+   vecCompany.push(new clsCompany("빅솔론", "093190"));
+   vecCompany.push(new clsCompany("빅텍", "065450"));
+   vecCompany.push(new clsCompany("빙그레", "005180"));
+   vecCompany.push(new clsCompany("빛과전자", "069540"));
+   vecCompany.push(new clsCompany("빛샘전자", "072950"));
+   vecCompany.push(new clsCompany("사람인에이치알", "143240"));
+   vecCompany.push(new clsCompany("사조대림", "003960"));
+   vecCompany.push(new clsCompany("사조산업", "007160"));
+   vecCompany.push(new clsCompany("사조씨푸드", "014710"));
+   vecCompany.push(new clsCompany("사조오양", "006090"));
+   vecCompany.push(new clsCompany("사조해표", "079660"));
+   vecCompany.push(new clsCompany("사파이어테크놀로지", "123260"));
+   vecCompany.push(new clsCompany("산성앨엔에스", "016100"));
+   vecCompany.push(new clsCompany("삼강엠앤티", "100090"));
+   vecCompany.push(new clsCompany("삼광글라스", "005090"));
+   vecCompany.push(new clsCompany("삼기오토모티브", "122350"));
+   vecCompany.push(new clsCompany("삼륭물산", "014970"));
+   vecCompany.push(new clsCompany("삼립식품", "005610"));
+   vecCompany.push(new clsCompany("삼목강업", "158380"));
+   vecCompany.push(new clsCompany("삼목에스폼", "018310"));
+   vecCompany.push(new clsCompany("삼보모터스", "053700"));
+   vecCompany.push(new clsCompany("삼보산업", "009620"));
+   vecCompany.push(new clsCompany("삼보판지", "023600"));
+   vecCompany.push(new clsCompany("삼본정밀전자", "111870"));
+   vecCompany.push(new clsCompany("삼부토건", "001470"));
+   vecCompany.push(new clsCompany("삼성SDI", "006400"));
+   vecCompany.push(new clsCompany("삼성공조", "006660"));
+   vecCompany.push(new clsCompany("삼성물산", "000830"));
+   vecCompany.push(new clsCompany("삼성생명", "032830"));
+   vecCompany.push(new clsCompany("삼성엔지니어링", "028050"));
+   vecCompany.push(new clsCompany("삼성전기", "009150"));
+   vecCompany.push(new clsCompany("삼성전자", "005930"));
+   vecCompany.push(new clsCompany("삼성정밀화학", "004000"));
+   vecCompany.push(new clsCompany("삼성제약공업", "001360"));
+   vecCompany.push(new clsCompany("삼성중공업", "010140"));
+   vecCompany.push(new clsCompany("삼성증권", "016360"));
+   vecCompany.push(new clsCompany("삼성출판사", "068290"));
+   vecCompany.push(new clsCompany("삼성카드", "029780"));
+   vecCompany.push(new clsCompany("삼성테크윈", "012450"));
+   vecCompany.push(new clsCompany("삼성화재해상보험", "000810"));
+   vecCompany.push(new clsCompany("삼아알미늄", "006110"));
+   vecCompany.push(new clsCompany("삼아제약", "009300"));
+   vecCompany.push(new clsCompany("삼양사", "145990"));
+   vecCompany.push(new clsCompany("삼양식품", "003230"));
+   vecCompany.push(new clsCompany("삼양엔텍", "008720"));
+   vecCompany.push(new clsCompany("삼양옵틱스", "008080"));
+   vecCompany.push(new clsCompany("삼양제넥스", "003940"));
+   vecCompany.push(new clsCompany("삼양통상", "002170"));
+   vecCompany.push(new clsCompany("삼양홀딩스", "000070"));
+   vecCompany.push(new clsCompany("삼영무역", "002810"));
+   vecCompany.push(new clsCompany("삼영엠텍", "054540"));
+   vecCompany.push(new clsCompany("삼영이엔씨", "065570"));
+   vecCompany.push(new clsCompany("삼영전자공업", "005680"));
+   vecCompany.push(new clsCompany("삼영홀딩스", "004920"));
+   vecCompany.push(new clsCompany("삼영화학공업", "003720"));
+   vecCompany.push(new clsCompany("삼원강재", "023000"));
+   vecCompany.push(new clsCompany("삼원테크", "073640"));
+   vecCompany.push(new clsCompany("삼익THK", "004380"));
+   vecCompany.push(new clsCompany("삼익악기", "002450"));
+   vecCompany.push(new clsCompany("삼일", "032280"));
+   vecCompany.push(new clsCompany("삼일기업공사", "002290"));
+   vecCompany.push(new clsCompany("삼일제약", "000520"));
+   vecCompany.push(new clsCompany("삼정펄프", "009770"));
+   vecCompany.push(new clsCompany("삼지전자", "037460"));
+   vecCompany.push(new clsCompany("삼진", "032750"));
+   vecCompany.push(new clsCompany("삼진엘앤디", "054090"));
+   vecCompany.push(new clsCompany("삼진제약", "005500"));
+   vecCompany.push(new clsCompany("삼천당제약", "000250"));
+   vecCompany.push(new clsCompany("삼천리", "004690"));
+   vecCompany.push(new clsCompany("삼천리자전거", "024950"));
+   vecCompany.push(new clsCompany("삼현철강", "017480"));
+   vecCompany.push(new clsCompany("삼호", "001880"));
+   vecCompany.push(new clsCompany("삼호개발", "010960"));
+   vecCompany.push(new clsCompany("삼화네트웍스", "046390"));
+   vecCompany.push(new clsCompany("삼화왕관", "004450"));
+   vecCompany.push(new clsCompany("삼화전기", "009470"));
+   vecCompany.push(new clsCompany("삼화전자공업", "011230"));
+   vecCompany.push(new clsCompany("삼화콘덴서공업", "001820"));
+   vecCompany.push(new clsCompany("삼화페인트공업", "000390"));
+   vecCompany.push(new clsCompany("삼환기업", "000360"));
+   vecCompany.push(new clsCompany("삼환까뮤", "013700"));
+   vecCompany.push(new clsCompany("상보", "027580"));
+   vecCompany.push(new clsCompany("상신브레이크", "041650"));
+   vecCompany.push(new clsCompany("상신이디피", "091580"));
+   vecCompany.push(new clsCompany("상아프론테크", "089980"));
+   vecCompany.push(new clsCompany("새로닉스", "042600"));
+   vecCompany.push(new clsCompany("새론오토모티브", "075180"));
+   vecCompany.push(new clsCompany("샘표식품", "007540"));
+   vecCompany.push(new clsCompany("샤인", "065620"));
+   vecCompany.push(new clsCompany("서린바이오", "038070"));
+   vecCompany.push(new clsCompany("서부T&D", "006730"));
+   vecCompany.push(new clsCompany("서산", "079650"));
+   vecCompany.push(new clsCompany("서암기계공업", "100660"));
+   vecCompany.push(new clsCompany("서울도시가스", "017390"));
+   vecCompany.push(new clsCompany("서울반도체", "046890"));
+   vecCompany.push(new clsCompany("서울식품공업", "004410"));
+   vecCompany.push(new clsCompany("서울신용평가", "036120"));
+   vecCompany.push(new clsCompany("서울옥션", "063170"));
+   vecCompany.push(new clsCompany("서울전자통신", "027040"));
+   vecCompany.push(new clsCompany("서울제약", "018680"));
+   vecCompany.push(new clsCompany("서원", "021050"));
+   vecCompany.push(new clsCompany("서원인텍", "093920"));
+   vecCompany.push(new clsCompany("서진오토모티브", "122690"));
+   vecCompany.push(new clsCompany("서한", "011370"));
+   vecCompany.push(new clsCompany("서호전기", "065710"));
+   vecCompany.push(new clsCompany("서화정보통신", "033790"));
+   vecCompany.push(new clsCompany("서흥캅셀", "008490"));
+   vecCompany.push(new clsCompany("서희건설", "035890"));
+   vecCompany.push(new clsCompany("선광", "003100"));
+   vecCompany.push(new clsCompany("선도전기", "007610"));
+   vecCompany.push(new clsCompany("선진", "136490"));
+   vecCompany.push(new clsCompany("선창산업", "002820"));
+   vecCompany.push(new clsCompany("성광벤드", "014620"));
+   vecCompany.push(new clsCompany("성도이엔지", "037350"));
+   vecCompany.push(new clsCompany("성문전자", "014910"));
+   vecCompany.push(new clsCompany("성보화학", "003080"));
+   vecCompany.push(new clsCompany("성신양회", "004980"));
+   vecCompany.push(new clsCompany("성안", "011300"));
+   vecCompany.push(new clsCompany("성우전자", "081580"));
+   vecCompany.push(new clsCompany("성우테크론", "045300"));
+   vecCompany.push(new clsCompany("성우하이텍", "015750"));
+   vecCompany.push(new clsCompany("성지건설", "005980"));
+   vecCompany.push(new clsCompany("성창기업지주", "000180"));
+   vecCompany.push(new clsCompany("성창오토텍", "080470"));
+   vecCompany.push(new clsCompany("성호전자", "043260"));
+   vecCompany.push(new clsCompany("세기상사", "002420"));
+   vecCompany.push(new clsCompany("세동", "053060"));
+   vecCompany.push(new clsCompany("세명전기", "017510"));
+   vecCompany.push(new clsCompany("세미텍", "081220"));
+   vecCompany.push(new clsCompany("세방", "004360"));
+   vecCompany.push(new clsCompany("세방전지", "004490"));
+   vecCompany.push(new clsCompany("세보엠이씨", "011560"));
+   vecCompany.push(new clsCompany("세아베스틸", "001430"));
+   vecCompany.push(new clsCompany("세아제강", "003030"));
+   vecCompany.push(new clsCompany("세아특수강", "019440"));
+   vecCompany.push(new clsCompany("세아홀딩스", "058650"));
+   vecCompany.push(new clsCompany("세우글로벌", "013000"));
+   vecCompany.push(new clsCompany("세우테크", "096690"));
+   vecCompany.push(new clsCompany("세운메디칼", "100700"));
+   vecCompany.push(new clsCompany("세원물산", "024830"));
+   vecCompany.push(new clsCompany("세원셀론텍", "091090"));
+   vecCompany.push(new clsCompany("세원정공", "021820"));
+   vecCompany.push(new clsCompany("세이브존", "067830"));
+   vecCompany.push(new clsCompany("세종공업", "033530"));
+   vecCompany.push(new clsCompany("세중", "039310"));
+   vecCompany.push(new clsCompany("세진전자", "080440"));
+   vecCompany.push(new clsCompany("세진티에스", "067770"));
+   vecCompany.push(new clsCompany("세코닉스", "053450"));
+   vecCompany.push(new clsCompany("세하", "027970"));
+   vecCompany.push(new clsCompany("세호로보트", "158310"));
+   vecCompany.push(new clsCompany("셀루메드", "049180"));
+   vecCompany.push(new clsCompany("셀트리온", "068270"));
+   vecCompany.push(new clsCompany("셀트리온제약", "068760"));
+   vecCompany.push(new clsCompany("소리바다", "053110"));
+   vecCompany.push(new clsCompany("소셜미디어99", "064820"));
+   vecCompany.push(new clsCompany("소프트맥스", "052190"));
+   vecCompany.push(new clsCompany("소프트포럼", "054920"));
+   vecCompany.push(new clsCompany("손오공", "066910"));
+   vecCompany.push(new clsCompany("솔고바이오", "043100"));
+   vecCompany.push(new clsCompany("솔라시아", "070300"));
+   vecCompany.push(new clsCompany("솔본", "035610"));
+   vecCompany.push(new clsCompany("솔브레인", "036830"));
+   vecCompany.push(new clsCompany("솔브레인이엔지", "039230"));
+   vecCompany.push(new clsCompany("송원산업", "004430"));
+   vecCompany.push(new clsCompany("수산중공업", "017550"));
+   vecCompany.push(new clsCompany("수성", "084180"));
+   vecCompany.push(new clsCompany("슈넬생명과학", "003060"));
+   vecCompany.push(new clsCompany("슈프리마", "094840"));
+   vecCompany.push(new clsCompany("스타플렉스", "115570"));
+   vecCompany.push(new clsCompany("스탠다드펌", "179280"));
+   vecCompany.push(new clsCompany("스템싸이언스", "066430"));
+   vecCompany.push(new clsCompany("스틸플라워", "087220"));
+   vecCompany.push(new clsCompany("스페코", "013810"));
+   vecCompany.push(new clsCompany("스포츠서울", "039670"));
+   vecCompany.push(new clsCompany("승일", "049830"));
+   vecCompany.push(new clsCompany("승화산업", "052300"));
+   vecCompany.push(new clsCompany("승화프리텍", "111610"));
+   vecCompany.push(new clsCompany("시공테크", "020710"));
+   vecCompany.push(new clsCompany("시그네틱스", "033170"));
+   vecCompany.push(new clsCompany("시노펙스", "025320"));
+   vecCompany.push(new clsCompany("시큐브", "131090"));
+   vecCompany.push(new clsCompany("신대양제지", "016590"));
+   vecCompany.push(new clsCompany("신도리코", "029530"));
+   vecCompany.push(new clsCompany("신라교역", "004970"));
+   vecCompany.push(new clsCompany("신라섬유", "001000"));
+   vecCompany.push(new clsCompany("신라에스지", "025870"));
+   vecCompany.push(new clsCompany("신성델타테크", "065350"));
+   vecCompany.push(new clsCompany("신성솔라에너지", "011930"));
+   vecCompany.push(new clsCompany("신성에프에이", "104120"));
+   vecCompany.push(new clsCompany("신성이엔지", "104110"));
+   vecCompany.push(new clsCompany("신성통상", "005390"));
+   vecCompany.push(new clsCompany("신세계", "004170"));
+   vecCompany.push(new clsCompany("신세계I&C", "035510"));
+   vecCompany.push(new clsCompany("신세계건설", "034300"));
+   vecCompany.push(new clsCompany("신세계인터내셔날", "031430"));
+   vecCompany.push(new clsCompany("신세계푸드", "031440"));
+   vecCompany.push(new clsCompany("신양", "086830"));
+   vecCompany.push(new clsCompany("신영와코루", "005800"));
+   vecCompany.push(new clsCompany("신영증권", "001720"));
+   vecCompany.push(new clsCompany("신우", "025620"));
+   vecCompany.push(new clsCompany("신원", "009270"));
+   vecCompany.push(new clsCompany("신원종합개발", "017000"));
+   vecCompany.push(new clsCompany("신일건업", "014350"));
+   vecCompany.push(new clsCompany("신일산업", "002700"));
+   vecCompany.push(new clsCompany("신일제약", "012790"));
+   vecCompany.push(new clsCompany("신진에스엠", "138070"));
+   vecCompany.push(new clsCompany("신풍제약", "019170"));
+   vecCompany.push(new clsCompany("신풍제지", "002870"));
+   vecCompany.push(new clsCompany("신한", "005450"));
+   vecCompany.push(new clsCompany("신한지주", "055550"));
+   vecCompany.push(new clsCompany("신화실업", "001770"));
+   vecCompany.push(new clsCompany("신화인터텍", "056700"));
+   vecCompany.push(new clsCompany("신흥", "004080"));
+   vecCompany.push(new clsCompany("신흥기계", "007820"));
+   vecCompany.push(new clsCompany("실리콘웍스", "108320"));
+   vecCompany.push(new clsCompany("실리콘화일", "082930"));
+   vecCompany.push(new clsCompany("심텍", "036710"));
+   vecCompany.push(new clsCompany("쌍방울", "102280"));
+   vecCompany.push(new clsCompany("쌍용건설", "012650"));
+   vecCompany.push(new clsCompany("쌍용머티리얼", "047400"));
+   vecCompany.push(new clsCompany("쌍용양회공업", "003410"));
+   vecCompany.push(new clsCompany("쌍용자동차", "003620"));
+   vecCompany.push(new clsCompany("쌍용정보통신", "010280"));
+   vecCompany.push(new clsCompany("써니전자", "004770"));
+   vecCompany.push(new clsCompany("쎄니트", "037760"));
+   vecCompany.push(new clsCompany("쎄미시스코", "136510"));
+   vecCompany.push(new clsCompany("쎄트렉아이", "099320"));
+   vecCompany.push(new clsCompany("쎌바이오텍", "049960"));
+   vecCompany.push(new clsCompany("쏠리드", "050890"));
+   vecCompany.push(new clsCompany("쓰리원", "038340"));
+   vecCompany.push(new clsCompany("쓰리피시스템", "110500"));
+   vecCompany.push(new clsCompany("씨그널정보통신", "099830"));
+   vecCompany.push(new clsCompany("씨씨에스", "066790"));
+   vecCompany.push(new clsCompany("씨앤비텍", "086200"));
+   vecCompany.push(new clsCompany("씨앤케이인터", "039530"));
+   vecCompany.push(new clsCompany("씨엑스씨종합캐피탈", "021880"));
+   vecCompany.push(new clsCompany("씨엔플러스", "115530"));
+   vecCompany.push(new clsCompany("씨유메디칼", "115480"));
+   vecCompany.push(new clsCompany("씨젠", "096530"));
+   vecCompany.push(new clsCompany("씨큐브", "101240"));
+   vecCompany.push(new clsCompany("씨티씨바이오", "060590"));
+   vecCompany.push(new clsCompany("씨티엘", "036170"));
+   vecCompany.push(new clsCompany("아가방컴퍼니", "013990"));
+   vecCompany.push(new clsCompany("아나패스", "123860"));
+   vecCompany.push(new clsCompany("아남전자", "008700"));
+   vecCompany.push(new clsCompany("아남정보기술", "050320"));
+   vecCompany.push(new clsCompany("아라온테크", "041060"));
+   vecCompany.push(new clsCompany("아로마소프트", "072770"));
+   vecCompany.push(new clsCompany("아리온", "058220"));
+   vecCompany.push(new clsCompany("아모레퍼시픽", "090430"));
+   vecCompany.push(new clsCompany("아모레퍼시픽그룹", "002790"));
+   vecCompany.push(new clsCompany("아모텍", "052710"));
+   vecCompany.push(new clsCompany("아미노로직스", "074430"));
+   vecCompany.push(new clsCompany("아바코", "083930"));
+   vecCompany.push(new clsCompany("아바텍", "149950"));
+   vecCompany.push(new clsCompany("아비스타", "090370"));
+   vecCompany.push(new clsCompany("아비코전자", "036010"));
+   vecCompany.push(new clsCompany("아세아시멘트", "002030"));
+   vecCompany.push(new clsCompany("아세아제지", "002310"));
+   vecCompany.push(new clsCompany("아세아텍", "050860"));
+   vecCompany.push(new clsCompany("아시아10호", "083570"));
+   vecCompany.push(new clsCompany("아시아1호", "080180"));
+   vecCompany.push(new clsCompany("아시아2호", "081190"));
+   vecCompany.push(new clsCompany("아시아3호", "081200"));
+   vecCompany.push(new clsCompany("아시아4호", "081210"));
+   vecCompany.push(new clsCompany("아시아5호", "082240"));
+   vecCompany.push(new clsCompany("아시아6호", "082250"));
+   vecCompany.push(new clsCompany("아시아7호", "082260"));
+   vecCompany.push(new clsCompany("아시아8호", "081930"));
+   vecCompany.push(new clsCompany("아시아9호", "081940"));
+   vecCompany.push(new clsCompany("아시아나항공", "020560"));
+   vecCompany.push(new clsCompany("아시아퍼시픽11호", "083580"));
+   vecCompany.push(new clsCompany("아시아퍼시픽12호", "083590"));
+   vecCompany.push(new clsCompany("아시아퍼시픽13호", "083600"));
+   vecCompany.push(new clsCompany("아시아퍼시픽14호", "083610"));
+   vecCompany.push(new clsCompany("아시아퍼시픽15호", "083620"));
+   vecCompany.push(new clsCompany("아이넷스쿨", "060240"));
+   vecCompany.push(new clsCompany("아이디스", "143160"));
+   vecCompany.push(new clsCompany("아이디스홀딩스", "054800"));
+   vecCompany.push(new clsCompany("아이디에스", "078780"));
+   vecCompany.push(new clsCompany("아이디엔", "026260"));
+   vecCompany.push(new clsCompany("아이리버", "060570"));
+   vecCompany.push(new clsCompany("아이마켓코리아", "122900"));
+   vecCompany.push(new clsCompany("아이센스", "099190"));
+   vecCompany.push(new clsCompany("아이씨디", "040910"));
+   vecCompany.push(new clsCompany("아이씨케이", "068940"));
+   vecCompany.push(new clsCompany("아이앤씨", "052860"));
+   vecCompany.push(new clsCompany("아이에스동서", "010780"));
+   vecCompany.push(new clsCompany("아이에스이커머스", "069920"));
+   vecCompany.push(new clsCompany("아이에이", "038880"));
+   vecCompany.push(new clsCompany("아이에이치큐", "003560"));
+   vecCompany.push(new clsCompany("아이엠", "101390"));
+   vecCompany.push(new clsCompany("아이원스", "114810"));
+   vecCompany.push(new clsCompany("아이즈비전", "031310"));
+   vecCompany.push(new clsCompany("아이컴포넌트", "059100"));
+   vecCompany.push(new clsCompany("아이크래프트", "052460"));
+   vecCompany.push(new clsCompany("아이테스트", "089530"));
+   vecCompany.push(new clsCompany("아이텍반도체", "119830"));
+   vecCompany.push(new clsCompany("아이티센시스템즈", "124500"));
+   vecCompany.push(new clsCompany("아주캐피탈", "033660"));
+   vecCompany.push(new clsCompany("아즈텍WB", "032080"));
+   vecCompany.push(new clsCompany("아진엑스텍", "059120"));
+   vecCompany.push(new clsCompany("아큐픽스", "056730"));
+   vecCompany.push(new clsCompany("아트라스BX", "023890"));
+   vecCompany.push(new clsCompany("아티스", "101140"));
+   vecCompany.push(new clsCompany("아프리카TV", "067160"));
+   vecCompany.push(new clsCompany("안국약품", "001540"));
+   vecCompany.push(new clsCompany("안랩", "053800"));
+   vecCompany.push(new clsCompany("알에프세미", "096610"));
+   vecCompany.push(new clsCompany("알에프텍", "061040"));
+   vecCompany.push(new clsCompany("알톤스포츠", "123750"));
+   vecCompany.push(new clsCompany("알파칩스", "117670"));
+   vecCompany.push(new clsCompany("애강리메텍", "022220"));
+   vecCompany.push(new clsCompany("애경유화", "161000"));
+   vecCompany.push(new clsCompany("액토즈소프트", "052790"));
+   vecCompany.push(new clsCompany("액트", "131400"));
+   vecCompany.push(new clsCompany("양지사", "030960"));
+   vecCompany.push(new clsCompany("어보브반도체", "102120"));
+   vecCompany.push(new clsCompany("에너지솔루션", "067630"));
+   vecCompany.push(new clsCompany("에너토크", "019990"));
+   vecCompany.push(new clsCompany("에넥스", "011090"));
+   vecCompany.push(new clsCompany("에듀박스", "035290"));
+   vecCompany.push(new clsCompany("에리트베이직", "093240"));
+   vecCompany.push(new clsCompany("에머슨퍼시픽", "025980"));
+   vecCompany.push(new clsCompany("에버다임", "041440"));
+   vecCompany.push(new clsCompany("에버테크노", "070480"));
+   vecCompany.push(new clsCompany("에스넷", "038680"));
+   vecCompany.push(new clsCompany("에스디시스템", "121890"));
+   vecCompany.push(new clsCompany("에스맥", "097780"));
+   vecCompany.push(new clsCompany("에스씨디", "042110"));
+   vecCompany.push(new clsCompany("에스아이리소스", "065420"));
+   vecCompany.push(new clsCompany("에스앤더블류", "103230"));
+   vecCompany.push(new clsCompany("에스앤씨엔진그룹", "900080"));
+   vecCompany.push(new clsCompany("에스앤에스텍", "101490"));
+   vecCompany.push(new clsCompany("에스에너지", "095910"));
+   vecCompany.push(new clsCompany("에스에이엠티", "031330"));
+   vecCompany.push(new clsCompany("에스에이티", "060540"));
+   vecCompany.push(new clsCompany("에스에이티이엔지", "158300"));
+   vecCompany.push(new clsCompany("에스에프씨", "112240"));
+   vecCompany.push(new clsCompany("에스에프에이", "056190"));
+   vecCompany.push(new clsCompany("에스엔유", "080000"));
+   vecCompany.push(new clsCompany("에스엔피제네틱스", "086460"));
+   vecCompany.push(new clsCompany("에스엘", "005850"));
+   vecCompany.push(new clsCompany("에스엠", "041510"));
+   vecCompany.push(new clsCompany("에스원", "012750"));
+   vecCompany.push(new clsCompany("에스이티아이", "114570"));
+   vecCompany.push(new clsCompany("에스제이엠", "123700"));
+   vecCompany.push(new clsCompany("에스제이엠홀딩스", "025530"));
+   vecCompany.push(new clsCompany("에스코넥", "096630"));
+   vecCompany.push(new clsCompany("에스텍", "069510"));
+   vecCompany.push(new clsCompany("에스텍파마", "041910"));
+   vecCompany.push(new clsCompany("에스티아이", "039440"));
+   vecCompany.push(new clsCompany("에스티오", "098660"));
+   vecCompany.push(new clsCompany("에스티큐브", "052020"));
+   vecCompany.push(new clsCompany("에스폴리텍", "050760"));
+   vecCompany.push(new clsCompany("에스피지", "058610"));
+   vecCompany.push(new clsCompany("에쎈테크", "043340"));
+   vecCompany.push(new clsCompany("에쓰씨엔지니어링", "023960"));
+   vecCompany.push(new clsCompany("에어파크", "060900"));
+   vecCompany.push(new clsCompany("에이디칩스", "054630"));
+   vecCompany.push(new clsCompany("에이모션", "031860"));
+   vecCompany.push(new clsCompany("에이블씨엔씨", "078520"));
+   vecCompany.push(new clsCompany("에이스침대", "003800"));
+   vecCompany.push(new clsCompany("에이스테크", "088800"));
+   vecCompany.push(new clsCompany("에이스하이텍", "071930"));
+   vecCompany.push(new clsCompany("에이엔피", "015260"));
+   vecCompany.push(new clsCompany("에이치엘비", "028300"));
+   vecCompany.push(new clsCompany("에이테크솔루션", "071670"));
+   vecCompany.push(new clsCompany("에이텍", "045660"));
+   vecCompany.push(new clsCompany("에이티넘인베스트", "021080"));
+   vecCompany.push(new clsCompany("에임하이", "043580"));
+   vecCompany.push(new clsCompany("에코에너지", "038870"));
+   vecCompany.push(new clsCompany("에코프로", "086520"));
+   vecCompany.push(new clsCompany("에코플라스틱", "038110"));
+   vecCompany.push(new clsCompany("에프알텍", "073540"));
+   vecCompany.push(new clsCompany("에프앤가이드", "064850"));
+   vecCompany.push(new clsCompany("에프에스티", "036810"));
+   vecCompany.push(new clsCompany("에프티이앤이", "065160"));
+   vecCompany.push(new clsCompany("엑사이엔씨", "054940"));
+   vecCompany.push(new clsCompany("엑세스바이오", "950130"));
+   vecCompany.push(new clsCompany("엔씨소프트", "036570"));
+   vecCompany.push(new clsCompany("엔알디", "065170"));
+   vecCompany.push(new clsCompany("엔에스브이", "095300"));
+   vecCompany.push(new clsCompany("엔케이", "085310"));
+   vecCompany.push(new clsCompany("엔텔스", "069410"));
+   vecCompany.push(new clsCompany("엔티피아", "068150"));
+   vecCompany.push(new clsCompany("엔피씨", "004250"));
+   vecCompany.push(new clsCompany("엔피케이", "048830"));
+   vecCompany.push(new clsCompany("엘디티", "096870"));
+   vecCompany.push(new clsCompany("엘비세미콘", "061970"));
+   vecCompany.push(new clsCompany("엘앤에프", "066970"));
+   vecCompany.push(new clsCompany("엘앤케이바이오", "156100"));
+   vecCompany.push(new clsCompany("엘엠에스", "073110"));
+   vecCompany.push(new clsCompany("엘오티베큠", "083310"));
+   vecCompany.push(new clsCompany("엘티에스", "138690"));
+   vecCompany.push(new clsCompany("엠게임", "058630"));
+   vecCompany.push(new clsCompany("엠벤처투자", "019590"));
+   vecCompany.push(new clsCompany("엠씨넥스", "097520"));
+   vecCompany.push(new clsCompany("엠에스씨", "009780"));
+   vecCompany.push(new clsCompany("엠에스오토텍", "123040"));
+   vecCompany.push(new clsCompany("엠케이전자", "033160"));
+   vecCompany.push(new clsCompany("엠케이트렌드", "069640"));
+   vecCompany.push(new clsCompany("엠텍비젼", "074000"));
+   vecCompany.push(new clsCompany("엠피씨", "050540"));
+   vecCompany.push(new clsCompany("연이정보통신", "090740"));
+   vecCompany.push(new clsCompany("영남제분", "002680"));
+   vecCompany.push(new clsCompany("영보화학", "014440"));
+   vecCompany.push(new clsCompany("영신금속", "007530"));
+   vecCompany.push(new clsCompany("영우통신", "051390"));
+   vecCompany.push(new clsCompany("영원무역", "111770"));
+   vecCompany.push(new clsCompany("영원무역홀딩스", "009970"));
+   vecCompany.push(new clsCompany("영인프런티어", "036180"));
+   vecCompany.push(new clsCompany("영진약품공업", "003520"));
+   vecCompany.push(new clsCompany("영진인프라", "053330"));
+   vecCompany.push(new clsCompany("영풍", "000670"));
+   vecCompany.push(new clsCompany("영풍정밀", "036560"));
+   vecCompany.push(new clsCompany("영풍제지", "006740"));
+   vecCompany.push(new clsCompany("영화금속", "012280"));
+   vecCompany.push(new clsCompany("영흥철강", "012160"));
+   vecCompany.push(new clsCompany("예당", "049000"));
+   vecCompany.push(new clsCompany("예림당", "036000"));
+   vecCompany.push(new clsCompany("예스24", "053280"));
+   vecCompany.push(new clsCompany("예스코", "015360"));
+   vecCompany.push(new clsCompany("옐로페이", "179720"));
+   vecCompany.push(new clsCompany("오공", "045060"));
+   vecCompany.push(new clsCompany("오디텍", "080520"));
+   vecCompany.push(new clsCompany("오뚜기", "007310"));
+   vecCompany.push(new clsCompany("오로라", "039830"));
+   vecCompany.push(new clsCompany("오르비텍", "046120"));
+   vecCompany.push(new clsCompany("오리엔탈정공", "014940"));
+   vecCompany.push(new clsCompany("오리엔트바이오", "002630"));
+   vecCompany.push(new clsCompany("오리엔트정공", "065500"));
+   vecCompany.push(new clsCompany("오리온", "001800"));
+   vecCompany.push(new clsCompany("오리콤", "010470"));
+   vecCompany.push(new clsCompany("오상자이엘", "053980"));
+   vecCompany.push(new clsCompany("오성엘에스티", "052420"));
+   vecCompany.push(new clsCompany("오스코텍", "039200"));
+   vecCompany.push(new clsCompany("오스템", "031510"));
+   vecCompany.push(new clsCompany("오스템임플란트", "048260"));
+   vecCompany.push(new clsCompany("오텍", "067170"));
+   vecCompany.push(new clsCompany("오픈베이스", "049480"));
+   vecCompany.push(new clsCompany("온세텔레콤", "036630"));
+   vecCompany.push(new clsCompany("옴니시스템", "057540"));
+   vecCompany.push(new clsCompany("옴니텔", "057680"));
+   vecCompany.push(new clsCompany("옵트론텍", "082210"));
+   vecCompany.push(new clsCompany("옵티시스", "109080"));
+   vecCompany.push(new clsCompany("와이디온라인", "052770"));
+   vecCompany.push(new clsCompany("와이비로드", "010600"));
+   vecCompany.push(new clsCompany("와이솔", "122990"));
+   vecCompany.push(new clsCompany("와이엔텍", "067900"));
+   vecCompany.push(new clsCompany("와이엠씨", "155650"));
+   vecCompany.push(new clsCompany("와이즈파워", "040670"));
+   vecCompany.push(new clsCompany("와이지-원", "019210"));
+   vecCompany.push(new clsCompany("와이지엔터테인먼트", "122870"));
+   vecCompany.push(new clsCompany("와토스코리아", "079000"));
+   vecCompany.push(new clsCompany("완리", "900180"));
+   vecCompany.push(new clsCompany("용현BM", "089230"));
+   vecCompany.push(new clsCompany("우노앤컴퍼니", "114630"));
+   vecCompany.push(new clsCompany("우리금융지주", "053000"));
+   vecCompany.push(new clsCompany("우리기술", "032820"));
+   vecCompany.push(new clsCompany("우리기술투자", "041190"));
+   vecCompany.push(new clsCompany("우리넷", "115440"));
+   vecCompany.push(new clsCompany("우리들생명과학", "118000"));
+   vecCompany.push(new clsCompany("우리들제약", "004720"));
+   vecCompany.push(new clsCompany("우리로광통신", "046970"));
+   vecCompany.push(new clsCompany("우리산업", "072470"));
+   vecCompany.push(new clsCompany("우리이앤엘", "153490"));
+   vecCompany.push(new clsCompany("우리이티아이", "082850"));
+   vecCompany.push(new clsCompany("우리조명지주", "037400"));
+   vecCompany.push(new clsCompany("우리투자증권", "005940"));
+   vecCompany.push(new clsCompany("우리파이낸셜", "021960"));
+   vecCompany.push(new clsCompany("우림기계", "101170"));
+   vecCompany.push(new clsCompany("우성I&C", "011080"));
+   vecCompany.push(new clsCompany("우성사료", "006980"));
+   vecCompany.push(new clsCompany("우수AMS", "066590"));
+   vecCompany.push(new clsCompany("우신시스템", "017370"));
+   vecCompany.push(new clsCompany("우양에이치씨", "101970"));
+   vecCompany.push(new clsCompany("우원개발", "046940"));
+   vecCompany.push(new clsCompany("우전앤한단", "052270"));
+   vecCompany.push(new clsCompany("우주일렉트로", "065680"));
+   vecCompany.push(new clsCompany("우진", "105840"));
+   vecCompany.push(new clsCompany("우진비앤지", "018620"));
+   vecCompany.push(new clsCompany("우진플라임", "049800"));
+   vecCompany.push(new clsCompany("울트라건설", "004320"));
+   vecCompany.push(new clsCompany("웅진씽크빅", "095720"));
+   vecCompany.push(new clsCompany("웅진에너지", "103130"));
+   vecCompany.push(new clsCompany("웅진케미칼", "008000"));
+   vecCompany.push(new clsCompany("웅진홀딩스", "016880"));
+   vecCompany.push(new clsCompany("원림", "005820"));
+   vecCompany.push(new clsCompany("원익", "032940"));
+   vecCompany.push(new clsCompany("원익IPS", "030530"));
+   vecCompany.push(new clsCompany("원익QnC", "074600"));
+   vecCompany.push(new clsCompany("원익머트리얼즈", "104830"));
+   vecCompany.push(new clsCompany("원일특강", "012620"));
+   vecCompany.push(new clsCompany("원풍", "008370"));
+   vecCompany.push(new clsCompany("원풍물산", "008290"));
+   vecCompany.push(new clsCompany("월덱스", "101160"));
+   vecCompany.push(new clsCompany("웨이브일렉트로", "095270"));
+   vecCompany.push(new clsCompany("웨이포트", "900130"));
+   vecCompany.push(new clsCompany("웰메이드", "036260"));
+   vecCompany.push(new clsCompany("웰크론", "065950"));
+   vecCompany.push(new clsCompany("웰크론강원", "114190"));
+   vecCompany.push(new clsCompany("웰크론한텍", "076080"));
+   vecCompany.push(new clsCompany("웹솔루스", "160350"));
+   vecCompany.push(new clsCompany("웹젠", "069080"));
+   vecCompany.push(new clsCompany("위노바", "039790"));
+   vecCompany.push(new clsCompany("위닉스", "044340"));
+   vecCompany.push(new clsCompany("위다스", "056810"));
+   vecCompany.push(new clsCompany("위메이드", "112040"));
+   vecCompany.push(new clsCompany("위즈정보기술", "038620"));
+   vecCompany.push(new clsCompany("위지트", "036090"));
+   vecCompany.push(new clsCompany("윈스테크넷", "136540"));
+   vecCompany.push(new clsCompany("윈팩", "097800"));
+   vecCompany.push(new clsCompany("윈포넷", "083640"));
+   vecCompany.push(new clsCompany("윌비스", "008600"));
+   vecCompany.push(new clsCompany("유나이티드", "033270"));
+   vecCompany.push(new clsCompany("유니더스", "044480"));
+   vecCompany.push(new clsCompany("유니드", "014830"));
+   vecCompany.push(new clsCompany("유니셈", "036200"));
+   vecCompany.push(new clsCompany("유니슨", "018000"));
+   vecCompany.push(new clsCompany("유니온", "000910"));
+   vecCompany.push(new clsCompany("유니온스틸", "003640"));
+   vecCompany.push(new clsCompany("유니켐", "011330"));
+   vecCompany.push(new clsCompany("유니퀘스트", "077500"));
+   vecCompany.push(new clsCompany("유니크", "011320"));
+   vecCompany.push(new clsCompany("유니테스트", "086390"));
+   vecCompany.push(new clsCompany("유라테크", "048430"));
+   vecCompany.push(new clsCompany("유비벨록스", "089850"));
+   vecCompany.push(new clsCompany("유비케어", "032620"));
+   vecCompany.push(new clsCompany("유비쿼스", "078070"));
+   vecCompany.push(new clsCompany("유비프리시젼", "053810"));
+   vecCompany.push(new clsCompany("유성기업", "002920"));
+   vecCompany.push(new clsCompany("유성티엔에스", "024800"));
+   vecCompany.push(new clsCompany("유신", "054930"));
+   vecCompany.push(new clsCompany("유아이디", "069330"));
+   vecCompany.push(new clsCompany("유아이엘", "049520"));
+   vecCompany.push(new clsCompany("유양디앤유", "011690"));
+   vecCompany.push(new clsCompany("유엔젤", "072130"));
+   vecCompany.push(new clsCompany("유원컴텍", "036500"));
+   vecCompany.push(new clsCompany("유유제약", "000220"));
+   vecCompany.push(new clsCompany("유진기업", "023410"));
+   vecCompany.push(new clsCompany("유진로봇", "056080"));
+   vecCompany.push(new clsCompany("유진증권", "001200"));
+   vecCompany.push(new clsCompany("유진테크", "084370"));
+   vecCompany.push(new clsCompany("유한양행", "000100"));
+   vecCompany.push(new clsCompany("유화증권", "003460"));
+   vecCompany.push(new clsCompany("율촌화학", "008730"));
+   vecCompany.push(new clsCompany("이-글 벳", "044960"));
+   vecCompany.push(new clsCompany("이건산업", "008250"));
+   vecCompany.push(new clsCompany("이건창호", "039020"));
+   vecCompany.push(new clsCompany("이구산업", "025820"));
+   vecCompany.push(new clsCompany("이그잭스", "060230"));
+   vecCompany.push(new clsCompany("이글루시큐리티", "067920"));
+   vecCompany.push(new clsCompany("이너스텍", "109960"));
+   vecCompany.push(new clsCompany("이노와이어리스", "073490"));
+   vecCompany.push(new clsCompany("이노칩", "080420"));
+   vecCompany.push(new clsCompany("이녹스", "088390"));
+   vecCompany.push(new clsCompany("이니텍", "053350"));
+   vecCompany.push(new clsCompany("이디", "033110"));
+   vecCompany.push(new clsCompany("이라이콤", "041520"));
+   vecCompany.push(new clsCompany("이랜텍", "054210"));
+   vecCompany.push(new clsCompany("이루온", "065440"));
+   vecCompany.push(new clsCompany("이마트", "139480"));
+   vecCompany.push(new clsCompany("이미지스", "115610"));
+   vecCompany.push(new clsCompany("이상네트웍스", "080010"));
+   vecCompany.push(new clsCompany("이수앱지스", "086890"));
+   vecCompany.push(new clsCompany("이수페타시스", "007660"));
+   vecCompany.push(new clsCompany("이수화학", "005950"));
+   vecCompany.push(new clsCompany("이스타코", "015020"));
+   vecCompany.push(new clsCompany("이스트소프트", "047560"));
+   vecCompany.push(new clsCompany("이스트아시아홀딩스", "900110"));
+   vecCompany.push(new clsCompany("이씨에스", "067010"));
+   vecCompany.push(new clsCompany("이엔드디", "101360"));
+   vecCompany.push(new clsCompany("이엔쓰리", "074610"));
+   vecCompany.push(new clsCompany("이엔에프테크놀로지", "102710"));
+   vecCompany.push(new clsCompany("이엘케이", "094190"));
+   vecCompany.push(new clsCompany("이엠넷", "123570"));
+   vecCompany.push(new clsCompany("이엠코리아", "095190"));
+   vecCompany.push(new clsCompany("이엠텍", "091120"));
+   vecCompany.push(new clsCompany("이연제약", "102460"));
+   vecCompany.push(new clsCompany("이오테크닉스", "039030"));
+   vecCompany.push(new clsCompany("이원컴포텍", "088290"));
+   vecCompany.push(new clsCompany("이월드", "084680"));
+   vecCompany.push(new clsCompany("이젠텍", "033600"));
+   vecCompany.push(new clsCompany("이지바이오", "035810"));
+   vecCompany.push(new clsCompany("이코리아리츠", "138440"));
+   vecCompany.push(new clsCompany("이큐스앤자루", "058530"));
+   vecCompany.push(new clsCompany("이크레더블", "092130"));
+   vecCompany.push(new clsCompany("이테크건설", "016250"));
+   vecCompany.push(new clsCompany("이트레이드증권", "078020"));
+   vecCompany.push(new clsCompany("이트론", "096040"));
+   vecCompany.push(new clsCompany("이퓨쳐", "134060"));
+   vecCompany.push(new clsCompany("이필름", "093230"));
+   vecCompany.push(new clsCompany("이화공영", "001840"));
+   vecCompany.push(new clsCompany("이화산업", "000760"));
+   vecCompany.push(new clsCompany("이화전기", "024810"));
+   vecCompany.push(new clsCompany("인디에프", "014990"));
+   vecCompany.push(new clsCompany("인선이엔티", "060150"));
+   vecCompany.push(new clsCompany("인성정보", "033230"));
+   vecCompany.push(new clsCompany("인지디스플레", "037330"));
+   vecCompany.push(new clsCompany("인지컨트롤스", "023800"));
+   vecCompany.push(new clsCompany("인천도시가스", "034590"));
+   vecCompany.push(new clsCompany("인탑스", "049070"));
+   vecCompany.push(new clsCompany("인터로조", "119610"));
+   vecCompany.push(new clsCompany("인터엠", "017250"));
+   vecCompany.push(new clsCompany("인터지스", "129260"));
+   vecCompany.push(new clsCompany("인터파크", "035080"));
+   vecCompany.push(new clsCompany("인터플렉스", "051370"));
+   vecCompany.push(new clsCompany("인테그레이티드에너지", "023430"));
+   vecCompany.push(new clsCompany("인텍플러스", "064290"));
+   vecCompany.push(new clsCompany("인트론바이오", "048530"));
+   vecCompany.push(new clsCompany("인팩", "023810"));
+   vecCompany.push(new clsCompany("인포바인", "115310"));
+   vecCompany.push(new clsCompany("인포뱅크", "039290"));
+   vecCompany.push(new clsCompany("인포피아", "036220"));
+   vecCompany.push(new clsCompany("인프라웨어", "041020"));
+   vecCompany.push(new clsCompany("인피니트헬스케어", "071200"));
+   vecCompany.push(new clsCompany("인화정공", "101930"));
+   vecCompany.push(new clsCompany("일경산업개발", "078940"));
+   vecCompany.push(new clsCompany("일동제약", "000230"));
+   vecCompany.push(new clsCompany("일성건설", "013360"));
+   vecCompany.push(new clsCompany("일성신약", "003120"));
+   vecCompany.push(new clsCompany("일신바이오", "068330"));
+   vecCompany.push(new clsCompany("일신방직", "003200"));
+   vecCompany.push(new clsCompany("일신석재", "007110"));
+   vecCompany.push(new clsCompany("일야", "058450"));
+   vecCompany.push(new clsCompany("일양약품", "007570"));
+   vecCompany.push(new clsCompany("일정실업", "008500"));
+   vecCompany.push(new clsCompany("일지테크", "019540"));
+   vecCompany.push(new clsCompany("일진다이아", "081000"));
+   vecCompany.push(new clsCompany("일진디스플", "020760"));
+   vecCompany.push(new clsCompany("일진머티리얼즈", "020150"));
+   vecCompany.push(new clsCompany("일진에너지", "094820"));
+   vecCompany.push(new clsCompany("일진전기", "103590"));
+   vecCompany.push(new clsCompany("일진홀딩스", "015860"));
+   vecCompany.push(new clsCompany("잉크테크", "049550"));
+   vecCompany.push(new clsCompany("자연과환경", "043910"));
+   vecCompany.push(new clsCompany("자원", "032860"));
+   vecCompany.push(new clsCompany("자화전자", "033240"));
+   vecCompany.push(new clsCompany("잘만테크", "090120"));
+   vecCompany.push(new clsCompany("재영솔루텍", "049630"));
+   vecCompany.push(new clsCompany("전방", "000950"));
+   vecCompany.push(new clsCompany("전파기지국", "065530"));
+   vecCompany.push(new clsCompany("정상제이엘에스", "040420"));
+   vecCompany.push(new clsCompany("정원엔시스", "045510"));
+   vecCompany.push(new clsCompany("제넥신", "095700"));
+   vecCompany.push(new clsCompany("제닉", "123330"));
+   vecCompany.push(new clsCompany("제로투세븐", "159580"));
+   vecCompany.push(new clsCompany("제룡산업", "147830"));
+   vecCompany.push(new clsCompany("제룡전기", "033100"));
+   vecCompany.push(new clsCompany("제미니투자", "019570"));
+   vecCompany.push(new clsCompany("제우스", "079370"));
+   vecCompany.push(new clsCompany("제이브이엠", "054950"));
+   vecCompany.push(new clsCompany("제이비어뮤즈먼트", "035480"));
+   vecCompany.push(new clsCompany("제이씨케미칼", "137950"));
+   vecCompany.push(new clsCompany("제이씨현", "033320"));
+   vecCompany.push(new clsCompany("제이엔케이히터", "126880"));
+   vecCompany.push(new clsCompany("제이엠아이", "033050"));
+   vecCompany.push(new clsCompany("제이엠티", "094970"));
+   vecCompany.push(new clsCompany("제이웨이", "058420"));
+   vecCompany.push(new clsCompany("제이콘텐트리", "036420"));
+   vecCompany.push(new clsCompany("제이티", "089790"));
+   vecCompany.push(new clsCompany("제일기획", "030000"));
+   vecCompany.push(new clsCompany("제일모직", "001300"));
+   vecCompany.push(new clsCompany("제일바이오", "052670"));
+   vecCompany.push(new clsCompany("제일약품", "002620"));
+   vecCompany.push(new clsCompany("제일연마", "001560"));
+   vecCompany.push(new clsCompany("제일제강", "023440"));
+   vecCompany.push(new clsCompany("제일테크노스", "038010"));
+   vecCompany.push(new clsCompany("제주반도체", "080220"));
+   vecCompany.push(new clsCompany("제주은행", "006220"));
+   vecCompany.push(new clsCompany("젠트로", "083660"));
+   vecCompany.push(new clsCompany("젬백스", "082270"));
+   vecCompany.push(new clsCompany("조광ILI", "044060"));
+   vecCompany.push(new clsCompany("조광페인트", "004910"));
+   vecCompany.push(new clsCompany("조광피혁", "004700"));
+   vecCompany.push(new clsCompany("조비", "001550"));
+   vecCompany.push(new clsCompany("조선내화", "000480"));
+   vecCompany.push(new clsCompany("조선선재", "120030"));
+   vecCompany.push(new clsCompany("조아제약", "034940"));
+   vecCompany.push(new clsCompany("조이맥스", "101730"));
+   vecCompany.push(new clsCompany("조이시티", "067000"));
+   vecCompany.push(new clsCompany("조일알미늄", "018470"));
+   vecCompany.push(new clsCompany("조흥", "002600"));
+   vecCompany.push(new clsCompany("종근당", "001630"));
+   vecCompany.push(new clsCompany("종근당바이오", "063160"));
+   vecCompany.push(new clsCompany("좋은사람들", "033340"));
+   vecCompany.push(new clsCompany("주성엔지니어링", "036930"));
+   vecCompany.push(new clsCompany("주연테크", "044380"));
+   vecCompany.push(new clsCompany("중국고섬", "950070"));
+   vecCompany.push(new clsCompany("중국식품포장", "900060"));
+   vecCompany.push(new clsCompany("중국원양자원", "900050"));
+   vecCompany.push(new clsCompany("중앙백신", "072020"));
+   vecCompany.push(new clsCompany("중앙에너비스", "000440"));
+   vecCompany.push(new clsCompany("중앙오션", "054180"));
+   vecCompany.push(new clsCompany("지디", "155960"));
+   vecCompany.push(new clsCompany("지아이블루", "032790"));
+   vecCompany.push(new clsCompany("지어소프트", "051160"));
+   vecCompany.push(new clsCompany("지에스이", "053050"));
+   vecCompany.push(new clsCompany("지에스인스트루", "007630"));
+   vecCompany.push(new clsCompany("지엔코", "065060"));
+   vecCompany.push(new clsCompany("지엠비코리아", "013870"));
+   vecCompany.push(new clsCompany("지엠피", "018290"));
+   vecCompany.push(new clsCompany("지역난방공사", "071320"));
+   vecCompany.push(new clsCompany("지코", "010580"));
+   vecCompany.push(new clsCompany("진도", "088790"));
+   vecCompany.push(new clsCompany("진로발효", "018120"));
+   vecCompany.push(new clsCompany("진매트릭스", "109820"));
+   vecCompany.push(new clsCompany("진바이오텍", "086060"));
+   vecCompany.push(new clsCompany("진성티이씨", "036890"));
+   vecCompany.push(new clsCompany("진양산업", "003780"));
+   vecCompany.push(new clsCompany("진양제약", "007370"));
+   vecCompany.push(new clsCompany("진양폴리우레탄", "010640"));
+   vecCompany.push(new clsCompany("진양홀딩스", "100250"));
+   vecCompany.push(new clsCompany("진양화학", "051630"));
+   vecCompany.push(new clsCompany("진흥기업", "002780"));
+   vecCompany.push(new clsCompany("차바이오앤", "085660"));
+   vecCompany.push(new clsCompany("차이나그레이트", "900040"));
+   vecCompany.push(new clsCompany("차이나킹", "900120"));
+   vecCompany.push(new clsCompany("차이나하오란", "900090"));
+   vecCompany.push(new clsCompany("참엔지니어링", "009310"));
+   vecCompany.push(new clsCompany("참좋은레져", "094850"));
+   vecCompany.push(new clsCompany("창해에너지어링", "074150"));
+   vecCompany.push(new clsCompany("처음앤씨", "111820"));
+   vecCompany.push(new clsCompany("천일고속", "000650"));
+   vecCompany.push(new clsCompany("청담러닝", "096240"));
+   vecCompany.push(new clsCompany("청보산업", "013720"));
+   vecCompany.push(new clsCompany("청호컴넷", "012600"));
+   vecCompany.push(new clsCompany("체시스", "033250"));
+   vecCompany.push(new clsCompany("초록뱀", "047820"));
+   vecCompany.push(new clsCompany("카스", "016920"));
+   vecCompany.push(new clsCompany("카프로", "006380"));
+   vecCompany.push(new clsCompany("캔들미디어", "066410"));
+   vecCompany.push(new clsCompany("캠시스", "050110"));
+   vecCompany.push(new clsCompany("컴투스", "078340"));
+   vecCompany.push(new clsCompany("케이디미디어", "063440"));
+   vecCompany.push(new clsCompany("케이디씨", "029480"));
+   vecCompany.push(new clsCompany("케이맥", "043290"));
+   vecCompany.push(new clsCompany("케이비게임앤앱스스팩", "131370"));
+   vecCompany.push(new clsCompany("케이비부국위탁리츠", "149130"));
+   vecCompany.push(new clsCompany("케이씨씨", "002380"));
+   vecCompany.push(new clsCompany("케이씨에스", "115500"));
+   vecCompany.push(new clsCompany("케이씨텍", "029460"));
+   vecCompany.push(new clsCompany("케이씨티", "089150"));
+   vecCompany.push(new clsCompany("케이씨티시", "009070"));
+   vecCompany.push(new clsCompany("케이씨피드", "025880"));
+   vecCompany.push(new clsCompany("케이아이엔엑스", "093320"));
+   vecCompany.push(new clsCompany("케이에스씨비", "065940"));
+   vecCompany.push(new clsCompany("케이에스피", "073010"));
+   vecCompany.push(new clsCompany("케이엔더블유", "105330"));
+   vecCompany.push(new clsCompany("케이엘넷", "039420"));
+   vecCompany.push(new clsCompany("케이엠", "083550"));
+   vecCompany.push(new clsCompany("케이엠더블유", "032500"));
+   vecCompany.push(new clsCompany("케이탑리츠", "145270"));
+   vecCompany.push(new clsCompany("케이티", "030200"));
+   vecCompany.push(new clsCompany("케이티롤", "122800"));
+   vecCompany.push(new clsCompany("케이티스", "058860"));
+   vecCompany.push(new clsCompany("케이티스카이라이프", "053210"));
+   vecCompany.push(new clsCompany("케이티앤지", "033780"));
+   vecCompany.push(new clsCompany("케이피에프", "024880"));
+   vecCompany.push(new clsCompany("케이피엠테크", "042040"));
+   vecCompany.push(new clsCompany("케이피티", "054410"));
+   vecCompany.push(new clsCompany("켐트로닉스", "089010"));
+   vecCompany.push(new clsCompany("코나아이", "052400"));
+   vecCompany.push(new clsCompany("코닉글로리", "094860"));
+   vecCompany.push(new clsCompany("코다코", "046070"));
+   vecCompany.push(new clsCompany("코데즈컴바인", "047770"));
+   vecCompany.push(new clsCompany("코디에스", "080530"));
+   vecCompany.push(new clsCompany("코라오홀딩스", "900140"));
+   vecCompany.push(new clsCompany("코렌", "078650"));
+   vecCompany.push(new clsCompany("코렌텍", "104540"));
+   vecCompany.push(new clsCompany("코리아01호", "090970"));
+   vecCompany.push(new clsCompany("코리아02호", "090980"));
+   vecCompany.push(new clsCompany("코리아03호", "090990"));
+   vecCompany.push(new clsCompany("코리아04호", "091000"));
+   vecCompany.push(new clsCompany("코리아나", "027050"));
+   vecCompany.push(new clsCompany("코리아써키트", "007810"));
+   vecCompany.push(new clsCompany("코리아에스이", "101670"));
+   vecCompany.push(new clsCompany("코리아에프티", "123410"));
+   vecCompany.push(new clsCompany("코리안리", "003690"));
+   vecCompany.push(new clsCompany("코맥스", "036690"));
+   vecCompany.push(new clsCompany("코메론", "049430"));
+   vecCompany.push(new clsCompany("코미팜", "041960"));
+   vecCompany.push(new clsCompany("코스맥스", "044820"));
+   vecCompany.push(new clsCompany("코스모신소재", "005070"));
+   vecCompany.push(new clsCompany("코스모화학", "005420"));
+   vecCompany.push(new clsCompany("코스온", "069110"));
+   vecCompany.push(new clsCompany("코아로직", "048870"));
+   vecCompany.push(new clsCompany("코아스", "071950"));
+   vecCompany.push(new clsCompany("코아크로스", "038530"));
+   vecCompany.push(new clsCompany("코엔텍", "029960"));
+   vecCompany.push(new clsCompany("코오롱", "002020"));
+   vecCompany.push(new clsCompany("코오롱글로벌", "003070"));
+   vecCompany.push(new clsCompany("코오롱머티리얼", "144620"));
+   vecCompany.push(new clsCompany("코오롱생명과학", "102940"));
+   vecCompany.push(new clsCompany("코오롱인더", "120110"));
+   vecCompany.push(new clsCompany("코오롱플라스틱", "138490"));
+   vecCompany.push(new clsCompany("코원", "056000"));
+   vecCompany.push(new clsCompany("코웨이", "021240"));
+   vecCompany.push(new clsCompany("코위버", "056360"));
+   vecCompany.push(new clsCompany("코이즈", "121850"));
+   vecCompany.push(new clsCompany("코콤", "015710"));
+   vecCompany.push(new clsCompany("코크렙15호", "121550"));
+   vecCompany.push(new clsCompany("코크렙8호", "090540"));
+   vecCompany.push(new clsCompany("코텍", "052330"));
+   vecCompany.push(new clsCompany("코프라", "126600"));
+   vecCompany.push(new clsCompany("콤텍시스템", "031820"));
+   vecCompany.push(new clsCompany("큐렉소", "060280"));
+   vecCompany.push(new clsCompany("큐로컴", "040350"));
+   vecCompany.push(new clsCompany("큐로홀딩스", "051780"));
+   vecCompany.push(new clsCompany("큐브스", "065560"));
+   vecCompany.push(new clsCompany("큐에스아이", "066310"));
+   vecCompany.push(new clsCompany("큐캐피탈", "016600"));
+   vecCompany.push(new clsCompany("크라운제과", "005740"));
+   vecCompany.push(new clsCompany("크레듀", "067280"));
+   vecCompany.push(new clsCompany("크로바하이텍", "043590"));
+   vecCompany.push(new clsCompany("크루셜엠스", "082660"));
+   vecCompany.push(new clsCompany("크루셜텍", "114120"));
+   vecCompany.push(new clsCompany("크리스탈", "083790"));
+   vecCompany.push(new clsCompany("크린앤사이언스", "045520"));
+   vecCompany.push(new clsCompany("키스톤글로벌", "012170"));
+   vecCompany.push(new clsCompany("키움스팩1호", "123840"));
+   vecCompany.push(new clsCompany("키움증권", "039490"));
+   vecCompany.push(new clsCompany("키이스트", "054780"));
+   vecCompany.push(new clsCompany("탑금속", "019770"));
+   vecCompany.push(new clsCompany("탑엔지니어링", "065130"));
+   vecCompany.push(new clsCompany("태경산업", "015890"));
+   vecCompany.push(new clsCompany("태경화학", "006890"));
+   vecCompany.push(new clsCompany("태광", "023160"));
+   vecCompany.push(new clsCompany("태광산업", "003240"));
+   vecCompany.push(new clsCompany("태림포장공업", "011280"));
+   vecCompany.push(new clsCompany("태산엘시디", "036210"));
+   vecCompany.push(new clsCompany("태양", "053620"));
+   vecCompany.push(new clsCompany("태양금속공업", "004100"));
+   vecCompany.push(new clsCompany("태양기계", "116100"));
+   vecCompany.push(new clsCompany("태양기전", "072520"));
+   vecCompany.push(new clsCompany("태영건설", "009410"));
+   vecCompany.push(new clsCompany("태웅", "044490"));
+   vecCompany.push(new clsCompany("태원물산", "001420"));
+   vecCompany.push(new clsCompany("태창파로스", "039850"));
+   vecCompany.push(new clsCompany("태평양물산", "007980"));
+   vecCompany.push(new clsCompany("터보테크", "032420"));
+   vecCompany.push(new clsCompany("테라리소스", "053320"));
+   vecCompany.push(new clsCompany("테라세미콘", "123100"));
+   vecCompany.push(new clsCompany("테라젠이텍스", "066700"));
+   vecCompany.push(new clsCompany("테라텍", "151750"));
+   vecCompany.push(new clsCompany("테스", "095610"));
+   vecCompany.push(new clsCompany("테크윙", "089030"));
+   vecCompany.push(new clsCompany("텍셀네트컴", "038540"));
+   vecCompany.push(new clsCompany("텔레칩스", "054450"));
+   vecCompany.push(new clsCompany("텔레필드", "091440"));
+   vecCompany.push(new clsCompany("텔코웨어", "078000"));
+   vecCompany.push(new clsCompany("토비스", "051360"));
+   vecCompany.push(new clsCompany("토탈소프트", "045340"));
+   vecCompany.push(new clsCompany("토필드", "057880"));
+   vecCompany.push(new clsCompany("톱텍", "108230"));
+   vecCompany.push(new clsCompany("투비소프트", "079970"));
+   vecCompany.push(new clsCompany("트랜스더멀아시아홀딩스", "015540"));
+   vecCompany.push(new clsCompany("트러스제7호", "140890"));
+   vecCompany.push(new clsCompany("트레이스", "052290"));
+   vecCompany.push(new clsCompany("특수건설", "026150"));
+   vecCompany.push(new clsCompany("티모이앤엠", "037340"));
+   vecCompany.push(new clsCompany("티브이로직", "121800"));
+   vecCompany.push(new clsCompany("티씨케이", "064760"));
+   vecCompany.push(new clsCompany("티에스엠텍", "066350"));
+   vecCompany.push(new clsCompany("티에스이", "131290"));
+   vecCompany.push(new clsCompany("티에이치엔", "019180"));
+   vecCompany.push(new clsCompany("티엘아이", "062860"));
+   vecCompany.push(new clsCompany("티웨이홀딩스", "004870"));
+   vecCompany.push(new clsCompany("티이씨코", "008900"));
+   vecCompany.push(new clsCompany("티케이케미칼", "104480"));
+   vecCompany.push(new clsCompany("티플랙스", "081150"));
+   vecCompany.push(new clsCompany("티피씨글로벌", "130740"));
+   vecCompany.push(new clsCompany("팀스", "134790"));
+   vecCompany.push(new clsCompany("팅크웨어", "084730"));
+   vecCompany.push(new clsCompany("파나진", "046210"));
+   vecCompany.push(new clsCompany("파라다이스", "034230"));
+   vecCompany.push(new clsCompany("파라텍", "033540"));
+   vecCompany.push(new clsCompany("파루", "043200"));
+   vecCompany.push(new clsCompany("파미셀", "005690"));
+   vecCompany.push(new clsCompany("파브코", "101990"));
+   vecCompany.push(new clsCompany("파세코", "037070"));
+   vecCompany.push(new clsCompany("파워로직스", "047310"));
+   vecCompany.push(new clsCompany("파이오링크", "170790"));
+   vecCompany.push(new clsCompany("파인디앤씨", "049120"));
+   vecCompany.push(new clsCompany("파인디지털", "038950"));
+   vecCompany.push(new clsCompany("파인테크닉스", "106240"));
+   vecCompany.push(new clsCompany("파캔OPC", "028040"));
+   vecCompany.push(new clsCompany("파트론", "091700"));
+   vecCompany.push(new clsCompany("팜스웰바이오", "043090"));
+   vecCompany.push(new clsCompany("팜스코", "036580"));
+   vecCompany.push(new clsCompany("팜스토리", "027710"));
+   vecCompany.push(new clsCompany("팬엔터테인먼트", "068050"));
+   vecCompany.push(new clsCompany("퍼스텍", "010820"));
+   vecCompany.push(new clsCompany("퍼시스", "016800"));
+   vecCompany.push(new clsCompany("페이퍼코리아", "001020"));
+   vecCompany.push(new clsCompany("평화산업", "090080"));
+   vecCompany.push(new clsCompany("평화정공", "043370"));
+   vecCompany.push(new clsCompany("평화홀딩스", "010770"));
+   vecCompany.push(new clsCompany("포메탈", "119500"));
+   vecCompany.push(new clsCompany("포비스티앤씨", "016670"));
+   vecCompany.push(new clsCompany("포스코", "005490"));
+   vecCompany.push(new clsCompany("포스코 ICT", "022100"));
+   vecCompany.push(new clsCompany("포스코강판", "058430"));
+   vecCompany.push(new clsCompany("포스코엠텍", "009520"));
+   vecCompany.push(new clsCompany("포스코켐텍", "003670"));
+   vecCompany.push(new clsCompany("포스코플랜텍", "051310"));
+   vecCompany.push(new clsCompany("포인트아이", "078860"));
+   vecCompany.push(new clsCompany("포티스", "141020"));
+   vecCompany.push(new clsCompany("폴리비전", "032980"));
+   vecCompany.push(new clsCompany("푸드웰", "005670"));
+   vecCompany.push(new clsCompany("푸른기술", "094940"));
+   vecCompany.push(new clsCompany("푸른저축은행", "007330"));
+   vecCompany.push(new clsCompany("풀무원홀딩스", "017810"));
+   vecCompany.push(new clsCompany("풍강", "093380"));
+   vecCompany.push(new clsCompany("풍국주정", "023900"));
+   vecCompany.push(new clsCompany("풍산", "103140"));
+   vecCompany.push(new clsCompany("풍산홀딩스", "005810"));
+   vecCompany.push(new clsCompany("퓨얼셀", "139170"));
+   vecCompany.push(new clsCompany("프럼파스트", "035200"));
+   vecCompany.push(new clsCompany("프로텍", "053610"));
+   vecCompany.push(new clsCompany("프롬써어티", "073570"));
+   vecCompany.push(new clsCompany("프리엠스", "053160"));
+   vecCompany.push(new clsCompany("프리젠", "060910"));
+   vecCompany.push(new clsCompany("플랜티넷", "075130"));
+   vecCompany.push(new clsCompany("플레이위드", "023770"));
+   vecCompany.push(new clsCompany("플렉스컴", "065270"));
+   vecCompany.push(new clsCompany("피델릭스", "032580"));
+   vecCompany.push(new clsCompany("피씨디렉트", "051380"));
+   vecCompany.push(new clsCompany("피앤이솔루션", "131390"));
+   vecCompany.push(new clsCompany("피앤텔", "054340"));
+   vecCompany.push(new clsCompany("피에스앤지", "065180"));
+   vecCompany.push(new clsCompany("피에스엠씨", "024850"));
+   vecCompany.push(new clsCompany("피에스케이", "031980"));
+   vecCompany.push(new clsCompany("피에스텍", "002230"));
+   vecCompany.push(new clsCompany("피엔티", "137400"));
+   vecCompany.push(new clsCompany("피엘에이", "082390"));
+   vecCompany.push(new clsCompany("피엠디아카데미", "144740"));
+   vecCompany.push(new clsCompany("피제이메탈", "128660"));
+   vecCompany.push(new clsCompany("피제이전자", "006140"));
+   vecCompany.push(new clsCompany("필룩스", "033180"));
+   vecCompany.push(new clsCompany("필링크", "064800"));
+   vecCompany.push(new clsCompany("필코전자", "033290"));
+   vecCompany.push(new clsCompany("하나그린스팩", "123420"));
+   vecCompany.push(new clsCompany("하나금융지주", "086790"));
+   vecCompany.push(new clsCompany("하나니켈1호", "099340"));
+   vecCompany.push(new clsCompany("하나니켈2호", "099350"));
+   vecCompany.push(new clsCompany("하나마이크론", "067310"));
+   vecCompany.push(new clsCompany("하나투어", "039130"));
+   vecCompany.push(new clsCompany("하림", "136480"));
+   vecCompany.push(new clsCompany("하림홀딩스", "024660"));
+   vecCompany.push(new clsCompany("하이골드12호", "172580"));
+   vecCompany.push(new clsCompany("하이골드2호", "139200"));
+   vecCompany.push(new clsCompany("하이골드3호", "153360"));
+   vecCompany.push(new clsCompany("하이골드8호", "159650"));
+   vecCompany.push(new clsCompany("하이로닉", "149980"));
+   vecCompany.push(new clsCompany("하이록코리아", "013030"));
+   vecCompany.push(new clsCompany("하이비젼시스템", "126700"));
+   vecCompany.push(new clsCompany("하이소닉", "106080"));
+   vecCompany.push(new clsCompany("하이스틸", "071090"));
+   vecCompany.push(new clsCompany("하이쎌", "066980"));
+   vecCompany.push(new clsCompany("하이제1호스팩", "131030"));
+   vecCompany.push(new clsCompany("하이텍팜", "106190"));
+   vecCompany.push(new clsCompany("하이트론씨스템즈", "019490"));
+   vecCompany.push(new clsCompany("하이트진로", "000080"));
+   vecCompany.push(new clsCompany("하이트진로홀딩스", "000140"));
+   vecCompany.push(new clsCompany("하츠", "066130"));
+   vecCompany.push(new clsCompany("한광", "044780"));
+   vecCompany.push(new clsCompany("한국ANKOR유전", "152550"));
+   vecCompany.push(new clsCompany("한국가구", "004590"));
+   vecCompany.push(new clsCompany("한국가스공사", "036460"));
+   vecCompany.push(new clsCompany("한국개발금융", "010460"));
+   vecCompany.push(new clsCompany("한국경제TV", "039340"));
+   vecCompany.push(new clsCompany("한국공항", "005430"));
+   vecCompany.push(new clsCompany("한국금융지주", "071050"));
+   vecCompany.push(new clsCompany("한국기업평가", "034950"));
+   vecCompany.push(new clsCompany("한국내화", "010040"));
+   vecCompany.push(new clsCompany("한국단자공업", "025540"));
+   vecCompany.push(new clsCompany("한국사이버결제", "060250"));
+   vecCompany.push(new clsCompany("한국석유공업", "004090"));
+   vecCompany.push(new clsCompany("한국선재", "025550"));
+   vecCompany.push(new clsCompany("한국수출포장공업", "002200"));
+   vecCompany.push(new clsCompany("한국쉘석유", "002960"));
+   vecCompany.push(new clsCompany("한국알콜", "017890"));
+   vecCompany.push(new clsCompany("한국유리공업", "002000"));
+   vecCompany.push(new clsCompany("한국자원투자개발", "033430"));
+   vecCompany.push(new clsCompany("한국전력공사", "015760"));
+   vecCompany.push(new clsCompany("한국전자금융", "063570"));
+   vecCompany.push(new clsCompany("한국전자인증", "041460"));
+   vecCompany.push(new clsCompany("한국전자홀딩스", "006200"));
+   vecCompany.push(new clsCompany("한국정밀기계", "101680"));
+   vecCompany.push(new clsCompany("한국정보공학", "039740"));
+   vecCompany.push(new clsCompany("한국정보통신", "025770"));
+   vecCompany.push(new clsCompany("한국제지", "002300"));
+   vecCompany.push(new clsCompany("한국종합기술", "023350"));
+   vecCompany.push(new clsCompany("한국주강", "025890"));
+   vecCompany.push(new clsCompany("한국주철관공업", "000970"));
+   vecCompany.push(new clsCompany("한국철강", "104700"));
+   vecCompany.push(new clsCompany("한국카본", "017960"));
+   vecCompany.push(new clsCompany("한국캐피탈", "023760"));
+   vecCompany.push(new clsCompany("한국컴퓨터", "054040"));
+   vecCompany.push(new clsCompany("한국콜마", "161890"));
+   vecCompany.push(new clsCompany("한국콜마홀딩스", "024720"));
+   vecCompany.push(new clsCompany("한국큐빅", "021650"));
+   vecCompany.push(new clsCompany("한국타이어", "161390"));
+   vecCompany.push(new clsCompany("한국타이어월드와이드", "000240"));
+   vecCompany.push(new clsCompany("한국테크놀로지", "053590"));
+   vecCompany.push(new clsCompany("한국토지신탁", "034830"));
+   vecCompany.push(new clsCompany("한국특수형강", "007280"));
+   vecCompany.push(new clsCompany("한국패러랠", "168490"));
+   vecCompany.push(new clsCompany("한국팩키지", "037230"));
+   vecCompany.push(new clsCompany("한국프랜지공업", "010100"));
+   vecCompany.push(new clsCompany("한국항공우주", "047810"));
+   vecCompany.push(new clsCompany("한국화장품", "123690"));
+   vecCompany.push(new clsCompany("한국화장품제조", "003350"));
+   vecCompany.push(new clsCompany("한글과컴퓨터", "030520"));
+   vecCompany.push(new clsCompany("한네트", "052600"));
+   vecCompany.push(new clsCompany("한농화성", "011500"));
+   vecCompany.push(new clsCompany("한독", "002390"));
+   vecCompany.push(new clsCompany("한라IMS", "092460"));
+   vecCompany.push(new clsCompany("한라건설", "014790"));
+   vecCompany.push(new clsCompany("한라비스테온공조", "018880"));
+   vecCompany.push(new clsCompany("한미글로벌", "053690"));
+   vecCompany.push(new clsCompany("한미반도체", "042700"));
+   vecCompany.push(new clsCompany("한미사이언스", "008930"));
+   vecCompany.push(new clsCompany("한미약품", "128940"));
+   vecCompany.push(new clsCompany("한빛소프트", "047080"));
+   vecCompany.push(new clsCompany("한샘", "009240"));
+   vecCompany.push(new clsCompany("한섬", "020000"));
+   vecCompany.push(new clsCompany("한성기업", "003680"));
+   vecCompany.push(new clsCompany("한성엘컴텍", "037950"));
+   vecCompany.push(new clsCompany("한세실업", "105630"));
+   vecCompany.push(new clsCompany("한세예스24홀딩스", "016450"));
+   vecCompany.push(new clsCompany("한솔CSN", "009180"));
+   vecCompany.push(new clsCompany("한솔신텍", "099660"));
+   vecCompany.push(new clsCompany("한솔아트원제지", "007190"));
+   vecCompany.push(new clsCompany("한솔인티큐브", "070590"));
+   vecCompany.push(new clsCompany("한솔제지", "004150"));
+   vecCompany.push(new clsCompany("한솔케미칼", "014680"));
+   vecCompany.push(new clsCompany("한솔테크닉스", "004710"));
+   vecCompany.push(new clsCompany("한솔피엔에스", "010420"));
+   vecCompany.push(new clsCompany("한솔홈데코", "025750"));
+   vecCompany.push(new clsCompany("한스바이오메드", "042520"));
+   vecCompany.push(new clsCompany("한신공영", "004960"));
+   vecCompany.push(new clsCompany("한신기계공업", "011700"));
+   vecCompany.push(new clsCompany("한양디지텍", "078350"));
+   vecCompany.push(new clsCompany("한양이엔지", "045100"));
+   vecCompany.push(new clsCompany("한양증권", "001750"));
+   vecCompany.push(new clsCompany("한올바이오파마", "009420"));
+   vecCompany.push(new clsCompany("한익스프레스", "014130"));
+   vecCompany.push(new clsCompany("한일네트웍스", "046110"));
+   vecCompany.push(new clsCompany("한일단조", "024740"));
+   vecCompany.push(new clsCompany("한일사료", "005860"));
+   vecCompany.push(new clsCompany("한일시멘트", "003300"));
+   vecCompany.push(new clsCompany("한일이화", "007860"));
+   vecCompany.push(new clsCompany("한일철강", "002220"));
+   vecCompany.push(new clsCompany("한일화학", "007770"));
+   vecCompany.push(new clsCompany("한전KPS", "051600"));
+   vecCompany.push(new clsCompany("한전기술", "052690"));
+   vecCompany.push(new clsCompany("한전산업", "130660"));
+   vecCompany.push(new clsCompany("한진", "002320"));
+   vecCompany.push(new clsCompany("한진중공업", "097230"));
+   vecCompany.push(new clsCompany("한진중공업홀딩스", "003480"));
+   vecCompany.push(new clsCompany("한진피앤씨", "061460"));
+   vecCompany.push(new clsCompany("한진해운", "117930"));
+   vecCompany.push(new clsCompany("한진해운홀딩스", "000700"));
+   vecCompany.push(new clsCompany("한창", "005110"));
+   vecCompany.push(new clsCompany("한창산업", "079170"));
+   vecCompany.push(new clsCompany("한창제지", "009460"));
+   vecCompany.push(new clsCompany("한화", "000880"));
+   vecCompany.push(new clsCompany("한화생명", "088350"));
+   vecCompany.push(new clsCompany("한화손해보험", "000370"));
+   vecCompany.push(new clsCompany("한화케미칼", "009830"));
+   vecCompany.push(new clsCompany("한화타임월드", "027390"));
+   vecCompany.push(new clsCompany("한화투자증권", "003530"));
+   vecCompany.push(new clsCompany("해덕파워웨이", "102210"));
+   vecCompany.push(new clsCompany("해성산업", "034810"));
+   vecCompany.push(new clsCompany("행남자기", "008800"));
+   vecCompany.push(new clsCompany("헤스본", "054300"));
+   vecCompany.push(new clsCompany("현대EP", "089470"));
+   vecCompany.push(new clsCompany("현대건설", "000720"));
+   vecCompany.push(new clsCompany("현대그린푸드", "005440"));
+   vecCompany.push(new clsCompany("현대글로비스", "086280"));
+   vecCompany.push(new clsCompany("현대모비스", "012330"));
+   vecCompany.push(new clsCompany("현대미포조선", "010620"));
+   vecCompany.push(new clsCompany("현대백화점", "069960"));
+   vecCompany.push(new clsCompany("현대비앤지스틸", "004560"));
+   vecCompany.push(new clsCompany("현대산업개발", "012630"));
+   vecCompany.push(new clsCompany("현대상선", "011200"));
+   vecCompany.push(new clsCompany("현대시멘트", "006390"));
+   vecCompany.push(new clsCompany("현대아이비티", "048410"));
+   vecCompany.push(new clsCompany("현대약품", "004310"));
+   vecCompany.push(new clsCompany("현대에이치씨엔", "126560"));
+   vecCompany.push(new clsCompany("현대엘리베이터", "017800"));
+   vecCompany.push(new clsCompany("현대위아", "011210"));
+   vecCompany.push(new clsCompany("현대자동차", "005380"));
+   vecCompany.push(new clsCompany("현대정보기술", "026180"));
+   vecCompany.push(new clsCompany("현대제철", "004020"));
+   vecCompany.push(new clsCompany("현대종합상사", "011760"));
+   vecCompany.push(new clsCompany("현대중공업", "009540"));
+   vecCompany.push(new clsCompany("현대증권", "003450"));
+   vecCompany.push(new clsCompany("현대통신", "039010"));
+   vecCompany.push(new clsCompany("현대피앤씨", "011720"));
+   vecCompany.push(new clsCompany("현대하이스코", "010520"));
+   vecCompany.push(new clsCompany("현대해상", "001450"));
+   vecCompany.push(new clsCompany("현대홈쇼핑", "057050"));
+   vecCompany.push(new clsCompany("현우산업", "092300"));
+   vecCompany.push(new clsCompany("현진소재", "053660"));
+   vecCompany.push(new clsCompany("혜인", "003010"));
+   vecCompany.push(new clsCompany("호텔신라", "008770"));
+   vecCompany.push(new clsCompany("홈센타", "060560"));
+   vecCompany.push(new clsCompany("홈캐스트", "064240"));
+   vecCompany.push(new clsCompany("화성", "039610"));
+   vecCompany.push(new clsCompany("화성산업", "002460"));
+   vecCompany.push(new clsCompany("화승알앤에이", "013520"));
+   vecCompany.push(new clsCompany("화승인더스트리", "006060"));
+   vecCompany.push(new clsCompany("화신", "010690"));
+   vecCompany.push(new clsCompany("화신정공", "126640"));
+   vecCompany.push(new clsCompany("화신테크", "086250"));
+   vecCompany.push(new clsCompany("화일약품", "061250"));
+   vecCompany.push(new clsCompany("화진", "134780"));
+   vecCompany.push(new clsCompany("화천기계", "010660"));
+   vecCompany.push(new clsCompany("화천기공", "000850"));
+   vecCompany.push(new clsCompany("화풍집단", "950010"));
+   vecCompany.push(new clsCompany("환인제약", "016580"));
+   vecCompany.push(new clsCompany("황금에스티", "032560"));
+   vecCompany.push(new clsCompany("효성", "004800"));
+   vecCompany.push(new clsCompany("효성 ITX", "094280"));
+   vecCompany.push(new clsCompany("효성오앤비", "097870"));
+   vecCompany.push(new clsCompany("후너스", "014190"));
+   vecCompany.push(new clsCompany("후성", "093370"));
+   vecCompany.push(new clsCompany("휘닉스소재", "050090"));
+   vecCompany.push(new clsCompany("휘닉스컴", "037270"));
+   vecCompany.push(new clsCompany("휠라코리아", "081660"));
+   vecCompany.push(new clsCompany("휴니드테크놀러지스", "005870"));
+   vecCompany.push(new clsCompany("휴맥스", "115160"));
+   vecCompany.push(new clsCompany("휴맥스홀딩스", "028080"));
+   vecCompany.push(new clsCompany("휴바이론", "064090"));
+   vecCompany.push(new clsCompany("휴비스", "079980"));
+   vecCompany.push(new clsCompany("휴비츠", "065510"));
+   vecCompany.push(new clsCompany("휴스틸", "005010"));
+   vecCompany.push(new clsCompany("휴온스", "084110"));
+   vecCompany.push(new clsCompany("휴켐스", "069260"));
+   vecCompany.push(new clsCompany("흥구석유", "024060"));
+   vecCompany.push(new clsCompany("흥국", "010240"));
+   vecCompany.push(new clsCompany("흥국화재", "000540"));
+   vecCompany.push(new clsCompany("흥아해운", "003280"));
+   vecCompany.push(new clsCompany("희림", "037440"));
+}
+</script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

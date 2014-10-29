@@ -1,0 +1,107 @@
+{*** 샵 메인용 왼쪽메뉴 | goods/goods_list.php ***}
+<?PHP 
+	$sw = $_GET['category'];
+	$sw = substr($sw, 0, 3);
+	
+	if( $sw != '012' ) { // 기본 shop 메뉴
+		echo "<div id=\"left_title\">sh<span class=\"emphasis\">o</span>p.</div>";
+	} 
+	else { // collaboration 메뉴
+		echo "<div id=\"left_title\">coll<span class=\"emphasis\">a</span>bo.</div>";
+	} 
+?>
+	<div style="height:20px;"></div>
+
+<!--{ ? _cfg.subCategory != 1 // 1단 또는 서브레이어 출력 유형 }-->
+	<table width="100%" cellpadding=0 cellspacing=0 border=0 id="menuLayer">
+	<!--{ @ dataCategory( _cfg.subCategory, 2 ) }-->
+	<tr>
+		<td class="catebar"><a href="../goods/goods_list.php?category={.category}">{.catnm}</a></td>
+		<td style="z-index:100">
+		<!--{ ? .sub }-->
+			<div style="position:relative">
+				<div class=subLayer>
+					<table width=100% cellspacing=1>
+			<!--{ @ .sub }-->
+					<tr><td nowrap class="cate"><a href="../goods/goods_list.php?category={..category}">{..catnm}</a></td></tr>
+					<!--{ ? ..index_!=..size_-1 }--><tr><td height=1 bgcolor=#F3F2F0></td></tr><!--{ / }-->
+			<!--{ / }-->
+					</table>
+				</div>
+			</div>
+		<!--{ / }-->
+		</td>
+	</tr>
+	<!--{ / }-->
+	</table>
+	<!--{ ? _cfg.subCategory }-->
+	<script>execSubLayer();</script>
+	<!--{ / }-->
+<!--{ : // 1,2단 동시 메뉴 출력 유형 }-->
+	<div id="left_menu">
+<?PHP 
+	if( $sw == '012' ) { // collaboration 메뉴
+		$arr_collaboration_name = array(
+			array("와이제이","WHY JAY","goods_list.php?category=012001")
+		);
+?>
+		<div style="height:15px;"></div>
+		<div class="cat00"><div onMouseOver="overM('브랜드', this);" onMouseOut="outM('Brands', this);">brands</div></div>
+		<div class="separator"></div>
+		<div style="height:10px;"></div>
+<?PHP 
+		$cnt = count($arr_collaboration_name);
+		for( $i = 0; $i < $cnt; $i++ ) {
+?>
+		<div class="cat01"><a href="/shop/goods/<?=$arr_collaboration_name[$i][2]?>"><div onMouseOver="overS('<?=$arr_collaboration_name[$i][0]?>', this);" onMouseOut="outS('<?=$arr_collaboration_name[$i][1]?>', this);"><?=$arr_collaboration_name[$i][1]?></div></a></div>
+		<div style="height:5px;"></div>
+<?PHP
+		}
+	}
+	else {
+		include_once "_loos_category.php";
+		global $arr_category_name;
+		global $arr_collection_name;
+?>
+		<div style="height:15px;"></div>
+		<div class="cat00"><div onMouseOver="overL('상품카테고리', this);" onMouseOut="outL('by category', this);">by Category</div></div>
+		<div class="separator"></div>
+		<div style="height:10px;"></div>
+<?PHP 
+	$cnt = count($arr_category_name);
+	for( $i = 0; $i < $cnt; $i++ ) {
+?>
+		<div class="cat01"><a href="/shop/goods/<?=$arr_category_name[$i][2]?>"><div onMouseOver="overS('<?=$arr_category_name[$i][0]?>', this);" onMouseOut="outS('<?=$arr_category_name[$i][1]?>', this);"><?=$arr_category_name[$i][1]?></div></a></div>
+		<div style="height:5px;"></div>
+<?PHP } ?>
+		<div style="height:15px;"></div>
+		<div class="cat00"><div onMouseOver="overL('테마별 분류', this);" onMouseOut="outL('by collection', this);">by Collection</div></div>
+		<div class="separator"></div>
+		<div style="height:10px;"></div>
+<?PHP 
+	$cnt = count($arr_collection_name);
+	for( $i = 0; $i < $cnt; $i++ ) {
+?>
+		<div class="cat01"><a href="/shop/goods/<?=$arr_collection_name[$i][2]?>"><div onMouseOver="overS('<?=$arr_collection_name[$i][0]?>', this);" onMouseOut="outS('<?=$arr_collection_name[$i][1]?>', this);"><?=$arr_collection_name[$i][1]?></div></a></div>
+		<div style="height:5px;"></div>
+<?PHP } ?>
+
+
+<!--{ @ dataCategory( _cfg.subCategory, 1 ) }-->
+<?PHP if ( false ) { // if( {.category} == "005") { ?>
+		<div style="height:15px;"></div>
+		<div class="cat00"><div onMouseOver="overL('테마별 분류', this);" onMouseOut="outL('by collection', this);">by Collection</div></div>
+		<div class="separator"></div>
+		<div style="height:3px;"></div>
+<?PHP
+//	}
+//	if( $lfy_goods_knames[{.catnm}] ) { 
+?>
+		<div class="cat01"><a href="/shop/goods/goods_list.php?category={.category}"><div onMouseOver="overS('{.catnm}', this);" onMouseOut="outS('<?PHP echo str_replace("'", "\'", $lfy_goods_knames[{.catnm}]); ?>', this);"><?PHP echo $lfy_goods_knames[{.catnm}]; ?></div></a></div>
+		<div style="height:5px;"></div>
+<?PHP } ?>
+<!--{ / }-->
+<?PHP  } ?>
+		<div style="height:20px;"></div>
+<!--{ / }-->
+	</div>

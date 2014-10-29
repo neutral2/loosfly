@@ -1,0 +1,18 @@
+@charset "EUC-KR";
+/* CSS Document */
+
+.bxDetailImg { position:relative;width:1040px;height:703px; }
+.detailimg_outline {position:relative; height:703px; padding:0; }
+.detailimg_box {position:relative; width:1040px; height:703px; overflow:hidden;}
+.detailimg_box dd img {width:1040px; height:693px;}
+.detailimg_outline .detailimg_box div {position:absolute; width:1040px; height:703px; overflow:hidden; zoom:1;}
+.detailimg_outline:after {clear:both; display:block; content:"";}
+.detailimg_outline dl {float:left; width:1040px; }
+.detailimg_outline dl.no_mar {margin-right:0; padding-right:0; border-right:none;}
+.detailimg_outline dd {  }
+.detailimg_outline dt { position:relative;color:#ffffff;top:-70px;margin:0 auto;text-align:center;width:360px;line-height:35px;z-index:3; font-size:13px;}
+.btn_detailL, .btn_detailR { width:40px;height:35px;display:block; filter:alpha(opacity=60); -ms-filter: "progid:DXImageTransForm.Microsoft.Alpha(Opacity=60)"; opacity:0.6;z-index:2; cursor:pointer; } 
+.btn_detailR { position:absolute; top:623px; left:700px; background: url('/shop/data/skin/loosfly/board/gallery/img/right.gif') no-repeat; }
+.btn_detailL { position:absolute; top:623px; left:300px; background: url('/shop/data/skin/loosfly/board/gallery/img/left.gif') no-repeat;}
+.ctrl_bg { position:absolute;top:623px;left:340px;background:#71cbd2;width:360px;height:35px;filter:alpha(opacity=60); -ms-filter: "progid:DXImageTransForm.Microsoft.Alpha(Opacity=60)"; opacity:0.6;z-index:2; }
+.detail_div { position:relative; width:1040px; height:693px;} 

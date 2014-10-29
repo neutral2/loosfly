@@ -1,0 +1,133 @@
+{#header}
+<?php {page_title} = "장바구니";?>
+{#sub_header}
+
+<script>
+function act(mode)
+{
+	var fm = document.frmCart;
+	if (isChked('idxs[]')){
+		fm.mode.value = mode;
+		fm.submit();
+	}
+}
+</script>
+<script type="text/javascript">
+var nsGodo_CartAction = function() {
+
+	function popup(url,w_name, w_width,w_height) {
+		var x = (screen.availWidth - w_width) / 2;
+		var y = (screen.availHeight - w_height) / 2;
+		return window.open(url,w_name,"width="+w_width+",height="+w_height+",top="+y+",left="+x+",scrollbars=no");
+	}
+
+	return {
+		cart_type : 'regular',
+		data : [],
+		pushdata: function(obj) {
+			this.data.push(obj);
+		},
+		editOption : function(idx) {
+			popup('../goods/popup_goods_cart_edit.php?idx='+idx+'&cart_type='+ this.cart_type,'WIN_CARTOPTION',350,500);
+		},
+		wishList : function() {
+			if (!this.check()) {
+				alert('보관할 상품을 선택해 주세요.');
+				return false;
+			}
+
+			var org_action = f.action; 
+			var org_mode = f.mode.value; 
+			var f = document.frmCart;
+			f.action = '../mypage/mypage_wishlist.php';
+			f.mode.value = 'addItemFromCart';
+			f.submit();
+			// 원복
+			f.action = org_action; 
+			f.mode.value = org_mode; 			
+		},
+		order : function() {
+			var f = document.frmCart;
+			
+			var org_action = f.action; 
+			var org_mode = f.mode.value; 			
+			f.action = '../ord/order.php' ;
+			f.mode.value = 'setOrder';
+			f.submit();
+			// 원복
+			f.action = org_action; 
+			f.mode.value = org_mode; 
+		},
+		del : function() {
+
+			if (!this.check()) {
+				alert('삭제할 상품을 선택해 주세요.');
+				return false;
+			}
+
+			var org_action = f.action; 
+			var org_mode = f.mode.value; 
+			var f = document.frmCart;
+			f.action = '../goods/cart.php' ;
+			f.mode.value = 'delItems';
+			f.submit();
+			// 원복
+			f.action = org_action; 
+			f.mode.value = org_mode; 
+		},
+		check : function() {
+
+			var chks = document.getElementsByName('idxs[]');
+			var cnt = 0;
+
+			for (var i=0,m=chks.length;i<m ;i++) {
+				if (chks[i].checked == true) cnt++
+			}
+
+			return cnt > 0 ? true : false;
+
+		},
+		recalc : function() {
+
+			var chks = document.getElementsByName('idxs[]');
+
+			var total_reserve = 0;
+			var total_price = 0;
+
+			for (var i=0,m=chks.length;i<m ;i++) {
+				if (chks[i].checked == true) {
+					total_price += parseInt(this.data[i].price * this.data[i].ea );
+					total_reserve += parseInt(this.data[i].reserve);
+				}
+			}
+			if (total_price ==0) {
+				for(var i=0, m=this.data.length;i<m;i++) {
+					total_price += parseInt(this.data[i].price * this.data[i].ea );
+					total_reserve += parseInt(this.data[i].reserve);					
+				}					
+			}
+			document.getElementById('el-orderitem-total-reserve').innerText = comma(total_reserve);
+			document.getElementById('el-orderitem-total-price').innerText = comma(total_price);
+		}
+	}
+}();
+</script>
+
+<section id="cart" class="content">
+	<form name="frmCart" method="post">
+	<input type="hidden" name="mode" value="modItem" />
+	{=include_file("proc/orderitem.htm")}
+
+	<!--{ ? count(cart->item) }-->
+	<div class="ord_area">
+		<div id="all-ord-btn"><div id="all-ord-btn-effect" onclick="nsGodo_CartAction.order();return false;" >주문하기</div></div>
+	</div>
+	<!--{ / }-->
+
+	</form>
+
+	{naverCheckout}
+
+</section>
+
+{#footer}

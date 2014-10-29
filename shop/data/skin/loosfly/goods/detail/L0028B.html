@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="kr">
+<head>
+<link rel="shortcut icon" href="/shop/data/skin/loosfly/img/jimmy/loos_icon.ico"/>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr"/>
+<meta name="p:domain_verify" content="54b3e85b3f5a3102af4ef5f8dd1a15b3"/>
+<meta name="description" content="루스플라이(loosfly) - Dance Fitness Yoga Training... no competition, just fly."/>
+<meta name="keywords" content="무용,발레,요가,헬스,무용복,발레복,연습복,피트니스,요가,레오타드"/>
+<title>루스플라이(loosfly) - Dance Fitness Yoga Training... no competition, just fly.</title>
+<link rel="styleSheet" href="/shop/data/skin/loosfly/style.css" />
+<script type="text/javascript" language="javascript" src="/shop/data/skin/loosfly/goods/detail/goods_detail.js"></script>
+<style>
+body { background-color:#ffffff; }
+div { text-align:left; }
+</style>
+</head>
+
+<?php
+	$mask_XS =	bindec('0001');
+	$mask_S =	bindec('0010');
+	$mask_M =	bindec('0100');
+	$mask_L =	bindec('1000');
+	
+	$item_digits = 6;
+	$mask_LEOTARDS =	bindec('000001');
+	$mask_TOPS =		bindec('000010');
+	$mask_BOTTOMS =		bindec('000100');
+	$mask_UNITARDS =	bindec('001000');
+	
+	$mask_MAN =		bindec('01');
+	$mask_WOMAN =	bindec('10');
+?>
+
+<body bgcolor="#ffffff">
+<div style="width:30px;height:20px;position:relative;float:left"></div>
+<div style="width:860px;position:relative;float:left">
+	<div style="height:30px;width:840px;background:#efefef;line-height:30px;"><span style="margin-left:15px">제품상세</span></div>
+	<div style="height:30px"></div>
+	<div style="width:840px;">
+		<div style="text-align:center"><img src="/shop/data/skin/loosfly/img/jimmy/snap_img_01.gif"></div>
+		<div style="height:30px"></div>
+		<div style="position:relative;float:left;width:490px">
+			<div>▶ 과감하고 강렬한 크림슨레드와 블랙이 어우러진 여성용 반팔 레오타드입니다.</div>
+			<div>▶ 레오타드 하단부분에 위와같이 3개의 스냅이 부착되어 착용이 용이합니다.</div>
+			<div>▶ 등부분에 쿨에버 소재의 메쉬원단을 사용하여 많은 활동에도 시원함은 물론 높은 기능성을 제공합니다.</div>
+			<div>▶ 루스플라이 고유의 패턴이 그려진 고기능성 aqua-x원단을 안감으로 사용하여 뛰어난 착용감을 자랑합니다.</div>
+			<div>▶ 오른쪽 어깨부분의 포인트라벨이 루스플라이의 아이덴티티를 나타냅니다.</div>
+			<div>▶ 입체적인 패턴으로 편안한 착용감을 제공합니다.</div>
+		</div>
+		<div style="position:relative;float:right;width:330px">
+			<fieldset style="padding:5px 10px 10px 10px;border:#cfcfcf 1px solid;border-radius:6px;">
+				<legend><span>[사용 원단 혼용률]</span></legend>
+					<div>바디 : 83% Nylon / 17% Span (서브탁텔)</div>
+					<div>등판메쉬 : 88% Polyester / 12% Span (coolever)</div>
+					<div>안감 : 65% Nylon / 35% Span (aqua-x)</div>
+			</fieldset>
+		</div>
+	</div>
+	<div style="height:30px;clear:both"></div>
+	<div style="width:840px;">
+		<fieldset style="padding:30px;border:#cfcfcf 1px solid;border-radius:6px;">
+			<table width="100%" cellpadding="0" cellspacing="0" border="0">
+			<tr>
+				<td width="390" valign="top">
+					<?php include "aquax.html"; ?>
+					<div style="height:20px"></div>
+					<?php include "coolever.html"; ?>
+				</td>
+				<td width="20"></td>
+				<td width="390" valign="top"><?php include "sub-tactel.html"; ?></td>
+			</tr>
+			</table>
+		</fieldset>
+	</div>
+	<div style="height:30px;clear:both"></div>
+	<div style="height:30px;width:840px;background:#efefef;line-height:30px;"><span style="margin-left:15px">사이즈 안내</span></div>
+	<div style="height:30px;clear:both"></div>
+	<?php $tableOPT = $mask_LEOTARDS; $tableOPT <<= ($item_digits + 2); $tableOPT |= $mask_WOMAN; $showOPT = $mask_XS | $mask_S | $mask_M | $mask_L; ?>
+	<div style="width:840px">
+		<div style="width:350px;position:relative;float:left;"><?php include "_hwtable.html"; ?></div>
+		<div style="width:30px;height:20px;position:relative;float:left;"> </div>
+		<div style="width:460px;position:relative;float:left;"><?php include "_sizetable.html"; ?></div>
+	</div>
+</div>
+<div style="height:30px;clear:both"></div>
+</body>

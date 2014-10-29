@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>season off sale</title>
+<meta name="Generator" content="EditPlus">
+<meta name="Author" content="">
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<link rel="styleSheet" href="/shop/data/skin/loosfly/style.css" />
+<script src="/shop/data/skin/loosfly/common.js"></script>
+<style>
+	body{margin:0 auto;font:normal 12px/18px "나눔고딕", "Nanum Gothic", "AppleGothic", "맑은고딕", "Malgun Gothic", "돋움", "Dotum", "Sans-serif";}
+	a { text-decoration:none;}
+</style>
+<script>
+	function close_popup() {
+		if( document.getElementById('not_open').checked == true ) {
+			var expDate = new Date();
+			expDate.setTime(expDate.getTime() + 1000 * 3600 * 24 );
+			setCookie("event201303", "1", expDate);
+		}
+		parent.document.body.removeChild(parent.document.getElementById('centerLayer') );
+	}
+</script>
+</head>
+
+<body>
+<div>
+<img src="http://www.loosfly.com/shop/data/skin/loosfly/img/jimmy/popup/season_off_01.gif" usemap="#map1" style="cursor:pointer">
+<div style="position:relative;left:750px;top:-25px;height:20px;width:125px;text-align:center;color:#747474;font-size:12px;line-height:20px;padding-right:5px">
+하루동안 열지 않기 <input type="checkbox" id="not_open" style="height:14px">
+</div>
+<div style="position:relative;top:-125px;height:20px;width:860px;text-align:center;color:#747474;font-size:12px;line-height:20px;padding-right:5px">
+2013년의 마지막 배송이 종료되었습니다.<br>
+12월 31일까지 세일가격으로 주문은 가능하지만, 1월 2일에 발송됩니다.<br>
+지난 한 해 동안 보내주신 여러분의 성원에 감사드리며,<br>
+새해에는 더욱 새로워진 모습으로 찾아뵙겠습니다.<br>
+새해 복 많이 받으세요. 감사합니다.
+</div>
+<map name="map1">
+	<area shape="rect" coords="838,0,880,42" href="javascript:close_popup();">
+	<area shape="poly" coords="0,0,838,0,838,42,880,42,880,480,0,480" href="http://www.loosfly.com/shop/board/view.php?id=event&no=" target="_parent">
+</map>
+</div>
+<p>&nbsp;</p>
+</body>
+</html>

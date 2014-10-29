@@ -1,0 +1,16 @@
+<div style="position:absolute; left:1030px; top:200px; z-index:999;" id="dBanner1">
+		<div><img src="http://godo.co.kr/common/img_201110/pop02.png"  border="0" useMap="#dMap"></div>
+	<map name="dMap">
+	 <area shape="rect" coords="130,166,212,189" href="../design/codi.php?ifrmCodiHref=iframe.webfont.intro.php" target="_self" alt="자세히보기"/>
+	 <area shape="rect" coords="109,202,194,213" href="#" onclick="javascript:var todayDate=new Date();todayDate.setDate(todayDate.getDate()+1);document.cookie = 'maxtab_design=true;expires='+todayDate.toGMTString()+';path=/';_ID('dBanner1').style.display='none';" alt="오늘하루 열지않기"/>
+	 <area shape="rect" coords="204,202,236,213" href="#" onclick="javascript:_ID('dBanner1').style.display='none';" alt="닫기"/>
+	</map>
+	</div>
+<div style="position:absolute; left:1030px; top:450px; z-index:999;" id="dBanner2">
+	<div><img src="http://godo.co.kr/common/img_201112/etc/pop03.png"  border="0" useMap="#mMap"></div>
+	<map name="mMap">
+	 <area shape="rect" coords="130,166,212,189" href="http://design.godo.co.kr/shop/goods/goods_list.php?category=004002" target="_blank" alt="자세히보기"/>
+	 <area shape="rect" coords="109,202,194,213" href="#" onclick="javascript:var todayDate=new Date();todayDate.setDate(todayDate.getDate()+1);document.cookie = 'maxtab_design=true;expires='+todayDate.toGMTString()+';path=/';_ID('dBanner2').style.display='none';" alt="오늘하루 열지않기"/>
+	 <area shape="rect" coords="204,202,236,213" href="#" onclick="javascript:_ID('dBanner2').style.display='none';" alt="닫기"/>
+	</map>	
+</div>

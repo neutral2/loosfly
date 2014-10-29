@@ -1,0 +1,254 @@
+INFO	[2014-10-04 13:41:10:380] <13010> START INIPHP chkfake (V5031-111123)(OS:Linux2.6.18-371.11.1.el5,PHP:5.2.17)
+DEBUG	[2014-10-04 13:41:10:385] <13010> inipayhome:/www/loosfly_godo_co_kr/shop/order/card/inipay
+DEBUG	[2014-10-04 13:41:10:385] <13010> type:chkfake
+DEBUG	[2014-10-04 13:41:10:385] <13010> debug:true
+DEBUG	[2014-10-04 13:41:10:385] <13010> enctype:asym
+DEBUG	[2014-10-04 13:41:10:385] <13010> admin:1111
+DEBUG	[2014-10-04 13:41:10:385] <13010> checkopt:false
+DEBUG	[2014-10-04 13:41:10:385] <13010> mid:GODOloosfl
+DEBUG	[2014-10-04 13:41:10:385] <13010> price:89000
+DEBUG	[2014-10-04 13:41:10:385] <13010> nointerest:no
+DEBUG	[2014-10-04 13:41:10:385] <13010> quotabase:선택:일시불:2개월:3개월:4개월:5개월:6개월:7개월:8개월:9개월:10개월:11개월:12개월
+INFO	[2014-10-04 13:41:10:385] <13010> Check Field OK
+INFO	[2014-10-04 13:41:10:398] <13010> MERCHANT PRIV KEY LOAD OK
+INFO	[2014-10-04 13:41:10:402] <13010> MERCHANT PUB KEY LOAD OK []
+INFO	[2014-10-04 13:41:10:404] <13010> CHKFAKE KEY MAKE OK:MjAxNDEwMDQxMzQxMTA0MDI3MTU3Nw==
+
+INFO	[2014-10-04 13:41:10:405] <13010> END chkfake  Laptime:[0.04sec]
+INFO	[2014-10-04 13:41:10:405] <13010> ===============================================================
+INFO	[2014-10-04 13:44:53:747] <10184> START INIPHP chkfake (V5031-111123)(OS:Linux2.6.18-371.11.1.el5,PHP:5.2.17)
+DEBUG	[2014-10-04 13:44:53:747] <10184> inipayhome:/www/loosfly_godo_co_kr/shop/order/card/inipay
+DEBUG	[2014-10-04 13:44:53:747] <10184> type:chkfake
+DEBUG	[2014-10-04 13:44:53:747] <10184> debug:true
+DEBUG	[2014-10-04 13:44:53:747] <10184> enctype:asym
+DEBUG	[2014-10-04 13:44:53:747] <10184> admin:1111
+DEBUG	[2014-10-04 13:44:53:747] <10184> checkopt:false
+DEBUG	[2014-10-04 13:44:53:747] <10184> mid:GODOloosfl
+DEBUG	[2014-10-04 13:44:53:747] <10184> price:89000
+DEBUG	[2014-10-04 13:44:53:747] <10184> nointerest:no
+DEBUG	[2014-10-04 13:44:53:747] <10184> quotabase:선택:일시불:2개월:3개월:4개월:5개월:6개월:7개월:8개월:9개월:10개월:11개월:12개월
+INFO	[2014-10-04 13:44:53:748] <10184> Check Field OK
+INFO	[2014-10-04 13:44:53:748] <10184> MERCHANT PRIV KEY LOAD OK
+INFO	[2014-10-04 13:44:53:748] <10184> MERCHANT PUB KEY LOAD OK []
+INFO	[2014-10-04 13:44:53:749] <10184> CHKFAKE KEY MAKE OK:MjAxNDEwMDQxMzQ0NTM3NDg5ODMwMw==
+
+INFO	[2014-10-04 13:44:53:750] <10184> END chkfake  Laptime:[0sec]
+INFO	[2014-10-04 13:44:53:750] <10184> ===============================================================
+INFO	[2014-10-04 13:50:29:158] <13031> START INIPHP securepay (V5031-111123)(OS:Linux2.6.18-371.11.1.el5,PHP:5.2.17)
+DEBUG	[2014-10-04 13:50:29:158] <13031> inipayhome:/www/loosfly_godo_co_kr/shop/order/card/inipay
+DEBUG	[2014-10-04 13:50:29:158] <13031> type:securepay
+DEBUG	[2014-10-04 13:50:29:158] <13031> pgid:INIphpCARD
+DEBUG	[2014-10-04 13:50:29:158] <13031> subpgip:203.238.3.10
+DEBUG	[2014-10-04 13:50:29:158] <13031> admin:1111
+DEBUG	[2014-10-04 13:50:29:158] <13031> debug:true
+DEBUG	[2014-10-04 13:50:29:158] <13031> uid:
+DEBUG	[2014-10-04 13:50:29:158] <13031> goodname:Souplesse Lace Leotard (White)
+DEBUG	[2014-10-04 13:50:29:158] <13031> currency:WON
+DEBUG	[2014-10-04 13:50:29:158] <13031> mid:GODOloosfl
+DEBUG	[2014-10-04 13:50:29:158] <13031> rn:MjAxNDEwMDQxMzQ0NTM3NDg5ODMwMw==
+
+DEBUG	[2014-10-04 13:50:29:158] <13031> price:89000
+DEBUG	[2014-10-04 13:50:29:158] <13031> enctype:
+DEBUG	[2014-10-04 13:50:29:158] <13031> buyername:곽정자
+DEBUG	[2014-10-04 13:50:29:158] <13031> buyertel:010-8955-7363
+DEBUG	[2014-10-04 13:50:29:158] <13031> buyeremail:milidokjj@hanmail.net
+DEBUG	[2014-10-04 13:50:29:158] <13031> paymethod:Card
+DEBUG	[2014-10-04 13:50:29:158] <13031> encrypted:Version=4.1&PayMethod=Card&RsaKeyNum=1&EncryptionAlgorithm=SEED-CBC&SignAlgorithm=RSAwithSHA1&CertVer=39&moid=1412397703324&ver_trace=main(6086,6053)card(6115,6105)n(6008)Cs(6022)Dt(6002)Pa(6002)Cf(6024)Fv(0000)La(6131)Re(6083)Vr(6006)P(6033)en(6039)nP(6006)&pg1=211.219.96.180&pg2=203.238.37.3&pg1ip=211.219.96.180&pg2ip=203.238.37.3&agreeflag=1111&Data=sZ0oZXEcaWe0mdeGAXCPkPp9/pUBVR/r/KJZr8wgAMBP/WW7C0R1vtaTXm3/DJlE
+Nc+6wQL4J8R7R9zPvUAu6N6hVmDH57Wket8IpkWIqyBrD+3EU0ViIvCMmdGyf1rI
+7+it7qyGNq4UVkpmThzAOQnE27DjlrLoFlpe2m+RjHyuA6zuylwDQkz9FKTK0Gpl
+fql3HaIjB/Ev6xk9x7INa2XC1OsszvB7pL62KBpA9sSTED5x1h8IB3YQWNHnTNGU
+wnlrgO7h/cpMnbS5Rd7aLhGKmSR1PMYm8nGzixjgqEcJ/xbalZhPazDbZxTNsNfq
+zwzG/3pMLDc/zbimMbh32yVshG1qQqxw8JErybof/DD8hmhdojt+SLHRwy2UFpOt
+E/SA2CO5VttA+Ce9sNBz+4tv6VGd+6s0zVPKcoZNPZCW6Da4/SXnFGrfMT65AbNM
+rfWPIbzpshpjuZM2XgJMNVIL5AOyj9DshRIG3iIZr02ZvXFnYVXDKP/+oSdebiXk
+izOdI477GnURE+U59/H+rC3W/CN1Z9fy+9amWVY+7lLlZbQZaPtzxKtPt0qzo3Fz
+vGJisnFINUc+AaQm70eOOmZ0A5/aI/IYDaJ1ay9pY5XP8Wj5nT6myqZ+Dn6yVvcW
+6t929cOiw/ZX51kwWkDwaqVFJp+S8YHcZms8DIBI+/0ymM4w3LTcjFJYrXcW8dZV
+/jG0RI0PlpkBbJE=
+DEBUG	[2014-10-04 13:50:29:158] <13031> sessionkey:W1I9rAQbC2erPqU1hKZ0HOxDfSjvR6Qu1glIskCU3dmzBTcYH90nYBYZMf7BIC19
++zY8cSPbqpMAbSAWIuoCEgS06iOYqVcJlCCB2fL6RTpyZA1jeM+Try3TFwT4H++6
+8rQuS4wRaXk83s0Wx0LHCxEPMOnNQvjOsjXqyKUnfoc=
+DEBUG	[2014-10-04 13:50:29:158] <13031> url:http://www.loosfly.com
+DEBUG	[2014-10-04 13:50:29:158] <13031> cardcode:12
+DEBUG	[2014-10-04 13:50:29:158] <13031> parentemail:milidokjj@hanmail.net
+DEBUG	[2014-10-04 13:50:29:158] <13031> recvname:손선명
+DEBUG	[2014-10-04 13:50:29:158] <13031> recvtel:010-8709-8424
+DEBUG	[2014-10-04 13:50:29:158] <13031> recvaddr:경기 안산시 단원구 고잔2동 640번지 서울예술대학교 기숙사 B동 709호
+DEBUG	[2014-10-04 13:50:29:158] <13031> recvpostnum:425-022
+DEBUG	[2014-10-04 13:50:29:158] <13031> recvmsg:영수증 첨부부탁드립니다. 
+DEBUG	[2014-10-04 13:50:29:158] <13031> joincard:
+DEBUG	[2014-10-04 13:50:29:158] <13031> joinexpire:
+DEBUG	[2014-10-04 13:50:29:158] <13031> id_customer:
+INFO	[2014-10-04 13:50:29:158] <13031> Check Field OK
+INFO	[2014-10-04 13:50:29:159] <13031> Make TID OK INIphpCARDGODOloosfl20141004135029593091
+INFO	[2014-10-04 13:50:29:159] <13031> PI PUB KEY LOAD OK [39]
+INFO	[2014-10-04 13:50:29:164] <13031> PG PUB KEY LOAD OK [30]
+INFO	[2014-10-04 13:50:29:164] <13031> MERCHANT PRIV KEY LOAD OK
+INFO	[2014-10-04 13:50:29:164] <13031> MERCHANT PUB KEY LOAD OK [0]
+INFO	[2014-10-04 13:50:29:166] <13031> MAKE BODY OK
+INFO	[2014-10-04 13:50:29:167] <13031> SIGN OK
+INFO	[2014-10-04 13:50:29:167] <13031> MAKE HEAD OK
+INFO	[2014-10-04 13:50:29:167] <13031> MSG_TO_PG:[0323200175R SHA1                   0                  39                  300200GODOloosfl               89000INIphpCARDGODOloosfl20141004135029593091<?xml version="1.0" encoding="UTF-8"?>
+<INIpay>
+	  <GoodsInfo>
+	    <GoodsCnt>1</GoodsCnt>
+	    <MOID/>
+	    <Currency>WON</Currency>
+	    <Tax/>
+	    <TaxFree/>
+	    <Goods>
+	      <SMID>GODOloosfl</SMID>
+	      <GoodsName urlencode="1">Souplesse+Lace+Leotard+%28White%29</GoodsName>
+	      <GoodsPrice>89000</GoodsPrice></Goods></GoodsInfo>
+	  <BuyerInfo>
+	    <BuyerName urlencode="1">%B0%FB%C1%A4%C0%DA</BuyerName>
+	    <BuyerTel>010-8955-7363</BuyerTel>
+	    <BuyerEmail urlencode="1">milidokjj%40hanmail.net</BuyerEmail>
+	    <ParentEmail urlencode="1">milidokjj%40hanmail.net</ParentEmail>
+	    <RecvName urlencode="1">%BC%D5%BC%B1%B8%ED</RecvName>
+	    <RecvTel urlencode="1">010-8709-8424</RecvTel>
+	    <RecvMsg urlencode="1">%BF%B5%BC%F6%C1%F5+%C3%B7%BA%CE%BA%CE%C5%B9%B5%E5%B8%B3%B4%CF%B4%D9.+</RecvMsg>
+	    <RecvAddr urlencode="1">%B0%E6%B1%E2+%BE%C8%BB%EA%BD%C3+%B4%DC%BF%F8%B1%B8+%B0%ED%C0%DC2%B5%BF+640%B9%F8%C1%F6+%BC%AD%BF%EF%BF%B9%BC%FA%B4%EB%C7%D0%B1%B3+%B1%E2%BC%F7%BB%E7+B%B5%BF+709%C8%A3</RecvAddr>
+	    <RecvPostNum urlencode="1">425-022</RecvPostNum></BuyerInfo>
+	  <PaymentInfo>
+	    <Payment>
+	      <PayMethod>Card</PayMethod>
+	      <JoinCard/>
+	      <JoinExpire/>
+	      <MailOrder/>
+	      <SessionKey>W1I9rAQbC2erPqU1hKZ0HOxDfSjvR6Qu1glIskCU3dmzBTcYH90nYBYZMf7BIC19
++zY8cSPbqpMAbSAWIuoCEgS06iOYqVcJlCCB2fL6RTpyZA1jeM+Try3TFwT4H++6
+8rQuS4wRaXk83s0Wx0LHCxEPMOnNQvjOsjXqyKUnfoc=</SessionKey>
+	      <Encrypted urlencode="1">Version%3D4.1%26PayMethod%3DCard%26RsaKeyNum%3D1%26EncryptionAlgorithm%3DSEED-CBC%26SignAlgorithm%3DRSAwithSHA1%26CertVer%3D39%26moid%3D1412397703324%26ver_trace%3Dmain%286086%2C6053%29card%286115%2C6105%29n%286008%29Cs%286022%29Dt%286002%29Pa%286002%29Cf%286024%29Fv%280000%29La%286131%29Re%286083%29Vr%286006%29P%286033%29en%286039%29nP%286006%29%26pg1%3D211.219.96.180%26pg2%3D203.238.37.3%26pg1ip%3D211.219.96.180%26pg2ip%3D203.238.37.3%26agreeflag%3D1111%26Data%3DsZ0oZXEcaWe0mdeGAXCPkPp9%2FpUBVR%2Fr%2FKJZr8wgAMBP%2FWW7C0R1vtaTXm3%2FDJlE%0D%0ANc%2B6wQL4J8R7R9zPvUAu6N6hVmDH57Wket8IpkWIqyBrD%2B3EU0ViIvCMmdGyf1rI%0D%0A7%2Bit7qyGNq4UVkpmThzAOQnE27DjlrLoFlpe2m%2BRjHyuA6zuylwDQkz9FKTK0Gpl%0D%0Afql3HaIjB%2FEv6xk9x7INa2XC1OsszvB7pL62KBpA9sSTED5x1h8IB3YQWNHnTNGU%0D%0AwnlrgO7h%2FcpMnbS5Rd7aLhGKmSR1PMYm8nGzixjgqEcJ%2FxbalZhPazDbZxTNsNfq%0D%0AzwzG%2F3pMLDc%2FzbimMbh32yVshG1qQqxw8JErybof%2FDD8hmhdojt%2BSLHRwy2UFpOt%0D%0AE%2FSA2CO5VttA%2BCe9sNBz%2B4tv6VGd%2B6s0zVPKcoZNPZCW6Da4%2FSXnFGrfMT65AbNM%0D%0ArfWPIbzpshpjuZM2XgJMNVIL5AOyj9DshRIG3iIZr02ZvXFnYVXDKP%2F%2BoSdebiXk%0D%0AizOdI477GnURE%2BU59%2FH%2BrC3W%2FCN1Z9fy%2B9amWVY%2B7lLlZbQZaPtzxKtPt0qzo3Fz%0D%0AvGJisnFINUc%2BAaQm70eOOmZ0A5%2FaI%2FIYDaJ1ay9pY5XP8Wj5nT6myqZ%2BDn6yVvcW%0D%0A6t929cOiw%2FZX51kwWkDwaqVFJp%2BS8YHcZms8DIBI%2B%2F0ymM4w3LTcjFJYrXcW8dZV%0D%0A%2FjG0RI0PlpkBbJE%3D</Encrypted></Payment></PaymentInfo>
+	  <ReservedInfo>
+	    <MReserved1/>
+	    <MReserved2/>
+	    <MReserved3/></ReservedInfo>
+	  <ManageInfo>
+	    <Language/>
+	    <URL urlencode="1">http%3A%2F%2Fwww.loosfly.com</URL>
+	    <TXVersion>5031B111123securLinux     PHPchkfake   2.6.18-371.11.1.el5PHP:5.2.17 </TXVersion>
+	    <TXUserID/>
+	    <TXRegNum/>
+	    <Ack>1</Ack>
+	    <TXRN>MjAxNDEwMDQxMzQ0NTM3NDg5ODMwMw==
+</TXRN></ManageInfo></INIpay>AN2AosTlkgfUF5moR4YyWi4eBY1/xwYQHc9vUgj8sBpqfCmN42FXLB7cpSg7xwYU
+5gwoFgDoXLbdfdInUJsOKDXJcqivrbeunhV6ld9iDXi9sNxx1PFodlQhres0E0x7
+YjBoE4dn7Q7jgm3trHUXYkSVTCFLlpEwVxuRYLw3Zu9t
+]
+INFO	[2014-10-04 13:50:29:167] <13031> DNS LOOKUP OK(211.219.96.180:211.219.96.180:34049) laptime:0
+INFO	[2014-10-04 13:50:29:170] <13031> SOCKET CONNECT OK
+INFO	[2014-10-04 13:50:29:170] <13031> SEND OK
+INFO	[2014-10-04 13:50:30:84] <13031> RECV OK
+INFO	[2014-10-04 13:50:30:85] <13031> MSG_FROM_PG:[0299200175D SHA1                   0                  39                  300210GODOloosfl               89000INIphpCARDGODOloosfl20141004135029593091<?xml version="1.0" encoding="UTF-8"?>
+<INIpay>
+  <GoodsInfo>
+    <GoodsCnt>1</GoodsCnt>
+    <MOID urlencode="1">1412397703324</MOID>
+    <Currency>WON</Currency>
+    <Goods no="1">
+      <SMID>GODOloosfl</SMID>
+      <GoodsName urlencode="1">Souplesse+Lace+Leotard+%28White%29</GoodsName>
+      <GoodsCntS>1</GoodsCntS>
+      <GoodsPrice>89000</GoodsPrice>
+    </Goods>
+  </GoodsInfo>
+  <PaymentInfo>
+    <Payment>
+      <SessionKey>AM0Z3WHRYGJ57ljfKb0+XiQX15cUPP+ei0teReRNv9wb0Nu2AsfdOhH54E+3XtB+
+CtIcUjJ1FhewD0RS/e8Bxac+naiFSAkHt2lJxrGRADb0crPPmx8BwkeWUtgIGAma
+PddSjhb4hOikhbVoXLxlVXO5QLMnvhz28tCw1ryGGFMpeDaY0yuowXw=
+</SessionKey>
+      <Encrypted>c0+/MgRfN3ytHF5LoCbJReNNOtWnmjDf1Sm9YvDZpT1kJAHOa8ye8sukKimetD5z
+nFqZnU6NtxUlFlkrfqJ7zg7kP4LExXiy4cbIixb25bozKUR5PV0SfpiIF4M/2cYS
+M1VNtOOSrrgx16x5QhU7wKgp6Paot+Qk+0WhgZYAHKaql9mTCm8hF11eUvQ4chih
+lOYu9yDmhfne57N4QIYx48BLrAAoIUIumqyKkLmnENWJaNJh/ulGPzlBhwwgJ3m0
+WjEB2zipUaXoZegSg9xzHuyI7oy3Se8Nf43n5xvFNV/UE23uHktcUYhDplNmESq8
+rZrUCspv0lbY1Ha2a68JC9XBqkzH7QXi6kK7FFDDd1ftyPbNFyQSQPq017NuApST
+mhOXhCHIZS+jhHAL2QA4ZmOginMkdROvczW3eSOKJPG4DoF3xBKpq1lhsKSSm2S1
+CpiqN3AXG6PGdne2JU5urwLV0Q4qWqChh2pqnPS+RQjQXLjGNkFbeW5sT85lKx0x
+wQTPKXEDKJRe8J6PgcHXBL3x3jRwRyO5VEkx7SYe5PaaGcLIr+Y8RfdT/177UlMb
+vOFX6d4bqBHHBw4IrzmgnsQlzdEdeE85J6SmDhvdNfADTwAaq80Dei2QV3apOaCc
+Z58DrpRVDor6ZsgVzqSKgK13lXp9H8bdpQgC35TgEkpUxu6+6RJC3VBb+lF1JDdc
+dFnwzU9uzcrX6OHVP0tVfz1etvil9aXkWIhN/zO0lESD9/rqjEqHdg+eH1Eiaq80
+7iI9YLs9RU5wUtBs6P9JGeo6A0oRtuSFi8Amqhub+qed67U95CW4X9rYw1DhH0VG
+vfHQqSC8vr9nMbAI6aG2FaP0gxf934ABhJzlBdV/1VEdkts2iRd89Wk/23xNn653
+c+/cM1KGkKLYjEBpVb4mXBiYmjznx1XFfwCK0DQi4AgZlZ3dT3saNZYIApmSqvT6
+6x82ttpmIwG6p4vaFofM7RDlr3XFmcNVqNzlK4w6DktuRVNpxkC++RZbqwIxyR0A
+aWri0lwXD8ElmyVdPxvfIsTOpeV8+6w2NIKUAS8lLCNQq5E7qJy6TrPRx3Bf/RoU
+v6uWqOo0iWats8JF3kIqHpzSe9G+teO5RjoPJS1npkbtZehtjgIGOaNt63gjt5bx
+6yO8o/wLQAK1k9pzTsYnkmyiGa6ESEpQ2CL4VSQESZzqb8LVliRC/qQiZ6gYSS7Q
+VJzPCBN1prAON40Mdq5z1vax2U+cgQErbpvaUuihr6TRPh/pTu2SCIzZkZ4oztPw
+oZo/7QjTdgiL37yCYH6wTGZx6Kq04+TPgD31BFrtr/uXV1I27HoAGWsqyL3d+um7
+LQn6zujga5dlcus8E6dEKhHr2GD8U+vYh5Pd8j7kek2lyVAFPLHx81T+c8kLmjOR
+Z5xsWlKS7DHoM5N4LW6X9Dp5TbC+dNXvJOhyn7i6dcrwCJXP4OwmJYzY8aKdC805
+Ee4QgReJfUt90Yl020dtwKCp1PzM3DNPOj7VG9aMVnEIBVsRp6fnWqg7z9AJ1Xpb
++rtHWOA0J78Qk5O0UT9kxieSdJppZb+5JBZAUHk/luV+35ApEe6adH6rTwSYtUkJ
+3IFctaMNwOg+pzluT0HvVpMAfV9tAr85
+</Encrypted>
+      <PayMethod>Card</PayMethod>
+      <ResultCode>120000</ResultCode>
+      <ResultMsg urlencode="1">%C1%A4%BB%F3%C3%B3%B8%AE%B5%C7%BE%FA%BD%C0%B4%CF%B4%D9.</ResultMsg>
+    </Payment>
+  </PaymentInfo>
+  <ManageInfo>
+    <EventCode></EventCode>
+    <OrgCurrency></OrgCurrency>
+    <ExchangeRate></ExchangeRate>
+    <OrgPrice></OrgPrice>
+  </ManageInfo>
+  <ReservedInfo>
+    <MReserved1 urlencode="1"></MReserved1>
+    <MReserved2 urlencode="1"></MReserved2>
+    <MReserved3 urlencode="1"></MReserved3>
+    <PGReserved1 urlencode="1"></PGReserved1>
+    <PGReserved2 urlencode="1"></PGReserved2>
+    <PGReserved3 urlencode="1"></PGReserved3>
+  </ReservedInfo>
+</INIpay>
+IMmYibXc3o6llqme4fa38F7Bw5M6ZqsYwwJcFAv+DM7yKhwMnUiPaeADE/69jqma
+NuzpIGwdsQzPXGT/rkuBT5l10Qkmnhg9elnRBMHzw0Z8x+kTV6kMkQAwabp9Gt5f
+wiw4pXmJIxwFAN+JIsQQuKY9mjyXCOyXB4Sj4jcspJY=
+]
+INFO	[2014-10-04 13:50:30:85] <13031> VERIFY OK
+INFO	[2014-10-04 13:50:30:85] <13031> PARSE HEAD OK
+INFO	[2014-10-04 13:50:30:89] <13031> PARSE BODY OK
+INFO	[2014-10-04 13:50:30:93] <13031> DECRYPT OK
+DEBUG	[2014-10-04 13:50:30:93] <13031> DECRYPT MSG:[<?xml version="1.0" encoding="UTF-8"?>
+<PaymentInfo>
+  <Payment>
+    <EASYPAY/>
+    <Card>
+      <CARD_ApplPrice>89000</CARD_ApplPrice>
+      <CARD_Num>531070800945</CARD_Num>
+      <CARD_Expire></CARD_Expire>
+      <CARD_Code>12</CARD_Code>
+      <CARD_BankCode>00</CARD_BankCode>
+      <CARD_Quota>00</CARD_Quota>
+      <CARD_Interest>0</CARD_Interest>
+      <CARD_Point></CARD_Point>
+      <CARD_AuthType>99</CARD_AuthType>
+      <CARD_RegNum></CARD_RegNum>
+      <CARD_ApplDate>20141004</CARD_ApplDate>
+      <CARD_ApplTime>135030</CARD_ApplTime>
+      <CARD_ApplNum>15819609</CARD_ApplNum>
+      <CARD_TerminalNum>019048y000</CARD_TerminalNum>
+      <CARD_MemberNum></CARD_MemberNum>
+      <CARD_PurchaseCode></CARD_PurchaseCode>
+      <CARD_ResultCode>120000</CARD_ResultCode>
+      <CARD_ResultMsg urlencode="1">%C1%A4%BB%F3%C3%B3%B8%AE%B5%C7%BE%FA%BD%C0%B4%CF%B4%D9.</CARD_ResultMsg>
+      <CARD_PrtcCode>1</CARD_PrtcCode>
+      <CARD_Quota_Point>00</CARD_Quota_Point>
+      <CARD_CheckFlag>0</CARD_CheckFlag>
+      <CARD_PurchaseName urlencode="1"></CARD_PurchaseName>
+      <CARD_IssuerName urlencode="1"></CARD_IssuerName>
+      <CARD_JoinUsePoint></CARD_JoinUsePoint>
+    </Card>
+  </Payment>
+</PaymentInfo>]
+INFO	[2014-10-04 13:50:30:96] <13031> DECRYPT PARSE OK
+INFO	[2014-10-04 13:50:30:97] <13031> WAIT ACK INVOKING
+DEBUG	[2014-10-04 13:50:30:97] <13031> MAKE HEAD OK
+INFO	[2014-10-04 13:50:30:100] <13031> SUCCESS ACK INVOKING
+INFO	[2014-10-04 13:50:30:100] <13031> END securepay 정상처리되었습니다. Laptime:[0.94sec]
+INFO	[2014-10-04 13:50:30:100] <13031> ===============================================================

@@ -1,0 +1,56 @@
+{*** 갤러리형 | goods/goods_list.php ***}
+
+<!--{ ? !id }--><? {id} = "es_".md5(crypt('')); ?><!--{ / }-->
+<!-- 상품 리스트 -->
+		<div style="height:10px"></div>
+		<div class="bxGalaryStyle">
+<?PHP $cnt=0; ?>
+			<table width="100%" cellpadding="0" cellspacing="0" border="0">
+			<tr>
+<!--{ @ loop }-->	
+				<td width="20%" valign="top" align="center">
+<?PHP 
+	$kr_name = {.shortdesc};
+	parse_str($kr_name);
+	$en_name = {.goodsnm};
+	$id = "nm".{.goodscd};
+?>
+					<div class="galary_item" onclick="location.href='{.goods_view_url}'" onmouseover="document.getElementById('<?=$id?>').innerHTML='<?=$kr_name?>'" onmouseout="document.getElementById('<?=$id?>').innerHTML='<?=$en_name?>'">
+					{=goodsimg(.img_s,size,'class="'+ .css_selector +'"')}
+	<!--{ ? .soldout_icon }-->
+					<div class="sold_out">out of stock</div>
+	<!--{ :  .icon }-->
+		<?PHP $pos = strpos({ .icon }, "icon_new"); if( $pos != false )  { ?>
+					<span class="new_arrival">NEW</span>
+		<?PHP } ?>
+	<!--{ / }-->
+					<div style="height:5px"></div>
+					<!--{ ? .goodsnm }--><div class="galary_name" id="<?=$id?>">{.goodsnm}</div><!--{ / }-->
+	<!--{ ? !.strprice }-->
+		<!--{ ? .price}-->
+						<!--div class="galary_price">{=number_format(.price)}원{? .special_discount_amount}<img src="../../img/icon/goods_special_discount.gif">{/}</div-->
+						<div class="galary_price"><b><span id=price>{=number_format(.price)}</span>원</b><!--{ ? .consumer && (.consumer - .price) > 0 }-->&nbsp;(<span style="color:#ff4c5d"><?PHP echo intval(({.consumer} - {.price})/{.consumer}*100); ?>%↓</span>)<!--{ / }--></div>
+		<!--{ / }-->
+	<!--{ : }-->
+					<div class="galary_price">{.strprice}</div>
+	<!--{ / }-->
+					<!--{ ? .coupon }--><div class="galary_coupon">{.coupon}<font class=small>원</font><img src="../../img/icon/good_icon_coupon.gif" align=absmiddle></div><!--{ / }-->	
+					</div>
+				</td>
+<?PHP 
+$cnt++;
+	if ($cnt%5 == 0) { 
+?>
+				</tr>
+				<tr>
+<?PHP  } ?>
+<!--{ / }-->
+				</tr>
+			</table>
+		</div>
+
+<!-- 품절상품 마스크 -->
+<div id="el-goods-soldout-image-mask" style="display:none;position:absolute;top:0;left:0;background:url({ ? _cfg_soldout.display_overlay == 'custom'}../data/goods/icon/custom/soldout_overlay{:}../data/goods/icon/icon_soldout{_cfg_soldout.display_overlay}{/}) no-repeat center center;"></div>
+<script>
+addOnloadEvent(function(){ setGoodsImageSoldoutMask() });
+</script>

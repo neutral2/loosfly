@@ -1,0 +1,107 @@
+{*** 메인상품그룹(레오타드) | goods/goods_grp_01.php ***}
+{ # header }
+
+<link rel="stylesheet" href="/shop/data/skin/loosfly/goods/goods_category.css" />
+<style>
+.bxCatNav ul li { position:relative;display:block;float:left;width:860px;text-align:center;font:normal 14px/25px "Ek Mukta";cursor:pointer; }
+.bxCatNav ul li.middle { border:#000000 0 dotted;border-right-width:1px; }
+.listTitle { margin-left:10px;width:862px;height:35px;background:#f7f7f7;color:#7f7f7f;text-align:center;font:normal 18px/40px 'Ek Mukta', sans-serif;letter-spacing:5px; }
+</style>
+<script type="text/javascript" language="javascript" src="/shop/data/skin/loosfly/goods/goods_category.js"></script>
+	<!--{ ? this->tpl_['side_inc'] }-->
+		<div class="blkLeftMenu">
+			{ # side_inc // 측면디자인 }
+		</div>
+	<!--{ / }-->
+	<div id="blkContents">
+		<div style="height:15px;"></div>
+		<div class="listTitle">New Arrivals</div>
+		<div style="height:5px;"></div>
+		<div id="bxCatImg" class="bxCatImg">
+			<div id="catimg_outline" class="catimg_outline">
+				<span class="btn_catL"></span>
+				<span class="btn_catR"></span>
+				<div id="catimg_box" class="catimg_box">
+					<div id="cat_div1" class="cat_div" style="left:0px; "><a href="/shop/goods/goods_view.php?goodsno=1&category="><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/new_arrivals/shop_arrivals_01.jpg"></a></div>
+				</div>
+			</div>
+		</div>
+		<div id="bxCatNav" class="bxCatNav">
+			<ul>
+				<li class="middle current" onclick="goto_pic(1)">Brand new leotard - THE LACEHOLICS</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="dsLists">
+	<div style="height:50px;border:#cfcfcf 0 solid; border-bottom-width:1px;margin:0 30px 0 30px;"></div>
+	<div class="blkLeftMenu">
+		<div  style="margin:0 0 0 30px">
+			<div class="cat_title"><span class="emphasis">new arrivals</span></div>
+			<div style="height:15px;"></div>
+			<div class="cat_notation">루스플라이의 레오타드는 오랜기간 무용의상을 제작하면서 축적된 인체에 대한 깊은 이해에서 출발했습니다. 입체적인 패턴으로 어떤 동작에서도 편안한 착용감을 자랑하며, 최고급 원단을 사용하여 높은 기능성을 제공합니다. 아름다운 레이스와 트렌디한 실루엣으로 세련되면서도 우아한 멋까지 더해줍니다.</div>
+		</div>
+	</div>
+	<div class="blkGoodsList">
+		<div class="bxGoodsList">
+			<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+					<!--{ = this->assign( 'loop', loop ) // 데이타 호출 }-->
+					<!--{ = this->assign( 'slevel', slevel ) // 권한관련 }-->
+					<!--{ = this->assign( 'clevel', clevel ) // 권한관련 }-->
+					<!--{ = this->assign( 'clevel_auth', clevel_auth ) // 권한관련 }-->
+					<!--{ = this->assign( 'auth_step', auth_step ) // 권한관련 }-->
+					<!--{ = this->assign( 'dpCfg', _dpCfg.tpl ) // 설정 }-->
+					<!--{ = this->assign( 'cols', lstcfg.cols ) // 행당 컬럼수 }-->
+					<!--{ = this->assign( 'size', lstcfg.size ) // 이미지 크기 }-->
+					<!--{ = include_file( "goods/list/tpl_01.htm" ) }-->
+				</td>
+			</tr>
+			<tr><td height="1" bgcolor="#DDDDDD"></td></tr>
+			<tr><td align="center" height="50">{pg->page['navi']}</td></tr>
+			</table>
+		</div>
+	</div>
+</div>
+
+<script>
+function act(target,goodsno,opt1,opt2)
+{
+	var form = document.frmCharge;
+
+	form.mode.value = "addItem";
+	form.goodsno.value = goodsno;
+
+	if(opt2) opt1 += opt2;
+	document.getElementById("opt").value=opt1;
+
+	form.action = target + ".php";
+	form.submit();
+}
+function sort(sort)
+{
+	var fm = document.frmList;
+	fm.sort.value = sort;
+	fm.submit();
+}
+function sort_chk(sort)
+{
+	if (!sort) return;
+	sort = sort.replace(" ","_");
+	var obj = document.getElementsByName('sort_'+sort);
+	if (obj.length){
+		div = obj[0].src.split('list_');
+		for (i=0;i<obj.length;i++){
+			chg = (div[1]=="\up_off.gif") ? "\up_on.gif" : "\down_on.gif";
+			obj[i].src = div[0] + "list_" + chg;
+		}
+	}
+}
+<!--{ ? _GET['sort'] }-->
+sort_chk('{_GET['sort']}');
+<!--{ / }-->
+</script>
+
+</div><!-- End indiv -->
+{ # footer }

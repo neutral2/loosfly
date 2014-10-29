@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="kr">
+<head>
+<link rel="shortcut icon" href="/shop/data/skin/loosfly/img/jimmy/loos_icon.ico"/>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr"/>
+<meta name="p:domain_verify" content="54b3e85b3f5a3102af4ef5f8dd1a15b3"/>
+<meta name="description" content="루스플라이(loosfly) - Dance Fitness Yoga Training... no competition, just fly."/>
+<meta name="keywords" content="무용,발레,요가,헬스,무용복,발레복,연습복,피트니스,요가,레오타드"/>
+<title>루스플라이(loosfly) - Dance Fitness Yoga Training... no competition, just fly.</title>
+
+<link rel="styleSheet" href="/shop/data/skin/loosfly/style.css" />
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="/shop/data/skin/loosfly/common.js"></script>
+
+<script type="text/javascript">google.load("jquery", "1.7.1");</script>	
+<script type="text/javascript" language="javascript" src="/shop/data/skin/loosfly/goods/detail/goods_detail.js"></script>
+
+<style>
+.bxDetailImg { position:relative;width:480px;height:360px;left:50%;margin-left:-240px;  }
+.detailimg_outline {position:relative; height:360px; padding:0; }
+.detailimg_box {position:relative; width:480px; height:360px; overflow:hidden;}
+.detailimg_box dd img {width:480px; height:320px;}
+.detailimg_outline .detailimg_box div {position:absolute; width:480px; height:360px; overflow:hidden; zoom:1;}
+.detailimg_outline:after {clear:both; display:block; content:"";}
+.detailimg_outline dl {float:left; width:480px; }
+.detailimg_outline dl.no_mar {margin-right:0; padding-right:0; border-right:none;}
+.detailimg_outline dd {  }
+.detailimg_outline dt { position:relative;color:#3f3f3f;top:0px;text-align:left; }
+.btn_detailL, .btn_detailR { display: block; background: url('/shop/data/skin/loosfly/img/jimmy/total_02.png') no-repeat; } 
+.btn_detailR { position:absolute; top:146px; right:3px; background-position: 0px -27px; width: 27px; height: 27px; z-index:2; }
+.btn_detailL { position:absolute; top:146px; left:3px; background-position: -27px -27px; width: 27px; height: 27px; z-index:2; }
+.detail_div { position:relative; width:480px; height:320px;}
+body { overflow:hidden; overflow-style:auto }
+body { background-color:#ffffff; }
+div { text-align:left; }
+</style>
+
+<script type="text/javascript" language="javascript">	
+	var detail_max = 0;
+	var detail_num = 1;//Math.floor(Math.random() * detail_max)+1;
+	po_left = new Array();
+	var detail_width = 480;
+	var int;
+
+	forth = function() {
+		if(!$('*').is(':animated')){
+			detail_num++;
+			
+			if(detail_num > detail_max){
+				detail_num = 1;
+			}
+
+			detail_div = '#detail_div'+detail_num;
+			$(detail_div).css({left:'480px'});
+			for( i = 0; i < detail_max; i++ ) {
+				po_left[i] += -detail_width;
+				if(po_left[i] < -detail_width*(detail_max-1)) { po_left[i] = 0; }
+				detail_div = '#detail_div'+(i+1);
+				$(detail_div).animate({left:po_left[i] + 'px'}, 1000);
+			}
+		}
+		return false;
+	};
+
+	$(document).ready(function() {	
+		detail_max = $('.detailimg_box > div').length;	
+		
+		for( i = 0; i < detail_max; i++ ) {
+			detail_div = '#detail_div'+(i+1);
+			w = detail_width*(i - detail_num + 1);
+			$(detail_div).css('left',w + 'px');
+			po_left[i] = parseFloat($(detail_div).css('left'));
+		}
+		
+		if( detail_max > 1 ) {
+			int = setInterval('forth()', 5000);
+	
+			$('.btn_detailR').bind('click', function() {
+				if(!$('*').is(':animated')){
+					detail_num++;
+					if(detail_num > detail_max){
+						detail_num = 1;
+					}
+		
+					detail_div = '#detail_div'+detail_num;
+					$(detail_div).css({'left':'480px'});
+					for( i = 0; i < detail_max; i++ ) {
+						po_left[i] += -detail_width;
+						if(po_left[i] < -detail_width*(detail_max-1)) { po_left[i] = 0; }
+						detail_div = '#detail_div'+(i+1);
+						$(detail_div).animate({left:po_left[i] + 'px'}, 1000);
+					}
+				}
+				return false;
+			});
+		
+			$('.btn_detailL').bind('click', function() {
+				if(!$('*').is(':animated')){
+					detail_num--;
+					if(detail_num < 1){
+						detail_num = detail_max;
+					}
+		
+					detail_div = '#detail_div'+detail_num;
+					$(detail_div).css({'left':'-480px'});
+					for( i = 0; i < detail_max; i++ ) {
+						po_left[i] += detail_width;
+						if(po_left[i] > detail_width*(detail_max-1)) { po_left[i] = 0; }
+						detail_div = '#detail_div'+(i+1);
+						$(detail_div).animate({'left':po_left[i] + 'px'}, 1000);
+					}
+				}
+				return false;
+			});
+		}
+	
+
+		/* 사이트 버튼 */
+		$('.btn_detailL').hover(function() {
+			$(this).css({'filter':'alpha(opacity=100)'});
+			$(this).css({'-ms-filter':'progid:DXImageTransForm.Microsoft.Alpha(Opacity=100)'});
+			$(this).css({'opacity':'1'});
+		}, function() {
+			$(this).css({'filter':'alpha(opacity=20)'});
+			$(this).css({'-ms-filter':'progid:DXImageTransForm.Microsoft.Alpha(Opacity=20)'});
+			$(this).css({'opacity':'0.2'});
+		});
+		$('.btn_detailR').hover(function() {
+			$(this).css({'filter':'alpha(opacity=100)'});
+			$(this).css({'-ms-filter':'progid:DXImageTransForm.Microsoft.Alpha(Opacity=100)'});
+			$(this).css({'opacity':'1'});
+		}, function() {
+			$(this).css({'filter':'alpha(opacity=20)'});
+			$(this).css({'-ms-filter':'progid:DXImageTransForm.Microsoft.Alpha(Opacity=20)'});
+			$(this).css({'opacity':'0.2'});
+		});
+
+		$('.detail_div').hover(function() {
+			$('.btn_detailL').css({'filter':'alpha(opacity=50)'});
+			$('.btn_detailL').css({'-ms-filter':'progid:DXImageTransForm.Microsoft.Alpha(Opacity=50)'});
+			$('.btn_detailL').css({'opacity':'0.5'});
+			$('.btn_detailR').css({'filter':'alpha(opacity=50)'});
+			$('.btn_detailR').css({'-ms-filter':'progid:DXImageTransForm.Microsoft.Alpha(Opacity=50)'});
+			$('.btn_detailR').css({'opacity':'0.5'});
+			clearInterval(int);
+		}, function() {
+			$('.btn_detailL').css({'filter':'alpha(opacity=20)'});
+			$('.btn_detailL').css({'-ms-filter':'progid:DXImageTransForm.Microsoft.Alpha(Opacity=20)'});
+			$('.btn_detailL').css({'opacity':'0.2'});
+			$('.btn_detailR').css({'filter':'alpha(opacity=20)'});
+			$('.btn_detailR').css({'-ms-filter':'progid:DXImageTransForm.Microsoft.Alpha(Opacity=20)'});
+			$('.btn_detailR').css({'opacity':'0.2'});
+			if( detail_max > 1 ) {
+				clearInterval(int);
+				int = setInterval('forth()', 5000);
+			}
+		});
+	});
+</script>
+</head>
+
+<?php
+	$mask_XS =	bindec('0001');
+	$mask_S =	bindec('0010');
+	$mask_M =	bindec('0100');
+	$mask_L =	bindec('1000');
+	
+	$item_digits = 6;
+	$mask_LEOTARDS =	bindec('000001');
+	$mask_TOPS =		bindec('000010');
+	$mask_BOTTOMS =		bindec('000100');
+	$mask_UNITARDS =	bindec('001000');
+	
+	$mask_MAN =		bindec('01');
+	$mask_WOMAN =	bindec('10');
+?>
+
+<body bgcolor="#ffffff">
+<div style="width:30px;height:20px;position:relative;float:left"></div>
+<div style="width:860px;position:relative;float:left">
+	<div style="height:30px;width:840px;background:#efefef;line-height:30px;"><span style="margin-left:15px">제품상세</span></div>
+	<div style="height:30px"></div>
+	<div style="width:840px;text-align:center;">
+<!--
+		<div style="text-align:center">제품사진 위에 마우스를 올리시면 스크롤이 멈춥니다.</div>
+		<div id="bxDetailImg" class="bxDetailImg">
+			<div id="detailimg_outline" class="detailimg_outline">
+				<span class="btn_detailL"></span>
+				<span class="btn_detailR"></span>
+				<div id="detailimg_box" class="detailimg_box">
+					<div id="detail_div1" class="detail_div" style="left:0px; ">
+						<dl>
+							<dd><img src="/shop/data/goods/detail/UA1LT05B_detail_01.jpg"></dd>
+							<dt>라이트핑크 바디에 앞판 밑중심에서 네크라인 전체에 이르는 장미패턴 레이스의 매치로 우아한 느낌을 줍니다.</dt>
+						</dl>
+					</div>                    
+					<div id="detail_div2" class="detail_div" style="left:480px; ">
+						<dl>
+							<dd><img src="/shop/data/goods/detail/UA1LT05B_detail_02.jpg"></dd>
+							<dt>앞뒤윗부분 전체에 사용한 장미무늬의 레이스의 엘레강스한 느낌이 고급스럽습니다.</dt>
+						</dl>
+					</div>                    
+					<div id="detail_div3" class="detail_div" style="left:960px; ">
+						<dl>
+							<dd><img src="/shop/data/goods/detail/UA1LT05B_detail_03.jpg"></dd>
+							<dt>네크라인 뒷부분에 같은 핑크톤의 후크를 사용하여 착용편의성을 높였습니다.</dt>
+						</dl>
+					</div>                    
+					<div id="detail_div4" class="detail_div" style="left:1440px; ">
+						<dl>
+							<dd><img src="/shop/data/goods/detail/UA1LT05B_detail_04.jpg"></dd>
+							<dt>몸통부분의 입체감 있는 패턴과 고기능성 안감원단을 사용하여 보다 편안한 착용감을 제공합니다.</dt>
+						</dl>
+					</div>                    
+					<div id="detail_div5" class="detail_div" style="left:1920px; ">
+						<dl>
+							<dd><img src="/shop/data/goods/detail/UA1LT05B_detail_05.jpg"></dd>
+							<dt>다른 레오타드도 많은 관심 부탁드려용~^^</dt>
+						</dl>
+					</div>                    
+				</div>
+			</div>
+		</div>
+-->
+		<div style="text-align:center"></div>
+		<div style="position:relative;float:left;width:490px">
+			<div>▶	레이스와 메쉬소재의 매치업이 아름다운 여성용 레오타드입니다.</div>
+			<div>▶	가슴라인 앞뒤로 블랙의 바디컬러와 잘 매치되는 체스넛컬러의 배색이 조화를 이룹니다.</div>
+			<div>▶	가슴라인 안쪽에 일체감이 돋보이는 컵주머니가 장착되어 브라캡을 이용할 수 있습니다.<br>&nbsp;&nbsp;&nbsp;(기본 브라캡과 함께 제공됩니다.)</div>
+			<div>▶	어깨부분의 메쉬소재, 중간부분의 플로랄레이스 그리고 팬티라인의 스판소재가 극적인 변화를 주면서도 조화롭습니다.</div>
+			<div>▶	가슴라인과 팬티라인사이에 레이스를 적용하여 은은한 개방감을 주어 여성스러운 바디라인을 더욱 돋보이게 합니다.</div>
+			<div>▶	메쉬소재에 같은 톤의 테이핑을 이용하여 뒷중심으로 시원하게 떨어지는 스퀘어라인이 개방감을 더해줍니다.</div>
+			<div>▶	오른쪽 허리부분의 포인트라벨이 루스플라이의 아이덴티티를 나타냅니다.</div>
+			<div>▶	여성용 속옷에 주로 사용되는 고급소재를 안감과 팬티라이닝으로 사용하여 탁월한 착용감을 자랑합니다.</div>
+		</div>
+		<div style="position:relative;float:right;width:330px">
+			<fieldset style="padding:5px 10px 10px 10px;border:#cfcfcf 1px solid;border-radius:6px;">
+				<legend><span>[사용 원단 혼용률]</span></legend>
+				<div>메쉬 : 92% Polyester / 8% Span</div>
+				<div>레이스 : 90% Nylon / 10% Span</div>
+				<div>가슴라인 : 80% Nylon / 20% Span</div>
+				<div>팬티/테이핑 : 80% Nylon / 20% Span</div>
+			</fieldset>
+		</div>
+	</div>
+	<div style="height:30px;clear:both"></div>
+	<div style="width:840px;">
+	</div>
+	<div style="height:30px;clear:both"></div>
+	<div style="height:30px;width:840px;background:#efefef;line-height:30px;"><span style="margin-left:15px">사이즈 안내</span></div>
+	<div style="height:30px;clear:both"></div>
+	<?php $tableOPT = $mask_LEOTARDS; $tableOPT <<= ($item_digits + 2); $tableOPT |= $mask_WOMAN; $showOPT = $mask_XS | $mask_S | $mask_M | $mask_L; ?>
+	<div style="width:840px">
+		<div style="width:350px;position:relative;float:left;"><?php include "_hwtable.html"; ?></div>
+		<div style="width:30px;height:20px;position:relative;float:left;"> </div>
+		<div style="width:460px;position:relative;float:left;"><?php include "_sizetable.html"; ?></div>
+	</div>
+</div>
+<div style="height:30px;clear:both"></div>
+</body>

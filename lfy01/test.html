@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR" />
+<title>Untitled Document</title>
+<style>
+body {padding:0;margin:0;background:#191919}
+#wrapper {width:100%; padding:0;height:100%; margin:auto; text-align:center;}
+#navi {width:100%; height:150px; top:0;position:fixed;margin:auto;display:block; z-index:100;}
+#content {width:100%; height:0; background:#ccc; margin:auto;display:block; text-align:center; padding:0; margin-bottom:60px;}
+
+.wide_slider {background: #fff;position: relative;zoom: 1;}
+.wide_slider .slides {zoom: 1;}
+.wide_slider .slides li { width:240px; height:184px; background-color:#fff; margin-right:10px; position:relative; float:left;}
+.wide_slider .slides li span.zoom { width:39px; height:37px; background:url(http://travel.chosun.com/img/mz_img/zoom_big.png) no-repeat; position:absolute; top:0px; left:0px;}
+.wide_slider .slides li span.cap { display:block; position:absolute; bottom:0px; left:0px; color:#fff; padding:5px 0; text-indent:5px; width:100%; background:url(http://travel.chosun.com/img/mz_img/trans40.png)}
+
+.wide_section {background:url(http://travel.chosun.com/img/mz_img/0627_1_map.jpg) no-repeat center center;  position: relative; height:1433px}
+.wide_section .in_caption { position:absolute; bottom:0px; background:#000; color:#fff;}
+</style>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">google.load("jquery", "1.7.1");</script>	
+<script type="text/javascript">
+//var win_width = $(window).width();
+/*
+$(document).ready(function() {
+	$('.wide_slider, .wide_section').css({
+		width: $(window).width()+'px',
+		left: '50%',
+		marginLeft: -$(window).width()/2
+	})
+});	
+
+$(window).resize(function() {
+	$('.wide_slider, .wide_section').css({
+		width: $(window).width()+'px',
+		left: '50%',
+		marginLeft: -$(window).width()/2
+	})
+});
+*/
+$(document).ready(function() {
+	$('.wide_slider, .wide_section').css({
+		width: $(window).width()+'px',
+		left: '0%',
+		marginLeft: 0
+	})
+});	
+
+$(window).resize(function() {
+	$('.wide_slider, .wide_section').css({
+		width: $(window).width()+'px',
+		left: '0%',
+		marginLeft: 0
+	})
+});
+</script>
+</head>
+
+<body>
+<div id="wrapper">
+<?PHP 
+echo urldecode($_GET['file']);
+?>
+</div>
+</body>
+</html>

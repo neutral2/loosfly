@@ -1,0 +1,15 @@
+@charset "EUC-KR";
+/* CSS Document */
+
+.size_tbl { font-size:12px;border:#cfcfcf 0 solid;border-width:0 0 1px 0; }
+.size_tbl td { text-align:center;height:20px; }
+#color_selector { height:20px;padding-right:10px; margin-top:2px; }
+#color_tag { position:relative;float:left;width:35px;height:15px;margin-right:5px; }
+.color_cell { position:relative;float:left;width:15px;height:15px;border:1px #cccccc solid;margin-right:5px;cursor:pointer; }
+.color_cell.select { border:1px #000000 solid; }
+.comment { font-size:12px;color:#71cbd2; }
+.comment .tag { font-size:12px;font-weight:bold; }
+.legend { font-size:14px; line-height:30px; color:#71cbd2; }
+.legend tr { height:30px; border:#efefef 0 solid; border-bottom-width:2px; }
+.legend th { width:20px; text-align:center; }
+.legend td { text-align:left; }

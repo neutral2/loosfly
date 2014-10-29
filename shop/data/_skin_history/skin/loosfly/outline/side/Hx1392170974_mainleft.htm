@@ -1,0 +1,57 @@
+{*** 샵 메인용 왼쪽메뉴 | goods/goods_list.php ***}
+	<div id="left_title">sh<span class="emphasis">o</span>p.</div>
+	<div style="height:20px;"></div>
+
+	<!--{ ? _cfg.subCategory != 1 // 1단 또는 서브레이어 출력 유형 }-->
+	<table width="100%" cellpadding=0 cellspacing=0 border=0 id="menuLayer">
+	<!--{ @ dataCategory( _cfg.subCategory, 2 ) }-->
+	<tr>
+		<td class="catebar"><a href="../goods/goods_list.php?category={.category}">{.catnm}</a></td>
+		<td style="z-index:100">
+		<!--{ ? .sub }-->
+		<div style="position:relative"><div class=subLayer><table width=100% cellspacing=1>
+		<!--{ @ .sub }-->
+		<tr><td nowrap class="cate"><a href="../goods/goods_list.php?category={..category}">{..catnm}</a></td></tr>
+		<!--{ ? ..index_!=..size_-1 }--><tr><td height=1 bgcolor=#F3F2F0></td></tr><!--{ / }-->
+		<!--{ / }-->
+		</table>
+		</div>
+		</div>
+		<!--{ / }-->
+		</td>
+	</tr>
+	<!--{ / }-->
+	</table>
+	<!--{ ? _cfg.subCategory }-->
+	<script>execSubLayer();</script>
+	<!--{ / }-->
+
+	<!--{ : // 1,2단 동시 메뉴 출력 유형 }-->
+	<?PHP $lfy_goods_knames = array("카테고리"=>"by category", "신상품"=>"new arrivals", "추천상품"=>"MD's choice", "상의"=>"tops", "하의"=>"bottoms", "레오타드"=>"leotards", "유니타드"=>"unitards", "액세서리"=>"accessories", "콜렉션"=>"by collection","여성용"=>"women's", "남성용"=>"men's", "레이스와 망사"=>"lace & mesh", "편안한 바지"=>"fullness pants", "타이츠"=>"tights", "예비용"=>"reserved"); ?>
+	<div id="left_menu">
+		<div style="height:15px;"></div>
+		<div class="cat00"><div onMouseOver="overM('카테고리', this);" onMouseOut="outM('by category', this);">by category</div></div>
+		<div class="separator"></div>
+		<div style="height:3px;"></div>
+		<div class="cat01"><a href="/shop/goods/goods_grp_05.php"><div onMouseOver="overS('신상품', this);" onMouseOut="outS('new arrivals', this);">new arrivals</div></a></div>
+		<div style="height:5px;"></div>
+		<div class="cat01"><a href="/shop/goods/goods_grp_06.php"><div onMouseOver="overS('추천상품', this);" onMouseOut="outS('MD\'s choice', this);">MD's choice</div></a></div>
+		<div style="height:5px;"></div>
+<!--{ @ dataCategory( _cfg.subCategory, 1 ) }-->
+<?PHP if( {.category} == "005") { ?>
+		<div style="height:15px;"></div>
+		<div class="cat00"><div onMouseOver="overM('콜렉션', this);" onMouseOut="outM('by collection', this);">by collection</div></div>
+		<div class="separator"></div>
+		<div style="height:3px;"></div>
+		<div class="cat01"><a href="/shop/goods/goods_list.php?category=001"><div onMouseOver="overS('2014 스프링컬렉션', this);" onMouseOut="outS('2014 Spring Collection', this);">2014 Spring</div></a></div>
+		<div style="height:5px;"></div>
+<?PHP }
+	if( {.category} != "011") { 
+?>
+		<div class="cat01"><a href="/shop/goods/goods_list.php?category={.category}"><div onMouseOver="overS('{.catnm}', this);" onMouseOut="outS('<?PHP echo str_replace("'", "\'", $lfy_goods_knames[{.catnm}]); ?>', this);"><?PHP echo $lfy_goods_knames[{.catnm}]; ?></div></a></div>
+		<div style="height:5px;"></div>
+<?PHP } ?>
+<!--{ / }-->
+		<div style="height:20px;"></div>
+<!--{ / }-->
+	</div>

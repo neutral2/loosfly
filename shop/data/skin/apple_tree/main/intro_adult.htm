@@ -1,0 +1,269 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>{_meta_title}</title>
+<script src="../common.js"></script>
+<link rel="styleSheet" href="../style.css">
+<style>
+div.head {height:240px;background:#EEEEEE;text-align:center;}
+div.head h2 {display:none;}
+div.head p {display:block;background:url(../img/h2_page_adult.gif) top left no-repeat;height:183px;width:665px;text-indent:-5000px;margin:0 auto;}
+
+div.body {}
+div.body div.forms-wrap {background:#F3F3F3;border:1px solid #DEDEDE;padding:5px;width:680px;margin:20px auto 0;}
+div.body div.forms-wrap div.forms {background:#fff;}
+div.body div.forms-wrap div.forms div.form {width:310px;padding:10px;display:inline-block;vertical-align:top;float:left;}
+div.body div.forms-wrap div.forms div.form img.title {display:block;margin-bottom:7px;}
+
+div.body div.forms-wrap div.forms div.form table {}
+div.body div.forms-wrap div.forms div.form table th {font-weight:bold;color:#5D5D5D;font-size:11px;letter-spacing:-1px;width:60px;text-align:left;}
+div.body div.forms-wrap div.forms div.form table td {}
+
+div.body div.forms-wrap div.forms div.form #ipinyn {padding:5px;font-size:11px; line-height:150%;letter-spacing:-1px; color:#5d5d5d;display:none}
+div.body div.forms-wrap div.forms div.form label {cursor:pointer;}
+div.body div.forms-wrap div.forms div.form input.fld {border:1px solid #DEDEDE;height:18px;}
+
+div.body p.info {line-height:150%;padding:30px 0; width:580px; margin:0 auto; font-size:11px; letter-spacing:-1px; color:#5d5d5d;text-align:left;}
+
+div.foot {border-top:1px solid #e6e6e6;margin:0 auto;width:680px;padding:10px 100px 0 100px;}
+div.foot ul.company {list-style:none; margin-bottom:5px;}
+div.foot ul.company li {padding:3px;}
+div.foot ul.company li span.divi {color:#cecece;}
+
+
+div.foot p.copyright {text-align:center;}
+
+</style>
+
+
+<!--
+<!--	==========================================================	-->
+<!--	한국신용정보주식회사 처리 모듈 (수정 및 변경하지 마십시오)	-->
+<!--	==========================================================	-->
+<script type="text/javascript" src="http://secure.nuguya.com/nuguya/nice.nuguya.oivs.crypto.js"></script>
+<script type="text/javascript" src="http://secure.nuguya.com/nuguya/nice.nuguya.oivs.msg.js"></script>
+<script type="text/javascript" src="http://secure.nuguya.com/nuguya/nice.nuguya.oivs.util.js"></script>
+<script language="javascript">
+<!--
+function goIDCheckIpin(){
+	<!--{ ? ipinyn == 'y' }-->
+		var popupWindow = window.open( "../member/ipin/IPINCheckRequest.php?callType=adultcheck", "popupCertKey", "top=100, left=200, status=0, width=417, height=490" );
+	<!--{ : niceipinyn == 'y' }-->
+		var popupWindow = window.open( "", "popupCertKey", "width=450, height=550, top=100, left=100, fullscreen=no, menubar=no, status=no, toolbar=no, titlebar=yes, location=no, scrollbar=no" );
+		ifrmRnCheck.location.href="../member/ipin/IPINMain.php?callType=adultcheck";
+	<!--{ / }-->
+	return;
+}
+
+function frmChk(){
+	var frm = document.form1;
+
+	if(frm.name.value ==""){
+		alert("이름을 입력하여 주십시오.");
+		frm.name.focus();
+		return false;
+	}else if(frm['resno[]'][0].value ==""){
+		alert("주민번호를 입력하여 주십시오.");
+		frm['resno[]'][0].focus();
+		return false;
+	}else if(frm['resno[]'][1].value ==""){
+		alert("주민번호를 입력하여 주십시오.");
+		frm['resno[]'][1].focus();
+		return false;
+	}
+
+	/*
+		strForeigner : 1(내국인), 2(외국인)
+		strRsn : 10(회원가입), 20(기존회원확인), 30(성인인증), 40(비회원확인), 90(기타사유)
+	*/
+	var strForeigner = '1';
+	var strRsn = '30';
+	var strNm = frm['name'].value;
+	var strNo = frm['resno[]'][0].value + frm['resno[]'][1].value;
+
+	frm.SendInfo.value = makeSendInfo( frm.name.value, strNo, strRsn, strForeigner );
+
+	return true;
+}
+
+function rnWayChk(){
+
+	var frm = document.form1;
+	ryn = document.getElementById("realname_use");
+	iyn = document.getElementById("ipin_use");
+
+	if(frm.rnWay[0].checked == true) {
+		ryn.style.display = "none";
+		iyn.style.display = "block";
+	} else {
+		ryn.style.display = "block";
+		iyn.style.display = "none";
+	}
+}
+//-->
+</script>
+<!--{ customHeader }-->
+</head>
+
+<body>
+
+<div class="head">
+	<h2>19세 미만의 미성년자는 출입을 금합니다.</h2>
+	<p>
+	이 정보내용은 청소년 유해매체물로서 정보통신망 이용촐진 및 정보보호등에 관한 법률 및 청소년 보호법에 규정에 의하여 19세 미만의 청소년이 이용할 수 없습니다.
+	</p>
+
+	<a href="javascript:history.back();"><img src="../img/btn_19out.gif" alt="19세 미만 나가기" /></a>
+</div>
+
+
+<div class="body">
+
+	<div class="forms-wrap">
+
+	<div class="forms">
+
+		<!-- 실명인증 또는 아이핀 사용하는 경우 -->
+		<!--{ ? realnameyn == 'y' ||  ipinyn == 'y' || niceipinyn == 'y' }-->
+		<div class="form">	
+		
+			<img src="../img/login_01.gif" alt="비회원로그인" class="title"/>
+
+			<form method=post action="{loginActionUrl}" id="form1" name="form1" onsubmit="return frmChk();">
+				<input type="hidden" name="returnUrl" value="{_returnUrl}">
+				<input type="hidden" name="mode" value="adult_guest">
+				<input type="hidden" name="SendInfo" value="">
+				
+				<!-- 실명인증과 아이핀 둘 다 사용하는 경우 -->
+				<!--{ ? realnameyn == 'y' &&  (ipinyn == 'y' || niceipinyn == 'y') }-->
+				<div>
+					<input type="radio" name="rnWay" value="ipin" onclick="rnWayChk();" checked="checked" />아이핀(i-pin)
+					<input type="radio" name="rnWay" value="realname"onclick="rnWayChk();" />실명확인			
+				</div>
+
+				<div id="realname_use">
+					<table>
+					<tr>
+						<th>이름</th>
+						<td><input type=text class="fld" name=name size=20 tabindex=1></td>
+						<td rowspan=2 class=noline><input type=image src="../img/btn_ok.gif" tabindex=4></td>
+					</tr>
+					<tr>
+						<th>주민번호</th>
+						<td>
+						<input type=text name=resno[] maxlength=6 size=6 required label="주민등록번호" onkeyup="if (this.value.length==6) this.nextSibling.nextSibling.focus()" onkeydown="onlynumber()"  class="fld"> -
+						<input type=password name=resno[] maxlength=7 size=10 required label="주민등록번호" onkeydown="onlynumber()" class="fld">
+						</td>
+					</tr>
+					</table>
+				</div>
+
+				<div id="ipin_use">
+					<img src="../img/ipin/bt_26.gif" onclick="goIDCheckIpin();" style="margin:8px;cursor:pointer" />
+				</div>		
+
+				<!-- 실명인증만 사용하는 경우 -->
+				<!--{ : realnameyn == 'y' && ipinyn == 'n' && niceipinyn == 'n' }-->
+				<div>
+					<table>
+					<tr>
+						<th>이름</th>
+						<td><input type=text class="fld" name=name size=20 tabindex=1></td>
+						<td rowspan=2 class=noline><input type=image src="../img/btn_ok.gif" tabindex=4></td>
+					</tr>
+					<tr>
+						<th>주민번호</th>
+						<td>
+						<input type=text name=resno[] maxlength=6 size=6 required label="주민등록번호" onkeyup="if (this.value.length==6) this.nextSibling.nextSibling.focus()" onkeydown="onlynumber()"  class="fld"> -
+						<input type=password name=resno[] maxlength=7 size=10 required label="주민등록번호" onkeydown="onlynumber()" class="fld">
+						</td>
+					</tr>
+					</table>
+				</div>
+				<!-- 아이핀만 사용하는 경우 -->
+				<!--{ : realnameyn == 'n' &&  (ipinyn == 'y' || niceipinyn == 'y') }-->
+				<div>
+					<img src="../img/ipin/bt_26.gif" onclick="goIDCheckIpin();" style="margin:8px;cursor:pointer" />
+				</div>		
+				<!-- 실명인증과 아이핀 둘 다 사용 안하는 경우 -->
+				<!--{ : }-->
+				
+				<!--{ / }-->
+			
+			</form>
+		</div>
+		<!--{ : }-->
+		<style>div.body div.forms-wrap {width:330px;}</style>		
+		<!--{ / }-->
+
+
+		<!-- 로그인 폼 -->
+		<div class="form">
+
+			<img src="../img/login_02.gif" alt="회원로그인" class="title" />
+
+			<form method=post action="{loginActionUrl}" id=form2 name=form2>
+			<input type=hidden name=returnUrl value="{_returnUrl}">
+				<table>
+				<tr>
+					<th>아이디</th>
+					<td><input type=text class="fld" name=m_id size=20 tabindex=5></td>
+					<td rowspan=2 class=noline><input type=image src="../img/btn_login.gif" tabindex=7></td>
+				</tr>
+				<tr>
+					<th>비밀번호</th>
+					<td><input type=password class="fld" name=password size=20 tabindex=6></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<a href="../member/join.php" onfocus="blur()">회원가입</a>|<a href="../member/find_id.php" onfocus="blur()">아이디찾기</a>|<a href="../member/find_pwd.php" onfocus="blur()">비밀번호찾기</a>
+					</td>
+				</tr>
+				</table>
+			</form>
+		</div>
+
+		<div style="clear:both;"></div>
+
+	</div>
+
+	</div><!-- class=forms-wrap -->
+
+
+</div>
+
+
+<div class="foot">
+
+	<div class="logo"><a href="./main/main.php"><?php echo $logoImage;?></a></div>
+
+	<ul class="company">
+		<li>
+			<!--{ ? _cfg['compName'] }-->상호명 : {_cfg['compName']}<!--{ / }-->
+			<!--{ ? _cfg['compSerial'] }--> <span class="divi"> | </span> 사업자등록번호 : {_cfg['compSerial']}<!--{ / }-->
+			<!--{ ? _cfg['orderSerial'] }--> <span class="divi"> | </span> 통신판매업신고번호 : {_cfg['orderSerial']}<!--{ / }-->
+		</li>
+		<li>
+			<!--{ ? _cfg['ceoName'] }-->대표 : {_cfg['ceoName']} <!--{ / }-->
+			<!--{ ? _cfg['adminName'] }--> <span class="divi"> | </span> 개인정보관리책임자 : {_cfg['adminName']}
+				<!--{ ? _cfg['adminEmail'] }-->(<a href="javascript:popup('./proc/popup_email.php?to={_cfg['adminEmail']}&hidden=1',650,600)">{_cfg['adminEmail']}</a>)
+				<!--{ / }-->
+			<!--{ / }-->
+		</li>
+		<li>
+			<!--{ ? _cfg['address'] }-->주소 : {_cfg['address']} <!--{ / }-->
+			<!--{ ? _cfg['compPhone'] }--> <span class="divi"> | </span> 대표번호 : {_cfg['compPhone']}<!--{ / }-->
+			<!--{ ? _cfg['compFax'] }--> <span class="divi"> | </span> 팩스번호 : {_cfg['compFax']} <!--{ / }-->
+		</li>
+	</ul>
+
+	<p class="copyright">
+	Copyright ⓒ <strong>{_cfg['shopUrl']}</strong> All right reserved
+	</p>
+
+</div>
+
+<iframe id="ifrmRnCheck" name="ifrmRnCheck" style="width:500px;height:500px;display:none;"></iframe>
+<script>rnWayChk();</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+INFO	[2014-04-06 21:51:15:565] <5006> START INIPHP chkfake (V5031-111123)(OS:Linux2.6.18-371.4.1.el5,PHP:5.2.17)
+DEBUG	[2014-04-06 21:51:15:594] <5006> inipayhome:/www/loosfly_godo_co_kr/shop/order/card/inipay
+DEBUG	[2014-04-06 21:51:15:594] <5006> type:chkfake
+DEBUG	[2014-04-06 21:51:15:594] <5006> debug:true
+DEBUG	[2014-04-06 21:51:15:594] <5006> enctype:asym
+DEBUG	[2014-04-06 21:51:15:594] <5006> admin:1111
+DEBUG	[2014-04-06 21:51:15:594] <5006> checkopt:false
+DEBUG	[2014-04-06 21:51:15:594] <5006> mid:GODOloosfl
+DEBUG	[2014-04-06 21:51:15:594] <5006> price:89000
+DEBUG	[2014-04-06 21:51:15:594] <5006> nointerest:no
+DEBUG	[2014-04-06 21:51:15:594] <5006> quotabase:선택:일시불:2개월:3개월:4개월:5개월:6개월:7개월:8개월:9개월:10개월:11개월:12개월
+INFO	[2014-04-06 21:51:15:594] <5006> Check Field OK
+INFO	[2014-04-06 21:51:15:627] <5006> MERCHANT PRIV KEY LOAD OK
+INFO	[2014-04-06 21:51:15:631] <5006> MERCHANT PUB KEY LOAD OK []
+INFO	[2014-04-06 21:51:15:633] <5006> CHKFAKE KEY MAKE OK:MjAxNDA0MDYyMTUxMTU2MzE0OTU1Mg==
+
+INFO	[2014-04-06 21:51:15:633] <5006> END chkfake  Laptime:[0.08sec]
+INFO	[2014-04-06 21:51:15:633] <5006> ===============================================================

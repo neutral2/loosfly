@@ -1,0 +1,213 @@
+<div class="title title_top">무료 디자인스킨 선택</div>
+<div style="padding-top:5px"></div>
+<div><table cellpadding="0" cellspacing="0" border="0" background="../img/codi/bg_skin_form_center.gif">
+<tr>
+<td height="16"><img src="../img/codi/bg_skin_form_top.gif" align="absmiddle" /></td>
+</tr>
+<tr>
+<td style="padding:5px 25px 5px 25px;vertical-align:top;">
+	<div style='float:left;width:445px;'>
+		<div><img src="http://gongji.godo.co.kr/userinterface/freeSkin/img/skin_icon.gif" border="0"></div>
+		<div style="padding-top:3px"><span><img src='http://gongji.godo.co.kr/userinterface/freeSkin/img/dot.gif' border='0' align='absmiddle'></span><span style="padding-left:3px;font:8pt 돋움; color:#555555; letter-spacing:0;">80여종의 스킨을 제한없이 이용가능하고, 원클릭으로 한번에 스킨 교체가 가능합니다.</span></div>
+		<div style="padding-top:2px"><span><img src='http://gongji.godo.co.kr/userinterface/freeSkin/img/dot.gif' border='0' align='absmiddle'></span><span style="padding-left:3px;font:8pt 돋움; color:#555555; letter-spacing:0;">고객님의 상품아이템에 잘 어울리는 스킨을 입맛대로 골라 선택하세요.</span></div>
+		<!--<div><span style="padding-left:5px;color:#F86D32;font-weight:bold;">운영자분들의 디자인 고민을 말끔히 해소해드립니다.</span></div>-->
+		<div style="padding: 2px 0 4px 0"><span><img src='http://gongji.godo.co.kr/userinterface/freeSkin/img/dot.gif' border='0' align='absmiddle'></span><span style="padding-left:3px;font:8pt 돋움; color:#555555; letter-spacing:0;">유료스킨을 구매하거나 스킨수정, 맞춤디자인은 <a href="http://design.godo.co.kr" target="_bank" style="font:8pt 돋움; color:#6CBD06;"><b>고도디자인센터</b></a>를 이용하세요.</span></div>
+		<div style="background-image: url(http://gongji.godo.co.kr/userinterface/freeSkin/img/skin_guide_bg.gif);width:444px;height:79px;padding:8px 3px 3px 5px;margin-top:5px;">
+			<div><img src="http://gongji.godo.co.kr/userinterface/freeSkin/img/skin_guide_title.gif" border="0"></div>
+			<div style="padding: 7px 3px 1px 3px;font:9pt 굴림; color:#ffffff; letter-spacing:-1;">① 스킨 선택&nbsp;&nbsp; ② 스킨 추가 (5분 소요)&nbsp;&nbsp; ③ 아래 '디자인 스킨설정' 에서 셋팅 확인</div>
+			<div style="padding: 3px;font:9pt 굴림; color:#ffffff; letter-spacing:-1;">④ 작업스킨/사용스킨으로 셋팅 후 사용&nbsp;&nbsp; ⑤ 추가된 스킨은 삭제가 가능합니다</div>
+		</div>
+	</div>
+	<div style='float:left;width:40%;padding:0 0 0 3px;'>		<div style='width:266px;'>
+			<div style='float:left;padding:85px 2px 0 0;font-family:돋움;width:12px;text-align:right;cursor:pointer;' onclick="pageCon('back')"><img src='http://gongji.godo.co.kr/userinterface/freeSkin/img/back.gif' border='0'></div>
+			<div style='float:left;'>
+			<div style='text-align:center;padding:2px 0 5px 0;'><img src="http://gongji.godo.co.kr/userinterface/freeSkin/img/skin_title.gif" border="0"></div>
+			<table width='236' cellpadding="0" cellspacing="0" border="0">
+			<tr height='90'>
+			<td align='center'>
+				<div><img src='http://gongji.godo.co.kr/userinterface/freeSkin/img.skin/siesta_purple_s.jpg' border='0' style="border:2px #EEEEEE solid;" id='skinimg_0'></div>
+				<div id='skinnm_0' style='padding-top:4px;font:8pt 돋움; color:#666666;letter-spacing:-1;'><a href='http://esample.godo.co.kr/_dsample.php?tplSkin=siesta_purple' target='_blank' style='color:#777777;'>퍼플 </a></div>
+			</td>
+			<td align='center'>
+				<div><img src='http://gongji.godo.co.kr/userinterface/freeSkin/img.skin/siesta_bluecom_s.jpg' border='0' style="border:2px #EEEEEE solid;" id='skinimg_1'></div>
+				<div id='skinnm_1' style='padding-top:4px;font:8pt 돋움; color:#666666;letter-spacing:-1;'><a href='http://esample.godo.co.kr/_dsample.php?tplSkin=siesta_bluecom' target='_blank' style='color:#777777;'>블루컴 </a></div>
+			</td>
+			</tr>
+			<tr height='90'>
+			<td align='center'>
+				<div><img src='http://gongji.godo.co.kr/userinterface/freeSkin/img.skin/siesta_retro1_s.jpg' border='0' style="border:2px #EEEEEE solid;"  id='skinimg_2'></div>
+				<div id='skinnm_2' style='padding-top:4px;font:8pt 돋움; color:#666666;letter-spacing:-1;'><a href='http://esample.godo.co.kr/_dsample.php?tplSkin=siesta_retro1' target='_blank' style='color:#777777;'>레트로1 </a></div>
+			</td>
+			<td align='center'>
+				<div><img src='http://gongji.godo.co.kr/userinterface/freeSkin/img.skin/siesta_vintage_s.jpg' border='0' style="border:2px #EEEEEE solid;" id='skinimg_3'></div>
+				<div id='skinnm_3' style='padding-top:4px;font:8pt 돋움; color:#666666;letter-spacing:-1;'><a href='http://esample.godo.co.kr/_dsample.php?tplSkin=siesta_vintage' target='_blank' style='color:#777777;'>빈티지1 </a></div>
+			</td>
+			</tr>
+			</table>
+			</div>
+			<div style='float:left;padding:85px 0 0 2px;font-family:돋움;width:12px;cursor:pointer;' onclick="pageCon('next')"><img src='http://gongji.godo.co.kr/userinterface/freeSkin/img/next.gif' border='0'></div>
+		</div>
+		<div id='page' style="padding-top:9px;width:266px;text-align:center;font: 8pt verdana; color:#666666;letter-spacing:0;"></div>
+		<div style="text-align:center;width:266px;padding-top:10px;">
+			<img src="http://gongji.godo.co.kr/userinterface/freeSkin/img/skin_btn.gif" border="0" onclick='selfAgree()' style="cursor:pointer;">
+		</div>	</div>
+</td>
+</tr>
+<tr>
+<td height="16"><img src="../img/codi/bg_skin_form_bottom.gif" align="absmiddle" /></td>
+</tr>
+</table>
+</div><!-- 독립형 사용자 동의 start -->
+<div style="display:none;position:absolute;top:30px;left:110px;width:554px;height:363px;" id="selfAgreeID">
+	<table width='554' height='363' cellpadding="0" cellspacing="0" border="0" style="background-image: url('http://gongji.godo.co.kr/userinterface/freeSkin/img/agree_popup_bg.gif');">
+	<tr>
+	<td height='30' style="color:#FFFFFF;padding:10px;font-weight:bold;">사용자 동의</td>
+	</tr>
+	<tr>
+	<td height='50' style="padding:10px;"><div style="font-weight:bold;">디자인 스킨 추가에 따른 사용자 동의</div><div style='padding:3px 0 0 10px;'>아래의 내용에 동의하셔야만<br>디자인  스킨의 추가가 가능합니다.</div></td>
+	</tr>
+	<tr>
+	<td height='150' valign='top' style="padding:28px 0 0 40px;">
+		제공해 드리는 스킨은 최신 패치가 적용된 디자인스킨으로<br>
+		고도소프트에서 고지하는 프로그램 패치내용을 적용하지 않고 사용하실 경우<br>
+		쇼핑몰페이지에서 오류가 발생할 수 있으며 그에 대한 모든 책임은 쇼핑몰<br>
+		운영자(관리자)에게 있습니다.
+	</td>
+	</tr>
+	<tr>
+	<td align="center" style="padding-top:20px;">
+		<span onclick="popup('http://gongji.godo.co.kr/userinterface/freeSkin/freeSkinStyle_register.php?key=YTo4OntpOjA7czo4OiI3MTkwMTAwOSI7aToxO3M6MTg6InNlbGZfZW5hbW9vX3NlYXNvbiI7aToyO3M6MTI6IndlYmhvc3RfYnVzeSI7aTozO3M6ODoiNzQyNjQ0MDQiO2k6NDtzOjQ6IjQwMDAiO2k6NTtzOjU6Ii9zaG9wIjtpOjY7czoyOiJzNCI7aTo3O3M6MTg6ImFwcGxlX3RyZWUsbG9vc2ZseSI7fWt3b25z','850','900');selfAgree_off();" style="cursor:pointer;"><img src="http://gongji.godo.co.kr/userinterface/freeSkin/img/agree_btn_2.gif"></span>
+		<span onclick="selfAgree_off();" style="cursor:pointer;"><img src="http://gongji.godo.co.kr/userinterface/freeSkin/img/agree_btn_3.gif"></span></td>
+	</tr>
+	</table>
+</div>
+<!-- 독립형 사용자 동의 end --><!-- 임대형 용량 체크 start -->
+<div style="display:none;position:absolute;top:30px;left:110px;width:554px;height:363px;" id="warningID">
+	<table width='554' height='363' cellpadding="0" cellspacing="0" border="0" style="background-image: url('http://gongji.godo.co.kr/userinterface/freeSkin/img/agree_popup_bg.gif');">
+	<tr>
+	<td height='30' style="color:#FFFFFF;padding:10px;font-weight:bold;">디자인 스킨 신청 알림</td>
+	</tr>
+	<tr>
+	<td height='50' style="padding:10px;"><div style="font-weight:bold;">디자인 스킨 추가</div><div style='padding:3px 0 0 10px;'>아래의 사유로 신청이 접수되지 않았습니다.</div></td>
+	</tr>
+	<tr>
+	<td height='150' valign='top' style="padding:35px 0 0 40px;">
+		<div id='warningMsg'>
+		디자인 스킨을 추가하기 위한 용량이 부족합니다.<br>
+		디자인 스킨을 추가하기 위해서는 최소 50M 이상의<br>
+		남은 용량이 필요합니다.<br>
+		용량을 추가로 신청하시거나 기존 스킨을 다운받으신 후 삭제하여 용량을 확보해 주세요.
+		</div>
+	</td>
+	</tr>
+	<tr>
+	<td align="center" style="padding-top:20px;">
+		<span onclick="warningMsg('off');" style="cursor:pointer;"><img src="http://gongji.godo.co.kr/userinterface/freeSkin/img/agree_btn_1.gif"></span></td>
+	</tr>
+	</table>
+</div>
+<!-- 임대형 용량 체크 end --><script language="javascript" defer="defer">
+function selfAgree(){
+	obj = document.getElementById('selfAgreeID');
+	obj.style.display = 'block';
+}function warningMsg(mode,msg){
+	obj = document.getElementById('warningID');	switch(msg){
+		case '1':
+			msg = "디자인 추가신청 서비스는 이나무 시즌4 솔루션만 서비스 신청이 가능합니다.";
+		break;
+		case '2':
+			msg = "디자인 추가신청 서비스는 이나무 시즌4 솔루션만 서비스 신청이 가능합니다.<br>(무료체험 또는 독립형 타사 호스팅은 해당 서비스가 지원되지 않습니다.)";
+		break;
+		case '3':
+			msg = "디자인 스킨을 추가하기 위한 용량이 부족합니다.<br>디자인 스킨을 추가하기 위해서는 최소 50M 이상의<br>남은 용량이 필요합니다.<br>용량을 추가로 신청하시거나 기존 스킨을 다운받으신 후 삭제하여 용량을 확보해 주세요.";
+		break;
+		case '4':
+			msg = "독립형 쇼핑몰 이용 고객 중<br>외부호스팅( 고도 쇼핑몰 호스팅을 제외한 타사 호스팅 )<br>이용 고객분은 디자인 스킨 추가서비스가 지원되지 않습니다.";
+		break;
+		case '5':
+			msg = "[무료디자인스킨 재다운로드되도록 개선] 패치가 되지않아 해당 서비스를 이용하실 수<br>없습니다.<br>독립형의경우 고객님께서 직접 패치를 하실 수 있으며<br>임대형의 경우에는 1:1문의게시판에 문의를 주시기 바랍니다.";
+		break;
+	}	if( mode == 'on' ){
+		obj.style.display = 'block';
+		document.getElementById('warningMsg').innerHTML = msg;
+	}else{
+		obj.style.display = 'none';
+		document.getElementById('warningMsg').innerHTML = '';
+	}
+}function selfAgree_off(){
+	document.getElementById('selfAgreeID').style.display = 'none';
+}var nnp = 1;
+var blockNo = 0;
+function skinDisplays(page){
+	var tsc = "89";
+	var skinData = new Array();
+	skinData['0'] = new Array();
+	skinData['0']['0'] = new Array('siesta_purple','퍼플 ','siesta_purple_s.jpg','siesta_purple_l.jpg');skinData['0']['1'] = new Array('siesta_bluecom','블루컴 ','siesta_bluecom_s.jpg','siesta_bluecom_l.jpg');skinData['0']['2'] = new Array('siesta_retro1','레트로1 ','siesta_retro1_s.jpg','siesta_retro1_l.jpg');skinData['0']['3'] = new Array('siesta_vintage','빈티지1 ','siesta_vintage_s.jpg','siesta_vintage_l.jpg');skinData['1'] = new Array();skinData['1']['0'] = new Array('siesta_sew','쏘우 ','siesta_sew_s.jpg','siesta_sew_l.jpg');skinData['1']['1'] = new Array('siesta_sporty','스포티 ','siesta_sporty_s.jpg','siesta_sporty_l.jpg');skinData['1']['2'] = new Array('siesta_elegance','엘레강스 ','siesta_elegance_s.jpg','siesta_elegance_l.jpg');skinData['1']['3'] = new Array('siesta_manish','매니쉬 ','siesta_manish_s.jpg','siesta_manish_l.jpg');skinData['2'] = new Array();skinData['2']['0'] = new Array('siesta_modern','모던 ','siesta_modern_s.jpg','siesta_modern_l.jpg');skinData['2']['1'] = new Array('dp_cute','큐트 (디피)','dp_cute_s.jpg','dp_cute_l.jpg');skinData['2']['2'] = new Array('siesta_health','헬스 ','siesta_health_s.jpg','siesta_health_l.jpg');skinData['2']['3'] = new Array('siesta_antique','앤틱 ','siesta_antique_s.jpg','siesta_antique_l.jpg');skinData['3'] = new Array();skinData['3']['0'] = new Array('siesta_sweety','스위티 ','siesta_sweety_s.jpg','siesta_sweety_l.jpg');skinData['3']['1'] = new Array('siesta_tidy','타이디 ','siesta_tidy_s.jpg','siesta_tidy_l.jpg');skinData['3']['2'] = new Array('siesta_vintage2','빈티지2 ','siesta_vintage2_s.jpg','siesta_vintage2_l.jpg');skinData['3']['3'] = new Array('siesta_retro2','레트로2 ','siesta_retro2_s.jpg','siesta_retro2_l.jpg');skinData['4'] = new Array();skinData['4']['0'] = new Array('siesta_ice','아이스 ','siesta_ice_s.jpg','siesta_ice_l.jpg');skinData['4']['1'] = new Array('siesta_kid','키드 ','siesta_kid_s.jpg','siesta_kid_l.jpg');skinData['4']['2'] = new Array('siesta_luxury','럭셔리 ','siesta_luxury_s.jpg','siesta_luxury_l.jpg');skinData['4']['3'] = new Array('siesta_basic','베이직 ','siesta_basic_s.jpg','siesta_basic_l.jpg');skinData['5'] = new Array();skinData['5']['0'] = new Array('siesta_pretty','프리티 ','siesta_pretty_s.jpg','siesta_pretty_l.jpg');skinData['5']['1'] = new Array('siesta_prettyblue','프리티블루 ','siesta_prettyblue_s.jpg','siesta_prettyblue_l.jpg');skinData['5']['2'] = new Array('siesta_simplegray','심플그레이 ','siesta_simplegray_s.jpg','siesta_simplegray_l.jpg');skinData['5']['3'] = new Array('siesta_lemoncherry','레몬앤체리 ','siesta_lemoncherry_s.jpg','siesta_lemoncherry_l.jpg');skinData['6'] = new Array();skinData['6']['0'] = new Array('siesta_watercolor','워터컬러 ','siesta_watercolor_s.jpg','siesta_watercolor_l.jpg');skinData['6']['1'] = new Array('siesta_orangegreen','오렌지그린 ','siesta_orangegreen_s.jpg','siesta_orangegreen_l.jpg');skinData['6']['2'] = new Array('siesta_pastel','파스텔 ','siesta_pastel_s.jpg','siesta_pastel_l.jpg');skinData['6']['3'] = new Array('siesta_dandy','댄디 ','siesta_dandy_s.jpg','siesta_dandy_l.jpg');skinData['7'] = new Array();skinData['7']['0'] = new Array('siesta_refined','리파인 ','siesta_refined_s.jpg','siesta_refined_l.jpg');skinData['7']['1'] = new Array('siesta_flower','플라워 ','siesta_flower_s.jpg','siesta_flower_l.jpg');skinData['7']['2'] = new Array('siesta_mint','민트 ','siesta_mint_s.jpg','siesta_mint_l.jpg');skinData['7']['3'] = new Array('siesta_sharp','샤프 ','siesta_sharp_s.jpg','siesta_sharp_l.jpg');skinData['8'] = new Array();skinData['8']['0'] = new Array('siesta_general','제너럴 ','siesta_general_s.jpg','siesta_general_l.jpg');skinData['8']['1'] = new Array('siesta_creamy','크리미 ','siesta_creamy_s.jpg','siesta_creamy_l.jpg');skinData['8']['2'] = new Array('siesta_pure','퓨어 ','siesta_pure_s.jpg','siesta_pure_l.jpg');skinData['8']['3'] = new Array('siesta_springnote','스프링노트 ','siesta_springnote_s.jpg','siesta_springnote_l.jpg');skinData['9'] = new Array();skinData['9']['0'] = new Array('siesta_gold','골드 ','siesta_gold_s.jpg','siesta_gold_l.jpg');skinData['9']['1'] = new Array('siesta_melon','멜론 ','siesta_melon_s.jpg','siesta_melon_l.jpg');skinData['9']['2'] = new Array('siesta_mono','모노 ','siesta_mono_s.jpg','siesta_mono_l.jpg');skinData['9']['3'] = new Array('siesta_fantasy','판타지 ','siesta_fantasy_s.jpg','siesta_fantasy_l.jpg');skinData['10'] = new Array();skinData['10']['0'] = new Array('siesta_plain','플레인 ','siesta_plain_s.jpg','siesta_plain_l.jpg');skinData['10']['1'] = new Array('siesta_lemonade','레모네이드 ','siesta_lemonade_s.jpg','siesta_lemonade_l.jpg');skinData['10']['2'] = new Array('siesta_minimal','미니멀 ','siesta_minimal_s.jpg','siesta_minimal_l.jpg');skinData['10']['3'] = new Array('siesta_latte','라떼 ','siesta_latte_s.jpg','siesta_latte_l.jpg');skinData['11'] = new Array();skinData['11']['0'] = new Array('siesta_nature','네이쳐 ','siesta_nature_s.jpg','siesta_nature_l.jpg');skinData['11']['1'] = new Array('siesta_memories','메모리즈 ','siesta_memories_s.jpg','siesta_memories_l.jpg');skinData['11']['2'] = new Array('siesta_fishing','피싱 ','siesta_fishing_s.jpg','siesta_fishing_l.jpg');skinData['11']['3'] = new Array('siesta_standard','스탠다드 ','siesta_standard_s.jpg','siesta_standard_l.jpg');skinData['12'] = new Array();skinData['12']['0'] = new Array('siesta_sweetsugar','스윗슈가 ','siesta_sweetsugar_s.jpg','siesta_sweetsugar_l.jpg');skinData['12']['1'] = new Array('siesta_blacklabel','블랙라벨 ','siesta_blacklabel_s.jpg','siesta_blacklabel_l.jpg');skinData['12']['2'] = new Array('siesta_snowboard','스노우보드 ','siesta_snowboard_s.jpg','siesta_snowboard_l.jpg');skinData['12']['3'] = new Array('siesta_horizon','호라이즌 ','siesta_horizon_s.jpg','siesta_horizon_l.jpg');skinData['13'] = new Array();skinData['13']['0'] = new Array('siesta_marshmallow','마쉬멜로우 ','siesta_marshmallow_s.jpg','siesta_marshmallow_l.jpg');skinData['13']['1'] = new Array('siesta_company','컴퍼니 ','siesta_company_s.jpg','siesta_company_l.jpg');skinData['13']['2'] = new Array('siesta_cork','코르크 ','siesta_cork_s.jpg','siesta_cork_l.jpg');skinData['13']['3'] = new Array('siesta_division','디비전 ','siesta_division_s.jpg','siesta_division_l.jpg');skinData['14'] = new Array();skinData['14']['0'] = new Array('siesta_midnight','미드나잇 ','siesta_midnight_s.jpg','siesta_midnight_l.jpg');skinData['14']['1'] = new Array('siesta_firework','파이어웍 ','siesta_firework_s.jpg','siesta_firework_l.jpg');skinData['14']['2'] = new Array('siesta_shootingstar','슈팅스타 ','siesta_shootingstar_s.jpg','siesta_shootingstar_l.jpg');skinData['14']['3'] = new Array('siesta_grace','그레이스 ','siesta_grace_s.jpg','siesta_grace_l.jpg');skinData['15'] = new Array();skinData['15']['0'] = new Array('siesta_comzone','컴존 ','siesta_comzone_s.jpg','siesta_comzone_l.jpg');skinData['15']['1'] = new Array('puru_simple','심플 ','puru_simple_s.jpg','puru_simple_l.jpg');skinData['15']['2'] = new Array('puru_blackgray','블랙그레이 ','puru_blackgray_s.jpg','puru_blackgray_l.jpg');skinData['15']['3'] = new Array('puru_pinkgirl','핑크걸','puru_pinkgirl_s.jpg','puru_pinkgirl_l.jpg');skinData['16'] = new Array();skinData['16']['0'] = new Array('siesta_lovely','러블리 ','siesta_lovely_s.jpg','siesta_lovely_l.jpg');skinData['16']['1'] = new Array('siesta_centralpark','센트럴파크 ','siesta_centralpark_s.jpg','siesta_centralpark_l.jpg');skinData['16']['2'] = new Array('siesta_lavender','라벤더 ','siesta_lavender_s.jpg','siesta_lavender_l.jpg');skinData['16']['3'] = new Array('siesta_loveletter','러브레터 ','siesta_loveletter_s.jpg','siesta_loveletter_l.jpg');skinData['17'] = new Array();skinData['17']['0'] = new Array('siesta_trendyshop','트렌디샵','siesta_trendyshop_s.jpg','siesta_trendyshop_l.jpg');skinData['17']['1'] = new Array('siesta_wellbeing','웰빙','siesta_wellbeing_s.jpg','siesta_wellbeing_l.jpg');skinData['17']['2'] = new Array('siesta_bobos','보보스','siesta_bobos_s.jpg','siesta_bobos_l.jpg');skinData['17']['3'] = new Array('siesta_paper','페이퍼 ','siesta_paper_s.jpg','siesta_paper_l.jpg');skinData['18'] = new Array();skinData['18']['0'] = new Array('siesta_foodmall','푸드몰 ','siesta_foodmall_s.jpg','siesta_foodmall_l.jpg');skinData['18']['1'] = new Array('siesta_smart','스마트','siesta_smart_s.jpg','siesta_smart_l.jpg');skinData['18']['2'] = new Array('siesta_espresso','에스프레소','siesta_espresso_s.jpg','siesta_espresso_l.jpg');skinData['18']['3'] = new Array('y_vintage','빈티지3','y_vintage_s.jpg','y_vintage_l.jpg');skinData['19'] = new Array();skinData['19']['0'] = new Array('y_joy','조이','y_joy_s.jpg','y_joy_l.jpg');skinData['19']['1'] = new Array('y_romantic','로맨틱고양이','y_romantic_s.jpg','y_romantic_l.jpg');skinData['19']['2'] = new Array('black','블랙','pr_black_s.jpg','pr_black_l.jpg');skinData['19']['3'] = new Array('season2','시즌2','pr_season2_s.jpg','pr_season2_l.jpg');skinData['20'] = new Array();skinData['20']['0'] = new Array('sy_girls','걸즈','sy_girls_s.jpg','sy_girls_l.jpg');skinData['20']['1'] = new Array('j_homme3','옴므3','j_homme3_s.jpg','j_homme3_l.jpg');skinData['20']['2'] = new Array('interactive','인터렉티브','pr_interactive_s.jpg','interactive.jpg');skinData['20']['3'] = new Array('easy','이지','pr_easy_s.jpg','easy.jpg');skinData['21'] = new Array();skinData['21']['0'] = new Array('jy_style','스타일','jy_style_s.jpg','jy_style_l.jpg');skinData['21']['1'] = new Array('breeze','브리즈','fs_breeze_s.jpg','fs_breeze_l.jpg');skinData['21']['2'] = new Array('peachjuice','피치쥬스','fs_peachjuice_s.jpg','fs_peachjuice_l.jpg');skinData['21']['3'] = new Array('season3','시즌3','fs_season3_s.jpg','fs_season3_l.jpg');skinData['22'] = new Array();skinData['22']['0'] = new Array('fashion_2012','패션 2012','fashion_2012_s.jpg','fashion_2012_l.jpg');	var NewPage = eval(page) - 1;
+	var imgUrl = "http://gongji.godo.co.kr/userinterface/freeSkin/img.skin/";
+	for( j=0; j<4; j++ ){
+		if( skinData[NewPage][j] ){
+			document.getElementById('skinimg_'+j).src = imgUrl+skinData[NewPage][j]['2'];
+			document.getElementById('skinnm_'+j).innerHTML = "<a href='http://esample.godo.co.kr/_dsample.php?tplSkin="+skinData[NewPage][j]['0']+"' target='_blank'>" + skinData[NewPage][j]['1'] + '</a>';
+		}
+	}
+}function pageCon(opt){
+	var maxPage = "22";
+	if( opt == 'next' ){
+		if( nnp < maxPage ) nnp += 1;
+		else{ 
+			alert('마지막 페이지입니다.');
+		}
+	}else{
+		if( nnp > 1 ) nnp -= 1;
+		else alert('첫 페이지입니다.');
+	}
+	
+	pageMove(nnp);
+	
+}function pageMove(page){
+	nnp = page;
+	var bl = nnp/10;
+	if( (nnp%10) == 0 ) bl = eval(bl) - 1;
+	blockNo = parseInt(bl);
+	pageing();
+	skinDisplays(nnp);
+}function pageing(){
+	var maxPage = "22";
+	var blockObj = document.getElementById('page');
+	var block = 0;
+	var listNo = 0;
+	var Npage = 0;
+	var pageStr = new Array();
+	var pageInt = new Array();
+	pageStr['0'] = new Array();
+	pageInt['0'] = new Array();
+	for( p=0; p<maxPage;p++ ){
+		if( p%10==0 && p!=0 ){
+			block+=1;
+			pageStr[block]=new Array();
+			pageInt[block]=new Array();
+			listNo = 0;
+		}		if( (p+1) == nnp ) var bold_st = "font-weight:bold;font-size:9px;";
+		else var bold_st = "font-size:9px;";
+		pageStr[block][listNo] = "<span style='padding:0 2px 0 2px;cursor:pointer;"+bold_st+"' id='page_"+(p+1)+"' onclick='pageMove("+(p+1)+")'>"+(p+1)+"</span>";
+		pageInt[block][listNo] = (p+1);
+		listNo+=1;
+	}
+	
+	var next_blockNo = eval(blockNo)+1;
+	var pageingString = '';	pageingString += '<span>';
+	for( i=0; i<pageStr[blockNo].length; i++ ){
+		pageingString += pageStr[blockNo][i];
+	}
+	pageingString += '</span>';
+	if( pageInt[next_blockNo] ){ 
+		var nextStr = "<span style='padding-left:3px;cursor:pointer;' onclick='pageMove("+pageInt[next_blockNo]['0']+");'>[Next]</span>";
+		var prevStr = "";
+	}else{ 
+		var nextStr = "";
+		var prevNo = eval(pageInt[blockNo]['0']) - 1;
+		var prevStr = "<span style='padding-right:3px;cursor:pointer;' onclick='pageMove("+prevNo+");'>[Prev]</span>";
+	}	var print_ps = prevStr+''+pageingString+''+nextStr;	blockObj.innerHTML = print_ps;
+}
+pageing();
+</script>

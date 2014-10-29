@@ -1,0 +1,55 @@
+<div style="padding-top:5px"></div>
+<div><img src="http://gongji.godo.co.kr/userinterface/diskAdd/img/disc_img.jpg" /></div>
+<div style="padding-top:10px"></div>
+<table width=780 border=1 bordercolor="#cccccc" style="border-collapse:collapse" cellpadding=0 cellspacing=0>
+	<col bgcolor="#e3e3e3" />
+	<col bgcolor="#e3e3e3" />
+	<tr>
+		<td colspan="2" align="right" style="padding:5px 10px 5px 0px">디스크 용량 서비스란?</td>
+		<td style="padding:5px 10px 5px 5px">쇼핑몰을 구성하는 파일의 저장 공간을 제공하는 서비스</td>
+	</tr>
+	<tr>
+		<td colspan="2" align="right" style="padding:5px 10px 5px 0px">설치비</td>
+		<td style="padding:5px 10px 5px 5px">무료</td>
+	</tr>
+	<tr>
+		<td colspan="2" align="right" style="padding:5px 10px 5px 0px">트래픽</td>
+		<td style="padding:5px 10px 5px 5px">무제한</td>
+	</tr>
+	<tr>
+		<td colspan="2" align="right" style="padding:5px 10px 5px 0px">기본 디스크 용량</td>
+				<td style="padding:5px 10px 5px 5px">무료 1G</td>
+			</tr>
+	<tr>
+		<td rowspan="2" align="right" style="padding:5px 10px 5px 0px">추가 디스크 용량</td>
+		<td align="right" style="padding:5px 10px 5px 0px">추가단위</td>
+		<td style="padding:5px 10px 5px 5px">100M ~ 10G 단위로 계속 추가 가능</td>
+	</tr>
+	<tr>
+		<td align="right" style="padding:5px 10px 5px 0px">이용 요금</td>
+		<td style="padding:5px 10px 5px 5px">
+			<div>100M / 1개월 2,200원 → 100M / 1개월 1,100원(50%↓, 1일 35원)<div>
+			<div>기본 디스크 용량은 무료이며,추가디스크 용량에 대해서만 이용요금 발생<div>
+		</td>
+	</tr>
+	<tr>
+		<td rowspan="2" align="right" style="padding:5px 10px 5px 0px">사용방법</td>
+		<td align="right" style="padding:5px 10px 5px 0px">웹FTP 방식</td>
+		<td style="padding:5px 10px 5px 5px">
+			<div>1. 홈페이지(http://www.godo.co.kr) 마이고도에서 FTP계정 신청 <a href="http://www.godo.co.kr/mygodo/" target="_blank"><img src="http://gongji.godo.co.kr/userinterface/diskAdd/img/btn_disc03.gif" align="absmiddle" /></a></div>
+			<div>2. 고도몰 FTP 프로그램 사용 접속 <a href="http://www.godo.co.kr/mygodo/" target="_blank"><img src="http://gongji.godo.co.kr/userinterface/diskAdd/img/btn_disc04.gif" align="absmiddle" /></a></div>
+		</td>
+	</tr>
+	<tr>
+		<td align="right" style="padding:5px 10px 5px 0px">일반웹FTP 방식</td>
+		<td style="padding:5px 10px 5px 5px">
+						디자인관리 좌측에 <img src="../img/btn_q_ftp.gif" align="absmiddle" /> 버튼을 클릭하여 사용
+					</td>
+	</tr>
+</table><ul style="list-style:none; margin:20px 0 0 10px; line-height:18px;">
+	<li>※ 추가 디스크 용량에 대한 신청내역은 홈페이지(<a href='http://godo.co.kr/mygodo/' target="_blank">http://godo.co.kr/mygodo</a>) 마이고도에서 확인하실 수 있습니다.</li>
+	<li>※ 추가 디스크 용량의 사용기간 만료 후 1개월 이내에 기간연장이 없으시면 데이터가 삭제됩니다.</li>
+	<li>※ 디스크에 저장된 이미지는 외부(오픈마켓 등)에서 사용할 수 없습니다.</li>
+	<li>※ G마켓, 11번가, 옥션 등의 오픈마켓 판매를 위한 이미지는 고도호스팅의 <a href="http://hosting.godo.co.kr/imghosting/imghosting_info.php" target="_blank">[이미지호스팅 서비스]</a>를 이용해 주시기 바랍니다.</li>
+	<li>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://hosting.godo.co.kr/imghosting/imghosting_info.php" target="_blank">▶ 고도호스팅 [이미지호스팅 서비스] 바로가기</a></li>
+</ul>

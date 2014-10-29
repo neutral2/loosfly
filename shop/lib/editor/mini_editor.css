@@ -1,0 +1,19 @@
+body,table,select {font:9pt tahoma}
+a {color:#000000;text-decoration:none}
+img {border:0}
+.mini_hand {cursor:pointer;}
+.mini_box {
+	border-bottom: 1px solid buttonhighlight;
+	border-left: 1px solid buttonshadow;
+	border-right: 1px solid buttonhighlight;
+	border-top: 1px solid buttonshadow;
+	background: #ffffff;
+}
+.mini_color_box {
+	font-size:0;
+	width:18px;
+	height:16px;
+	border:1px solid #000000;
+	cursor:pointer;
+}
+.mini_hidden {display:none;}

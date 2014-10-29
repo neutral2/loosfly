@@ -1,0 +1,33 @@
+<? 
+$du = array( 
+'disk' => '519921935', 
+'disks' => array( 
+	'm' => '8192', 
+	'goods' => '394150880', 
+	'skin_mobileV2' => '2278912', 
+	'font' => '4096', 
+	'attendance' => '198052', 
+	'review' => '4096', 
+	'statistics' => '4096', 
+	'scriptrotator' => '4096', 
+	'editor' => '6036816', 
+	'board' => '220826', 
+	'category' => '4096', 
+	'tmp_skinTodayCopy' => '4096', 
+	'skin_mobile' => '527929', 
+	'todayshop' => '71285', 
+	'ghostbanker' => '512347', 
+	'skin_today' => '4627622', 
+	'tmp_skinCopy' => '4272', 
+	'auctionos' => '8192', 
+	'my_icon' => '4096', 
+	'shoptouch' => '4096', 
+	'member' => '13518', 
+	'skin_shopTouch' => '320057', 
+	'skin' => '103423130', 
+	'_skin_history' => '7466551', 
+	'_skin_preview' => '16490', 
+	'sns' => '4096', 
+	), 
+) 
+;?>

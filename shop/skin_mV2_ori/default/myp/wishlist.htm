@@ -1,0 +1,72 @@
+{#header}
+<?php {page_title} = "찜목록";?>
+{#sub_header}
+
+<script>
+function act(mode)
+{
+	var fm = document.frmWish;
+	if (isChked('sno[]')){
+		
+		if (mode == 'cart') {
+			var runout = document.getElementsByName('runout[]');
+			var chks = document.getElementsByName('sno[]');
+			
+			for (var i=0,m=chks.length;i<m ;i++) {
+				if (chks[i].checked == true) {
+					if (runout[i].value == 'T') {
+						alert("품절 상품은 장바구니에 담을 수 없습니다"); 
+						return; 
+					}
+				}
+			}
+		}
+		fm.mode.value = mode;
+		fm.submit();
+	}
+}
+</script>
+
+<section id="wishlist" class="content">
+	<form name=frmWish method=post>
+	<input type=hidden name=mode>
+	<ul class="wish_item_list">
+
+		<!--{ @ loop }-->
+		<li>
+			<input type=hidden name=goodsno[{.sno}] value="{.goodsno}" />
+			<input type=hidden name=opt[{.sno}][] value="{=implode('|',.opt)}" />
+			<!--{ @ .r_addopt }--><input type=hidden name=addopt[{.sno}][] value="{..value_}"><!--{ / }-->
+			<dl>
+				<dt class="hidden">선택</dt>
+				<dd class="wl_chk"><input type=checkbox name=sno[] value="{.sno}" /></dd>
+				<dt class="hidden">상품이미지</dt>
+				<dd class="wl_img"><a href="../goods/view.php?goodsno={.goodsno}">{=goodsimgMobile(.img_s,100)}</a></dd>
+				<dt class="hidden">상품정보</dt>
+				<dd class="wl_goods">
+				<div class="hidden">상품명</div>
+				<div class="wl_name"><a href="../goods/view.php?goodsno={.goodsno}">{=strcut(.goodsnm,100)}</a></div>
+				<div class="hidden">옵션</div>
+				<div class="wl_option">
+					<!--{ ? .opt }--><div>선택옵션 : [{=implode("/",.opt)}] </div><!--{ / }-->
+					<!--{ @ .addopt }--><div>추가옵션 : [{..optnm}:{..opt}]</div><!--{ / }-->
+					<!--{ ? .item_runout == 'T' }--><span style="color:red;">[품절]</span> <!--{ / }-->
+					<input type="hidden" name="runout[]" value="{.item_runout}"/>
+				</div>
+				
+				<div class="wl_price">상품가격 : <span class="r_price">{=number_format(.price + .addprice)}</span>원</div>
+				<div class="wl_reserve">적립금 : {=number_format(.reserve)}원</div>
+			</dl>
+		</li>
+		<!--{ / }-->
+	</ul>
+
+<div class="btn_area">
+	<div id="all-chk-btn"><div id="all-chk-btn-effect" onclick="javascript:chkBox('sno[]','rev');" >전체 선택</div></div>
+	<div id="chk-del-btn"><div id="chk-del-btn-effect" onclick="javascript:act('delItem');" id="all-chk-btn">선택삭제</div></div>
+	<div id="all-del-btn"><div id="all-del-btn-effect" onclick="javascript:act('cart');" id="all-chk-btn">장바구니담기</div></div>
+</div>
+	
+</section>
+
+{#footer}

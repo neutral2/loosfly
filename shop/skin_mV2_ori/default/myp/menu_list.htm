@@ -1,0 +1,21 @@
+{#header}
+<?php {page_title} = "마이페이지";?>
+{#sub_header}
+<section class="content" id="mypagelist">
+	<div class="mypagelist_ord">
+		<div class="roundbox">
+			<div class="m_list" onclick="javascript:location.href='./orderlist.php';"><div class="m_title">주문내역</div><div class="m_right"><!--{ ? _sess }-->{=number_format(data_cnt.order)} 건<!--{ / }--></div></div>
+			<div class="m_list" onclick="javascript:location.href='./emoneylist.php';"><div class="m_title">적립금내역</div><div class="m_right"><!--{ ? _sess }-->{=number_format(data_cnt.emoney)} 포인트<!--{ / }--></div></div>
+			<div class="m_list" onclick="javascript:location.href='./couponlist.php';"><div class="m_title">쿠폰내역</div><div class="m_right"><!--{ ? _sess }-->(사용가능쿠폰 수) {=number_format(data_cnt.coupon)} 건<!--{ / }--></div></div>
+			<div class="m_list" style="border:none;" onclick="javascript:location.href='./wishlist.php';"><div class="m_title">찜리스트</div><div class="m_right"><!--{ ? _sess }--> {=number_format(data_cnt.wish)} 건<!--{ / }--></div></div>
+		</div>
+	</div>
+	<div class="mypagelist_mem">
+		<div class="roundbox">
+			<div class="m_list" onclick="javascript:location.href='./qna.php';"><div class="m_title">1:1문의내역</div><div class="m_right"></div></div>
+			<div class="m_list" onclick="javascript:location.href='./review.php';"><div class="m_title">나의상품후기</div><div class="m_right"></div></div>
+			<a href="tel:"><div class="m_list" style="border:none;"><div class="m_title">고객센터</div><div class="m_right"></div></div></a>
+		</div>
+	</div>
+</section>
+{#footer}

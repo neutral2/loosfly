@@ -1,0 +1,43 @@
+{#header}
+
+<?php {page_title} = "주문내역";?>
+{#sub_header}
+
+<section id="orderlist" class="content">
+	<!--{ @ loop }-->
+	<div class="m_ord">
+		<div class="roundbox">
+			<div class="m_list">
+				<div class="m_title m_top_left">상품명</div>
+				<div class="m_right" style="width:130px; white-space:nowrap; overflow: hidden;text-overflow: ellipsis;-o-text-overflow: ellipsis;">{.goodsnm}</div>
+				<div class="m_btn"><button id="ordview-{.ordno}-btn" class="more_btn" onclick="javascript:location.href='./orderview.php?ordno={.ordno}';">상세보기</button></div>
+			</div>
+			<div class="m_list">
+				<div class="m_title">주문번호</div>
+				<div class="m_right">{.ordno}</div>
+			</div>
+			<div class="m_list">
+				<div class="m_title">주문일시</div>
+				<div class="m_right">{.orddt}</div>
+			</div>
+			<div class="m_list">
+				<div class="m_title">결제방법</div>
+				<div class="m_right">{.str_settlekind}</div>
+			</div>
+			<div class="m_list">
+				<div class="m_title">주문금액</div>
+				<div class="m_right">{=number_format(.settleprice)}</div>
+			</div>
+			<div class="m_list" style="border:none;">
+				<div class="m_title m_bottom_left" style="border:none;">주문상태</div>
+				<div class="m_right">{.str_step}</div>
+			</div>
+		</div>
+	</div>
+	<!--{ / }-->
+
+	<div class="pagediv">{pg->page['navi']}</div>
+</section>
+
+{#footer}
+

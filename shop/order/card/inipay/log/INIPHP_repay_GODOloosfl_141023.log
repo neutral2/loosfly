@@ -1,0 +1,122 @@
+INFO	[2014-10-23 18:53:20:658] <13520> START INIPHP repay (V5031-111123)(OS:Linux2.6.18-398.el5,PHP:5.2.17)
+DEBUG	[2014-10-23 18:53:20:658] <13520> inipayhome:/www/loosfly_godo_co_kr/shop/order/card/inipay
+DEBUG	[2014-10-23 18:53:20:658] <13520> type:repay
+DEBUG	[2014-10-23 18:53:20:658] <13520> pgid:INIphpRPAY
+DEBUG	[2014-10-23 18:53:20:658] <13520> subpgip:203.238.3.10
+DEBUG	[2014-10-23 18:53:20:658] <13520> debug:true
+DEBUG	[2014-10-23 18:53:20:658] <13520> mid:GODOloosfl
+DEBUG	[2014-10-23 18:53:20:658] <13520> admin:1111
+DEBUG	[2014-10-23 18:53:20:658] <13520> oldtid:INIphpCARDGODOloosfl20141015185923759922
+DEBUG	[2014-10-23 18:53:20:658] <13520> currency:WON
+DEBUG	[2014-10-23 18:53:20:658] <13520> price:129000
+DEBUG	[2014-10-23 18:53:20:658] <13520> confirm_price:129000
+DEBUG	[2014-10-23 18:53:20:658] <13520> buyeremail:dnr100@nate.com
+INFO	[2014-10-23 18:53:20:658] <13520> Check Field OK
+INFO	[2014-10-23 18:53:20:658] <13520> Make TID OK INIphpRPAYGODOloosfl20141023185320588807
+INFO	[2014-10-23 18:53:20:659] <13520> PI PUB KEY LOAD OK []
+INFO	[2014-10-23 18:53:20:665] <13520> PG PUB KEY LOAD OK [30]
+INFO	[2014-10-23 18:53:20:671] <13520> MERCHANT PRIV KEY LOAD OK
+INFO	[2014-10-23 18:53:20:675] <13520> MERCHANT PUB KEY LOAD OK [0]
+DEBUG	[2014-10-23 18:53:20:676] <13520> MAKE ENCRYPT OK[<?xml version="1.0" encoding="UTF-8"?>
+<PartCancelInfo>
+	  <PRTC_TID>INIphpCARDGODOloosfl20141015185923759922</PRTC_TID>
+	  <PRTC_Price>129000</PRTC_Price>
+	  <PRTC_Remains>129000</PRTC_Remains>
+	  <PRTC_Quota/>
+	  <PRTC_Interest/>
+	  <PRTC_NoAcctFNBC/>
+	  <PRTC_NmAcctFNBC/></PartCancelInfo>]
+INFO	[2014-10-23 18:53:20:676] <13520> MAKE BODY OK
+INFO	[2014-10-23 18:53:20:678] <13520> SIGN OK
+INFO	[2014-10-23 18:53:20:678] <13520> MAKE HEAD OK
+INFO	[2014-10-23 18:53:20:678] <13520> MSG_TO_PG:[0102300175D SHA1                   0                                      300620GODOloosfl              129000INIphpRPAYGODOloosfl20141023185320588807<?xml version="1.0" encoding="UTF-8"?>
+<INIpay>
+	  <PartCancelInfo>
+	    <SessionKey>h3Jqyy5ddSfHl7Q0BeRX64IXNqYER4LM3+SkOYplPfDFWWiXUtgglfI0YuWYJHGA
+Xls3kTsZ3RAIFpth3edNuOlRivhib/Z/W9IZmsHGPZyKTQ0oQqbDN6ZDfZINyfKr
+45YbKiTKYOs7Olcha4ZoqJpetgxQmaK6+v6qKK5rVMWoGlPqnS3/tw==
+</SessionKey>
+	    <Encrypted>k3G9OrnXeOuAbHQhOSXkyB/fbeq8xHGoU4Zgxmk2noEzIsGRs8UmEQ8AIGjOdz/T
+bq7q6UGMq6tq1iAXSHA6h+bZPhPC51LwewJrrDTNJEYbRDdsPK/Xa0thA2q10jRU
+lbRBUjiIHMJ35EjhvbyLWW//ufhZTuvLYgduGgimXr7YOsFYkB1WH/Fh+60xVaWb
+tYyuNbUNgZxQuj6JacBHbRbtRkmvGEC1oZQ1rYkfOMXF1WoERmczAOwJfnF4EciR
+urP/bfH0Ww7d4DB+dSN4GPafNIvmfS9ogbRY8geJaUwIbEVq0wEHk9xZieThZz/a
+2ddVAft4xVuiBJNGLjd0Kc1Qzgz7FvSNr7befrWrMnhdkVc0slE5wV9MBPZwOVvu
+bg4VW6t17t0=
+</Encrypted></PartCancelInfo>
+	  <ReservedInfo>
+	    <MReserved1/>
+	    <MReserved2/>
+	    <MReserved3/></ReservedInfo>
+	  <ManageInfo>
+	    <Language/>
+	    <URL/>
+	    <TXVersion>5031B111123repayLinux     PHPchkfake   2.6.18-398.el5PHP:5.2.17      </TXVersion>
+	    <TXUserID/>
+	    <TXRegNum/></ManageInfo></INIpay>AU0GZb7VRFHtJ7MPNcgayB/rAHzIQXQE7VrMgJl3UEb+dGXSolK+nT9mavcUdF9g
+hD1hMUNBV8R+6/ujVEVFpHELEKsG8YCKYZUDFIX2uC6T7dl7b449PPiTX3CQpER/
+X75+gi/7URvrihW8Ix7hF9DgNWYP7l+E1pBf5vbFQh9F
+]
+INFO	[2014-10-23 18:53:20:678] <13520> DNS LOOKUP OK(203.238.37.3:203.238.37.3:34049) laptime:0
+INFO	[2014-10-23 18:53:20:681] <13520> SOCKET CONNECT OK
+INFO	[2014-10-23 18:53:20:681] <13520> SEND OK
+INFO	[2014-10-23 18:53:20:963] <13520> RECV OK
+INFO	[2014-10-23 18:53:20:963] <13520> MSG_FROM_PG:[0150300175D SHA1                   0                                      300630GODOloosfl              129000INIphpRPAYGODOloosfl20141023185320588807<?xml version="1.0" encoding="UTF-8"?>
+<INIpay>
+  <PartCancelInfo>
+    <PayMethod>Card</PayMethod>
+    <ResultCode>120000</ResultCode>
+    <ResultMsg urlencode="1">%C1%A4%BB%F3%C3%B3%B8%AE%B5%C7%BE%FA%BD%C0%B4%CF%B4%D9.</ResultMsg>
+    <SessionKey>Aadm9V3OH0oqjdtUW5EQzs8QVzYLKLGSIdl6BaXN14Xm8EAf+2Fdit0jAHKkBhHF
+F4je9NpPAWqRUnYG7BNTcOZNvdHroiw6Z00+omGx7TdAzVXKh+QotvgVkl4AOT55
+G70UImvTMmfh9yqGZP7/dTBlZf7B5iDvW13WhYSYEc8AaU5zF+UtuzY=
+</SessionKey>
+    <Encrypted>QFtR7oafANNxRNTtIkWCUJUTonMplCt4O2KswYwol7/FcWnZPwZFdH6orAdQN3dT
+dj0fdO1h+eav1MrkaUE/IJI+z49Vjva8tbubRaBI0xcrCvrGnrb+A2ppDTVwV+83
+CTw3ewSuJR2c9rmaxXJ0olRtue3tvMYl29233q4mKoDFPNdhYpUJCnbddIWQbfep
+nAY3xhPO71PwhBqNag3MVHeAukXdr2IrWPcjdwpdUG4d43efH1KxkFCb510dMFuo
++p9u3t1qGS9i+R2cOCwWK1gRTed5yoSfOcNIooWd+PYl0/h6LYXSy85z313oyQAv
+hIcm2xXMKU1k0NN5Q4glMmOuo/BkW2Z1L1oHHV3Flf2OaJa/5ZUiuCk8xf2B9nFq
+o7FtyTY6OyIpJJyuyKgqag3WTjau7Kdu0nclbsyV2jmPi4gHvB7I34XSi6yPYE1J
+ZyaaDlqm0S21X/lBKlhVOyQyPFlAjAXsF89/87pNjPU1vvVFqvxja0RW/LRBfScS
+u9NAdOG5X+Az/JljolIitwbyhy4tHTnWfBVHNOf/xZrfcKUFPqfeIjnji/APtfA3
+S9Yn0MFu2GrxsdR6Y47vu/Cjm1J2M3OAy5VF6PVpFPsUyCWVOJZJ6NFciie5H2Ry
+AhlbZ0YX6gOZ8xxuXsQwmA==
+</Encrypted>
+  </PartCancelInfo>
+  <ManageInfo/>
+  <ReservedInfo>
+    <MReserved1 urlencode="1"></MReserved1>
+    <MReserved2 urlencode="1"></MReserved2>
+    <MReserved3 urlencode="1"></MReserved3>
+    <PGReserved1 urlencode="1"></PGReserved1>
+    <PGReserved2 urlencode="1"></PGReserved2>
+    <PGReserved3 urlencode="1"></PGReserved3>
+  </ReservedInfo>
+</INIpay>
+BsiIas+eHGWRrsMt+RARA9jKElTGkF6sTBCGNipF938Blwa1zQ3VTiEOFm/ge431
+Li6i3bdgZQwEacV3Z+G1qRgcL/emMOc/7rm6RgtH64HNiBctwEjOwWXvDj+kq36Y
+pK+ZFuneqj1Vmq/bJOdH1orfNvvbGtDOghj+sfQQvkA=
+]
+INFO	[2014-10-23 18:53:20:963] <13520> VERIFY OK
+INFO	[2014-10-23 18:53:20:964] <13520> PARSE HEAD OK
+INFO	[2014-10-23 18:53:20:966] <13520> PARSE BODY OK
+INFO	[2014-10-23 18:53:20:969] <13520> DECRYPT OK
+DEBUG	[2014-10-23 18:53:20:969] <13520> DECRYPT MSG:[<?xml version="1.0" encoding="UTF-8"?>
+<PartCancelInfo>
+  <PRTC_TID>INIphpCARDGODOloosfl20141015185923759922</PRTC_TID>
+  <PRTC_Price>129000</PRTC_Price>
+  <PRTC_Remains>129000</PRTC_Remains>
+  <PRTC_Quota>00</PRTC_Quota>
+  <PRTC_Type>1</PRTC_Type>
+  <CancelDate>20141023</CancelDate>
+  <CancelTime>185321</CancelTime>
+  <CARD_ApplNum></CARD_ApplNum>
+  <ExchangeRate></ExchangeRate>
+  <MOID urlencode="1"></MOID>
+  <PRTC_Cnt>1</PRTC_Cnt>
+  <PRTC_SubRemains></PRTC_SubRemains>
+</PartCancelInfo>]
+INFO	[2014-10-23 18:53:20:970] <13520> DECRYPT PARSE OK
+INFO	[2014-10-23 18:53:20:970] <13520> END repay 정상처리되었습니다. Laptime:[0.32sec]
+INFO	[2014-10-23 18:53:20:971] <13520> ===============================================================

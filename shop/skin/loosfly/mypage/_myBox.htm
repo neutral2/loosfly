@@ -1,0 +1,64 @@
+{***  | mypage/_myBox.php ***}
+<table width="160" cellpadding="2" cellspacing="0" border="0" align="center">
+<!--	<tr align="left"> -->
+<!--		<td class="menu_item" width="80"> 회원그룹 -->
+			<!--{? _sess.dc_type != 'N' || _sess.add_emoney_type != 'N' || _sess.free_deliveryfee != 'N'}-->
+<!--			<br/> -->
+<!--			&nbsp;&nbsp;&nbsp;<a href="javascript: member_grp_pop();"><img src="../img/common/btn_benefit.gif"></a> -->
+			<!--{/}-->
+<!--		</td> -->
+<!--		<td> -->
+<!--			<!--{ ? _sess.grpnm_disp_type == 'icon' }--><img src="../data/member/icon/{_sess.grpnm_icon}"><!--{ / }--> : {_sess.grpnm} -->
+<!--		</td> -->
+<!--	</tr> -->
+	<tr align="left">
+		<td class="menu_item" style="width:80px;"> 총구매액</td>
+		<td>: <font class=v71 color=#f47d30>{=number_format(_sess.sum_sale)}</font> 원</td>
+	</tr>
+	<tr align="left">
+		<td class="menu_item"> 적립금</td>
+		<td>: <font class=v71 color=#f47d30>{=number_format(_sess.emoney)}</font> 원</td>
+	</tr>
+	<tr align="left">
+		<td class="menu_item"> 할인쿠폰</td>
+		<td>: <font class=v71 color=#f47d30>{=number_format(_sess.cnt_coupon)}</font> 매</td>
+	</tr>
+	<tr align="left">
+		<td class="menu_item"> 장바구니</td>
+		<td>: <a href="../goods/goods_cart.php"><font class=v71 color=#f47d30>{=number_format(_sess.cart_count)}</font></a> 개</td>
+	</tr>
+	<tr align="left">
+		<td class="menu_item"> 위시리스트</td>
+		<td>: <a href="../mypage/mypage_wishlist.php"><font class=v71 color=#f47d30>{=number_format(_sess.wish_count)}</font></a> 개</td>
+	</tr>
+</table>
+
+
+
+<script type="text/javascript">
+	function member_grp_pop (grp_sno){
+		fnMyMemberGrpBpxPosition(296, 200);
+	}
+	
+	function fnMyMemberGrpBpxPosition(w,h) {	// 가로, 세로
+		var _doc_size = {
+			width : document.body.scrollWidth || document.documentElement.scrollWidth,
+			height: document.body.scrollHeight || document.documentElement.scrollHeight
+		}
+	
+		var _win_size = {
+			width : window.innerWidth	|| (window.document.documentElement.clientWidth	|| window.document.body.clientWidth),
+			height: window.innerHeight	|| (window.document.documentElement.clientHeight|| window.document.body.clientHeight)
+		}
+		
+		with (document.getElementById('MyMemberGrpBpx').style) {
+			position = "absolute";
+			width = w + 'px';
+			height = h + 'px';
+			zIndex = 10000;
+			left = (_win_size.width + w) / 2.7 - w  + 'px';
+			top = ((_win_size.height + h) / 2.7 - h) + document.body.scrollTop + 'px'
+			display = "block";
+		};
+	}
+</script>

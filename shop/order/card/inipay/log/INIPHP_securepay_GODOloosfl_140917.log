@@ -1,0 +1,252 @@
+INFO	[2014-09-17 16:56:29:708] <377> START INIPHP chkfake (V5031-111123)(OS:Linux2.6.18-371.11.1.el5,PHP:5.2.17)
+DEBUG	[2014-09-17 16:56:29:717] <377> inipayhome:/www/loosfly_godo_co_kr/shop/order/card/inipay
+DEBUG	[2014-09-17 16:56:29:717] <377> type:chkfake
+DEBUG	[2014-09-17 16:56:29:717] <377> debug:true
+DEBUG	[2014-09-17 16:56:29:717] <377> enctype:asym
+DEBUG	[2014-09-17 16:56:29:717] <377> admin:1111
+DEBUG	[2014-09-17 16:56:29:717] <377> checkopt:false
+DEBUG	[2014-09-17 16:56:29:717] <377> mid:GODOloosfl
+DEBUG	[2014-09-17 16:56:29:717] <377> price:153000
+DEBUG	[2014-09-17 16:56:29:717] <377> nointerest:no
+DEBUG	[2014-09-17 16:56:29:717] <377> quotabase:선택:일시불:2개월:3개월:4개월:5개월:6개월:7개월:8개월:9개월:10개월:11개월:12개월
+INFO	[2014-09-17 16:56:29:717] <377> Check Field OK
+INFO	[2014-09-17 16:56:29:725] <377> MERCHANT PRIV KEY LOAD OK
+INFO	[2014-09-17 16:56:29:729] <377> MERCHANT PUB KEY LOAD OK []
+INFO	[2014-09-17 16:56:29:734] <377> CHKFAKE KEY MAKE OK:MjAxNDA5MTcxNjU2Mjk3MzAxNzA2MQ==
+
+INFO	[2014-09-17 16:56:29:734] <377> END chkfake  Laptime:[0.04sec]
+INFO	[2014-09-17 16:56:29:734] <377> ===============================================================
+INFO	[2014-09-17 16:58:16:465] <19772> START INIPHP chkfake (V5031-111123)(OS:Linux2.6.18-371.11.1.el5,PHP:5.2.17)
+DEBUG	[2014-09-17 16:58:16:465] <19772> inipayhome:/www/loosfly_godo_co_kr/shop/order/card/inipay
+DEBUG	[2014-09-17 16:58:16:465] <19772> type:chkfake
+DEBUG	[2014-09-17 16:58:16:465] <19772> debug:true
+DEBUG	[2014-09-17 16:58:16:465] <19772> enctype:asym
+DEBUG	[2014-09-17 16:58:16:465] <19772> admin:1111
+DEBUG	[2014-09-17 16:58:16:465] <19772> checkopt:false
+DEBUG	[2014-09-17 16:58:16:465] <19772> mid:GODOloosfl
+DEBUG	[2014-09-17 16:58:16:465] <19772> price:153000
+DEBUG	[2014-09-17 16:58:16:465] <19772> nointerest:no
+DEBUG	[2014-09-17 16:58:16:465] <19772> quotabase:선택:일시불:2개월:3개월:4개월:5개월:6개월:7개월:8개월:9개월:10개월:11개월:12개월
+INFO	[2014-09-17 16:58:16:465] <19772> Check Field OK
+INFO	[2014-09-17 16:58:16:466] <19772> MERCHANT PRIV KEY LOAD OK
+INFO	[2014-09-17 16:58:16:466] <19772> MERCHANT PUB KEY LOAD OK []
+INFO	[2014-09-17 16:58:16:467] <19772> CHKFAKE KEY MAKE OK:MjAxNDA5MTcxNjU4MTY0NjYxMTQ0OQ==
+
+INFO	[2014-09-17 16:58:16:467] <19772> END chkfake  Laptime:[0sec]
+INFO	[2014-09-17 16:58:16:467] <19772> ===============================================================
+INFO	[2014-09-17 16:58:20:998] <383> START INIPHP chkfake (V5031-111123)(OS:Linux2.6.18-371.11.1.el5,PHP:5.2.17)
+DEBUG	[2014-09-17 16:58:20:998] <383> inipayhome:/www/loosfly_godo_co_kr/shop/order/card/inipay
+DEBUG	[2014-09-17 16:58:20:998] <383> type:chkfake
+DEBUG	[2014-09-17 16:58:20:998] <383> debug:true
+DEBUG	[2014-09-17 16:58:20:998] <383> enctype:asym
+DEBUG	[2014-09-17 16:58:20:998] <383> admin:1111
+DEBUG	[2014-09-17 16:58:20:998] <383> checkopt:false
+DEBUG	[2014-09-17 16:58:20:998] <383> mid:GODOloosfl
+DEBUG	[2014-09-17 16:58:20:998] <383> price:153000
+DEBUG	[2014-09-17 16:58:20:998] <383> nointerest:no
+DEBUG	[2014-09-17 16:58:20:998] <383> quotabase:선택:일시불:2개월:3개월:4개월:5개월:6개월:7개월:8개월:9개월:10개월:11개월:12개월
+INFO	[2014-09-17 16:58:20:999] <383> Check Field OK
+INFO	[2014-09-17 16:58:20:999] <383> MERCHANT PRIV KEY LOAD OK
+INFO	[2014-09-17 16:58:20:999] <383> MERCHANT PUB KEY LOAD OK []
+INFO	[2014-09-17 16:58:21:0] <383> CHKFAKE KEY MAKE OK:MjAxNDA5MTcxNjU4MjA5OTk2MTAzNQ==
+
+INFO	[2014-09-17 16:58:21:1] <383> END chkfake  Laptime:[0sec]
+INFO	[2014-09-17 16:58:21:1] <383> ===============================================================
+INFO	[2014-09-17 16:59:11:813] <386> START INIPHP securepay (V5031-111123)(OS:Linux2.6.18-371.11.1.el5,PHP:5.2.17)
+DEBUG	[2014-09-17 16:59:11:813] <386> inipayhome:/www/loosfly_godo_co_kr/shop/order/card/inipay
+DEBUG	[2014-09-17 16:59:11:813] <386> type:securepay
+DEBUG	[2014-09-17 16:59:11:813] <386> pgid:INIphpISP_
+DEBUG	[2014-09-17 16:59:11:813] <386> subpgip:203.238.3.10
+DEBUG	[2014-09-17 16:59:11:813] <386> admin:1111
+DEBUG	[2014-09-17 16:59:11:813] <386> debug:true
+DEBUG	[2014-09-17 16:59:11:813] <386> uid:
+DEBUG	[2014-09-17 16:59:11:813] <386> goodname:Black Sunback Mesh Leotard 외1건
+DEBUG	[2014-09-17 16:59:11:813] <386> currency:WON
+DEBUG	[2014-09-17 16:59:11:813] <386> mid:GODOloosfl
+DEBUG	[2014-09-17 16:59:11:813] <386> rn:MjAxNDA5MTcxNjU4MjA5OTk2MTAzNQ==
+
+DEBUG	[2014-09-17 16:59:11:813] <386> price:153000
+DEBUG	[2014-09-17 16:59:11:813] <386> enctype:
+DEBUG	[2014-09-17 16:59:11:813] <386> buyername:고다영
+DEBUG	[2014-09-17 16:59:11:813] <386> buyertel:010-4645-1950
+DEBUG	[2014-09-17 16:59:11:813] <386> buyeremail:koda1997@naver.com
+DEBUG	[2014-09-17 16:59:11:813] <386> paymethod:VCard
+DEBUG	[2014-09-17 16:59:11:813] <386> encrypted:Version=4.1&PayMethod=VCard&RsaKeyNum=1&EncryptionAlgorithm=NONE&SignAlgorithm=SHA1WithRSAEncryption&CertVer=39&moid=1410940620033&ver_trace=main(6086,6053)vcard(6078)card(6114,6104)n(6008)Cs(6022)Dt(6002)Pa(6002)Cf(6024)Fv(0000)La(6130)Re(6083)Vr(6006)P(6033)en(6038)&pg1=203.238.37.3&pg2=211.219.96.180&pg1ip=203.238.37.3&pg2ip=211.219.96.180&agreeflag=1111&rn=3/jEtW4/AEtd6j6A280LQ5GFuu9xjDzc61oierWSizo=
+&VCode=050100111247241&VQuota=03&VNoint=0&ip=105.4.220.25&mac=50B7C3A11C6F&cardpoint=9&custemail=koda1997@naver.com&price=4uDsrkVGcEsjjm3Is8QxAqyAlYVYtDDTlg==
+&below1000=0&encisp=0&pgnoint=1&VKBPoint=&VSessionKey=Y9JDfV8bF33jdLW%2bdds6D8RtVNxB%2bV1fJpF2SCv9YwdGpHLcl1TvmULyx958l9ot%0d%0aQLovYZTcBIJkYVifD7UrrHXXR0Cpprm2e5Xksob9EVe8x6WMyvodqo%2fOjhnyHyR8%0d%0abB987CcoqD4853P9BfYNdpuqfdUsAWHxO%2bNg0s6Sav8%3d%0d%0a&Data=Version%3d1.0%26KeyFlag%3d1%26KeyNum%3d1%26EncryptAlgorithm%3dSEED%2dCBC%26SignAlgorithm%3d%26Data%3dd8d6jSsSUGP3HcfT2cd8WLIaf3LIgpoESIqz%252b0wJ60DWVNetV8Bww9Fx%2faUGGDwD%250a9lRhC7TY9BWyG7V4PPFj46HibPuMhKthQuwRC2CGXOvEHGdDj7yehqzY6drazqcU%250aDW6%2fxuRZsIMkpsCrS2KcWfPZEvP0WankKZIbxz%252bM8u4g7TJ8l3ANIzpjaxEu7IPQ%250azLWJMBHGcDTtyxbPi4JLuoNEdyB1eOVi6A0oY5Gy70%252b5QoJZKhqDOh0WPP5o5kvP%250appUjtMA9VBfg9MaKX%252bLjvyGEaXmDe7eD43o6z8jZGWmRkGi9ZwM5z%252bqj22Dg%2fnjH%250aMNqdhGaUVqsmEEO2zYVV0xie%2fQJHmGp2VX5HtVMAVQGUJKlJzfKPbV25RwI9ABm0%250aqNoQc6qAb1B3de%2f%2f806FMbxpMy9yri40n5wMV%252bUGemZ%2f6aFJ2mNyEs05VwhDrpb%252b%250aSWQ9xol8ev3GLtDCJpiqTosVdtGWzjn9AqlSux6gCvC2IcTOvDGlQ8ZbyTi%252bFSFL%250aDXfEv99Vh197yJK7RanK%252bsFOAQv3ZatRjoYJ53FyLWFMkXSSRfQ2kfUPArT4VdES%250avAPcGbXaArMMLb7Sjo1lKIp8wPA5KzmFo1mDSlbjYpR9uUpRI7C30sB%252bx%252bGoL6WJ%250a%26PubCert%3d&ts=140917165917tgzvZm2BPwBDJpRpxWav9A007666&src_flg=0&OSv=IE9_Win7 6.01.7601 SP1 Home Edition (CDN) (notray:J) [GODOloosfl] (61_secunissl_npapi)&ip2=211.114.22.134
+DEBUG	[2014-09-17 16:59:11:813] <386> sessionkey:VCard
+DEBUG	[2014-09-17 16:59:11:813] <386> url:http://www.loosfly.com
+DEBUG	[2014-09-17 16:59:11:813] <386> cardcode:11
+DEBUG	[2014-09-17 16:59:11:813] <386> parentemail:koda1997@naver.com
+DEBUG	[2014-09-17 16:59:11:813] <386> recvname:고다영
+DEBUG	[2014-09-17 16:59:11:813] <386> recvtel:010-4645-1950
+DEBUG	[2014-09-17 16:59:11:813] <386> recvaddr:경기도 안양시 만안구 안양동 767 성원1차아파트 103동309호
+DEBUG	[2014-09-17 16:59:11:813] <386> recvpostnum:430-717
+DEBUG	[2014-09-17 16:59:11:813] <386> recvmsg:빠른 배송부탁드립니다.
+블랠집업탐은 xs이 없어서 s로 주문하는데 크면 교환신청하겠습니다.
+DEBUG	[2014-09-17 16:59:11:813] <386> joincard:
+DEBUG	[2014-09-17 16:59:11:813] <386> joinexpire:
+DEBUG	[2014-09-17 16:59:11:813] <386> id_customer:
+INFO	[2014-09-17 16:59:11:813] <386> Check Field OK
+INFO	[2014-09-17 16:59:11:813] <386> Make TID OK INIphpISP_GODOloosfl20140917165911138784
+INFO	[2014-09-17 16:59:11:814] <386> PI PUB KEY LOAD OK [39]
+INFO	[2014-09-17 16:59:11:820] <386> PG PUB KEY LOAD OK [30]
+INFO	[2014-09-17 16:59:11:820] <386> MERCHANT PRIV KEY LOAD OK
+INFO	[2014-09-17 16:59:11:821] <386> MERCHANT PUB KEY LOAD OK [0]
+INFO	[2014-09-17 16:59:11:822] <386> MAKE BODY OK
+INFO	[2014-09-17 16:59:11:823] <386> SIGN OK
+INFO	[2014-09-17 16:59:11:824] <386> MAKE HEAD OK
+INFO	[2014-09-17 16:59:11:824] <386> MSG_TO_PG:[0405600175R SHA1                   0                  39                  300200GODOloosfl              153000INIphpISP_GODOloosfl20140917165911138784<?xml version="1.0" encoding="UTF-8"?>
+<INIpay>
+	  <GoodsInfo>
+	    <GoodsCnt>1</GoodsCnt>
+	    <MOID/>
+	    <Currency>WON</Currency>
+	    <Tax/>
+	    <TaxFree/>
+	    <Goods>
+	      <SMID>GODOloosfl</SMID>
+	      <GoodsName urlencode="1">Black+Sunback+Mesh+Leotard+%BF%DC1%B0%C7</GoodsName>
+	      <GoodsPrice>153000</GoodsPrice></Goods></GoodsInfo>
+	  <BuyerInfo>
+	    <BuyerName urlencode="1">%B0%ED%B4%D9%BF%B5</BuyerName>
+	    <BuyerTel>010-4645-1950</BuyerTel>
+	    <BuyerEmail urlencode="1">koda1997%40naver.com</BuyerEmail>
+	    <ParentEmail urlencode="1">koda1997%40naver.com</ParentEmail>
+	    <RecvName urlencode="1">%B0%ED%B4%D9%BF%B5</RecvName>
+	    <RecvTel urlencode="1">010-4645-1950</RecvTel>
+	    <RecvMsg urlencode="1">%BA%FC%B8%A5+%B9%E8%BC%DB%BA%CE%C5%B9%B5%E5%B8%B3%B4%CF%B4%D9.%0D%0A%BA%ED%B7%A4%C1%FD%BE%F7%C5%BD%C0%BA+xs%C0%CC+%BE%F8%BE%EE%BC%AD+s%B7%CE+%C1%D6%B9%AE%C7%CF%B4%C2%B5%A5+%C5%A9%B8%E9+%B1%B3%C8%AF%BD%C5%C3%BB%C7%CF%B0%DA%BD%C0%B4%CF%B4%D9.</RecvMsg>
+	    <RecvAddr urlencode="1">%B0%E6%B1%E2%B5%B5+%BE%C8%BE%E7%BD%C3+%B8%B8%BE%C8%B1%B8+%BE%C8%BE%E7%B5%BF+767+%BC%BA%BF%F81%C2%F7%BE%C6%C6%C4%C6%AE+103%B5%BF309%C8%A3</RecvAddr>
+	    <RecvPostNum urlencode="1">430-717</RecvPostNum></BuyerInfo>
+	  <PaymentInfo>
+	    <Payment>
+	      <PayMethod>VCard</PayMethod>
+	      <JoinCard/>
+	      <JoinExpire/>
+	      <MailOrder/>
+	      <SessionKey>VCard</SessionKey>
+	      <Encrypted urlencode="1">Version%3D4.1%26PayMethod%3DVCard%26RsaKeyNum%3D1%26EncryptionAlgorithm%3DNONE%26SignAlgorithm%3DSHA1WithRSAEncryption%26CertVer%3D39%26moid%3D1410940620033%26ver_trace%3Dmain%286086%2C6053%29vcard%286078%29card%286114%2C6104%29n%286008%29Cs%286022%29Dt%286002%29Pa%286002%29Cf%286024%29Fv%280000%29La%286130%29Re%286083%29Vr%286006%29P%286033%29en%286038%29%26pg1%3D203.238.37.3%26pg2%3D211.219.96.180%26pg1ip%3D203.238.37.3%26pg2ip%3D211.219.96.180%26agreeflag%3D1111%26rn%3D3%2FjEtW4%2FAEtd6j6A280LQ5GFuu9xjDzc61oierWSizo%3D%0D%0A%26VCode%3D050100111247241%26VQuota%3D03%26VNoint%3D0%26ip%3D105.4.220.25%26mac%3D50B7C3A11C6F%26cardpoint%3D9%26custemail%3Dkoda1997%40naver.com%26price%3D4uDsrkVGcEsjjm3Is8QxAqyAlYVYtDDTlg%3D%3D%0D%0A%26below1000%3D0%26encisp%3D0%26pgnoint%3D1%26VKBPoint%3D%26VSessionKey%3DY9JDfV8bF33jdLW%252bdds6D8RtVNxB%252bV1fJpF2SCv9YwdGpHLcl1TvmULyx958l9ot%250d%250aQLovYZTcBIJkYVifD7UrrHXXR0Cpprm2e5Xksob9EVe8x6WMyvodqo%252fOjhnyHyR8%250d%250abB987CcoqD4853P9BfYNdpuqfdUsAWHxO%252bNg0s6Sav8%253d%250d%250a%26Data%3DVersion%253d1.0%2526KeyFlag%253d1%2526KeyNum%253d1%2526EncryptAlgorithm%253dSEED%252dCBC%2526SignAlgorithm%253d%2526Data%253dd8d6jSsSUGP3HcfT2cd8WLIaf3LIgpoESIqz%25252b0wJ60DWVNetV8Bww9Fx%252faUGGDwD%25250a9lRhC7TY9BWyG7V4PPFj46HibPuMhKthQuwRC2CGXOvEHGdDj7yehqzY6drazqcU%25250aDW6%252fxuRZsIMkpsCrS2KcWfPZEvP0WankKZIbxz%25252bM8u4g7TJ8l3ANIzpjaxEu7IPQ%25250azLWJMBHGcDTtyxbPi4JLuoNEdyB1eOVi6A0oY5Gy70%25252b5QoJZKhqDOh0WPP5o5kvP%25250appUjtMA9VBfg9MaKX%25252bLjvyGEaXmDe7eD43o6z8jZGWmRkGi9ZwM5z%25252bqj22Dg%252fnjH%25250aMNqdhGaUVqsmEEO2zYVV0xie%252fQJHmGp2VX5HtVMAVQGUJKlJzfKPbV25RwI9ABm0%25250aqNoQc6qAb1B3de%252f%252f806FMbxpMy9yri40n5wMV%25252bUGemZ%252f6aFJ2mNyEs05VwhDrpb%25252b%25250aSWQ9xol8ev3GLtDCJpiqTosVdtGWzjn9AqlSux6gCvC2IcTOvDGlQ8ZbyTi%25252bFSFL%25250aDXfEv99Vh197yJK7RanK%25252bsFOAQv3ZatRjoYJ53FyLWFMkXSSRfQ2kfUPArT4VdES%25250avAPcGbXaArMMLb7Sjo1lKIp8wPA5KzmFo1mDSlbjYpR9uUpRI7C30sB%25252bx%25252bGoL6WJ%25250a%2526PubCert%253d%26ts%3D140917165917tgzvZm2BPwBDJpRpxWav9A007666%26src_flg%3D0%26OSv%3DIE9_Win7+6.01.7601+SP1+Home+Edition+%28CDN%29+%28notray%3AJ%29+%5BGODOloosfl%5D+%2861_secunissl_npapi%29%26ip2%3D211.114.22.134</Encrypted></Payment></PaymentInfo>
+	  <ReservedInfo>
+	    <MReserved1/>
+	    <MReserved2/>
+	    <MReserved3/></ReservedInfo>
+	  <ManageInfo>
+	    <Language/>
+	    <URL urlencode="1">http%3A%2F%2Fwww.loosfly.com</URL>
+	    <TXVersion>5031B111123securLinux     PHPchkfake   2.6.18-371.11.1.el5PHP:5.2.17 </TXVersion>
+	    <TXUserID/>
+	    <TXRegNum/>
+	    <Ack>1</Ack>
+	    <TXRN>MjAxNDA5MTcxNjU4MjA5OTk2MTAzNQ==
+</TXRN></ManageInfo></INIpay>AJ6ze5cVOUxinWugkTMsLCX3ES3RaE9x91E29VWj61km3BsPYH5Kz3zUhv8aUI8M
+sFgxbLUAM+DH76WqA2E2TbYDODArgI4cqgLN1r18KAUooPByX7Ef3mozWUf9wGF8
+SX/OogMB2bVBkU2DHovmf6OpuSmSbyBCGh6o6MH/8a40
+]
+INFO	[2014-09-17 16:59:11:824] <386> DNS LOOKUP OK(203.238.37.3:203.238.37.3:34049) laptime:0
+INFO	[2014-09-17 16:59:11:827] <386> SOCKET CONNECT OK
+INFO	[2014-09-17 16:59:11:827] <386> SEND OK
+INFO	[2014-09-17 16:59:13:407] <386> RECV OK
+INFO	[2014-09-17 16:59:13:407] <386> MSG_FROM_PG:[0269000175D SHA1                   0                  39                  300210GODOloosfl              153000INIphpISP_GODOloosfl20140917165911138784<?xml version="1.0" encoding="UTF-8"?>
+<INIpay>
+  <GoodsInfo>
+    <GoodsCnt>1</GoodsCnt>
+    <MOID urlencode="1">1410940620033</MOID>
+    <Currency>WON</Currency>
+    <Goods no="1">
+      <SMID>GODOloosfl</SMID>
+      <GoodsName urlencode="1">Black+Sunback+Mesh+Leotard+%BF%DC1%B0%C7</GoodsName>
+      <GoodsCntS>1</GoodsCntS>
+      <GoodsPrice>153000</GoodsPrice>
+    </Goods>
+  </GoodsInfo>
+  <PaymentInfo>
+    <Payment>
+      <SessionKey>ASoiDBX9EX5CHyE01EmaU2FcJw2GyGeyiFrzANIvqES7mON9mx86cCTB6UJHUU5r
+02kUwWej00Rs0ySxT5+CFtEy+oXNyx8vU3vrKj5KXWvE16ofa6Cv72jmXqGs3rwh
+hyScXyJl75MEq6Qn6LU/0qoKk1SA5ygNasiGx8kvBzhhdu7ARPt6DGg=
+</SessionKey>
+      <Encrypted>94lceLp+yaXJgGOZZ3cwtxDYk2hhcTyjkenkU77miYSMh7igG5kv1TeUUPlKPo5V
+y2NHlyldnYlRcn5TWSKLeVaTtNlegRYilzxUkYS7ECyMiyUFIRHfCsxru34ReWlP
+ARuNpUkV13D/NetP/eZFA7nnsbrZDtzm9N/BILVvptfEOfUg44vh57X1AnL1UyY2
+UNuRVkYeM0QzY5jyFT3kF7pV0koNkgtJki+9E1bXxLlTYW2Fxy8Q0AwB1dH+l8Wn
+SSKq92iIum8+v4LIQqRzaicvlKBW7pNgzXDuVW7zRQKfDJ+n3Zwqq1HD5UcyMSbg
+LDtLOy9yFGvRZFs8A+QU7K80+LRiNXhybbDYh4vR4ZLUfyLhb7D6/s4z4kOqrD51
+fH20CcleG7g3JpXL3wTqNJuOUVQtrVgJhP+FOUuA/5nEbq+8Nk042yTT99bnuoKh
+CoZzsGo7TCDI9lBqm2SUKyz6hyp8Btt09q+27X+/02wvhiL4hkN+10+MrIxbYXud
+b8/Pck9DFLHV9K80+88KocHgLNWKSPruaARMBpiGqsCesYChBzS7GnIuHWVZd+oX
+5AqxzcS7sS40wE1+mgCvkvCub0pboQ30dDFP17gjBYagfosCw/X71P0cOQt4jNgZ
+CWokREhx0YqH0MvAvaAyzgOFRf/3CJm+txoJWlOUU/9GfxHcib4/ECI4U/L1dfS9
+9nBZO7Rcb35MyOOuOhpfkd4QjQEaNI4qyyYV2lyQGU5JkAqIJhchWNR15aN3bWyz
+KRH05jqbCqKpfVeRnvbmZMKWv80EK8RVSGxZXjuBD65Gkqe8amUf2kxgLMDykOmb
+sN7DIlKorzFZXIG+8dJAKlRVYx9MgawRbIBA/pzlpFUiVe8fSO7IsmHXz1mYLBA/
+O3jou1eAr1FnB2aOQq0TQqK6ol7eFjY95kt3oB4FXIVN7skFt0I6rMOtAGIHQvtK
+nwZRvclNF0dWSb+FumXt+xZWVfqXuIElKipRC1f+C55wPUNpWKb9jekr40M1WIpd
+OJVAwnUNiCj//wiKSIY+V4+7SWurvCMfrgNx+4GrwdzV5cuFHXI5tyI8JOsncY0r
+VC9PkPVEFudbcDFc9NRH772BFW804XgLQbtuE5ouGNGn/vmKu8GvIW3Ro0oNOD0v
+6u2PX48LbD+Lh+SdCXNB61YiCv2EkJD7qPF05l+/il+C1r5IUkN54zPUMtYTib1j
+/GkxDTwaHtY1TPoUi2zDnMPFnDqkyHqkfuuvXGIlvyzklN9ULZXa4NKIguer/fXU
+saGLplrl701VfBmPHko7dggcSeD6OXBXrSULBoHM0A+mTIUG7Do5n5b2DL4wXnID
+dWPU+PjVQTg=
+</Encrypted>
+      <PayMethod>VCard</PayMethod>
+      <ResultCode>170000</ResultCode>
+      <ResultMsg urlencode="1">%C1%A4%BB%F3%BF%CF%B7%E1</ResultMsg>
+    </Payment>
+  </PaymentInfo>
+  <ManageInfo>
+    <EventCode>1</EventCode>
+    <OrgCurrency></OrgCurrency>
+    <ExchangeRate></ExchangeRate>
+    <OrgPrice></OrgPrice>
+  </ManageInfo>
+  <ReservedInfo>
+    <MReserved1 urlencode="1"></MReserved1>
+    <MReserved2 urlencode="1"></MReserved2>
+    <MReserved3 urlencode="1"></MReserved3>
+    <PGReserved1 urlencode="1"></PGReserved1>
+    <PGReserved2 urlencode="1"></PGReserved2>
+    <PGReserved3 urlencode="1"></PGReserved3>
+  </ReservedInfo>
+</INIpay>
+x7Q1DEjBHQ8OyP8CjnBJG/2egGoUeT9Agut9FDWyjou0eFRFg6qFcn6RFc+QONe6
+VfB0nY1G3tOhr09XCvDmRvl6JaX71h5F9W5aRj19AUWX7OLOd7PQmZzvvxGwaE1e
+82CNIFJAc4IfByixKCe+eFc9IV+qdp4RCqns8Um7Ehs=
+]
+INFO	[2014-09-17 16:59:13:407] <386> VERIFY OK
+INFO	[2014-09-17 16:59:13:407] <386> PARSE HEAD OK
+INFO	[2014-09-17 16:59:13:409] <386> PARSE BODY OK
+INFO	[2014-09-17 16:59:13:411] <386> DECRYPT OK
+DEBUG	[2014-09-17 16:59:13:412] <386> DECRYPT MSG:[<?xml version="1.0" encoding="UTF-8"?>
+<PaymentInfo>
+  <Payment>
+    <EASYPAY/>
+    <VCard>
+      <ISP_ApplPrice>153000</ISP_ApplPrice>
+      <ISP_BankCode>00</ISP_BankCode>
+      <ISP_Quota>03</ISP_Quota>
+      <ISP_Interest>0</ISP_Interest>
+      <ISP_CardCode>11</ISP_CardCode>
+      <ISP_CardNum>53881143****</ISP_CardNum>
+      <ISP_Point></ISP_Point>
+      <ISP_ApplDate>20140917</ISP_ApplDate>
+      <ISP_ApplTime>165912</ISP_ApplTime>
+      <ISP_ApplNum>48539495</ISP_ApplNum>
+      <ISP_TerminalNum>019048y000</ISP_TerminalNum>
+      <ISP_MemberNum></ISP_MemberNum>
+      <ISP_PurchaseCode></ISP_PurchaseCode>
+      <ISP_ResultCode>170000</ISP_ResultCode>
+      <ISP_ResultMsg urlencode="1">%C1%A4%BB%F3%BF%CF%B7%E1</ISP_ResultMsg>
+      <ISP_PrtcCode>1</ISP_PrtcCode>
+      <ISP_Quota_Point>03</ISP_Quota_Point>
+      <ISP_CheckFlag>0</ISP_CheckFlag>
+      <ISP_PurchaseName urlencode="1"></ISP_PurchaseName>
+      <ISP_IssuerName urlencode="1"></ISP_IssuerName>
+    </VCard>
+  </Payment>
+</PaymentInfo>]
+INFO	[2014-09-17 16:59:13:413] <386> DECRYPT PARSE OK
+INFO	[2014-09-17 16:59:13:413] <386> WAIT ACK INVOKING
+DEBUG	[2014-09-17 16:59:13:413] <386> MAKE HEAD OK
+INFO	[2014-09-17 16:59:13:417] <386> SUCCESS ACK INVOKING
+INFO	[2014-09-17 16:59:13:417] <386> END securepay 정상완료 Laptime:[1.61sec]
+INFO	[2014-09-17 16:59:13:417] <386> ===============================================================

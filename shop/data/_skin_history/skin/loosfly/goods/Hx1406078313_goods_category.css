@@ -1,0 +1,16 @@
+@charset "EUC-KR";
+/* CSS Document */
+
+.bxCatImg { position:relative;width:860px;height:500px;border:#3f3f3f 1px solid; border-bottom-width:0;margin:0 0 0 10px}
+.catimg_outline {position:relative; height:500px; padding:0; }
+.catimg_box {position:relative; width:860px; height:500px; overflow:hidden;}
+.catimg_box  img {width:860px; height:500px;}
+.catimg_outline .catimg_box div {position:absolute; width:860px; height:500px; overflow:hidden; zoom:1;}
+.catimg_outline:after {clear:both; display:block; content:"";}
+.btn_catL, .btn_catR { display: block; background: url('/shop/data/skin/loosfly/img/jimmy/total_02.png') no-repeat; } 
+.btn_catR { position:absolute; top:236px; right:10px; background-position: 0px -27px; width: 27px; height: 27px; z-index:2;filter:alpha(opacity=20);-ms-filter:"progid:DXImageTransForm.Microsoft.Alpha(Opacity=20)";opacity:0.2; }
+.btn_catL { position:absolute; top:236px; left:10px; background-position: -27px -27px; width: 27px; height: 27px; z-index:2;filter:alpha(opacity=20);-ms-filter:"progid:DXImageTransForm.Microsoft.Alpha(Opacity=20)";opacity:0.2; }
+.cat_div { position:relative; width:860px; height:500px;}
+.bxCatNav { position:relative;width:860px;height:25px;color:#3f3f3f;background-color:#efefef;margin:0 0 0 10px;border:#cfcfcf 1px solid;border-top-width:0;}
+.bxCatNav ul { position:relative;display:inline; }
+.bxCatNav ul li.current { background-color:#71cbd2;filter:alpha(opacity=50);-ms-filter:"progid:DXImageTransForm.Microsoft.Alpha(Opacity=50)";opacity:0.5;color:#111111; }

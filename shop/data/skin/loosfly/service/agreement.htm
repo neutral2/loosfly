@@ -1,0 +1,27 @@
+{*** 이용약관 | service/agreement.php ***}
+{ # header }
+<!-- 상단이미지 || 현재위치 -->
+	<!--{ ? this->tpl_['side_inc'] }-->
+		<div class="blkLeftMenu">
+			{ # side_inc // 측면디자인 }
+		</div>
+	<!--{ / }-->
+	<div id="blkContents">
+		<div style="height:7px;"></div>
+		<!-- 상단이미지 -->
+		<div id="bxBodyTitle">
+			<img src="/shop/data/skin/loosfly/img/jimmy/titles/agreement_title_01.gif" border="0">			
+		</div>
+		<div style="height:20px;"></div>
+		<div class="divindiv"><!-- Start indiv -->
+			<div id="agreePaste" style="text-align:left;" class="hundred"></div>
+		</div><!-- End indiv -->
+
+
+<!-- 지우지 마세요 - agreePaste로 Text 약관을 붙여넣는 소스임 : start -->
+<textarea style="width:0; height:0; display:none;" id="agreeCopy"><!--{ = include_file( "proc/_agreement.txt" ) }--></textarea>
+<script language="javascript">document.getElementById('agreePaste').innerHTML = document.getElementById('agreeCopy').value.replace( /\n/ig, "<br>");</script>
+<!-- 지우지 마세요 : end -->
+		<div style="height:30px;"></div>
+	</div>
+{ # footer }

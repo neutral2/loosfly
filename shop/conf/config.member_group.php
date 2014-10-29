@@ -1,0 +1,27 @@
+<? 
+$member_grp_ruleset = array( 
+'automaticFl' => 'n',
+'apprSystem' => 'point',
+'apprPointTitle' => '',
+'apprPointLabel' => '',
+'apprPointOrderPrice' => '1',
+'apprPointOrderPriceUnit' => '100000',
+'apprPointOrderPricePoint' => '10',
+'mobile_apprPointOrderPriceUnit' => '',
+'mobile_apprPointOrderPricePoint' => '',
+'apprPointOrderRepeat' => '1',
+'apprPointOrderRepeatPoint' => '10',
+'mobile_apprPointOrderRepeatPoint' => '',
+'apprPointReviewRepeatPoint' => '',
+'mobile_apprPointReviewRepeatPoint' => '',
+'apprPointLoginRepeatPoint' => '',
+'mobile_apprPointLoginRepeatPoint' => '',
+'calcPeriodFl' => 'y',
+'calcPeriodBegin' => '-1d',
+'calcPeriodMonth' => '6',
+'calcCycleMonth' => '6',
+'calcCycleDay' => '1',
+'calcKeep' => '6',
+'useMypageLayerBox' => 'y',
+); 
+?>

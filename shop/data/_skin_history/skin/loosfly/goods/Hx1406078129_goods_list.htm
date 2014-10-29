@@ -1,0 +1,449 @@
+{*** _____분류화면_____ | goods/goods_list.php ***}
+{ # header }
+
+<link rel="stylesheet" href="/shop/data/skin/loosfly/goods/goods_category.css" />
+<script type="text/javascript" language="javascript" src="/shop/data/skin/loosfly/goods/goods_category.js"></script>
+	<!--{ ? this->tpl_['side_inc'] }-->
+		<div class="blkLeftMenu">
+			{ # side_inc // 측면디자인 }
+		</div>
+	<!--{ / }-->
+	<div id="blkContents">
+		<div style="height:15px;"></div>
+<?PHP 
+	$lfy_goods_knames = array("001"=>"tops", "002"=>"bottoms", "003"=>"leotards", "004"=>"unitards", "005"=>"women's", "006"=>"men's", "007"=>"lace & mesh", "008"=>"fullness pants", "009"=>"tights", "010"=>"accessories","011"=>"2014 Collection", "012"=>"collaboration", "012001"=>"WHY JAY","013"=>"Spot Sale","014"=>"Featured Products","015"=>"Limited Sale"); 
+	$lfy_goods_desc = array(
+"001"=>"루스플라이의 상의는 피트감이 뛰어나면서도 입체적인 패턴으로 상체동작에 편안함을 더해줍니다.", 
+"002"=>"루스플라이의 바지는 바디에 피트되는 세미타이트 라인과 편안하게 입을 수 있는 풀니스 라인으로 구성됩니다.", 
+"003"=>"루스플라이의 레오타드는 오랜기간 무용의상을 제작하면서 축적된 인체에 대한 깊은 이해에서 출발했습니다. 입체적인 패턴으로 어떤 동작에서도 편안한 착용감을 자랑하며, 최고급 원단을 사용하여 높은 기능성을 제공합니다. 아름다운 레이스와 트렌디한 실루엣으로 세련되면서도 우아한 멋까지 더해줍니다.", 
+"004"=>"루스플라이의 유니타드는 준비중입니다.2013년 3분기에 출시됩니다.", 
+"005"=>"여성을 위한 루스플라이 제품군", 
+"006"=>"남성을 위한 루스플라이 제품군", 
+"007"=>"루스플라이는 레이스와 망사를 과감히 사용하여 우아한 멋을 더해드립니다.", 
+"008"=>"루스플라이의 편안한 바지들", 
+"009"=>"타이트한 핏을 원하신다면...", 
+"010"=>"루스플라이는 활동적인 당신을 위한 다양한 액세서리들을 제공합니다.",
+"011"=>"루스플라이가 2014년에 새롭게 선보이는 스프링컬렉션입니다. 비비드한 컬러로 생동감 있는 연출이 돋보입니다.",
+"013"=>"한 달에 한번, 매월 첫번째 월요일에 찾아오는 루스플라이의 스팟세일! 24시간동안 최고 50%의 행운을 누려보세요. <b>회원가입</b>하시면 바로 이용하실 수 있습니다.", 
+"014"=>"루스플라이의 다양한 반바지 제품과 함께 시원하고 활동적인 여름을....", 
+"015"=>"인기리에 판매되던 루스플라이의 3가지 제품이 원단 단종으로 인하여 신규생산이 종료되었습니다. 해당 제품은 온라인스토어와 루스플라이 직영전시장에서 구입 가능하며, 재고수량에 한하여 한정판매됩니다.", 
+"012"=>"루스플라이는 다양한 분야 전문가들과의 협업을 통하여 과감하고 실험적인 시도를 함으로써, 소비자의 다양한 요구에 부응하도록 노력하고 있습니다.", 
+"012001"=>"WHY JAY는 디자이너 박윤정의 명문 머릿글자 Y,J에서 출발, 대량생산과 패스트 패션이 당연시 되고 희소한 오리지널리티들을 바탕으로 무한증식하는 현대 패션에 \"WHY?\"라는 물음을 던지는 철학을 담은 브랜드네임입니다. SPA와 내셔널브랜드에서 볼 수 없는 손맛을 내고, 디자이너와 소비자와의 거리를 더욱 가까이 하도록 합니다. 현실적인 패션피플들의 감성을 충족시키는 대안으로서의 옷이 '와이제이'의 옷입니다. 박윤정 디자이너를 주축으로 3대에 걸친 패션패밀리가 가진 해리티지를 바탕으로 매 시즌 새로운 패턴을 연구, 개발하여 선보입니다."); 
+	if( {_category} == "012001" ) {
+?>
+		<div style="text-align:center;font-size:16px;font-family:'Courier New';letter-spacing:3px;">WHY JAY</div>
+<?PHP } else { ?>
+		<div style="text-align:center;font-size:16px;font-family:'Courier New';letter-spacing:3px;">loosfly <?PHP echo $lfy_goods_knames[{_category}]; ?></div>
+<?PHP } ?>
+		<div style="height:5px;"></div>
+<?PHP if( {_category} == "001" ) { /***	TOPS 	***/?>
+<style>
+.bxCatNav ul li { position:relative;display:block;float:left;width:429px;text-align:center;font:normal 13px/25px "Courier New";cursor:pointer;letter-spacing:-1px }
+.bxCatNav ul li.middle { border:#000000 0 dotted;border-right-width:1px;width:430px; }
+</style>
+	<div id="bxCatImg" class="bxCatImg">
+		<div id="catimg_outline" class="catimg_outline">
+			<span class="btn_catL"></span>
+			<span class="btn_catR"></span>
+			<div id="catimg_box" class="catimg_box">
+				<div id="cat_div1" class="cat_div" style="left:0px; "><a href="/shop/goods/goods_view.php?goodsno=13&category=001"><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/tops/shop_tops_01.jpg"></a></div>
+				<div id="cat_div2" class="cat_div" style="left:860px; "><a href="/shop/goods/goods_view.php?goodsno=14&category=001"><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/tops/shop_tops_02.jpg"></a></div>
+			</div>
+		</div>
+	</div>
+	<div id="bxCatNav" class="bxCatNav">
+		<ul>
+			<li class="middle current" onclick="goto_pic(1)">Slitneck Top</li>
+			<li onclick="goto_pic(2)">Zipup Lace Top</li>
+		</ul>
+	</div>
+<?PHP } else if( {_category} == "002" ) { /***	BOTTOMS  	***/?>
+<style>
+.bxCatNav ul li { position:relative;display:block;float:left;width:860px;text-align:center;font:normal 13px/25px "Courier New";cursor:pointer;letter-spacing:-1px }
+.bxCatNav ul li.middle { border:#000000 0 dotted;border-right-width:1px; }
+</style>
+	<div id="bxCatImg" class="bxCatImg">
+		<div id="catimg_outline" class="catimg_outline">
+			<span class="btn_catL"></span>
+			<span class="btn_catR"></span>
+			<div id="catimg_box" class="catimg_box">
+				<div id="cat_div1" class="cat_div" style="left:0px; "><a href="/shop/goods/goods_view.php?goodsno=15&category=002"><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/bottoms/shop_bottoms_01.jpg"></a></div>
+			</div>
+		</div>
+	</div>
+	<div id="bxCatNav" class="bxCatNav">
+		<ul>
+			<li class="middle current" onclick="goto_pic(1)">Shorts</li>
+		</ul>
+	</div>
+<?PHP } else if( {_category} == "003" ) { /***	LEOTARDS 	***/?>
+<style>
+.bxCatNav ul li { position:relative;display:block;float:left;width:286px;text-align:center;font:normal 13px/25px "Courier New";cursor:pointer;letter-spacing:-1px }
+.bxCatNav ul li.middle { border:#000000 0 dotted;border-right-width:1px; }
+</style>
+	<div id="bxCatImg" class="bxCatImg">
+		<div id="catimg_outline" class="catimg_outline">
+			<span class="btn_catL"></span>
+			<span class="btn_catR"></span>
+			<div id="catimg_box" class="catimg_box">
+				<div id="cat_div1" class="cat_div" style="left:0px; "><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/leotards/shop_leotards_01.jpg"></div>
+				<div id="cat_div2" class="cat_div" style="left:860px; "><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/leotards/shop_leotards_02.jpg"></div>
+				<div id="cat_div3" class="cat_div" style="left:1720px; "><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/leotards/shop_leotards_03.jpg"></div>
+			</div>
+		</div>
+	</div>
+	<div id="bxCatNav" class="bxCatNav">
+		<ul>
+			<li class="middle current" onclick="goto_pic(1)">Basic Lace Leotard</li>
+			<li class="middle" onclick="goto_pic(2)">Highneck Zipup Leotard</li>
+			<li onclick="goto_pic(3)">Black Marble Leotard</li>
+		</ul>
+	</div>
+<?PHP } else if( {_category} == "004" ) { /***	UNITARDS  	***/?>
+<style>
+.bxCatNav ul li { position:relative;display:block;float:left;width:860px;text-align:center;font:normal 13px/25px "Courier New";cursor:pointer;letter-spacing:-1px }
+.bxCatNav ul li.middle { border:#000000 0 dotted;border-right-width:1px; }
+</style>
+	<div id="bxCatImg" class="bxCatImg">
+		<div id="catimg_outline" class="catimg_outline">
+			<span class="btn_catL"></span>
+			<span class="btn_catR"></span>
+			<div id="catimg_box" class="catimg_box">
+				<div id="cat_div1" class="cat_div" style="left:0px; "><a href="#"><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/unitards/shop_unitards_01.jpg"></a></div>
+			</div>
+		</div>
+	</div>
+	<div id="bxCatNav" class="bxCatNav">
+		<ul>
+			<li class="middle current" onclick="goto_pic(1)">Unitards will be released in Q3 2013.</li>
+		</ul>
+	</div>
+<?PHP } else if( {_category} == "005" ) { /***	WOMEN 	***/?>
+<style>
+.bxCatNav ul li { position:relative;display:block;float:left;width:860px;text-align:center;font:normal 13px/25px "Courier New";cursor:pointer;letter-spacing:-1px }
+.bxCatNav ul li.middle { border:#000000 0 dotted;border-right-width:1px; }
+</style>
+	<div id="bxCatImg" class="bxCatImg">
+		<div id="catimg_outline" class="catimg_outline">
+			<span class="btn_catL"></span>
+			<span class="btn_catR"></span>
+			<div id="catimg_box" class="catimg_box">
+				<div id="cat_div1" class="cat_div" style="left:0px; "><a href="/shop/goods/goods_list.php?category=005"><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/women/shop_women_01.jpg"></a></div>
+			</div>
+		</div>
+	</div>
+	<div id="bxCatNav" class="bxCatNav">
+		<ul>
+			<li class="middle current" onclick="goto_pic(1)">Women in loosfly</li>
+		</ul>
+	</div>
+<?PHP } else if( {_category} == "006" ) { /***	MEN  	***/?>
+<style>
+.bxCatNav ul li { position:relative;display:block;float:left;width:860px;text-align:center;font:normal 13px/25px "Courier New";cursor:pointer;letter-spacing:-1px }
+.bxCatNav ul li.middle { border:#000000 0 dotted;border-right-width:1px; }
+</style>
+	<div id="bxCatImg" class="bxCatImg">
+		<div id="catimg_outline" class="catimg_outline">
+			<span class="btn_catL"></span>
+			<span class="btn_catR"></span>
+			<div id="catimg_box" class="catimg_box">
+				<div id="cat_div1" class="cat_div" style="left:0px; "><a href="/shop/goods/goods_list.php?category=006"><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/men/shop_men_01.jpg"></a></div>
+			</div>
+		</div>
+	</div>
+	<div id="bxCatNav" class="bxCatNav">
+		<ul>
+			<li class="middle current" onclick="goto_pic(1)">Men in loosfly</li>
+		</ul>
+	</div>
+<?PHP } else if( {_category} == "007" ) { /***	LACE/MESH 	***/?>
+<style>
+.bxCatNav ul li { position:relative;display:block;float:left;width:860px;text-align:center;font:normal 13px/25px "Courier New";cursor:pointer;letter-spacing:-1px }
+.bxCatNav ul li.middle { border:#000000 0 dotted;border-right-width:1px; }
+</style>
+	<div id="bxCatImg" class="bxCatImg">
+		<div id="catimg_outline" class="catimg_outline">
+			<span class="btn_catL"></span>
+			<span class="btn_catR"></span>
+			<div id="catimg_box" class="catimg_box">
+				<div id="cat_div1" class="cat_div" style="left:0px; "><a href="/shop/goods/goods_list.php?category=007"><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/lace_mesh/shop_lacenmesh_01.jpg"></a></div>
+			</div>
+		</div>
+	</div>
+	<div id="bxCatNav" class="bxCatNav">
+		<ul>
+			<li class="middle current" onclick="goto_pic(1)">elegant lace, classy mesh</li>
+		</ul>
+	</div>
+<?PHP } else if( {_category} == "008" ) { /***	FULLNESS 	***/?>
+<style>
+.bxCatNav ul li { position:relative;display:block;float:left;width:860px;text-align:center;font:normal 13px/25px "Courier New";cursor:pointer;letter-spacing:-1px }
+.bxCatNav ul li.middle { border:#000000 0 dotted;border-right-width:1px; }
+</style>
+	<div id="bxCatImg" class="bxCatImg">
+		<div id="catimg_outline" class="catimg_outline">
+			<span class="btn_catL"></span>
+			<span class="btn_catR"></span>
+			<div id="catimg_box" class="catimg_box">
+				<div id="cat_div1" class="cat_div" style="left:0px; "><a href="/shop/goods/goods_view.php?goodsno=28&category=008"><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/fullness/shop_fullness_01.jpg"></a></div>
+			</div>
+		</div>
+	</div>
+	<div id="bxCatNav" class="bxCatNav">
+		<ul>
+			<li class="middle current" onclick="goto_pic(1)">Fullness pants - releave your stress</li>
+		</ul>
+	</div>
+<?PHP } else if( {_category} == "009" ) { /***	TIGHTS 	***/?>
+<style>
+.bxCatNav ul li { position:relative;display:block;float:left;width:429px;text-align:center;font:normal 13px/25px "Courier New";cursor:pointer;letter-spacing:-1px }
+.bxCatNav ul li.middle { border:#000000 0 dotted;border-right-width:1px; }
+</style>
+	<div id="bxCatImg" class="bxCatImg">
+		<div id="catimg_outline" class="catimg_outline">
+			<span class="btn_catL"></span>
+			<span class="btn_catR"></span>
+			<div id="catimg_box" class="catimg_box">
+				<div id="cat_div1" class="cat_div" style="left:0px; "><a href="/shop/goods/goods_list.php?category=009"><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/tights/shop_tights_01.jpg"></a></div>
+				<div id="cat_div2" class="cat_div" style="left:860px; "><a href="/shop/goods/goods_list.php?category=009"><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/tights/shop_tights_02.jpg"></a></div>
+			</div>
+		</div>
+	</div>
+	<div id="bxCatNav" class="bxCatNav">
+		<ul>
+			<li class="middle current" onclick="goto_pic(1)">Tight pants hold you tight.</li>
+			<li onclick="goto_pic(2)">Tights.</li>
+		</ul>
+	</div>
+<?PHP } else if( {_category} == "010" ) { /***	accessories 	***/?>
+<style>
+.bxCatNav ul li { position:relative;display:block;float:left;width:860px;text-align:center;font:normal 13px/25px "Courier New";cursor:pointer;letter-spacing:-1px }
+.bxCatNav ul li.middle { border:#000000 0 dotted;border-right-width:1px; }
+</style>
+	<div id="bxCatImg" class="bxCatImg">
+		<div id="catimg_outline" class="catimg_outline">
+			<span class="btn_catL"></span>
+			<span class="btn_catR"></span>
+			<div id="catimg_box" class="catimg_box">
+				<div id="cat_div1" class="cat_div" style="left:0px; "><a href="/shop/goods/goods_view.php?goodsno=13&category=001"><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/accessories/shop_accessary_01.jpg"></a></div>
+			</div>
+		</div>
+	</div>
+	<div id="bxCatNav" class="bxCatNav">
+		<ul>
+			<li class="middle current" onclick="goto_pic(1)">Shirring Headband</li>
+		</ul>
+	</div>
+<?PHP } else if( {_category} == "011" ) { /***	2014 spring collection 	***/?>
+<style>
+.bxCatNav ul li { position:relative;display:block;float:left;width:860px;text-align:center;font:normal 13px/25px "Courier New";cursor:pointer;letter-spacing:-1px }
+.bxCatNav ul li.middle { border:#000000 0 dotted;border-right-width:1px; }
+</style>
+	<div id="bxCatImg" class="bxCatImg">
+		<div id="catimg_outline" class="catimg_outline">
+			<span class="btn_catL"></span>
+			<span class="btn_catR"></span>
+			<div id="catimg_box" class="catimg_box">
+				<div id="cat_div1" class="cat_div" style="left:0px; "><a href="/shop/goods/goods_view.php?goodsno=85&category=011"><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/sc2014/spring_collection_01.jpg"></a></div>
+			</div>
+		</div>
+	</div>
+	<div id="bxCatNav" class="bxCatNav">
+		<ul>
+			<li class="middle current" onclick="goto_pic(1)">Color Mesh Leotard</li>
+		</ul>
+	</div>
+<?PHP } else if( {_category} == "012" ) { /***	collaboration 	***/?>
+<style>
+.bxCatNav ul li { position:relative;display:block;float:left;width:860px;text-align:center;font:normal 13px/25px "Courier New";cursor:pointer;letter-spacing:-1px }
+.bxCatNav ul li.middle { border:#000000 0 dotted;border-right-width:1px; }
+</style>
+	<div id="bxCatImg" class="bxCatImg">
+		<div id="catimg_outline" class="catimg_outline">
+			<span class="btn_catL"></span>
+			<span class="btn_catR"></span>
+			<div id="catimg_box" class="catimg_box">
+				<div id="cat_div1" class="cat_div" style="left:0px; "><a href="/shop/goods/goods_list.php?category=012001"><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/collaboration/shop_whyjay_01.jpg"></a></div>
+			</div>
+		</div>
+	</div>
+	<div id="bxCatNav" class="bxCatNav">
+		<ul>
+			<li class="middle current" onclick="goto_pic(1)">WHY JAY</li>
+		</ul>
+	</div>
+<?PHP } else if( {_category} == "012001" ) { /***	WHY JAY 	***/?>
+<style>
+.bxCatNav ul li { position:relative;display:block;float:left;width:286px;text-align:center;font:normal 13px/25px "Courier New";cursor:pointer;letter-spacing:-1px }
+.bxCatNav ul li.middle { border:#000000 0 dotted;border-right-width:1px; }
+</style>
+	<div id="bxCatImg" class="bxCatImg">
+		<div id="catimg_outline" class="catimg_outline">
+			<span class="btn_catL"></span>
+			<span class="btn_catR"></span>
+			<div id="catimg_box" class="catimg_box">
+				<div id="cat_div1" class="cat_div" style="left:0px; "><a href="#"><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/whyjay/whyjay_intro_00.jpg"></a></div>
+				<div id="cat_div2" class="cat_div" style="left:860px; "><a href="#"><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/whyjay/whyjay_intro_01.jpg"></a></div>
+				<div id="cat_div3" class="cat_div" style="left:1720px; "><a href="#"><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/whyjay/whyjay_intro_02.jpg"></a></div>
+			</div>
+		</div>
+	</div>
+	<div id="bxCatNav" class="bxCatNav">
+		<ul>
+			<li class="middle current" onclick="goto_pic(1)">JAY + loosfly collaboration</li>
+			<li class="middle" onclick="goto_pic(2)">VACK YUUNZUNG</li>
+			<li onclick="goto_pic(3)">KYONGSOOL BAE</li>
+		</ul>
+	</div>
+<?PHP } else if( {_category} == "013" ) { /***	sopt sale 	***/?>
+<style>
+.bxCatNav ul li { position:relative;display:block;float:left;width:860px;text-align:center;font:normal 13px/25px "Courier New";cursor:pointer;letter-spacing:-1px }
+.bxCatNav ul li.middle { border:#000000 0 dotted;border-right-width:1px; }
+</style>
+	<div id="bxCatImg" class="bxCatImg">
+		<div id="catimg_outline" class="catimg_outline">
+			<span class="btn_catL"></span>
+			<span class="btn_catR"></span>
+			<div id="catimg_box" class="catimg_box">
+				<div id="cat_div1" class="cat_div" style="left:0px; "><a href="#"><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/spot/spot_main_01.jpg"></a></div>
+			</div>
+		</div>
+	</div>
+	<div id="bxCatNav" class="bxCatNav">
+		<ul>
+			<li class="middle current" onclick="goto_pic(1)">Sopt Sale</li>
+		</ul>
+	</div>
+<?PHP } else if( {_category} == "014" ) { /***	featured products 	***/?>
+<style>
+.bxCatNav ul li { position:relative;display:block;float:left;width:860px;text-align:center;font:normal 13px/25px "Courier New";cursor:pointer;letter-spacing:-1px }
+.bxCatNav ul li.middle { border:#000000 0 dotted;border-right-width:1px; }
+</style>
+	<div id="bxCatImg" class="bxCatImg">
+		<div id="catimg_outline" class="catimg_outline">
+			<span class="btn_catL"></span>
+			<span class="btn_catR"></span>
+			<div id="catimg_box" class="catimg_box">
+				<div id="cat_div1" class="cat_div" style="left:0px; "><a href="/shop/goods/goods_list.php?category=014"><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/featured/halter_shop_01.jpg"></a></div>
+			</div>
+		</div>
+	</div>
+	<div id="bxCatNav" class="bxCatNav">
+		<ul>
+			<li class="middle current" onclick="goto_pic(1)">Halter Triad Leotards</li>
+		</ul>
+	</div>
+<?PHP } else if( {_category} == "015" ) { /***	limited sale 	***/?>
+<style>
+.bxCatNav ul li { position:relative;display:block;float:left;width:860px;text-align:center;font:normal 13px/25px "Courier New";cursor:pointer;letter-spacing:-1px }
+.bxCatNav ul li.middle { border:#000000 0 dotted;border-right-width:1px; }
+</style>
+	<div id="bxCatImg" class="bxCatImg">
+		<div id="catimg_outline" class="catimg_outline">
+			<span class="btn_catL"></span>
+			<span class="btn_catR"></span>
+			<div id="catimg_box" class="catimg_box">
+				<div id="cat_div1" class="cat_div" style="left:0px; "><a href="/shop/goods/goods_list.php?category=015"><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/limited/limited_main_01.gif"></a></div>
+			</div>
+		</div>
+	</div>
+	<div id="bxCatNav" class="bxCatNav">
+		<ul>
+			<li class="middle current" onclick="goto_pic(1)">limited sale</li>
+		</ul>
+	</div>
+<?PHP } else { /***	NOT ASSIGNED 	***/?>
+<style>
+.bxCatNav ul li { position:relative;display:block;float:left;width:860px;text-align:center;font:normal 13px/25px "Courier New";cursor:pointer;letter-spacing:-1px }
+.bxCatNav ul li.middle { border:#000000 0 dotted;border-right-width:1px; }
+</style>
+	<div id="bxCatImg" class="bxCatImg">
+		<div id="catimg_outline" class="catimg_outline">
+			<span class="btn_catL"></span>
+			<span class="btn_catR"></span>
+			<div id="catimg_box" class="catimg_box">
+				<div id="cat_div1" class="cat_div" style="left:0px; "><a href="/shop/goods/goods_list.php?category=014"><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/featured/carmen_lace_01f.jpg"></a></div>
+			</div>
+		</div>
+	</div>
+	<div id="bxCatNav" class="bxCatNav">
+		<ul>
+			<li class="middle current" onclick="goto_pic(1)">Carmen Lace Leotard</li>
+		</ul>
+	</div>
+<?PHP } ?>
+	</div>
+</div>
+<div class="dsLists">
+	<div style="height:50px;border:#cfcfcf 0 solid; border-bottom-width:1px;margin:0 30px 0 30px;"></div>
+	<div class="blkLeftMenu">
+		<div  style="margin:0 0 0 30px">
+			<div class="cat_title"><span class="emphasis"><?PHP echo $lfy_goods_knames[{_category}]; ?></span></div>
+			<div style="height:15px;"></div>
+			<div class="cat_notation"><?PHP echo $lfy_goods_desc[{_category}]; ?></div>
+		</div>
+	</div>
+	<div class="blkGoodsList">
+		<div class="bxGoodsList">
+			<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+					<!--{ = this->assign( 'loop',  loopM  ) // 데이타 호출 }-->
+					<!--{ = this->assign( 'slevel', slevel ) // 권한관련 }-->
+					<!--{ = this->assign( 'clevel', clevel ) // 권한관련 }-->
+					<!--{ = this->assign( 'clevel_auth', clevel_auth ) // 권한관련 }-->
+					<!--{ = this->assign( 'auth_step', auth_step ) // 권한관련 }-->
+					<!--{ = this->assign( 'dpCfg', _dpCfg.tpl ) // 설정 }-->
+					<!--{ = this->assign( 'cols', lstcfg.cols ) // 행당 컬럼수 }-->
+					<!--{ = this->assign( 'size', lstcfg.size ) // 이미지 크기 }-->
+					<!--{ = include_file( "goods/list/" + lstcfg.tpl + ".htm" ) }-->
+				</td>
+			</tr>
+			<tr><td height="10"></td></tr>
+			<tr><td height="1" bgcolor="#DDDDDD"></td></tr>
+			<tr><td align="center" height="50">{pg->page['navi']}</td></tr>
+			</table>
+		</div>
+	</div>
+</div>
+
+<script>
+function act(target,goodsno,opt1,opt2)
+{
+var form = document.frmCharge;
+
+form.mode.value = "addItem";
+form.goodsno.value = goodsno;
+
+if(opt2) opt1 += opt2;
+document.getElementById("opt").value=opt1;
+
+form.action = target + ".php";
+form.submit();
+}
+function sort(sort)
+{
+var fm = document.frmList;
+if(typeof(document.sSearch) != "undefined") fm = document.sSearch;
+fm.sort.value = sort;
+fm.submit();
+}
+function sort_chk(sort)
+{
+if (!sort) return;
+sort = sort.replace(" ","_");
+var obj = document.getElementsByName('sort_'+sort);
+if (obj.length){
+div = obj[0].src.split('list_');
+for (i=0;i<obj.length;i++){
+chg = (div[1]=="\up_off.gif") ? "\up_on.gif" : "\down_on.gif";
+obj[i].src = div[0] + "list_" + chg;
+}
+}
+}
+<!--{ ? _GET['sort'] }-->
+sort_chk('{_GET['sort']}');
+<!--{ / }-->
+</script>
+
+{ # footer }

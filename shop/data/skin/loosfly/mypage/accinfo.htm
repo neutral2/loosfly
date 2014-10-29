@@ -1,0 +1,44 @@
+{*** 회원정보 | mypage/accinfo.php ***}
+{ # header }
+	<!--{ ? this->tpl_['side_inc'] }-->
+		<div class="blkLeftMenu">
+			{ # side_inc // 측면디자인 }
+		</div>
+	<!--{ / }-->
+		<div id="blkContents">
+			<div style="height:7px;"></div>
+			<!-- 상단이미지 -->
+			<div style="height:7px;"></div>
+			<div class="divindiv"><!-- Start indiv -->
+<!--{ ? _sess }-->
+				<table border="0" cellpadding="0" cellspacing="0" style="width:860px;">
+				<tr>
+					<td>
+						<table border="0" cellpadding="0" cellspacing="0" style="width:600px;">
+						<tr><td colspan="2" class="myinfo_title">ACCOUNT INFORMATION</td></tr>
+						<tr><td class="myinfo_tag">이름 :</td><td class="myinfo_info">{name}</td></tr>
+						<tr><td class="myinfo_tag2">주소 :</td><td class="myinfo_info">{zipcode[0]}-{zipcode[1]}</td></tr>
+						<tr><td class="myinfo_tag2"> </td><td class="myinfo_info">{address} {address_sub}</td></tr>
+						<tr><td class="myinfo_tag">전화 :</td><td class="myinfo_info">{phone[0]}-{phone[1]}-{phone[2]}</td></tr>
+						<tr><td class="myinfo_tag">휴대폰 :</td><td class="myinfo_info">{mobile[0]}-{mobile[1]}-{mobile[2]}</td></tr>
+						<tr><td class="myinfo_tag">이메일 :</td><td class="myinfo_info">{email}</td></tr>
+						<tr><td class="myinfo_tag">이메일수신 :</td><td class="myinfo_info">{ ?_checked.mailling } 예 { : } 아니오 { / }</td></tr>
+						<tr><td class="myinfo_tag">SMS수신 :</td><td class="myinfo_info">{ ?_checked.sms } 예 { : } 아니오 { / }</td></tr>
+						<tr><td colspan="2" class="myinfo_tag"> </td></tr>
+						<tr><td colspan="2" class="myinfo_info"><div class="body_menu"><a href="/shop/member/myinfo.php?&">회원정보 수정 >></a></div></td></tr>
+						</table>
+					</td>
+					<td valign="top">
+						<table border="0" cellpadding="0" cellspacing="0" style="width:250px;">
+						<tr><td class="myinfo_title">WISH LIST</td></tr>
+						<tr><td><div class="myinfo_info"><a href="/shop/mypage/mypage_wishlist.php?&" class="body_menu">찜해 놓은 상품목록 보기 >></a></div></td></tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+<!--{ : }-->
+로그인부터 해야 이게 보일텐데 이상하네...?
+<!--{ / }-->
+			</div><!-- End indiv -->		
+		</div>
+{ # footer }

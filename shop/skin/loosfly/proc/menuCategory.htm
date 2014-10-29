@@ -1,0 +1,63 @@
+{*** 카테고리메뉴 | proc/menuCategory.php ***}
+<div id="side_menu_block">
+	<!--div><img src="../img/main/sid_title.gif"></div-->
+
+	<div style="padding:20px 0px 20px 38px;text-align:left;font:bold 36px 'Courier New'; letter-spacing:-2">sh<font color="#71cbd2">o</font>p.</div>
+
+	<!--{ ? _cfg.subCategory != 1 // 1단 또는 서브레이어 출력 유형 }-->
+	<table width="100%" cellpadding=0 cellspacing=0 border=0 id="menuLayer">
+	<!--{ @ dataCategory( _cfg.subCategory, 2 ) }-->
+	<tr>
+		<td class="catebar"><a href="../goods/goods_list.php?category={.category}">{.catnm}</a></td>
+		<td style="z-index:100">
+		<!--{ ? .sub }-->
+		<div style="position:relative"><div class=subLayer><table width=100% cellspacing=1>
+		<!--{ @ .sub }-->
+		<tr><td nowrap class="cate"><a href="../goods/goods_list.php?category={..category}">{..catnm}</a></td></tr>
+		<!--{ ? ..index_!=..size_-1 }--><tr><td height=1 bgcolor=#F3F2F0></td></tr><!--{ / }-->
+		<!--{ / }-->
+		</table>
+		</div>
+		</div>
+		<!--{ / }-->
+		</td>
+	</tr>
+	<!--{ / }-->
+	</table>
+	<!--{ ? _cfg.subCategory }-->
+	<script>execSubLayer();</script>
+	<!--{ / }-->
+
+	<!--{ : // 1,2단 동시 메뉴 출력 유형 }-->
+	<table width=100% cellpadding=0 cellspacing=0 class="shop_side">
+	<?PHP $num_row=0;  ?>
+	<!--{ @ dataCategory( _cfg.subCategory, 1 ) }-->
+	<?PHP $num_row+=3; ?>
+	<!--{ ? .sub }--><?PHP $num_row+=2; ?><!--{ / }-->
+	<!--{ / }-->
+
+	<?PHP $num_menus = 0; ?>
+	<tr><td width="38" rowspan="<?PHP echo $num_row; ?>"></td><td></td></tr>
+	<!--{ @ dataCategory( _cfg.subCategory, 1 ) }-->
+	<tr><td class="vspace15"></td></tr>
+	<tr>
+		<td class="menu01" valign="top"><a href="../goods/goods_list.php?category={.category}"><div onMouseOver="menu_action(true, 2, <?PHP echo $num_menus; ?>, this);" onMouseOut="menu_action(false, 2, <?PHP echo $num_menus++; ?>, this);"><script> document.write( get_emenu("{.catnm}") ); </script></div></a></td>
+	</tr>
+	<tr><td><div class="separator" style="width:170px;background-color:#cfcfcf; float:left;"></div></td></tr>
+	<!--{ ? .sub }-->
+	<tr>
+		<td class="menu02">
+		<table width="100%">
+		<!--{ @ .sub }-->
+		<tr><td class="menu_item"><a href="../goods/goods_list.php?category={..category}"><div onMouseOver="menu_action(true, 2, <?PHP echo $num_menus; ?>, this);" onMouseOut="menu_action(false, 2, <?PHP echo $num_menus++; ?>, this);"><script> document.write( get_emenu("{..catnm}"));</script></div></a></td></tr>
+		<!--{ / }-->
+		</table>
+		</td>
+	</tr>
+	<tr><td class="vspace20"></td></tr>
+	<!--{ / }-->
+	<!--{ / }-->
+	</table>
+	<!--{ / }-->
+
+</div>

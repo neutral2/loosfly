@@ -1,0 +1,107 @@
+{*** 메인상품그룹(추천상품) | goods/goods_grp_04.php ***}
+{ # header }
+<link rel="stylesheet" href="/shop/data/skin/loosfly/goods/goods_category.css" />
+<script type="text/javascript" language="javascript" src="/shop/data/skin/loosfly/goods/goods_category.js"></script>
+	<!--{ ? this->tpl_['side_inc'] }-->
+		<div class="blkLeftMenu">
+			{ # side_inc // 측면디자인 }
+		</div>
+	<!--{ / }-->
+	<div id="blkContents">
+		<div style="height:7px;"></div>
+		<div style="height:15px;"></div>
+		<div style="text-align:center;font-size:16px;font-family:'Courier New';letter-spacing:3px;">MD's Choice</div>
+		<div style="height:5px;"></div>
+<style>
+.bxCatNav ul li { position:relative;display:block;float:left;width:860px;text-align:center;font:normal 13px/25px "Courier New";cursor:pointer;letter-spacing:-1px }
+.bxCatNav ul li.middle { border:#000000 0 dotted;border-right-width:1px; }
+</style>
+		<div id="bxCatImg" class="bxCatImg">
+			<div id="catimg_outline" class="catimg_outline">
+				<span class="btn_catL"></span>
+				<span class="btn_catR"></span>
+				<div id="catimg_box" class="catimg_box">
+					<div id="cat_div1" class="cat_div" style="left:0px; "><a href="/shop/goods/goods_view.php?goodsno=1&category="><img src="/shop/data/skin/loosfly/img/jimmy/shop_photo/MD_choice/shop_choice_01.jpg"></a></div>
+				</div>
+			</div>
+		</div>
+		<div id="bxCatNav" class="bxCatNav">
+			<ul>
+				<li class="middle current" onclick="goto_pic(1)">loosfly's golden choice</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="dsLists">
+	<div style="height:50px;border:#cfcfcf 0 solid; border-bottom-width:1px;margin:0 30px 0 30px;"></div>
+	<div class="blkLeftMenu">
+		<div  style="margin:0 0 0 30px">
+			<div class="cat_title"><span class="emphasis">MD's Choice</span></div>
+			<div style="height:15px;"></div>
+			<div class="cat_notation">설명삽입</div>
+		</div>
+	</div>
+	<div class="blkGoodsList">
+		<div class="bxGoodsList">
+			<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+					<!--{ = this->assign( 'loop', loop ) // 데이타 호출 }-->
+					<!--{ = this->assign( 'slevel', slevel ) // 권한관련 }-->
+					<!--{ = this->assign( 'clevel', clevel ) // 권한관련 }-->
+					<!--{ = this->assign( 'clevel_auth', clevel_auth ) // 권한관련 }-->
+					<!--{ = this->assign( 'auth_step', auth_step ) // 권한관련 }-->
+					<!--{ = this->assign( 'dpCfg', _dpCfg.tpl ) // 설정 }-->
+					<!--{ = this->assign( 'cols', lstcfg.cols ) // 행당 컬럼수 }-->
+					<!--{ = this->assign( 'size', lstcfg.size ) // 이미지 크기 }-->
+					<!--{ = include_file( "goods/list/tpl_01.htm" ) }-->
+				</td>
+			</tr>
+			<tr><td height="1" bgcolor="#DDDDDD"></td></tr>
+			<tr><td align="center" height="50">{pg->page['navi']}</td></tr>
+			</table>
+		</div>
+	</div>
+</div>
+
+<script>
+function act(target,goodsno,opt1,opt2)
+{
+	var form = document.frmCharge;
+
+	form.mode.value = "addItem";
+	form.goodsno.value = goodsno;
+
+	if(opt2) opt1 += opt2;
+	document.getElementById("opt").value=opt1;
+
+	form.action = target + ".php";
+	form.submit();
+}
+function sort(sort)
+{
+	var fm = document.frmList;
+	fm.sort.value = sort;
+	fm.submit();
+}
+function sort_chk(sort)
+{
+	if (!sort) return;
+	sort = sort.replace(" ","_");
+	var obj = document.getElementsByName('sort_'+sort);
+	if (obj.length){
+		div = obj[0].src.split('list_');
+		for (i=0;i<obj.length;i++){
+			chg = (div[1]=="\up_off.gif") ? "\up_on.gif" : "\down_on.gif";
+			obj[i].src = div[0] + "list_" + chg;
+		}
+	}
+}
+<!--{ ? _GET['sort'] }-->
+sort_chk('{_GET['sort']}');
+<!--{ / }-->
+</script>
+
+</div><!-- End indiv -->
+
+{ # footer }

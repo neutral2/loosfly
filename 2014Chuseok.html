@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>2014 Ãß¼®ÀÎ»ç</title>
+<meta name="Generator" content="EditPlus">
+<meta name="Author" content="">
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<link rel="styleSheet" href="/shop/data/skin/loosfly/style.css" />
+<script src="/shop/data/skin/loosfly/common.js"></script>
+<style>
+	body{margin:0 auto;font:normal 12px/18px "³ª´®°íµñ", "Nanum Gothic", "AppleGothic", "¸¼Àº°íµñ", "Malgun Gothic", "µ¸¿ò", "Dotum", "Sans-serif";}
+	a { text-decoration:none;}
+</style>
+<script>
+	function close_popup() {
+		if( document.getElementById('not_open').checked == true ) {
+			var expDate = new Date();
+			expDate.setTime(expDate.getTime() + 1000 * 3600 * 24 );
+			setCookie("event2014Chuseok", "1", expDate);
+		}
+		parent.document.body.removeChild(parent.document.getElementById('popLayer') );
+	}
+</script>
+</head>
+
+<body>
+<div>
+	<img src="http://www.loosfly.com/shop/data/skin/loosfly/img/jimmy/popup/chooseok_02.jpg">
+	<div style="position:relative;float:right;top:-25px;height:20px;width:40px;text-align:center;color:#ffffff;font-size:12px;line-height:20px;padding-right:5px">
+		<a href="javascript:close_popup();" style="color:#ffffff">[´Ý±â]</a>
+	</div>
+	<div style="position:relative;float:right;top:-25px;height:20px;width:125px;text-align:center;color:#ffffff;font-size:12px;line-height:20px;padding-right:5px">
+		ÇÏ·çµ¿¾È ¿­Áö ¾Ê±â <input type="checkbox" id="not_open" style="height:14px">
+	</div>
+</div>
+</body>
+</html>

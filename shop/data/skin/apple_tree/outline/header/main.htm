@@ -1,0 +1,88 @@
+{*** 메인용 상단파일 | outline/header/main.php ***}
+<a name="top"></a>
+
+<div style="background:url(../../img/main/gnb_bg.gif) repeat-x;height:156px;">
+	<table width=100% cellpadding=0 cellspacing=0 border=0>
+	<tr>
+		<td>
+		<table width="{_cfg['shopSize']}" height=114 align="{_cfg['shopAlign']}" cellpadding=0 cellspacing=0 border=0>
+		<tr>
+			<td style="vertical-align:bottom; padding-bottom:23px;"><!-- 배너관리에서 수정가능 --><!--{ @ dataBanner( 2 ) }-->{.tag}<!--{ / }--></td>
+			<!------------------ 상단로고 시작 ------------------->
+			<td align="center"><!-- 배너관리에서 수정가능 --><!--{ @ dataBanner( 90 ) }-->{.tag}<!--{ / }--></td>
+			<!------------------ 상단로고 끝 ------------------->
+			<td align="right" valign="top" style="padding-top:6px;">
+				<!-- 로그인/회원정보/위시리스/아이디찾기 시작---->
+				<table cellpadding="5" cellspacing="0" border="0">
+				<tr>
+					<!--{ ? !_sess }-->
+					<td><a href="../member/login.php"><img src="../../img/main/header_btn_login.gif"></a></td>
+					<td><a href="../member/join.php"><img src="../../img/main/header_btn_joinus.gif"></a></td>
+					<!--{ : }-->
+					<td><a href="../member/logout.php"><img src="../../img/main/header_btn_logout.gif"></a></td>
+					<td><a href="../member/myinfo.php" { ? useMypageLayerBox == 'y' }onClick="return fnMypageLayerBox({ ? _sess }true{ / });"{ / }><img src="../../img/main/header_btn_mypage.gif"></a></td>
+					<!--{ / }-->
+					<td><a href="../service/faq.php"><img src="../../img/main/header_btn_qna.gif"></a></td>
+				</tr>
+				</table>
+				<!-- 로그인/회원정보/위시리스/아이디찾기 끝------>
+
+				<!-- 검색 시작----------------------------------->
+				<form action="../goods/goods_search.php" onsubmit="return chkForm(this)">
+				<input type=hidden name=searched value="Y">
+				<input type=hidden name=log value="1">
+				<input type=hidden name=skey value="all">
+				<input type="hidden" name="hid_pr_text" value="{_s_type['pr_text']}" />
+				<input type="hidden" name="hid_link_url" value="{_s_type['link_url']}" />
+				<input type="hidden" id="edit" name="edit" value=""/>
+				<!--{? _s_type['keyword_chk'] == 'on' && _s_type['pr_text'] && !_GET['sword']}-->
+				<?php
+					{id} = "sword";
+					{onkeyup} = "document.getElementById('edit').value='Y'";
+					{onclick} = "document.getElementById('sword').value=''";
+					{value} = {_s_type['pr_text']};
+				?>
+				<!--{:}-->
+				<?php
+					{value} = {_GET['sword']};
+				?>
+				<!--{/}-->
+				<table cellpadding="0" cellspacing="0" border="0" style="margin-top:40px;line-height:0;">
+				<tr>
+					<td><input name=sword type=text class=line style="width:152px;height:21px;_height:25px;" id="{id}" onkeyup="{onkeyup}" onclick="{onclick}" value="{value}" required label="검색어"></td>
+					<td><input type=image src="../../img/main/header_btn_search.gif"></td>
+				</tr>
+				</table>
+				</form>
+				<!-- 검색 끝-------------------------------------->
+			</td>
+		</tr>
+		</table>
+		</td>
+	</tr>
+
+	<tr>
+		<td height="32">
+		<table width="{_cfg['shopSize']}" align="{_cfg['shopAlign']}" cellpadding="0" cellspacing="0">
+		<tr>
+			<td>
+			<!------------  상단메뉴 시작 -------------------------------------------------------->
+			<table cellpadding="0" cellspacing="0" border="0">
+			<tr>
+				<td><a href="../goods/goods_cart.php"><img src="../../img/main/gnb_menu_cart.jpg"></a></td>
+				<td><a href="../mypage/mypage_orderlist.php"><img src="../../img/main/gnb_menu_order.jpg"></a></td>
+				<td><a href="../member/myinfo.php?&" { ? useMypageLayerBox == 'y' }onClick="return fnMypageLayerBox({ ? _sess }true{ / });"{ / }><img src="../../img/main/gnb_menu_my.jpg"></a></td>
+				<td><a href="../mypage/mypage_wishlist.php"><img src="../../img/main/gnb_menu_wish.jpg"></a></td>
+				<td><a href="../goods/goods_review.php"><img src="../../img/main/gnb_menu_review.jpg"></a></td>
+				<td><a href="../service/customer.php"><img src="../../img/main/gnb_menu_cs.jpg"></a></td>
+				<td><a href="../board/list.php?&id=notice"><img src="../../img/main/gnb_menu_community.jpg"></a></td>
+			</tr>
+			</table>
+			<!------------  상단메뉴 끝 ---------------------------------------------------------->
+			</td>
+		</tr>
+		</table>
+		</td>
+	</tr>
+	</table>
+</div>

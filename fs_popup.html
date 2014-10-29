@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR" />
+<title>Untitled Document</title>
+<style>
+body {padding:0;margin:0;background:#191919;}
+#wrapper {width:100%; padding:0;margin:auto; text-align:center;}
+#content {width:100%; background:#ccc; margin:auto;display:block; text-align:center; padding:0; margin-bottom:60px;}
+
+.wide_section {position: relative; height:1px}
+</style>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">google.load("jquery", "1.7.1");</script>	
+<script type="text/javascript">
+
+$(document).ready(function() {
+	$('.wide_slider, .wide_section').css({
+		width: $(window).width()+'px',
+		height: $(window).width()*0.665+'px'
+	})
+});	
+
+$(window).resize(function() {
+	$('.wide_slider, .wide_section').css({
+		width: $(window).width()+'px',
+		height: $(window).width()*0.665+'px'
+	})
+});
+</script>
+</head>
+
+<body>
+<div id="wrapper">
+	<div class="wide_section" style="background-image:url('http://www.loosfly.com/intro_img_01.jpg'); background-attachment:local; background-size:cover; width:100%;left:0; margin:0; background-position: 50% 50%; background-repeat: no-repeat no-repeat;"></div>
+</div>
+</body>
+</html>

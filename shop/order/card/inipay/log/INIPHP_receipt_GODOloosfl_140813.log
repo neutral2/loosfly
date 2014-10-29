@@ -1,0 +1,186 @@
+INFO	[2014-08-13 20:39:28:32] <4210> START INIPHP receipt (V5031-111123)(OS:Linux2.6.18-371.11.1.el5,PHP:5.2.17)
+DEBUG	[2014-08-13 20:39:28:37] <4210> inipayhome:/www/loosfly_godo_co_kr/shop/order/card/inipay
+DEBUG	[2014-08-13 20:39:28:37] <4210> type:receipt
+DEBUG	[2014-08-13 20:39:28:37] <4210> pgid:INIphpRECP
+DEBUG	[2014-08-13 20:39:28:37] <4210> paymethod:CASH
+DEBUG	[2014-08-13 20:39:28:37] <4210> currency:WON
+DEBUG	[2014-08-13 20:39:28:37] <4210> admin:1111
+DEBUG	[2014-08-13 20:39:28:37] <4210> debug:true
+DEBUG	[2014-08-13 20:39:28:37] <4210> mid:GODOloosfl
+DEBUG	[2014-08-13 20:39:28:37] <4210> goodname:Slitneck Snap Leotard(Orange Slit)
+DEBUG	[2014-08-13 20:39:28:37] <4210> cr_price:44000
+DEBUG	[2014-08-13 20:39:28:37] <4210> sup_price:40000
+DEBUG	[2014-08-13 20:39:28:37] <4210> tax:4000
+DEBUG	[2014-08-13 20:39:28:37] <4210> srvc_price:0
+DEBUG	[2014-08-13 20:39:28:37] <4210> buyername:서지수
+DEBUG	[2014-08-13 20:39:28:37] <4210> buyeremail:0327wltn@hanmail.net
+DEBUG	[2014-08-13 20:39:28:37] <4210> buyertel:010-2807-6645
+DEBUG	[2014-08-13 20:39:28:37] <4210> reg_num:01028076645
+DEBUG	[2014-08-13 20:39:28:37] <4210> useopt:0
+DEBUG	[2014-08-13 20:39:28:37] <4210> companynumber:
+INFO	[2014-08-13 20:39:28:38] <4210> Check Field OK
+INFO	[2014-08-13 20:39:28:38] <4210> Make TID OK INIphpRECPGODOloosfl20140813203928385576
+INFO	[2014-08-13 20:39:28:38] <4210> PI PUB KEY LOAD OK []
+INFO	[2014-08-13 20:39:28:51] <4210> PG PUB KEY LOAD OK [30]
+INFO	[2014-08-13 20:39:28:94] <4210> MERCHANT PRIV KEY LOAD OK
+INFO	[2014-08-13 20:39:28:98] <4210> MERCHANT PUB KEY LOAD OK [0]
+DEBUG	[2014-08-13 20:39:28:100] <4210> MAKE ENCRYPT OK[<?xml version="1.0" encoding="UTF-8"?>
+<PaymentInfo>
+	  <Payment>
+	    <CASH>
+	      <CSHR_ApplPrice>44000</CSHR_ApplPrice>
+	      <CSHR_SupplyPrice>40000</CSHR_SupplyPrice>
+	      <CSHR_Tax>4000</CSHR_Tax>
+	      <CSHR_ServicePrice>0</CSHR_ServicePrice>
+	      <CSHR_Type>0</CSHR_Type>
+	      <CSHR_RegNum>01028076645</CSHR_RegNum>
+	      <CSHR_CompanyNum/></CASH></Payment></PaymentInfo>]
+INFO	[2014-08-13 20:39:28:102] <4210> MAKE BODY OK
+INFO	[2014-08-13 20:39:28:104] <4210> SIGN OK
+INFO	[2014-08-13 20:39:28:104] <4210> MAKE HEAD OK
+INFO	[2014-08-13 20:39:28:105] <4210> MSG_TO_PG:[0189800175D SHA1                   0                                      300200GODOloosfl               44000INIphpRECPGODOloosfl20140813203928385576<?xml version="1.0" encoding="UTF-8"?>
+<INIpay>
+	  <GoodsInfo>
+	    <GoodsCnt>1</GoodsCnt>
+	    <MOID/>
+	    <Currency>WON</Currency>
+	    <Tax>4000</Tax>
+	    <TaxFree/>
+	    <Goods>
+	      <SMID>GODOloosfl</SMID>
+	      <GoodsName urlencode="1">Slitneck+Snap+Leotard%28Orange+Slit%29</GoodsName>
+	      <GoodsPrice>44000</GoodsPrice></Goods></GoodsInfo>
+	  <BuyerInfo>
+	    <BuyerName urlencode="1">%BC%AD%C1%F6%BC%F6</BuyerName>
+	    <BuyerTel>010-2807-6645</BuyerTel>
+	    <BuyerEmail urlencode="1">0327wltn%40hanmail.net</BuyerEmail>
+	    <ParentEmail/>
+	    <RecvName/>
+	    <RecvTel/>
+	    <RecvMsg/>
+	    <RecvAddr/>
+	    <RecvPostNum/></BuyerInfo>
+	  <PaymentInfo>
+	    <Payment>
+	      <PayMethod>CASH</PayMethod>
+	      <JoinCard/>
+	      <JoinExpire/>
+	      <MailOrder/>
+	      <SessionKey>fDund/X7ZguOSCBMreggjT4WyZ3kUjA8ic6REmvaIOVi8ITnTmeQZQlVRC4IGzrl
+Cv+ad3dDivQ3v1QHUyamWZbhsaG1gLE9yOa9CRQoNXHf832tXJPp9DyNz79qkZMz
+0poY8dKTNxG7dhvO713jvjT0BldFlDuFJTzfcTiW7dUYdQ3LrWaZ7w==
+</SessionKey>
+	      <Encrypted>yf2v5c7w2cIAFGOFu3It5qEnBywDJBfdaKDWea2kfZ/r+PpeheK3+pBWKyaVfwmg
+J+0h/m2tAAiFqkhPKKxPtL5hyVHplGSDTSduf/xNDQj5yrqS1VJkjuV7sBt6O0Kc
+h+9yWhlxUV5pvT3Yz2mdeZQ8FKEuJOGoLSVxENO7ICfR2p6TawYZSPgMPoBna/4n
+jcRIG/UVL6+n4XR82XxPDan3NHVx+MfAuBliXQYRFEAShuPwM3pg+ppopGYFH5xy
+/zjjUZMICbKjJWkyRqhdP9S67vZ5CDiMD+BQHxkyeGjup7Yq/xZkdVypE1ig243q
+xCDocCntcs/6SGFMlXsWU/6EK3/I/j2LOphzo7WsFqqJ+zIWexZRlHXICPHdpubj
+5eY2hy9vgWO+Upj6VJbi2G0I4Tm5zLM81NfN9+V0s4rq2Ke4ZwPVCo7gygAMBaxG
+DFAdY25dz/G+YJFvyhyZw/ZjwybJNI82/TCPrFlXpNkIFh8A7ZGHAafuWm6hyXvw
+Z++U0occbJI=
+</Encrypted></Payment></PaymentInfo>
+	  <ReservedInfo>
+	    <MReserved1/>
+	    <MReserved2/>
+	    <MReserved3/></ReservedInfo>
+	  <ManageInfo>
+	    <Language/>
+	    <URL/>
+	    <TXVersion>5031B111123receiLinux     PHPchkfake   2.6.18-371.11.1.el5PHP:5.2.17 </TXVersion>
+	    <TXUserID/>
+	    <TXRegNum/>
+	    <Ack>1</Ack></ManageInfo></INIpay>AVoyc+fIKfRIQfSer+6zJTyAwQeuJ9YhCFccrc5euDet2MVCkLFOdOhfd33xs8ht
+5J+ocZI3FnFA+CHc/AEA6AwCnLLEQsqGdQoxI8u+bTaLI8y9f1DukkwW+EWphjeY
+Ozz1h8LCrsslhd5gmyurvTc5h+EGTFAJ8G6QuroBK/B0
+]
+INFO	[2014-08-13 20:39:28:105] <4210> DNS LOOKUP OK(203.238.37.3:203.238.37.3:34049) laptime:0
+INFO	[2014-08-13 20:39:28:109] <4210> SOCKET CONNECT OK
+INFO	[2014-08-13 20:39:28:109] <4210> SEND OK
+INFO	[2014-08-13 20:39:28:260] <4210> RECV OK
+INFO	[2014-08-13 20:39:28:260] <4210> MSG_FROM_PG:[0218300175D SHA1                   0                                      300210GODOloosfl               44000INIphpRECPGODOloosfl20140813203928385576<?xml version="1.0" encoding="UTF-8"?>
+<INIpay>
+  <GoodsInfo>
+    <GoodsCnt>1</GoodsCnt>
+    <MOID urlencode="1"></MOID>
+    <Currency>WON</Currency>
+    <Goods no="1">
+      <SMID>GODOloosfl</SMID>
+      <GoodsName urlencode="1">Slitneck+Snap+Leotard%28Orange+Slit%29</GoodsName>
+      <GoodsCntS>1</GoodsCntS>
+      <GoodsPrice>44000</GoodsPrice>
+    </Goods>
+  </GoodsInfo>
+  <PaymentInfo>
+    <Payment>
+      <SessionKey>ANIO/2aJ1ORkeHLPHb9O4GRzhVgCNwxwkrxMymEBOksOXnGVR8XcsXAc+TXns2J6
+Bxs63XAEqBbCSOUdJFUGioSzaASce/tR8qSbZZBmmJF13pIhCTEfO4bJSqMdhcq/
+k3eW6wHCXG2FEkTWib7+c5LdLs5raM332N0iac6LaOXVLjSEkguEFEA=
+</SessionKey>
+      <Encrypted>8ySv02uFPnp4ry30EBRm+2SvV7UChBz5wLcB37MXboFu94INUx5DK5STvnON4ZPE
+xS+L3rkgfHzyEZQuqEAhgvvwRfV79HXB9bOtKxL9P4BWj1lGtsRIjUJBVNIOx/Tr
+/Slsi2EYc2deIozjQN7BhpzAF5zBtWh/Y55Na5yM6CIyZfvD7X2hFOilH592DqFc
+7doQgfLcdemXzmWeOYm8LAUEzncRCWH7tDauR43JopiARti6i8SdiDGUJBJRm42V
+TJOxjd0Jhm6vrFgHwx1GhdbZ2LmlwTnV8XR+ynKh5F88VqzVBFPtyCqVw3c6pXr1
+ua51cKUhJAMC4TYjYgk79m04uau4rljz79Bbl1JafcIwEyM/XbItjULjmkqMoi4R
+CsB4SOYZJQ31gT+dnL2CS5ponZvngqJgxZKVfqFABOrDyCf29yVhCIzC5t/HQzMN
+r7aAO/VJ6Tok4O9LnRtl793NKGdzHKHpJ5+wLR6/GlCRVzF06UZxLQ/7KTFzACj2
+yp+DyEoxSMoz/8XmccFS62qzH5hxwg5xxQazfHo99E0fQ7GSwzSvEy7YnY7nh6b1
+cORcLqCOhRlgj9Cg0jcZKqDEkPHNGkNEuEWJMXi7Vnw+05dQf+B+YtOtT38tWX03
+HnFXyApb6fqg7A4Cn/NoMgSH1+OPRML5jqx4X/YZx2Vt8dXxIqjHl8WBeB5tp+Qv
+y4Gl1M3vRp3vd7HyHHZ95ekJGJiqsWd/JORnbX/Xy+VJtP37bcYSgunu7YPYWIHm
+JtNWBf4yitwTEHSfPQ2rKmcwEs6gLS1uWMPsUQaL21z9LZYt8rShtlyNYySL/r8K
+bCSg6KW+R4c=
+</Encrypted>
+      <PayMethod>CASH</PayMethod>
+      <ResultCode>220000</ResultCode>
+      <ResultMsg urlencode="1">%C1%A4%BB%F3%C3%B3%B8%AE%B5%C7%BE%FA%BD%C0%B4%CF%B4%D9.</ResultMsg>
+    </Payment>
+  </PaymentInfo>
+  <ManageInfo>
+    <EventCode></EventCode>
+    <OrgCurrency></OrgCurrency>
+    <ExchangeRate></ExchangeRate>
+    <OrgPrice></OrgPrice>
+  </ManageInfo>
+  <ReservedInfo>
+    <MReserved1 urlencode="1"></MReserved1>
+    <MReserved2 urlencode="1"></MReserved2>
+    <MReserved3 urlencode="1"></MReserved3>
+    <PGReserved1 urlencode="1"></PGReserved1>
+    <PGReserved2 urlencode="1"></PGReserved2>
+    <PGReserved3 urlencode="1"></PGReserved3>
+  </ReservedInfo>
+</INIpay>
+lbBiSHCiYpfIl0U9O4E07kb1N5LvVlg+v6WkH9YydWkP3ECwiwMfA5AW59GP7xic
+kJqt6+E2rRLs3hvgUo5/RVJioQUbObAFH1OqIl1X5gxd7MppGmzyGfaDynEAnNSE
+J/9eK8os7d+GNsh4m49dvW5IR33MEFUt1SGYYluNkl0=
+]
+INFO	[2014-08-13 20:39:28:260] <4210> VERIFY OK
+INFO	[2014-08-13 20:39:28:260] <4210> PARSE HEAD OK
+INFO	[2014-08-13 20:39:28:264] <4210> PARSE BODY OK
+INFO	[2014-08-13 20:39:28:267] <4210> DECRYPT OK
+DEBUG	[2014-08-13 20:39:28:267] <4210> DECRYPT MSG:[<?xml version="1.0" encoding="UTF-8"?>
+<PaymentInfo>
+  <Payment>
+    <EASYPAY/>
+    <CASH>
+      <CSHR_ApplPrice>44000</CSHR_ApplPrice>
+      <CSHR_SupplyPrice>40000</CSHR_SupplyPrice>
+      <CSHR_Tax>4000</CSHR_Tax>
+      <CSHR_ServicePrice>0</CSHR_ServicePrice>
+      <CSHR_Type>0</CSHR_Type>
+      <CSHR_ApplDate>20140813</CSHR_ApplDate>
+      <CSHR_ApplTime>203929</CSHR_ApplTime>
+      <CSHR_ApplNum>263814215</CSHR_ApplNum>
+      <CSHR_ResultCode>220000</CSHR_ResultCode>
+      <CSHR_ResultMsg urlencode="1">%C1%A4%BB%F3%C3%B3%B8%AE%B5%C7%BE%FA%BD%C0%B4%CF%B4%D9.</CSHR_ResultMsg>
+    </CASH>
+  </Payment>
+</PaymentInfo>]
+INFO	[2014-08-13 20:39:28:269] <4210> DECRYPT PARSE OK
+INFO	[2014-08-13 20:39:28:269] <4210> WAIT ACK INVOKING
+DEBUG	[2014-08-13 20:39:28:269] <4210> MAKE HEAD OK
+INFO	[2014-08-13 20:39:28:273] <4210> SUCCESS ACK INVOKING
+INFO	[2014-08-13 20:39:28:273] <4210> END receipt 정상처리되었습니다. Laptime:[0.26sec]
+INFO	[2014-08-13 20:39:28:273] <4210> ===============================================================

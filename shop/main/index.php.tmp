@@ -1,0 +1,44 @@
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta name="description" content=" loosfly - Dance Fitness Yoga Training... We support your movement. ">
+<meta name="keywords" content="무용,발레,요가,헬스,무용복,발레복,연습복,피트니스,요가">
+<title> loosfly - Dance Fitness Yoga Training... We support your movement. </title>
+<script src="/shop/data/skin/apple_tree/common.js"></script>
+<script src="/shop/data/skin/apple_tree/cart_tab/godo.cart_tab.js"></script>
+<link rel="styleSheet" href="/shop/data/skin/apple_tree/cart_tab/style.css">
+<link rel="styleSheet" href="/shop/data/skin/apple_tree/style.css">
+<style type="text/css">
+.outline_both {
+border-left-style:solid;
+border-right-style:solid;
+border-left-width:0;
+border-right-width:0;
+border-left-color:#FFFFFF;
+border-right-color:#FFFFFF;
+}
+
+.outline_side {
+border-left-style:solid;
+border-left-width:0;
+border-left-color:#FFFFFF;
+}
+</style>
+<script type="text/javascript" src="../lib/js/sns.js"></script>
+		<script type="text/javascript" src="http://wcs.naver.net/wcslog.js"></script>
+		<script type="text/javascript" src="/shop/lib/js/naverCommonInflowScript.js?Path=main/index.php&amp;Referer=&amp;AccountID=&amp;Inflow=loosfly.com" id="naver-common-inflow-script"></script>
+		
+
+</head>
+
+
+<body bgcolor="white" background="" topmargin="100">
+	<table height="90%" width="100%" align="center" border="0">
+		<tr><td height="100%" width="100%"align="center" valign="middle">
+			<img src="/shop/main/loos_coming_01.gif"><BR>
+			<font style="font-size:9px">Copyright (c) 2013 loosfly Co., Ltd All rights reserved.</font>
+        </td></tr>
+	</table>
+</body>
+</html>

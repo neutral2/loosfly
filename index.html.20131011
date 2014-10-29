@@ -1,0 +1,449 @@
+<?
+include_once "shop/_header.php";
+@include dirname(__FILE__) . "/lib/library.php";
+include_once dirname(__FILE__) . "/conf/config.php";
+@include_once dirname(__FILE__) . "/conf/config.mobileShop.php";
+include_once dirname(__FILE__) . "/lib/tplSkinView.php";
+include_once dirname(__FILE__) . "/shop/Template_/tpl_plugin/function.dataCategory.php";
+$mainpage = true;
+@include "shop/conf/config.pay.php";
+@include "shop/conf/design.search.php";
+@include "shop/conf/config.soldout.php";
+
+$todayshop = Core::loader('todayshop');
+if ($todayshop->cfg['shopMode'] == 'todayshop') header('location:'.dirname($_SERVER['SCRIPT_NAME']).'/../todayshop/today_goods.php?'.$_SERVER['QUERY_STRING']);
+
+include "../conf/design.main.php";
+@include "../conf/design_main.$cfg[tplSkin].php";
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="kr">
+<head>
+<link rel="shortcut icon" href="/shop/data/skin/loosfly/img/jimmy/loos_icon.ico">
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta name="description" content="루스플라이(loosfly) - Dance Fitness Yoga Training... no competition, just fly.">
+<meta name="keywords" content="무용,발레,요가,헬스,무용복,발레복,연습복,피트니스,요가,레오타드">
+<title>루스플라이(loosfly) - Dance Fitness Yoga Training... no competition, just fly.</title>
+<link rel="styleSheet" href="/shop/data/skin/loosfly/style.css" />
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="/shop/data/skin/loosfly/common.js"></script>
+
+<!-- Skitter Styles -->
+<link href="/shop/data/skin/loosfly/skitter/css/skitter.css" type="text/css" media="all" rel="stylesheet" />
+<script type="text/javascript">google.load("jquery", "1.7.1");</script>	
+
+<!-- Skitter JS -->
+<script type="text/javascript" language="javascript" src="/shop/data/skin/loosfly/skitter/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" language="javascript" src="/shop/data/skin/loosfly/skitter/js/jquery.animate-colors-min.js"></script>
+<script type="text/javascript" language="javascript" src="/shop/data/skin/loosfly/skitter/js/jquery.skitter.min.js"></script>
+
+<!-- Init Skitter -->
+<script type="text/javascript" language="javascript">
+	$(document).ready(function() {
+		$('.box_skitter_large').skitter({
+			show_randomly: true,
+			hideTools: false,
+			label: false,
+			numbers: false,
+			dots: false,
+			thumbs: false,
+			controls: false,
+			mouseOverButton: 		function() { $(this).stop().animate({opacity:1}, 200); }, 
+			mouseOutButton: 		function() { $(this).stop().animate({opacity:0.2}, 200); }, 
+			is_hover_box_skitter: false,
+			stop_over: false,
+			interval: 5000
+		});
+
+		/* 사이트 슬라이드 - 3 set */
+		var page_max = $('.subimg_box > div').length;
+		var page_num = 1;
+		if(page_num == 1){
+			$('.page_set1').css('left','0px');
+			$('.page_set2').css('left','1060px');
+		}else if(page_num == 2){
+			$('.page_set1').css('left','-1060px');
+			$('.page_set2').css('left','0px');
+		}
+	
+		po_left1 = parseFloat($('.page_set1').css('left'));
+		po_left2 = parseFloat($('.page_set2').css('left'));
+	
+/*
+		$('.btn_pageR').bind('click', function() {
+			ani_speed = 1000;
+			if(!$('*').is(':animated')){
+				page_num++;
+				if(page_num > page_max){
+					page_num = 1;
+				}
+	
+				po_left1 += -1060;
+				po_left2 += -1060;
+	
+				if(po_left1 < -1060) { po_left1 = 0; }
+				if(po_left2 < -1060) { po_left2 = 0; }
+			
+				if(page_num == 1){
+					$('.page_set1').css({left:'1060px'});
+				}else if(page_num == 2){
+					$('.page_set2').css({left:'1060px'});
+				}
+					
+				$('.page_set1').animate({left:po_left1 + 'px'}, ani_speed);
+				$('.page_set2').animate({left:po_left2 + 'px'}, ani_speed);
+			}
+			return false;
+		});
+	
+		$('.btn_pageL').bind('click', function() {
+			if(!$('*').is(':animated')){
+				page_num--;
+				if(page_num < 1){
+					page_num = page_max;
+				}
+	
+				po_left1 += 1060;
+				po_left2 += 1060;
+	
+				if(po_left1 > 1060) { po_left1 = 0; }
+				if(po_left2 > 1060) { po_left2 = 0; }
+			
+				if(page_num == 1){
+					$('.page_set1').css({left:'-1060px'});
+				}else if(page_num == 2){
+					$('.page_set2').css({left:'-1060px'});
+				}
+	
+				$('.page_set1').animate({left:po_left1 + 'px'}, 1000);
+				$('.page_set2').animate({left:po_left2 + 'px'}, 1000);
+			}
+			return false;
+		});
+*/	
+		/* 사이트 버튼 */
+		$('.btn_pageL').hover(function() {
+			$(this).css({'background-color':'#efefef'});
+			$('#subimg_box').css({'background-color':'#efefef'});
+		}, function() {
+			$(this).css({'background-color':'#ffffff'});
+			$('#subimg_box').css({'background-color':'#ffffff'});
+		});
+	
+		$('.btn_pageR').hover(function() {
+			$(this).css({'background-color':'#efefef'});
+			$('#subimg_box').css({'background-color':'#efefef'});
+		}, function() {
+			$(this).css({'background-color':'#ffffff'});
+			$('#subimg_box').css({'background-color':'#ffffff'});
+		});
+		if( !getCookie("event201303") )
+			centerLayer('/event201303.html',285,175,1);
+	});
+	
+	character_action=function(element, isOver) {
+		element.src = (isOver) ? "/shop/skin/loosfly/img/jimmy/loos_02.gif" : "/shop/skin/loosfly/img/jimmy/loos_01.gif";
+		document.getElementById("balloon").style.display = (isOver) ? "block" : "none";
+	};	
+</script>
+
+<style>
+#bxSubImg { position:relative;width:1100px;height:240px; }
+.subimg_outline {position:relative; height:240px; padding:0px 33px 0px 32px; }
+.subimg_box {position:relative; width:1035px; height:240px; overflow:hidden;}
+.subimg_box dd img {width:240px; height:240px;}
+.subimg_outline .subimg_box div {position:absolute; width:1035px; height:240px; overflow:hidden; zoom:1;}
+.subimg_outline:after {clear:both; display:block; content:"";}
+.subimg_outline dl {float:left; width:240px; margin-right:15px; padding-right:10px;cursor:pointer; }
+.subimg_outline dl.no_mar {margin-right:0; padding-right:0; border-right:none;}
+.subimg_outline dd {  }
+.subimg_outline dt { position:relative;background-color:black;top:-30px; filter:alpha(opacity=30); -ms-filter: "progid:DXImageTransForm.Microsoft.Alpha(Opacity=70)"; opacity:0.3; z-index:100; text-align:right; padding-right:10px;color:white;zoom:1; }
+/*.btn_pageL { position:absolute; top:107px; left:9px; cursor:pointer; filter:alpha(opacity:20); opacity:0.2; -moz-opacity:0.2; }*/
+/*.btn_pageR { position:absolute; top:107px; right:9px; cursor:pointer; filter:alpha(opacity:20); opacity:0.2; -moz-opacity:0.2; }*/
+.btn_pageL { position:absolute; top:0px; left:0px; width:32px; height:240px; cursor:pointer; background:url(/shop/data/skin/loosfly/img/jimmy/arrow_l.gif) center no-repeat; }
+.btn_pageR { position:absolute; top:0px; right:0px; width:33px; height:240px; cursor:pointer; background:url(/shop/data/skin/loosfly/img/jimmy/arrow_r.gif) center no-repeat; }
+.page_set1 {left:0px;}
+.page_set2 {left:1100px;}
+</style>
+
+</head>
+
+<?PHP 
+$cart = new Cart(null,array("chkRunoutDel"=>true ,"chkKeepPeriod"=>true ) );
+?>
+<body>
+<div id="dsWrapping">
+	<div id="dsHeader">
+		<div id="blkHeaderLayer01">
+			<div id="bxTopLogo"><a href="/"><div id="top_logo"></div></a></div>
+			<div id="bxSearch">
+				<form action="/shop/goods/goods_search.php" onsubmit="return chkForm(this)">
+				<input type="hidden" name="searched" value="Y">
+				<input type="hidden" name="log" value="1">
+				<input type="hidden" name="skey" value="all">
+				<input type="hidden" name="hid_pr_text" value=""/>
+				<input type="hidden" name="hid_link_url" value=""/>
+				<input type="hidden" id="edit" name="edit" value=""/>
+				<table id="search_tbl" cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td rowspan="3" style="width:52px;" valign="bottom"><?PHP if( count($cart->item) > 0 ) { ?><img src="/shop/data/skin/loosfly/img/jimmy/loos_icon_01.gif"><?PHP } ?></td>
+					<td colspan="2" style="height:7px"></td>
+				</tr>
+				<tr>
+					<td style="height:20px"></td>
+					<td><input name="sword" type="text" id="search_input" required label="search"></td>
+					<td>&nbsp;<input type="image" src="/shop/data/skin/loosfly/img/jimmy/search_bt_01.gif" style="border:0 none;"></td>
+				</tr>
+				<tr>
+					<td colspan="2" style="height:29px"></td>
+				</tr>
+				</table>
+				</form>		
+			</div>
+		</div>
+		<div id="blkTopMenu">
+			<ul style="float:left">
+				<li class="home current"><a href="/index.html"><div class="menu_item" onMouseOver="overM('홈', this);" onMouseOut="outM('home', this);">home</div></a></li>
+				<li class="shop"><a href="/shop.php"><div class="menu_item" onMouseOver="overM('쇼핑', this);" onMouseOut="outM('shop', this);">shop</div></a></li>
+				<li class="stories"><a href="/shop/stories/stories.php"><div class="menu_item" onMouseOver="overM('스토리', this);" onMouseOut="outM('stories', this);">stories</div></a></li>
+				<li class="blog"><a href="/shop/board/list.php?id=blog"><div class="menu_item" onMouseOver="overM('블로그', this);" onMouseOut="outM('blog', this);">blog</div></a></li>
+			</ul>
+			<ul style="float:right">
+<?PHP if($session->m_no) { ?>
+				<li class="account>"><a href="/shop/mypage/mypage_orderlist.php?"><div class="menu_item" onMouseOver="overS('마이페이지', this);" onMouseOut="outS('account', this);">account</div></a></li>
+				<li class="cart"><a href="/shop/goods/goods_cart.php"><div class="menu_item" onMouseOver="overS('장바구니', this);" onMouseOut="outS('cart', this);">cart</div></a></li>
+				<li class="service"><a href="/shop/service/customer.php"><div class="menu_item" onMouseOver="overS('고객센터', this);" onMouseOut="outS('service', this);">service</div></a></li>
+				<li class="logout"><a href="/shop/member/logout.php"><div class="last_item" onMouseOver="overS('로그아웃', this);" onMouseOut="outS('logout', this);">logout</div></a></li>
+<?PHP } else { ?>
+				<li class="cart"><a href="/shop/goods/goods_cart.php"><div class="menu_item" onMouseOver="overS('장바구니', this);" onMouseOut="outS('cart', this);">cart</div></a></li>
+				<li class="service"><a href="/shop/service/customer.php"><div class="menu_item" onMouseOver="overS('고객센터', this);" onMouseOut="outS('service', this);">service</div></a></li>
+				<li class="login>"><a href="/shop/member/login.php"><div class="last_item" onMouseOver="overS('로그인', this);" onMouseOut="outS('login', this);">login</div></a></li>
+<?PHP } ?>
+			</ul>
+		</div>
+	</div>
+	
+	<!-- MAIN IMAGES -->
+	<div id="dsBody">
+		<div id="blkMainImg">
+			<div class="box_skitter box_skitter_large">
+				<ul>
+<?PHP 
+	$anchor_destinations = array(array("", "/shop/goods/goods_view.php?goodsno=6&category=003", "/shop/goods/goods_view.php?goodsno=8&category=003", "/shop/goods/goods_view.php?goodsno=12&category=003", "/shop/goods/goods_view.php?goodsno=2&category=003", "/shop/goods/goods_view.php?goodsno=7&category=003", "/shop/goods/goods_view.php?goodsno=3&category=003", "/shop/goods/goods_view.php?goodsno=14&category=001"), array("#", "#", "/shop/goods/goods_view.php?goodsno=41&category=006", "/shop/goods/goods_view.php?goodsno=41&category=006", "#", "#", "/shop/goods/goods_view.php?goodsno=42&category=006", "/shop/goods/goods_view.php?goodsno=42&category=006"));
+	
+	for($i = 0; $i < 5; $i++ ) {
+		$ii = rand(0,100)%2;
+		$jj = rand(0,100)%8;
+		$kk = ($ii)?"b":"c";
+?>
+					<li><a href="<?PHP echo $anchor_destinations[$ii][$jj]; ?>"><img src="/shop/data/skin/loosfly/img/jimmy/main_photo/<?PHP echo "mainphoto_".$kk."_0".($jj+1); ?>.jpg" class="fade" /></a><div class="label_text"><p></p></div></li>
+<?PHP 
+	} 
+//	for($i = 0; $i < 5; $i++ ) {
+?>
+					<!--li><a href="<?PHP echo $anchor_destinations[1][$i]; ?>"><img src="/shop/data/skin/loosfly/img/jimmy/main_photo/<?PHP echo "mainphoto_b_0".($i+1); ?>.jpg" class="fade" /></a><div class="label_text"><p></p></div></li-->
+					<li><a href="http://www.loosfly.com/shop/goods/goods_list.php?category=007"><img src="/shop/data/skin/loosfly/img/jimmy/main_photo/laceholic_01.jpg" class="fade" /></a><div class="label_text"><p></p></div></li>
+<?PHP 
+//	} 
+	$seed = rand(1,100); 
+?>
+				</ul>
+			</div>
+		</div>
+		<!-- FEATURED -->
+		<div class="blkMainTitle">
+			<div class="bxTitle">special items</div>
+		</div>
+		<!-- SUBIMAGES -->	
+		<div id="blkSubImg">
+			<div id="bxSubImg">
+				<div id="subimg_outline" class="subimg_outline">
+					<span class="btn_pageL"></span>
+					<span class="btn_pageR"></span>
+					<div id="subimg_box" class="subimg_box">
+						<div class="page_set1" style="left:0px; ">
+							<dl onclick="location.href='http://www.loosfly.com/shop/goods/goods_list.php?category=003'">
+								<dd><img src="/shop/data/skin/loosfly/img/jimmy/model_04.jpg"></dd>
+								<dt onMouseOver="this.innerHTML='레오타드'" onMouseOut="this.innerHTML='leotards'">leotards</dt>
+							</dl>
+							<dl onclick="location.href='http://www.loosfly.com/shop/goods/goods_list.php?category=001'">
+								<dd><img src="/shop/data/skin/loosfly/img/jimmy/model_03.jpg"></dd>
+								<dt onMouseOver="this.innerHTML='상의'" onMouseOut="this.innerHTML='tops'">tops</dt>
+							</dl>
+							<dl onclick="location.href='http://www.loosfly.com/shop/goods/goods_list.php?category=002'">
+								<dd><img src="/shop/data/skin/loosfly/img/jimmy/model_08.jpg"></dd>
+								<dt onMouseOver="this.innerHTML='하의'" onMouseOut="this.innerHTML='bottoms'">bottoms</dt>
+							</dl>
+							<dl class="no_mar" onclick="location.href='http://www.loosfly.com/shop/goods/goods_grp_06.php'">
+								<dd><img src="/shop/data/skin/loosfly/img/jimmy/model_06.jpg"></dd>
+								<dt onMouseOver="this.innerHTML='추천상품'" onMouseOut="this.innerHTML='MD\'s choice'">MD's choice</dt>
+							</dl>
+						</div>                    
+					</div>
+					<!--div id="subimg_box" class="subimg_box">
+						<div class="page_set1" style="left:0px; ">
+<?PHP for($cnt = 0; $cnt < 8; $cnt++) { ?>
+<?PHP if( $cnt == 4 ) { ?>
+						</div>
+						<div class="page_set2" style="left:1060px; ">
+<?PHP } ?>
+							<dl<?PHP if( $cnt%4 == 3 ) echo " class=\"no_mar\""?>>
+								<dd><img src="/shop/data/skin/loosfly/img/jimmy/model_0<?PHP echo $cnt+1; ?>.jpg"></dd>
+								<dt>model <?PHP echo $cnt+1; ?></dt>
+							</dl>
+<?PHP } ?>
+						</div>                    
+					</div-->
+				</div>
+			</div>
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr><td colspan="9" style="height:25px;"></td></tr>
+				<tr>
+					<td style="width:32px;"></td>
+					<td bgcolor="#3f3f3f"><a href="/shop/stories/stories.php" title="루스플라이의 모든 제품들은 '댄스앤드림'에서 디자인합니다."><img src="/shop/data/skin/loosfly/img/jimmy/banner/designed_by_02.jpg"></a></td>
+					<td style="width:25px;"></td>
+					<td colspan="3">
+<?PHP
+	$vid = "61163206";
+	$ban = "banner_granopen_t01.gif";
+	$article_no = 2;
+	if( $seed%2 == 1 ) {
+		$vid = "61325438";
+		$ban = "banner_granopen_t02.gif";
+		$article_no = 3;
+	}
+?>
+						<iframe src="http://player.vimeo.com/video/<?PHP echo $vid; ?>" width="505" height="285" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+					</td>
+					<td style="width:25px;"></td>
+					<!--td bgcolor="#3f3f3f"><a href="/shop/board/view.php?id=event&no=<?PHP echo $article_no; ?>"><img src="/shop/data/skin/loosfly/img/jimmy/banner/<?PHP echo $ban; ?>" /></a></td-->
+					<td bgcolor="#3f3f3f"><a href="/shop/board/view.php?id=event&no=4"><img src="/shop/data/skin/loosfly/img/jimmy/banner/5percent_04.gif" /></a></td>
+					<td style="width:33px;"></td>
+				</tr>
+			</table> 
+		</div>
+		<div class="blkMainTitle">
+			<div class="bxTitle"></div>
+		</div>
+	</div>
+	
+<?PHP 
+	$lfy_goods_knames = array("카테고리"=>"by category", "신상품"=>"new arrivals", "추천상품"=>"MD's choice", "상의"=>"tops", "하의"=>"bottoms", "레오타드"=>"leotards", "유니타드"=>"unitards", "액세서리"=>"accessories", "콜렉션"=>"by collection", "여성용"=>"women's", "남성용"=>"men's", "레이스와 망사"=>"lace & mesh", "편안한 바지"=>"fullness pants", "타이츠"=>"tights", "예비용"=>"reserved"); 
+?>
+	<!-- BOTTOM MENUS -->
+	<div id="dsFooter">
+		<div style="height:20px;"></div>
+		<div id="blkFooterMenu">
+			<div class="footer_spacer01"> </div>
+			<div id="bxShop">
+				<div class="footer_title">shop.</div>
+				<div style="height:10px;"></div>
+				<div class="shop_menu">
+					<div class="footer_subtitle"><div onMouseOver="overM('카테고리', this);" onMouseOut="outM('by category', this);">by category</div></div>
+<?php if(is_array($TPL_R1=dataCategory($GLOBALS["cfg"]["subCategory"], 1))&&!empty($TPL_R1)){foreach($TPL_R1 as $TPL_V1){?>
+<?PHP if ( $TPL_V1["category"] == "005" ) { ?>
+				</div>
+				<div style="position:relative;float:left;width:5px;height:50px;"></div>
+				<div class="shop_menu">
+					<div class="footer_subtitle"><div onMouseOver="overM('콜렉션', this);" onMouseOut="outM('by collection', this);">by collection</div></div>
+<?PHP } ?>
+					<div class="menu_item"><a href="/shop/goods/goods_list.php?category=<?php echo $TPL_V1["category"]?>"><div onMouseOver="overS('<?php echo $TPL_V1["catnm"]?>', this);" onMouseOut="outS('<?PHP echo str_replace("'", "\'", $lfy_goods_knames[$TPL_V1["catnm"]]); ?>', this);"><?PHP echo $lfy_goods_knames[$TPL_V1["catnm"]]; ?></div></a></div>
+<?php }}?>
+				</div>
+			</div>
+			<div class="footer_spacer02"> </div>
+			<div id="bxService">
+				<div class="footer_title">service.</div>
+				<div style="height:10px;"></div>
+				<div class="menu_item"><a href="/shop/board/list.php?id=notice"><div onMouseOver="overS('공지사항', this);" onMouseOut="outS('notice', this);">notice</div></a></div>
+				<div class="menu_item"><a href="/shop/board/list.php?id=event"><div onMouseOver="overS('이벤트 안내', this);" onMouseOut="outS('event', this);">event</div></a></div>
+				<div class="menu_item"><a href="/shop/service/non-member.php"><div onMouseOver="overS('비회원 주문조회', this);" onMouseOut="outS('non-member Orders', this);">Non-member Orders</div></a></div>
+<?PHP if(!$session->m_no) { ?>
+				<div class="menu_item"><a href="/shop/member/find_id.php"><div onMouseOver="overS('아이디 찾기', this);" onMouseOut="outS('fild my ID', this);">find my ID</div></a></div>
+<?PHP } ?>
+				<div class="menu_item"><a href="http://www.loosfly.com/shop/service/sizing_guide.php"><div onMouseOver="overS('여성의류 사이즈 안내', this);" onMouseOut="outS('women\'s sizing guide', this);">women's sizing guide</div></a></div>
+				<div class="menu_item"><a href="http://www.loosfly.com/shop/service/sizing_guide.php?size_type=men"><div onMouseOver="overS('남성의류 사이즈 안내', this);" onMouseOut="outS('men\'s sizing guide', this);">men's sizing guide</div></a></div>
+				<div class="menu_item"><a href="/shop/service/guide.php"><div onMouseOver="overS('이용안내', this);" onMouseOut="outS('user\'s guide', this);">user's guide</div></a></div>
+				<!--div class="menu_item"><a href="#"><div onMouseOver="overS('제휴매장 안내', this);" onMouseOut="outS('retail partners', this);">retail partners</div></a></div-->
+				<div class="menu_item"><a href="/shop/service/faq.php"><div onMouseOver="overS('자주 묻는 질문들', this);" onMouseOut="outS('FAQ', this);">FAQ</div></a></div>
+				<div class="menu_item"><a href="/shop/service/company.php"><div onMouseOver="overS('루스플라이에 대하여', this);" onMouseOut="outS('about loosfly', this);">about loosfly</div></a></div>			</div>
+			<div class="footer_spacer02"> </div>
+			<div id="bxContactUs">
+				<div class="footer_title">contact us.</div>
+				<div style="height:10px;"> </div>
+				<div id="notation" onMouseOver="overS('상품안내, 주문, 사이트 이용 등과 같은 일반적인 문의사항들은 아래로 문의하시면 빠르고 친절하게 답변해 드립니다.', this);" onMouseOut="outS('for all questions about<BR>order or general enquiries<BR>please contact :', this);">for all questions about<BR>order or general enquiries<BR>please contact :</div>
+				<div style="height:10px;"> </div>
+				<div class="menu_item">email :</div>
+				<div class="menu_item"><a href="javascript:popup('/shop/proc/popup_email.php?to=<?PHP echo $GLOBALS["cfg"]["adminEmail"]; ?>&hidden=1',650,600)"><?PHP echo $GLOBALS["cfg"]["adminEmail"]; ?></a></div>
+				<div style="height:10px;"></div>
+				<div class="menu_item">telephone :</div>
+				<div class="menu_item">+82 (2) 549 9003</div>
+				<div style="height:10px;"></div>
+				<div class="menu_item">office hour: </div>
+				<div class="menu_item">9:00am - 6:00pm </div>
+			</div>
+			<div class="footer_spacer02"> </div>
+			<div id="bxFollowUs">
+				<div class="footer_title">follow us.</div>
+				<div style="height:20px;"></div>
+				<div id="bxSNSicons">
+					<div style="position:relative;float:left;width:12px;height:22px;"></div>
+					<div class="sns_icon"><a href="#"><img src="/shop/skin/loosfly/img/jimmy/fbook_01.gif" onmouseover="this.src='/shop/skin/loosfly/img/jimmy/fbook_02.gif'" onmouseout="this.src='/shop/skin/loosfly/img/jimmy/fbook_01.gif'" /></a></div>
+					<div style="position:relative;float:left;width:10px;height:22px;"></div>
+					<div class="sns_icon"><a href="#"><img src="/shop/skin/loosfly/img/jimmy/twitter_01.gif" onmouseover="this.src='/shop/skin/loosfly/img/jimmy/twitter_02.gif'" onmouseout="this.src='/shop/skin/loosfly/img/jimmy/twitter_01.gif'" /></a></div>
+					<div style="position:relative;float:left;width:10px;height:22px;"></div>
+					<div class="sns_icon"><a href="#"><img src="/shop/skin/loosfly/img/jimmy/flickr_01.gif" onmouseover="this.src='/shop/skin/loosfly/img/jimmy/flickr_02.gif'" onmouseout="this.src='/shop/skin/loosfly/img/jimmy/flickr_01.gif'" /></a></div>
+					<div style="position:relative;float:left;width:10px;height:22px;"></div>
+					<div class="sns_icon"><a href="#"><img src="/shop/skin/loosfly/img/jimmy/vimeo_01.gif" onmouseover="this.src='/shop/skin/loosfly/img/jimmy/vimeo_02.gif'" onmouseout="this.src='/shop/skin/loosfly/img/jimmy/vimeo_01.gif'" /></a></div>
+					<div style="position:relative;float:left;width:10px;height:22px;"></div>
+					<div class="sns_icon"><a href="#"><img src="/shop/skin/loosfly/img/jimmy/google_01.gif" onmouseover="this.src='/shop/skin/loosfly/img/jimmy/google_02.gif'" onmouseout="this.src='/shop/skin/loosfly/img/jimmy/google_01.gif'" /></a></div>
+					<div style="position:relative;float:left;width:13px;height:22px;"></div>
+				</div>
+				<div style="height:30px;"></div>
+				<div id="bxLoos">
+					<div id="loos"><img src="/shop/skin/loosfly/img/jimmy/loos_01.gif" onmouseover="character_action(this, true);" onmouseout="character_action(this, false);" /></div>
+					<div id="balloon"><div style="padding:3px 0 0 5px;line-height:30px">loosfly!!</div></div>
+				</div>
+			</div>
+			<div class="footer_spacer01"> </div>
+		</div>
+		<div id="blkObligation">
+		<fieldset id="obligation_field">
+		<legend ><span><b>[</b>통신판매사업 관련 법령에 따른 의무표시사항<b>]</b></span></legend>
+			<table width="100%" height="63"  cellpadding="0" cellspacing="0" border="0" align="center">
+				<tr>
+					<td>회사명 : <?PHP echo $GLOBALS["cfg"]["compName"]; ?></td>
+					<td>전화번호 : <?PHP echo $GLOBALS["cfg"]["compPhone"]; ?></td>
+					<td>사업자등록번호 : <?PHP echo $GLOBALS["cfg"]["compSerial"]; ?> <a href="http://www.ftc.go.kr/info/bizinfo/communicationList.jsp" target="_blank"> [확인]</a></td>
+					<td>개인정보관리 책임자 : <?PHP echo $GLOBALS["cfg"]["adminName"]; ?></td>
+				</tr>
+				<tr>
+					<td>대표이사 : <?PHP echo $GLOBALS["cfg"]["ceoName"]; ?></td>
+					<td>팩스번호 : <?PHP echo $GLOBALS["cfg"]["compFax"]; ?></td>
+					<td>통신판매업신고번호 : <?PHP echo $GLOBALS["cfg"]["orderSerial"]; ?></td>
+					<td class="ob_link"><a href="/shop/service/private.php">[개인정보취급방침]</a></td>
+				</tr>
+				<tr>
+					<td colspan="2">주소 : 135-819 <?PHP echo $GLOBALS["cfg"]["address"]; ?></td>
+					<td>이메일 : <a href="javascript:popup('/shop/proc/popup_email.php?to=<?PHP echo $GLOBALS["cfg"]["adminEmail"]; ?>&hidden=1',650,600)"><?PHP echo $GLOBALS["cfg"]["adminEmail"]; ?></a></td>
+					<td class="ob_link"><a href="/shop/service/agreement.php">[사이트이용약관]</a></td>
+				</tr>
+			</table>
+		</fieldset>
+		<div style="position:relative;float:left;width:20px;height:100px"></div>
+		<div style="position:relative;float:left;background-color:#ffffff;border:#3f3f3f 1px solid;width:150px;height:97px;margin-top:8px;">
+		<!-- SSL seal -->
+			<div style="position:relative;float:left;width:10px;height:100px;"></div>
+			<div style="position:relative;float:left;line-height:10px;padding-top:12px"><a href="http://www.instantssl.com" target="_blank"><img src="/shop/lib/ssl/Comodo/standard_logo/comodo_seal_52x63.png" alt="SSL Certificates" width="52" height="63" style="border: 0px;"><br><span style="font-weight:bold; font-size:9px">SSL Certificates</span></a></div>
+			<div style="position:relative;float:left;width:10px;height:100px;"></div>
+		<!-- 구매안전서비스 표시 -->
+			<div style="position:relative;float:left;padding-top:8px;cursor:pointer;"><img src="https://mark.inicis.com/img/mark_escrow/inipoint/mark_square_black_s.gif" border="0" alt="클릭하시면 이니시스 결제시스템의 유효성을 확인하실 수 있습니다." style="cursor:hand" Onclick=javascript:window.open("https://mark.inicis.com/mark/escrow_popup.php?no=39840&st=1371721644","mark","scrollbars=no,resizable=no,width=530,height=670");></div>
+		</div>
+	</div>
+	<div style="height:20px;"></div>
+	<div id="bottom_logo"></div>
+</div>
+</body>
+</html>

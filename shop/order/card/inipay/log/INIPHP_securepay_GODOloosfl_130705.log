@@ -1,0 +1,36 @@
+INFO	[2013-07-05 17:41:12:195] <12742> START INIPHP chkfake (V5031-111123)(OS:Linux2.6.18-348.6.1.el5,PHP:5.2.17)
+DEBUG	[2013-07-05 17:41:12:195] <12742> inipayhome:/www/loosfly_godo_co_kr/shop/order/card/inipay
+DEBUG	[2013-07-05 17:41:12:195] <12742> type:chkfake
+DEBUG	[2013-07-05 17:41:12:195] <12742> debug:true
+DEBUG	[2013-07-05 17:41:12:195] <12742> enctype:asym
+DEBUG	[2013-07-05 17:41:12:195] <12742> admin:1111
+DEBUG	[2013-07-05 17:41:12:195] <12742> checkopt:false
+DEBUG	[2013-07-05 17:41:12:195] <12742> mid:GODOloosfl
+DEBUG	[2013-07-05 17:41:12:195] <12742> price:89000
+DEBUG	[2013-07-05 17:41:12:195] <12742> nointerest:no
+DEBUG	[2013-07-05 17:41:12:195] <12742> quotabase:선택:일시불:2개월:3개월:4개월:5개월:6개월:7개월:8개월:9개월:10개월:11개월:12개월
+INFO	[2013-07-05 17:41:12:195] <12742> Check Field OK
+INFO	[2013-07-05 17:41:12:203] <12742> MERCHANT PRIV KEY LOAD OK
+INFO	[2013-07-05 17:41:12:207] <12742> MERCHANT PUB KEY LOAD OK []
+INFO	[2013-07-05 17:41:12:209] <12742> CHKFAKE KEY MAKE OK:MjAxMzA3MDUxNzQxMTIyMDcyMDA4Mg==
+
+INFO	[2013-07-05 17:41:12:209] <12742> END chkfake  Laptime:[0.02sec]
+INFO	[2013-07-05 17:41:12:209] <12742> ===============================================================
+INFO	[2013-07-05 19:00:38:441] <831> START INIPHP chkfake (V5031-111123)(OS:Linux2.6.18-348.6.1.el5,PHP:5.2.17)
+DEBUG	[2013-07-05 19:00:38:441] <831> inipayhome:/www/loosfly_godo_co_kr/shop/order/card/inipay
+DEBUG	[2013-07-05 19:00:38:441] <831> type:chkfake
+DEBUG	[2013-07-05 19:00:38:441] <831> debug:true
+DEBUG	[2013-07-05 19:00:38:441] <831> enctype:asym
+DEBUG	[2013-07-05 19:00:38:441] <831> admin:1111
+DEBUG	[2013-07-05 19:00:38:441] <831> checkopt:false
+DEBUG	[2013-07-05 19:00:38:441] <831> mid:GODOloosfl
+DEBUG	[2013-07-05 19:00:38:441] <831> price:89000
+DEBUG	[2013-07-05 19:00:38:441] <831> nointerest:no
+DEBUG	[2013-07-05 19:00:38:441] <831> quotabase:선택:일시불:2개월:3개월:4개월:5개월:6개월:7개월:8개월:9개월:10개월:11개월:12개월
+INFO	[2013-07-05 19:00:38:441] <831> Check Field OK
+INFO	[2013-07-05 19:00:38:441] <831> MERCHANT PRIV KEY LOAD OK
+INFO	[2013-07-05 19:00:38:441] <831> MERCHANT PUB KEY LOAD OK []
+INFO	[2013-07-05 19:00:38:443] <831> CHKFAKE KEY MAKE OK:MjAxMzA3MDUxOTAwMzg0NDE0MjcyNQ==
+
+INFO	[2013-07-05 19:00:38:443] <831> END chkfake  Laptime:[0sec]
+INFO	[2013-07-05 19:00:38:443] <831> ===============================================================

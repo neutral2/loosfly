@@ -1,0 +1,75 @@
+<!-- 휴대폰 결제 서비스 수수료율 인상 안내 팝업 --><!-- 패치 안내 팝업 -->
+<!-- 주민등록 검색항목 일괄삭제 기능제거 안내 팝업 --><!-- 보안 강화 관련 팝업 -->
+<div id="security_popup" style="display:none;width:300px; height:180px; position:absolute;top:15%;right:2%;z-index:999; margin:0; padding:0;">
+	<div style="position:relative; overflow:hidden; width:300px; height:180px; background-color:#FFFFFF; border:1px solid #000000;">
+		<div style="width:100%; height:40px; background-color:#333333;">
+			<div style="float:left; color:#FFF; font-family:\'돋움\'; font-size:14px; font-weight:bold; padding-left:17px; line-height:40px;">
+				e나무 보안이 더욱 강화 되었습니다.
+			</div>
+			<div style="float:right; padding-right:15px;"><a href="javascript:;"><img src="http://gongji.godo.co.kr/userinterface/img/s4/btn_close.gif" alt="닫기" onclick="_ID('security_popup').style.display='none';" style="margin-top:12px;"/></a></div>
+			<div style="clear:both; height:0px;"></div>
+		</div>
+		<div style="width:280px; height:105px; margin:5px 5px 0px 5px; padding:5px; font-size:11px; color:#666; line-height:16px;">
+			<div style="font-weight:bold; text-align:center;">쇼핑몰 안전하게 지킬 수 있는 <font style="color:red;">5가지</font> 방법<span style="font-weight:bold;"></div>
+			<div>
+				1. <font style="font-weight:bold; color:red;">(필수)</font> 회원 비밀번호 설정 강화<br/>
+				2. <font style="font-weight:bold; color:red;">(필수)</font> 만 14세 미만 회원가입 정책 설정<br/>
+				3. 파일첨부 보안 강화 및 부정태그 방지 설정<br/>
+				4. 관리자 휴대폰 보안 인증 설정<br/>
+				5. 비밀번호 변경 안내(쇼핑몰 + 관리자) 설정<br/>
+			</div>
+			<div style="text-align:right;"><a href="http://www.godo.co.kr/main/better_godomall.php?code=newservice&postNo=133" target="_blank" style="font-weight:bold; color:#317FE1;">자세히 보기 >></a></div>
+		</div>
+		<div style="width:100%; height:19px; line-height:19px; font-size:11px; color:#7C7C7C; background-color:#E7E7E7; text-align:right;">
+			<span style="padding-right:15px;"><input type="checkbox" onclick="javascript:var todayDate=new Date();todayDate.setDate(todayDate.getDate()+7);document.cookie = 'maxpopup=true;expires='+todayDate.toGMTString()+';path=/';_ID('security_popup').style.display='none';" title="일주일동안 열지않기" style="vertical-align:middle;"/>일주일동안 열지않기 <input type="checkbox" onclick="_ID('security_popup').style.display='none';" title="닫기" style="vertical-align:middle;"/>닫기</span>
+		</div>
+	</div>
+</div>
+<!-- 이벤트 팝업창 -->
+<div id="event_pop1" style="width:214px; height:150px; position:absolute;top:468px;left:1016px;z-index:999; margin:0; padding:0; font-size:0px;">
+	<div><a href="http://gongji.godo.co.kr/userinterface/panelclick.php?panelno=23&name=%C5%C3%B9%E8%B9%DA%BD%BA%C7%FD%C5%C3&url=http%3A%2F%2Fwww.godo.co.kr%2Fservice%2Fbox_service.php" target="_blank"><img src="http://gongji.godo.co.kr/userinterface/img/s4/admin_banner_box.gif" width="214" height="150" border="0" alt="택배박스 이벤트페이지 보기"/></a></div>
+	<div style="width:100%; height:25px; background-color:#000000; text-align:right;">
+		<img src="http://gongji.godo.co.kr/userinterface/img/s4/malladmin_wing_daycls.png" onClick="javascript:var todayDate=new Date();todayDate.setDate(todayDate.getDate()+1);document.cookie = 'maxpopup=true;expires='+todayDate.toGMTString()+';path=/';_ID('event_pop1').style.display='none';" alt="오늘하루열지않기" style="cursor:pointer; margin-right:10px;"/>
+		<img src="http://gongji.godo.co.kr/userinterface/img/s4/malladmin_wing_cls.png" onClick="javascript:_ID('event_pop1').style.display='none';" alt="닫기" style="cursor:pointer; margin-right:10px;"/>
+	</div>
+</div>
+<!-- 이벤트 팝업창 02 -->
+<div id="event_pop2" style="width:214px; height:150px; position:absolute;top:650px;left:1016px;z-index:999; margin:0; padding:0; font-size:0px;">
+	<div><a href="http://gongji.godo.co.kr/userinterface/panelclick.php?panelno=23&name=%C7%D8%BF%DC%B1%B8%B8%C5%B4%EB%C7%E0%BC%AD%BA%F1%BD%BA&url=http%3A%2F%2Fwww.godo.co.kr%2Foverseas%2Fintro.php%3Fmenu%3D0" target="_blank"><img src="http://gongji.godo.co.kr/userinterface/img/s4/admin_banner_overseas.gif" width="214" height="150" border="0" alt="해외구매대행 서비스 안내페이지 보기"/></a></div>
+	<div style="width:100%; height:25px; background-color:#000000; text-align:right;">
+		<img src="http://gongji.godo.co.kr/userinterface/img/s4/malladmin_wing_daycls.png" onClick="javascript:var todayDate=new Date();todayDate.setDate(todayDate.getDate()+1);document.cookie = 'maxpopup=true;expires='+todayDate.toGMTString()+';path=/';_ID('event_pop2').style.display='none';" alt="오늘하루열지않기" style="cursor:pointer; margin-right:10px;"/>
+		<img src="http://gongji.godo.co.kr/userinterface/img/s4/malladmin_wing_cls.png" onClick="javascript:_ID('event_pop2').style.display='none';" alt="닫기" style="cursor:pointer; margin-right:10px;"/>
+	</div>
+</div><!-- 이벤트 팝업창 03 -->
+<div id="event_pop3" style="width:214px;position:absolute;top:833px;left:1016px;z-index:999;">
+	<div><a href="http://gongji.godo.co.kr/userinterface/panelclick.php?panelno=23&name=%BC%EE%C7%CE%B8%F4%B8%C2%C3%E3%BC%AD%BA%F1%BD%BA&url=http%3A%2F%2Fprogram.godo.co.kr%2Fshop%2Fservice%2Ftune_apply.php" target="_blank"><img src="http://gongji.godo.co.kr/userinterface/img/s4/admin_banner_custom.gif" border="0" width="214" height="150" alt="쇼핑몰 맞춤서비스 보기"/></a></div>
+	<div style="width:100%; height:25px; background-color:#000000; text-align:right;">
+		<img src="http://gongji.godo.co.kr/userinterface/img/s4/malladmin_wing_daycls.png" onclick="javascript:var todayDate=new Date();todayDate.setDate(todayDate.getDate()+1);document.cookie = 'maxpopup=true;expires='+todayDate.toGMTString()+';path=/';_ID('event_pop3').style.display='none';" alt="오늘하루열지않기" style="cursor:pointer; margin-right:10px;"/>
+		<img src="http://gongji.godo.co.kr/userinterface/img/s4/malladmin_wing_cls.png" onclick="javascript:_ID('event_pop3').style.display='none';" alt="닫기" style="cursor:pointer; margin-right:10px;"/>
+	</div>
+</div>
+<!--독립형-->
+			<div style="position:absolute; width:512px; height:333px; left:1000px; top:880px; z-index:180;" id="marketpop1">
+			<table width='100%' border="0" cellspacing="0" cellpadding="0" align="center">
+				<tr>
+					<td><img src="http://gongji.godo.co.kr/userinterface/img/popup/201203/admin_keyword_popup.png" border="0" usemap="#marketingMap1" class="png24"></td>
+				</tr>
+			</table>
+			<map name="marketingMap1">
+				<area shape="rect" coords="20,269,109,301" href="../keyword/register.php" target="_self" title="자세히보기"/>
+				<area shape="rect" coords="114,269,204,301" href="../keyword/register.php" target="_self" title="신청하기"/>
+				<area shape="rect" coords="97,323,186,337" href="#" alt="오늘하루열지않기" onclick="javascript:var todayDate=new Date();todayDate.setDate(todayDate.getDate()+1);document.cookie = 'maxpopup=true;expires='+todayDate.toGMTString()+';path=/';_ID('marketpop1').style.display='none';" />
+				<area shape="rect" coords="192,323,228,336" href="#" alt="창닫기" onclick="javascript:_ID('marketpop1').style.display='none';" />
+			</map>			
+		</div>		<div style="position:absolute; width:317px; height:497px; left:1000px; top:390px; z-index:180;" id='marketpop2'>
+		<table width='100%' border="0" cellspacing="0" cellpadding="0" align="center">
+			<tr>
+				<td><img src="http://gongji.godo.co.kr/userinterface/img/201209/0917-mainpop.png" border="0" usemap="#marketingMap2" class="png24"></td>
+			</tr>
+		</table>
+		<map name="marketingMap2">			
+			<area shape="rect" coords="89,420,176,454" href="http://marketing.godo.co.kr/naver_double.php?src=image&kw=000755" target="_blank" title="더블마케팅 신청하기"/>
+			<area shape="rect" coords="64,462,157,481" href="#" alt="오늘하루열지않기" onclick="javascript:var todayDate=new Date();todayDate.setDate(todayDate.getDate()+1);document.cookie = 'maxpopup=true;expires='+todayDate.toGMTString()+';path=/';_ID('marketpop2').style.display='none';" />
+			<area shape="rect" coords="159,463,200,482" href="#" alt="창닫기" onclick="javascript:_ID('marketpop2').style.display='none';" />
+		</map>
+		</div>

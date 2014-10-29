@@ -1,0 +1,75 @@
+{*** 이용후기 작성 | main/html.php?htmid=myp/review_register.htm ***}
+{ # header }
+<?php {page_title} = "상품후기";?>
+{#sub_header}
+
+<form method=post action="indb.php" enctype="multipart/form-data" onSubmit="return chkForm(this)">
+<input type=hidden name=mode value="{_mode}">
+<input type=hidden name=goodsno value="{_goodsno}">
+<input type=hidden name=sno value="{_sno}">
+<input type=hidden name=referer value="{_referer}">
+
+<section id="reviewregister"  class="content">
+
+<div class="m_review">
+	<div class="roundbox">
+		<div class="goods_info">
+			<div class="goods_img">
+				{=goodsimg(_goods.img_s,50)}
+			</div>
+			<div class="goods_text">
+				<div class="goods_nm">
+					{_goods.goodsnm}
+				</div>
+				<div class="goods_price">
+					{=number_format(_goods.price)}원
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="m_review">
+	<div class="roundbox">
+		<div class="m_list">
+			<div class="m_title m_top_left">평가</div>
+			<div class="m_right">
+				<select name="point">
+					<option value="5" {_data.point['5']}>★★★★★</option>
+					<option value="4" {_data.point['4']}>★★★★☆</option>
+					<option value="3" {_data.point['3']}>★★★☆☆</option>
+					<option value="2" {_data.point['2']}>★★☆☆☆</option>
+					<option value="1" {_data.point['1']}>★☆☆☆☆</option>
+				</select>
+			</div>
+		</div>
+		<div class="m_list">
+			<div class="m_title">작성자</div>
+			<div class="m_right"><input type="text" name="name" required label="작성자" value="{_data.name}" /></div>
+		</div>
+		<!--{ ? ! _sess && empty(_data['m_no']) // 작성자==회원 }-->
+		<div class="m_list">
+			<div class="m_title">비밀번호</div>
+			<div class="m_right"><input type=password name=password style="width:100" required label="비밀번호"></div>
+		</div>
+		<!--{ / }-->
+		<div class="m_list">
+			<div class="m_title">제목</div>
+			<div class="m_right"><input type="text" name="subject" required label="제목" value="{_data.subject}" style="width:100%;" /></div>
+		</div>
+		<div class="m_list" style="border:none;height:105px;">
+			<div class="m_title m_bottom_left" style="height:105px;">내용</div>
+			<div class="m_right"><textarea name="contents" required label="내용" style="width:100%;height:80px;margin-top:10px;" >{_data.contents}</textarea></div>
+		</div>
+	</div>
+</div>
+	<div class="m_review">
+		<div class="btn_center">
+			<div class="btn_sav"><button type="submit" id="save-btn" class="btn_save">저장하기</button></div>
+			<div class="btn_pre"><button type="button" id="prev-btn" class="btn_prev"  onclick="history.back();">이전 화면</button></div>
+		</div>
+	</div>
+</section>
+
+
+
+</form>

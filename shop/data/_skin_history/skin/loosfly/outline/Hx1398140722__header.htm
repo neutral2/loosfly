@@ -1,0 +1,107 @@
+{*** 상단레이아웃 | main/index.php ***}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="shortcut icon" href="/shop/data/skin/loosfly/img/jimmy/loos_icon.ico">
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR" />
+<meta name="description" content="{_meta_title}" />
+<meta name="keywords" content="{_meta_keywords}" />
+<title>{_meta_title}</title>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+
+<!--{ ? _POST }-->
+<script>
+	history.back = function() {
+		var step = (document.location.protocol == 'https:' ? 2 : 1) * -1;
+		history.go( step );
+	}
+</script>
+<!--{ / }-->
+
+<!--{ ? connInterpark == 'ok' // 인터파크 헤더 호출 }-->
+<script type="text/javascript">var entr_nm = "<a href='/'>{_cfg.shopName}</a>"; // 상점명</script>
+<script type="text/javascript" src="http://www.interpark.com/gate/minm/topnav_shopplus_soho.js"></script>
+<!--{ / }-->
+
+<!--{ ? _COOKIE['cc_inflow'] == 'yahoo_fss' || _GET['ref'] == 'yahoo_fss' }-->
+<script language="javascript" src="http://kr.ysp.shopping.yahoo.com/ysp/ysp_fss.js"></script>
+<script> ykfss_bar();</script>
+<!--{ / }-->
+
+<script type="text/javascript" src="../common.js"></script>
+<script type="text/javascript" src="../cart_tab/godo.cart_tab.js"></script>
+
+<link rel="styleSheet" href="../cart_tab/style.css" />
+<link rel="styleSheet" href="../style.css" />
+<style type="text/css">
+	.outline_both {
+	border-left-style:solid;
+	border-right-style:solid;
+	border-left-width:{_cfg['shopLineWidthL']};
+	border-right-width:{_cfg['shopLineWidthR']};
+	border-left-color:{_cfg['shopLineColorL']};
+	border-right-color:{_cfg['shopLineColorR']};
+}
+
+{ ? this->tpl_['side_inc'] && _cfg['outline_sidefloat'] == 'left' } <!-- 측면위치가 좌측인 경우 -->
+
+.outline_side {
+	border-left-style:solid;
+	border-left-width:{_cfg['shopLineWidthC']};
+	border-left-color:{_cfg['shopLineColorC']};
+}
+
+{ : this->tpl_['side_inc'] && _cfg['outline_sidefloat'] == 'right' } <!-- 측면위치가 우측인 경우 -->
+
+.outline_side {
+	border-right-style:solid;
+	border-right-width:{_cfg['shopLineWidthC']};
+	border-right-color:{_cfg['shopLineColorC']};
+{ / }
+</style>
+
+<!--{ ? _overture_cc }-->{ # overture_cc }<!--{ / }-->
+{=customHeader}
+
+<!-- Skitter Styles -->
+<link href="/shop/data/skin/loosfly/skitter/css/skitter.css" type="text/css" media="all" rel="stylesheet" />
+<script type="text/javascript">google.load("jquery", "1.7.1");</script>	
+
+<!-- Skitter JS -->
+<script type="text/javascript" language="javascript" src="/shop/data/skin/loosfly/skitter/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" language="javascript" src="/shop/data/skin/loosfly/skitter/js/jquery.animate-colors-min.js"></script>
+<script type="text/javascript" language="javascript" src="/shop/data/skin/loosfly/skitter/js/jquery.skitter.min.js"></script>
+
+<script type="text/javascript" language="javascript">	
+</script>
+
+</head>
+<!-- {=copyProtect(true)} -->
+<body><!-- oncontextmenu="return false" onselectstart="return false" ondragstart="return false" -->
+{ # myBoxLayer }
+<!--{? useMyLevelLayerBox == 'y'}-->
+{ # myLevelLayer }
+<!--{/}-->
+
+<!--{ ? alertCoupon == true}-->
+{ # myCouponLayer }
+<!--{ / }-->
+
+<div id="dsWrapping">
+	<a name="top"></a>
+	<div id="dsHeader">
+		{ # header_inc // 상단디자인 }
+	</div>	
+<?PHP 
+	include_once ("indicator.php");
+	$fname = {pfile};
+	if( {id} == "notice" ) $fname="notice.php";
+	else if( {id} == "stories" ) $fname="stories.php";
+	$op1 = {=currPosition(_category)};
+
+	$path = lfy_get_path($fname, $op1, {goodsnm});
+?>
+	<div id="dsPath"><div id="blkPathIndicator"><?PHP echo $path; ?></div></div>
+	<div id="dsBody">

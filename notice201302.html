@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Untitled Document</title>
+<meta name="Generator" content="EditPlus">
+<meta name="Author" content="">
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<script src="/shop/data/skin/loosfly/common.js"></script>
+<style>
+	body{margin:0 auto;font:normal 13px/20px "나눔고딕", "Nanum Gothic", "AppleGothic", "맑은고딕", "Malgun Gothic", "돋움", "Dotum", "Sans-serif";}
+	a { text-decoration:none;}
+</style>
+<script>
+	function close_popup() {
+		if( document.getElementById('not_open').checked == true ) {
+			var expDate = new Date();
+			expDate.setTime(expDate.getTime() + 1000 * 3600 * 24 );
+			setCookie("notice201301", "1", expDate);
+		}
+		parent.document.body.removeChild(parent.document.getElementById('centerLayer') );
+	}
+</script>
+</head>
+
+<body>
+<table cellspacing="0" cellpadding="0" border="0" style="border:#3f3f3f solid 3px">
+	<tr>
+		<td width="330" height="20" valign="middle" bgcolor="#3f3f3f" style="color:#ffffff;padding-left:10px">루스플라이 한가위 인사</td>
+		<td width="20"><a href="javascript:close_popup();"><img src="http://www.loosfly.com/shop/data/skin/loosfly/img/jimmy/popup/x_img_01.gif" border="0" width="20"></a></td>
+	</tr>
+	<tr>
+		<td align="left" valign="middle" colspan="2" ><img src="http://www.loosfly.com/shop/data/editor/1378962997.gif" width="350" border="0"></td>
+	</tr>	
+	<tr>
+		<td height="20" align="right" valign="middle" bgcolor="#3f3f3f" style="color:#ffffff;font-size:12px;line-height:20px;" colspan="2" >
+			하루동안 열지 않기
+					<input type="checkbox" id="not_open" style="height:13px">
+		</td>
+	</tr>	
+</table>
+</body>
+</html>

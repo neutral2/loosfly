@@ -1,0 +1,72 @@
+INFO	[2013-06-27 18:38:21:689] <12447> START INIPHP chkfake (V5031-111123)(OS:Linux2.6.18-348.6.1.el5,PHP:5.2.17)
+DEBUG	[2013-06-27 18:38:21:690] <12447> inipayhome:/www/loosfly_godo_co_kr/shop/order/card/inipay
+DEBUG	[2013-06-27 18:38:21:690] <12447> type:chkfake
+DEBUG	[2013-06-27 18:38:21:690] <12447> debug:true
+DEBUG	[2013-06-27 18:38:21:690] <12447> enctype:asym
+DEBUG	[2013-06-27 18:38:21:690] <12447> admin:1111
+DEBUG	[2013-06-27 18:38:21:690] <12447> checkopt:false
+DEBUG	[2013-06-27 18:38:21:690] <12447> mid:GODOloosfl
+DEBUG	[2013-06-27 18:38:21:690] <12447> price:89000
+DEBUG	[2013-06-27 18:38:21:690] <12447> nointerest:no
+DEBUG	[2013-06-27 18:38:21:690] <12447> quotabase:선택:일시불:2개월:3개월:4개월:5개월:6개월:7개월:8개월:9개월:10개월:11개월:12개월
+INFO	[2013-06-27 18:38:21:690] <12447> Check Field OK
+INFO	[2013-06-27 18:38:21:695] <12447> MERCHANT PRIV KEY LOAD OK
+INFO	[2013-06-27 18:38:21:699] <12447> MERCHANT PUB KEY LOAD OK []
+INFO	[2013-06-27 18:38:21:702] <12447> CHKFAKE KEY MAKE OK:MjAxMzA2MjcxODM4MjE2OTkzOTI0Mg==
+
+INFO	[2013-06-27 18:38:21:702] <12447> END chkfake  Laptime:[0.02sec]
+INFO	[2013-06-27 18:38:21:702] <12447> ===============================================================
+INFO	[2013-06-27 18:40:43:209] <22629> START INIPHP chkfake (V5031-111123)(OS:Linux2.6.18-348.6.1.el5,PHP:5.2.17)
+DEBUG	[2013-06-27 18:40:43:209] <22629> inipayhome:/www/loosfly_godo_co_kr/shop/order/card/inipay
+DEBUG	[2013-06-27 18:40:43:209] <22629> type:chkfake
+DEBUG	[2013-06-27 18:40:43:209] <22629> debug:true
+DEBUG	[2013-06-27 18:40:43:209] <22629> enctype:asym
+DEBUG	[2013-06-27 18:40:43:209] <22629> admin:1111
+DEBUG	[2013-06-27 18:40:43:209] <22629> checkopt:false
+DEBUG	[2013-06-27 18:40:43:209] <22629> mid:GODOloosfl
+DEBUG	[2013-06-27 18:40:43:209] <22629> price:89000
+DEBUG	[2013-06-27 18:40:43:209] <22629> nointerest:no
+DEBUG	[2013-06-27 18:40:43:209] <22629> quotabase:선택:일시불:2개월:3개월:4개월:5개월:6개월:7개월:8개월:9개월:10개월:11개월:12개월
+INFO	[2013-06-27 18:40:43:209] <22629> Check Field OK
+INFO	[2013-06-27 18:40:43:209] <22629> MERCHANT PRIV KEY LOAD OK
+INFO	[2013-06-27 18:40:43:210] <22629> MERCHANT PUB KEY LOAD OK []
+INFO	[2013-06-27 18:40:43:211] <22629> CHKFAKE KEY MAKE OK:MjAxMzA2MjcxODQwNDMyMTA5NTE0NQ==
+
+INFO	[2013-06-27 18:40:43:211] <22629> END chkfake  Laptime:[0sec]
+INFO	[2013-06-27 18:40:43:211] <22629> ===============================================================
+INFO	[2013-06-27 18:41:37:579] <32666> START INIPHP chkfake (V5031-111123)(OS:Linux2.6.18-348.6.1.el5,PHP:5.2.17)
+DEBUG	[2013-06-27 18:41:37:579] <32666> inipayhome:/www/loosfly_godo_co_kr/shop/order/card/inipay
+DEBUG	[2013-06-27 18:41:37:579] <32666> type:chkfake
+DEBUG	[2013-06-27 18:41:37:579] <32666> debug:true
+DEBUG	[2013-06-27 18:41:37:579] <32666> enctype:asym
+DEBUG	[2013-06-27 18:41:37:579] <32666> admin:1111
+DEBUG	[2013-06-27 18:41:37:579] <32666> checkopt:false
+DEBUG	[2013-06-27 18:41:37:579] <32666> mid:GODOloosfl
+DEBUG	[2013-06-27 18:41:37:579] <32666> price:89000
+DEBUG	[2013-06-27 18:41:37:579] <32666> nointerest:no
+DEBUG	[2013-06-27 18:41:37:579] <32666> quotabase:선택:일시불:2개월:3개월:4개월:5개월:6개월:7개월:8개월:9개월:10개월:11개월:12개월
+INFO	[2013-06-27 18:41:37:579] <32666> Check Field OK
+INFO	[2013-06-27 18:41:37:579] <32666> MERCHANT PRIV KEY LOAD OK
+INFO	[2013-06-27 18:41:37:579] <32666> MERCHANT PUB KEY LOAD OK []
+INFO	[2013-06-27 18:41:37:581] <32666> CHKFAKE KEY MAKE OK:MjAxMzA2MjcxODQxMzc1Nzk1MzUwMA==
+
+INFO	[2013-06-27 18:41:37:581] <32666> END chkfake  Laptime:[0sec]
+INFO	[2013-06-27 18:41:37:581] <32666> ===============================================================
+INFO	[2013-06-27 18:42:15:7] <3212> START INIPHP chkfake (V5031-111123)(OS:Linux2.6.18-348.6.1.el5,PHP:5.2.17)
+DEBUG	[2013-06-27 18:42:15:7] <3212> inipayhome:/www/loosfly_godo_co_kr/shop/order/card/inipay
+DEBUG	[2013-06-27 18:42:15:7] <3212> type:chkfake
+DEBUG	[2013-06-27 18:42:15:7] <3212> debug:true
+DEBUG	[2013-06-27 18:42:15:7] <3212> enctype:asym
+DEBUG	[2013-06-27 18:42:15:7] <3212> admin:1111
+DEBUG	[2013-06-27 18:42:15:7] <3212> checkopt:false
+DEBUG	[2013-06-27 18:42:15:7] <3212> mid:GODOloosfl
+DEBUG	[2013-06-27 18:42:15:7] <3212> price:89000
+DEBUG	[2013-06-27 18:42:15:7] <3212> nointerest:no
+DEBUG	[2013-06-27 18:42:15:7] <3212> quotabase:선택:일시불:2개월:3개월:4개월:5개월:6개월:7개월:8개월:9개월:10개월:11개월:12개월
+INFO	[2013-06-27 18:42:15:7] <3212> Check Field OK
+INFO	[2013-06-27 18:42:15:7] <3212> MERCHANT PRIV KEY LOAD OK
+INFO	[2013-06-27 18:42:15:8] <3212> MERCHANT PUB KEY LOAD OK []
+INFO	[2013-06-27 18:42:15:9] <3212> CHKFAKE KEY MAKE OK:MjAxMzA2MjcxODQyMTUwMDg5MTc5MA==
+
+INFO	[2013-06-27 18:42:15:9] <3212> END chkfake  Laptime:[0sec]
+INFO	[2013-06-27 18:42:15:9] <3212> ===============================================================

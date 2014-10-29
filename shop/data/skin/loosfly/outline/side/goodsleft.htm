@@ -1,0 +1,74 @@
+{*** 쇼핑관련 왼쪽메뉴 | goods/goods_list.php ***}
+	<!--{ ? _cfg.subCategory != 1 // 1단 또는 서브레이어 출력 유형 }-->
+	<table width="100%" cellpadding=0 cellspacing=0 border=0 id="menuLayer">
+	<!--{ @ dataCategory( _cfg.subCategory, 2 ) }-->
+	<tr>
+		<td class="catebar"><a href="../goods/goods_list.php?category={.category}">{.catnm}</a></td>
+		<td style="z-index:100">
+		<!--{ ? .sub }-->
+		<div style="position:relative"><div class=subLayer><table width=100% cellspacing=1>
+		<!--{ @ .sub }-->
+		<tr><td nowrap class="cate"><a href="../goods/goods_list.php?category={..category}">{..catnm}</a></td></tr>
+		<!--{ ? ..index_!=..size_-1 }--><tr><td height=1 bgcolor=#F3F2F0></td></tr><!--{ / }-->
+		<!--{ / }-->
+		</table>
+		</div>
+		</div>
+		<!--{ / }-->
+		</td>
+	</tr>
+	<!--{ / }-->
+	</table>
+	<!--{ ? _cfg.subCategory }-->
+	<script>execSubLayer();</script>
+	<!--{ / }-->
+
+	<!--{ : // 1,2단 동시 메뉴 출력 유형 }-->
+<?PHP 
+	include_once "_loos_category.php";
+	global $arr_category_name;
+	global $arr_collection_name;
+?>
+
+	<div id="left_menu">
+		<div style="height:15px;"></div>
+		<div class="cat00"><div onMouseOver="overL('상품카테고리', this);" onMouseOut="outL('by category', this);">by Category</div></div>
+		<div class="separator"></div>
+		<div style="height:10px;"></div>
+<?PHP 
+	$cnt = count($arr_category_name);
+	for( $i = 0; $i < $cnt; $i++ ) {
+?>
+		<div class="cat01"><a href="/shop/goods/<?=$arr_category_name[$i][2]?>"><div onMouseOver="overS('<?=$arr_category_name[$i][0]?>', this);" onMouseOut="outS('<?=$arr_category_name[$i][1]?>', this);"><?=$arr_category_name[$i][1]?></div></a></div>
+		<div style="height:5px;"></div>
+<?PHP } ?>
+		<div style="height:15px;"></div>
+		<div class="cat00"><div onMouseOver="overL('테마별 분류', this);" onMouseOut="outL('by collection', this);">by Collection</div></div>
+		<div class="separator"></div>
+		<div style="height:10px;"></div>
+<?PHP 
+	$cnt = count($arr_collection_name);
+	for( $i = 0; $i < $cnt; $i++ ) {
+?>
+		<div class="cat01"><a href="/shop/goods/<?=$arr_collection_name[$i][2]?>"><div onMouseOver="overS('<?=$arr_collection_name[$i][0]?>', this);" onMouseOut="outS('<?=$arr_collection_name[$i][1]?>', this);"><?=$arr_collection_name[$i][1]?></div></a></div>
+		<div style="height:5px;"></div>
+<?PHP } ?>
+
+
+<!--{ @ dataCategory( _cfg.subCategory, 1 ) }-->
+<?PHP if ( false ) { // if( {.category} == "005") { ?>
+		<div style="height:15px;"></div>
+		<div class="cat00"><div onMouseOver="overL('테마별 분류', this);" onMouseOut="outL('by collection', this);">by Collection</div></div>
+		<div class="separator"></div>
+		<div style="height:10px;"></div>
+<?PHP
+//	 }
+//	if( {.category} != "011") { 
+?>
+		<div class="cat01"><a href="/shop/goods/goods_list.php?category={.category}"><div onMouseOver="overS('{.catnm}', this);" onMouseOut="outS('<?PHP echo str_replace("'", "\'", $lfy_goods_knames[{.catnm}]); ?>', this);"><?PHP echo $lfy_goods_knames[{.catnm}]; ?></div></a></div>
+		<div style="height:5px;"></div>
+<?PHP } ?>
+<!--{ / }-->
+		<div style="height:20px;"></div>
+<!--{ / }-->
+	</div>

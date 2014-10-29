@@ -1,0 +1,74 @@
+<ul class="order_item_list">
+
+	<!--{ @ cart->item }-->
+	<li><dl>
+			<!--{ ? _orderitem_mode=="cart" }-->
+			<dt class="hidden">선택</dt>
+			<dd class="oil_chk"><input type=checkbox name=idxs[] value="{.index_}"  onClick="nsGodo_CartAction.recalc();"/></dd>
+			<!--{ / }-->
+			<dt class="hidden">상품이미지</dt>
+			<dd class="oil_img"><a href="../goods/view.php?goodsno={.goodsno}">{=goodsimgMobile(.img,100)}</a></dd>
+			<dt class="hidden">상품정보</dt>
+			<dd class="oil_goods">
+			<div class="hidden">상품명</div>
+			<div class="oil_name"><a href="../goods/view.php?goodsno={.goodsno}">{=strcut(.goodsnm,100)}</a></div>
+			<div class="hidden">옵션</div>
+			<div class="oil_option">
+				<!--{ ? .opt }--><div>선택옵션 : [{=implode("/",.opt)}]</div><!--{ / }-->
+				<!--{ @ .addopt }--><div>추가옵션 : [{..optnm}:{..opt}]</div><!--{ / }-->
+			</div>
+			<!--{ ? .delivery_type }-->
+			<div class="oil_delivery_title blt">배송비 : </div>
+			<div class="oil_delivery">
+				<!--{ ? .delivery_type == 1 }-->
+				(무료배송)
+				<!--{ : (.delivery_type == 2 || .delivery_type == 4 )  && .goods_delivery > 0 }-->
+				(개별배송 : {=number_format(.goods_delivery)}원 )
+				<!--{ : .delivery_type == 5 && .goods_delivery > 0 }-->
+				(수량별배송 : {=number_format(.goods_delivery * .ea)}원 )
+				<!--{ : .delivery_type == 3 && .goods_delivery > 0 }-->
+				<div>(착불배송 : {=number_format(.goods_delivery)}원 )</div>
+				<!--{ / }-->
+			</div>
+			<!--{ / }-->
+			<div class="oil_price">판매가 : <span class="r_price">{=number_format(.price + .addprice)}</span>원</div>
+			<div class="oil_reserve">적립금 : {=number_format(.reserve)}원</div>
+			<!--{ ? NaverMileageAccum }--><div class="oil_naver_mileage" data-goodsno="{.goodsno}"></div><!--{ / }-->
+			<div class="oil_ea">수량 : 
+				<!--{ ? _orderitem_mode=="cart" }-->
+				<input type=text name=ea[] size=4 value="{.ea}" class=line style="text-align:right;" onkeydown="onlynumber()">&nbsp;<div class="oil_ea_btn"><button id="ea-modify-btn">수정</button></div>
+				<!--{ : }-->
+				{.ea}개
+				<!--{ / }-->
+			</div>
+			<div class="oil_total_title blt">합계 : {=number_format((.price + .addprice)*.ea)}원</div>
+		</dl>
+	</li>
+<!--{ ? _orderitem_mode=="cart" }-->
+<script>nsGodo_CartAction.pushdata({reserve:{=.reserve},price:{=(.price + .addprice)},ea:{=.ea}});</script>
+<!--{ / }-->	
+	<!--{ / }-->
+	
+</ul>
+<!--{ NaverMileageAccum }-->
+<!--{ ? _orderitem_mode=="cart" }-->
+<div class="btn_area">
+	<div id="all-chk-btn"><div id="all-chk-btn-effect" onclick="javascript:chkBox('idxs[]','rev');" >전체 선택</div></div>
+	<div id="chk-del-btn"><div id="chk-del-btn-effect" onclick="javascript:act('delItem');" id="all-chk-btn">선택삭제</div></div>
+	<div id="all-del-btn"><div id="all-del-btn-effect" onclick="javascript:location.href='cart.php?mode=empty';" id="all-chk-btn">비우기</div></div>
+</div>
+<!--{ / }-->
+
+<div class="sum_area">
+	<div class="board_area">
+		<div class="title">
+			<div>상품 합계금액 : </div>
+			<div>받으실 적립금 : </div>
+		</div>
+		<div class="price">
+			<div id="el-orderitem-total-price">{=number_format(cart->goodsprice)}원</div>
+			<div id="el-orderitem-total-reserve">{=number_format(cart->bonus)}원</div>
+		</div>
+	</div>
+	<div class="clearb"></div>
+</div>
