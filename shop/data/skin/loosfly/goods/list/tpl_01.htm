@@ -19,19 +19,6 @@
 	if( $kr_name == "" ) $kr_name = {.shortdesc};
 	$delim = (strlen($kr_name) > 25) ? " " : "<br>";
 	if( $kr_color != "" ) $kr_color = $delim."(".$kr_color.")";
-
-/*
-	$en_name = {.goodsnm};
-	$en_color = "";
-	parse_str($en_name);
-	if( $en_color != "" ) $en_color = "<br>(".$en_color.")";
-
-	$kr_name = {.shortdesc};
-	$kr_color = "";
-	$alert = "";
-	parse_str($kr_name);
-	if( $kr_color != "" ) $kr_color = "<br>(".$kr_color.")";
-*/
 	$id = "nm".{.goodscd};
 ?>
 					<div class="galary_item" onclick="location.href='{.goods_view_url}'" onmouseover="document.getElementById('<?=$id?>').innerHTML='<?=$kr_name.$kr_color?>'" onmouseout="document.getElementById('<?=$id?>').innerHTML='<?=$en_name.$en_color?>'">
@@ -39,9 +26,18 @@
 	<!--{ ? .soldout_icon }-->
 					<div class="sold_out">out of stock</div>
 	<!--{ :  .icon }-->
-		<?PHP $pos = strpos({ .icon }, "icon_new"); if( $pos != false )  { ?>
+<?PHP 
+	$r_pos = strpos({ .icon }, "icon_reserve");
+	$n_pos = strpos({ .icon }, "icon_new");
+	if( $r_pos != false )  { 
+?>
+					<span class="comming_soon">Coming Soon!</span>
+<?PHP 
+	}
+	else if( $n_pos != false )  { 
+?>
 					<span class="new_arrival">NEW</span>
-		<?PHP } ?>
+<?PHP } ?>
 	<!--{ / }-->
 					<div style="height:5px"></div>
 					<!--{ ? .goodsnm }--><div class="galary_name" id="<?=$id?>"><?=$en_name.$en_color?></div><!--{ / }-->
